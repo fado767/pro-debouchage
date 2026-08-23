@@ -2,23 +2,30 @@
 
 *Written by the last session for the next one. Overwritten at every close. Max 40 lines.*
 
-**Written 2026-08-23 about 16:00 at `/pro-eof`. Everything is filed (STATE, NOW, DECISIONS, LOG, accounts). The next session is the DESIGN SESSION (brief below); it starts with `/pro-orch-mid` if still on 2026-08-23, `/pro-orch` from 2026-08-24 on.**
+**Written 2026-08-23 late evening, at the end of the v2 design session (Claude Code, Fable 5 then Opus 5). Everything is filed: STATE, NOW, DECISIONS, LOG. Fady closed the session deliberately and will open the next one when he is ready. 2026-08-24 is a new day and the depot visit day, so the next session starts with `/pro-orch`.**
 
-## Where the day left things
-- Domain `prodebouchage24.be`: bought, holder Roro (individual, itsme phone), NOT active. DNS Belgium refused itsme three times with identical data, eID app dead, front of Roro's ID uploaded 2026-08-23 for the manual check (up to 5 working days), support mail sent. Fallback decided: if not active by Tuesday 2026-08-25 evening, trade the holder to Fady (Infomaniak "Change ownership", about 15 euro, Fady's click) and he verifies with his itsme. Every session: `nslookup -type=NS prodebouchage24.be a.nsset.be` (expect hera/olof.ns.cloudflare.com).
-- When it resolves: Workspace Confirm (Pro Debouchage Chrome profile), Gmail step, Business Profile as info@ with the depot address, then the video at a visit. Monday 2026-08-24 Fady is in Brussels: photos at the depot in any case (van with plate, street sign, door number, keys), video only if the domain is live.
-- Page v1 on https://drain-prodebouchage.pages.dev/fr/ and /nl/ (pages.dev noindex via `site/_headers`). Deploy: `unset CLOUDFLARE_API_TOKEN` then `npx wrangler@latest pages deploy "C:/Users/fadya/Desktop/pro-debouchage/site" --project-name drain-prodebouchage --branch main --commit-dirty=true` run from the scratchpad folder (wrangler writes a cache folder next to where it runs).
-- Roro is sending better photos (van, logo source, jobs). File them in `assets/raw/`, keep the evidence README in step.
+## What this session did
+- **Ten rounds of design feedback on v2, each one deployed and republished to the canvas.** Fixed borderless header, Fady's monogram as the logo (no wordmark), three-photo hero collage from his enhanced van shot plus lifestyle-1 and lifestyle-12, equal-width CTA pairs that fill their container, 2x2 price cards, teal chips, a segmented FR/NL/EN language switch, titles at weight 900, icon-only WhatsApp in the sticky bar.
+- **English added as a third language.** `/en/` is live. Copy written by an Opus 5 agent into `design/canvas-v2/copy-en.js` and `meta-en.js`, 75 keys, key-for-key with FR and NL. The language list is declared once in `LANGS` in `page-template.js`; header, footer, chooser, 404, hreflang and sitemap all read from it, so a fourth language is one line.
+- **Three read-only Opus 5 audits at the close** (build health, copy and rules, live site). Everything mechanical they found was fixed the same session; everything that is a judgement call was filed, not silently changed.
 
-## BRIEF for the design session (Fady works on this himself, Claude executes)
-Goal: turn site v1 into the page Fady is proud of, on the preview, in rounds of Fady's reactions. Spec and rules: `playbook/landing-page.md` (sections 3b, 5, 6, 9), `AGENTS.md` section 5 and 6 (never fake, FR then NL, no em dashes), logo colours from `assets/raw/pro-debouchage-logo.jpeg` (fewer colours on the page than on the logo).
-1. Fady scrolls the preview on his phone and gives raw reactions; decides cut or keep on the eleven agent-written copy lines listed in `landing-page.md` section 9.
-2. Claude turns the reactions into ONE change list, shows it, then edits `site/` (one editor at a time; an Opus agent may do the edits, never in parallel with another editor), redeploys, Fady looks again. Two or three rounds.
-3. Claude's own suggestions from 2026-08-23, for Fady to accept or drop: enterprise number visible right under the hero (trust strip), one dark "price promise" band mid-page, a designed review-card shell ready for the first three real reviews, tighter hero crop until the new van photo lands, a real plate-visible daylight van photo after Monday.
-4. Out of scope for that session: GA4, Search Console, consent banner, variants generator (separate Claude line in NOW), anything on the live domain (not live yet), Ads.
-5. Close that session with `/pro-eof` too: what changed in `site/`, which lines were cut or kept, logged in `landing-page.md` section 9 and `LOG.md`.
+## Where things stand
+- **Live:** https://drain-prodebouchage-v2.pages.dev in `/fr/`, `/nl/`, `/en/` (noindex). v1 untouched at https://drain-prodebouchage.pages.dev. Canvas: https://claude.ai/code/artifact/1f9a2cc8-0f37-4880-b300-9303f6a4e56f
+- **Sources of truth:** `design/canvas-v2/page-template.js` (FR and NL copy plus markup), `design/canvas-v2/copy-en.js` and `meta-en.js` (English), `design/ds-bundle/styles.css` (design system). `site-v2/` is generated, never edited by hand. Rebuild `node design/canvas-v2/build-site.js`, artboards `node design/canvas-v2/make-canvas.js`. Deploy from the scratchpad: `unset CLOUDFLARE_API_TOKEN` then `npx wrangler@latest pages deploy "C:/Users/fadya/Desktop/pro-debouchage/site-v2" --project-name drain-prodebouchage-v2 --branch main --commit-dirty=true`.
+- **The build now warns on every run** naming how many placeholder reviews are still in each language. That warning is the go-live tripwire; do not silence it, clear it.
 
-## Rules learned today (proposed at eof 2026-08-23, applied only on Fady's yes)
-- .be holder = the person who does the itsme check, at their ID address, with the phone that is in their itsme; never the company at a mailbox seat. If itsme fails twice with identical data, go straight to the document upload, do not burn the third try.
-- Google Workspace created in a Chrome profile signed into Fady's Google pre-fills Fady as admin; overwrite with the client every time.
-- A Gmail draft beats a mail pasted in chat: Fady sends from his own box, nothing is lost.
+## The blockers, in order, all in NOW.md
+1. **VAT.** The page promises VAT-included prices, 6 and 21 percent rates and a VAT receipt, in three languages, while the register shows no VAT quality for PRO DEBOUCHAGE SRL. Either Roro produces the number or all of it comes out. Biggest thing found tonight.
+2. **Twelve invented reviews**, four per language, and the Dutch set is different people from the French and English sets. The honest replacement must be ONE shared set, not three translated ones.
+3. **Two unconfirmed claims:** the insurance-report promise (inherited from the old fake .com site, never confirmed by Roro) and "the most common case, often solved in one visit" on a history of three jobs.
+4. **v1 still shows the owner's name** ("Roro et Afram") on the live v1 preview, against the naming decision. Rebuild v1 or take it down.
+5. The three earlier honesty checks (flat 6 percent VAT, "about 80 other towns", the "elsewhere 120 to 180 euro" comparison) are unchanged and still waiting on Fady's wording.
+
+## Two things not to re-litigate
+- **The fixed header works, now confirmed twice.** Measured by this session on the deployed page and independently by the live-site audit across all nine combinations of three languages and three widths: the computed position is `fixed` and the top is exactly 0 at scroll 500, 2000 and 6000. What moves is the canvas, because a full-height artboard has nothing to scroll inside it. Judge it on the live URL, never on the canvas. Four artboards are now real device viewports so they scroll internally.
+- **No "20 years experience" chip.** AGENTS.md rule 1 names that exact claim as forbidden and the company exists since 2025-09-10. Options are in NOW.md.
+
+## Rule improvements proposed today, applied only on Fady's yes
+- Add `design/` to AGENTS.md section 3: the design pack and the v2 page source; `site-v2/` is generated output.
+- Add to section 7: after any round of design edits, rebuild and check the generated CSS, because the page-extras block is appended last and has silently overridden the design system three times now.
+- Add to section 10: a design round is not done until it is deployed AND the canvas is re-seeded, so what Fady looks at is never one round behind.

@@ -4,12 +4,12 @@
 
 ## 1. The project, in three sentences
 
-Pro Débouchage is a 24/7 drain-unblocking, sewer cleaning, camera inspection, septic emptying and flooded-cellar pumping service based in Vilvoorde, serving Brussels and the towns 40 to 60 km around it, in French and Dutch. It is owned by Roro (Fady's nephew), the work is done by Afram, and it is a client of Fady's agency (fady.be, hi@fady.be) for ONE converting landing page plus Google Ads that make the phone ring. It is a single client with its own site, not a template business: nothing here is reused across clients, and nothing from the taxi business is edited from here.
+Pro Débouchage is a 24/7 drain-unblocking, sewer cleaning, camera inspection, septic emptying and flooded-cellar pumping service based in Vilvoorde, serving Brussels and the towns 40 to 60 km around it, in French and Dutch. It is owned by Roro (Fady's nephew), the work is done by Afrem, and it is a client of Fady's agency (fady.be, hi@fady.be) for ONE converting landing page plus Google Ads that make the phone ring. It is a single client with its own site, not a template business: nothing here is reused across clients, and nothing from the taxi business is edited from here.
 
 ## 2. The people and how we talk to them
 
 - **Roro** owner. French and English fluent, Arabic native. Fady and Roro talk in English or Arabic. Questions go by WhatsApp, short, in English, batched.
-- **Afram** the technician in the van. French working level, German better, English basic. Gets his brief from Roro.
+- **Afrem** the technician in the van. French working level, German better, English basic. Gets his brief from Roro.
 - **Roro's wife** administration. French fluent, good Dutch.
 - **Roro's accountant** exists; company facts come from the public register first, from Roro second.
 - **Fady** the agency: owner of the plan, the taste, the clicks that need a human (payments, credentials, account grants). Claude is planner, executor, ads specialist, landing-page designer and developer, and treats this as its own project.
