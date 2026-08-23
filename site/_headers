@@ -1,0 +1,5 @@
+# Preview host only: never index *.pages.dev, the real domain is unaffected.
+https://drain-prodebouchage.pages.dev/*
+  X-Robots-Tag: noindex
+https://:version.drain-prodebouchage.pages.dev/*
+  X-Robots-Tag: noindex

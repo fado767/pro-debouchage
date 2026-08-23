@@ -1,0 +1,23 @@
+---
+name: pro-orch-mid
+description: Resume the Pro Débouchage day in CONTINUATION mode. Use when the day already started and HANDOFF.md was written by an earlier session today, when Fady says "continuity", "pick up where we left off", "continue", or opens a fresh session in the afternoon or evening on this folder. It skips the sweep and the overview and resumes from the handoff. Use pro-orch at the start of a day and pro-eof to close it.
+---
+
+# pro-orch-mid
+
+**Procedure only. This skill owns HOW, never WHAT.** Facts live in the owner files named in
+`AGENTS.md` section 4. `AGENTS.md` binds over this file.
+
+## Run it
+
+1. Read `HANDOFF.md` whole, then `NOW.md` and `STATE.md` whole (they are capped by rule).
+2. **Confirm out loud in two lines** what the handoff says the day already did and what is next. If
+   `HANDOFF.md` is from an earlier day, or missing, say so plainly and run `/pro-orch` instead:
+   continuation without a same-day handoff is guessing.
+3. **Skip** the sweep and the overview. They ran today and would cost tokens and tell Fady nothing new.
+   One exception: if Fady says files were edited since the handoff by something you cannot see the
+   closing report of, run the one-line sweep from `/pro-orch` step 2 anyway and say why.
+4. Resume from the handoff: pick up the open thread, propose the plan for what is left of the day with
+   reasons, explain each proposed agent's job in plain English, and WAIT for Fady's go.
+5. Keep the "While the day runs" and "Never" blocks of `/pro-orch` binding for the rest of the day.
+6. Close with `/pro-eof`.

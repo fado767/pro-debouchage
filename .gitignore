@@ -1,0 +1,30 @@
+# Cloud backup covers ONLY the root paths whitelisted below, nothing else.
+# Everything is whitelisted on purpose except machine-local and generated files.
+# Keep this list in step with AGENTS.md section 3 (the folder map).
+/*
+!/.gitignore
+!/save-to-cloud.cmd
+!/first-time-setup.cmd
+!/.claude/
+/.claude/*
+!/.claude/skills/
+!/AGENTS.md
+!/CLAUDE.md
+!/STATE.md
+!/NOW.md
+!/DECISIONS.md
+!/LOG.md
+!/HANDOFF.md
+!/playbook/
+!/research/
+!/assets/
+!/site/
+!/_archive/
+
+# never track these, anywhere
+node_modules/
+.wrangler/
+*.bak
+*.bak-*
+Thumbs.db
+.DS_Store

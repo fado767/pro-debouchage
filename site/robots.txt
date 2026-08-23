@@ -1,0 +1,5 @@
+# Pro Débouchage, prodebouchage24.be
+User-agent: *
+Allow: /
+
+Sitemap: https://prodebouchage24.be/sitemap.xml
