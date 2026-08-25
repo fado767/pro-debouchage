@@ -19,13 +19,16 @@ sections 7 (size caps, rewrite in place), 8 (logging) and 9 (close it or file it
 3. **Size check.** Report the line count of `STATE.md` (cap 120), `NOW.md` (cap 60), `HANDOFF.md`
    (cap 40) and the byte size of `LOG.md` and `DECISIONS.md`. If a cap is hit, trim in this session
    before writing anything else, and say what moved where.
-4. **Rewrite `HANDOFF.md`** for the next session: what today did, what is next, what is waiting on
+4. **Stop the background agents.** Check the session's background agents and tasks; stop any still
+   running and confirm all are closed BEFORE the handoff is written, so nothing lingers as a running
+   session in Fady's panel after the close. (Added 2026-08-24 on Fady's yes.)
+5. **Rewrite `HANDOFF.md`** for the next session: what today did, what is next, what is waiting on
    whom, and whether the next session should start with `/pro-orch` (a new day) or `/pro-orch-mid`
    (same day, Fady is coming back). Max 40 lines. Any rule improvement proposed today goes into the
    handoff the moment it is proposed, so it survives a fresh session.
-5. **Propose improvements** to the rules or the skills as ONE dated line each, apply only on Fady's
+6. **Propose improvements** to the rules or the skills as ONE dated line each, apply only on Fady's
    explicit yes, and file the applied ones in `LOG.md`. A skill that misfired today is fixed today.
-6. **The closing block**, always the last thing said: one line "what was logged and where" (or
+7. **The closing block**, always the last thing said: one line "what was logged and where" (or
    "Nothing to log this session"), and the reminder that Fady double-clicks `save-to-cloud.cmd`
    himself if anything on disk changed. Closing reminders are never open items.
 

@@ -25,6 +25,7 @@ Pro Débouchage is a 24/7 drain-unblocking, sewer cleaning, camera inspection, s
 - `research/` raw agent reports, dated, read-only reference, catalogued in `research/INDEX.md`. Never the owner of a fact: when a research fact becomes a decision, it moves into a playbook file or `DECISIONS.md`.
 - `assets/raw/` what Roro sent, untouched. `assets/prepared/` what we made from it.
 - `site/` the landing page source. Output of a build is never edited by hand.
+- `design/` the v2 design pack; `design/canvas-v2/` holds the page source (copy objects FR/NL/EN, build scripts) and its README carries the exact build and deploy commands. `site-v2/` is the build output, never edited by hand. (Added 2026-08-24 on Fady's yes.)
 - `_archive/` closed history, unchanged.
 - `.claude/skills/` the three routines `/pro-orch`, `/pro-orch-mid`, `/pro-eof`.
 - `save-to-cloud.cmd` and `first-time-setup.cmd` Fady's backup scripts. Only Fady runs them (section 7).
@@ -59,6 +60,7 @@ Pro Débouchage is a 24/7 drain-unblocking, sewer cleaning, camera inspection, s
 
 - **No em dashes**, ever, in anything new: chat, files, copy, scripts, WhatsApp drafts. Commas, full stops or brackets instead.
 - **Customer-facing copy is French first and Dutch second, simple words, short sentences**, no marketing fog, no unproven claims. Both languages ship together.
+- **Copy is written to convert, never merely translated** (Fady, 2026-08-24). Anything customer-facing, new or changed, matches the page's established voice per language (FR spoken "on", everyday Flemish, EN with contractions), speaks to the customer in their situation, and sells the call. FR, NL and EN each carry the same promise as native persuasive copy; a literal word-for-word translation is a bug.
 - **Anything for Roro is simple English**, WhatsApp length, one question per line when asking.
 - **Long numbers digit by digit** in anything meant to be read aloud (phone numbers, enterprise numbers).
 - Prices in euros, VAT stated.
@@ -72,6 +74,7 @@ Pro Débouchage is a 24/7 drain-unblocking, sewer cleaning, camera inspection, s
 - **Size caps are rules, not wishes.** When a file hits its cap, the same session trims it (closed lines to `LOG.md`, spent facts out of `STATE.md`) before adding anything.
 - Never store passwords, recovery codes, API tokens or card numbers in any file. `playbook/accounts.md` says WHICH account and WHO owns it, never HOW to get in.
 - No customer personal data in the files beyond what the page itself shows.
+- **After any edit to the page source, rebuild and check the result** (styles included) before calling the work done; a broken build or stale CSS ships silently otherwise. (Added 2026-08-24 on Fady's yes.)
 
 ## 8. Logging (every session)
 
@@ -89,6 +92,7 @@ No task is deferred to "later" inside a conversation. It is done now, or it is a
 - **Fan-out mode is the standard:** the session fans work out to subagents on **Opus 5** by default (Fable 5 only when Fady says so or the task truly needs it). Before agents fire, the session explains each agent's job in plain English so Fady's yes is informed. Anything that is Fady's call comes as an AskUserQuestion widget with the essentials INSIDE the widget, because Fady sees the widget, not the prose above it.
 - **Do the work by default:** anything that needs no payment, no credentials and no decision that is truly Fady's is done by the session (browser included). Money, passwords, account-level agreements, access grants and anything that touches a live client surface come to Fady first. The permission classifier refuses access-grant clicks for agents and the main session alike: plan those as Fady's clicks upfront (inventory by an agent, Fady clicks, read-only verify by an agent).
 - **Continuity is the session's job to call:** when context grows long enough that quality or cost suffers, say so unprompted, rewrite `HANDOFF.md`, and the next session starts with `/pro-orch-mid`.
+- **A design round is done only when the change is deployed to the preview and verified there.** The deployed preview is the ONLY review surface: the canvas artifact was retired from the workflow on 2026-08-24 (Fady never used it; it stays frozen, not deleted, and is not re-seeded any more). (Added 2026-08-24 on Fady's yes, amending the 2026-08-23 proposal.)
 
 ## 11. Automation and improvement mindset
 
