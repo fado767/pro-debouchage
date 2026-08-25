@@ -75,6 +75,7 @@ Pro Débouchage is a 24/7 drain-unblocking, sewer cleaning, camera inspection, s
 - Never store passwords, recovery codes, API tokens or card numbers in any file. `playbook/accounts.md` says WHICH account and WHO owns it, never HOW to get in.
 - No customer personal data in the files beyond what the page itself shows.
 - **After any edit to the page source, rebuild and check the result** (styles included) before calling the work done; a broken build or stale CSS ships silently otherwise. (Added 2026-08-24 on Fady's yes.)
+- **Image picks are made from VIEWED images, never from filenames.** Crops of the same photo hide under different names; two duplicates shipped on 2026-08-24 because files were judged by name. Open and look before choosing, deduplicating or deleting. (Added 2026-08-25 on Fady's yes.)
 
 ## 8. Logging (every session)
 
