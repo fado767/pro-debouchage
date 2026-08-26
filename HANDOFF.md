@@ -1,45 +1,40 @@
 # HANDOFF.md
-
 *Written by the last session for the next one. Overwritten at every close. Max 40 lines.*
 
-**Written 2026-08-26, closing the overnight-build-plus-four-review-rounds session. The day is NOT
-closed: the next session starts with `/pro-orch-mid` and continues Fady's v3 review, section by
-section.**
+**Written 2026-08-26, closing the late-evening continuation session. The day is OVER and everything
+is filed. Next session starts with `/pro-orch`, a fresh day.**
 
-## The surface
-**https://pro-debouchage-v3.pages.dev** (FR /fr/, NL /nl/, EN /en/, privacy + CGV in the footer).
-Pages project pro-debouchage-v3, noindex. v2 at prodebouchage24.pages.dev untouched, still fallback.
+## The one surface
+**https://pd-review.pages.dev** (FR /fr/, NL /nl/, EN /en/, privacy + CGV, chooser, 404). Edit
+`design/site-source/` ONLY, `node design/site-source/build.js`, deploy per its README (outside the
+project, token unset, `--project-name pd-review`), verify ON THE DEPLOYED URL by DOM measurement.
+The pane freezes motion, so animation is provable only by reading delays and end states; the FEEL
+needs Fady's phone. **Hard-refresh before judging any image or CSS change**: assets cache 24 hours
+and this tab served stale bytes more than once tonight.
 
-## The round routine (unchanged discipline)
-1. Edit sources in `design/canvas-v3/` (copy-fr/nl/en.js, template.js, styles.css, cgv.js, build.js).
-2. `node design/canvas-v3/build.js` (placeholder-review warning is the go-live tripwire).
-3. Deploy from a folder OUTSIDE the project, `unset CLOUDFLARE_API_TOKEN`, WRANGLER_CACHE_DIR set:
-   `npx wrangler pages deploy site-v3 --project-name pro-debouchage-v3 --branch main --commit-dirty=true`
-4. Verify on the deployed URL. Browser pane hidden = no screenshots; verify geometry by DOM
-   measurement; MOTION needs Fady's eyes (tickers, reveals, steps animation, seal, FAQ easing).
+## Done tonight, do not re-litigate
+Services heading is now "Votre problème est dans cette liste." (+ NL/EN). Steps LEFT AS IS on
+Fady's word. Prices: permanent yellow marker under every amount, NO animation, that is a decision
+and not an omission. The scam band's 265-victims claim opens its SOURCE in a dialog on the page,
+with no outbound link on purpose. Who-comes rebuilt: paragraph, Afrem in a chat bubble, then the
+van; its three rules moved out to their own three-card band. Photo-story frames now use the page
+tokens (ink / teal / the call button's red). Review note spacing fixed.
 
-## Settled through review rounds 1 to 4 (LOG 2026-08-26), do not re-litigate
-- Headline: pain lines + "Appelez./Bel./Call." on the yellow marker; per-language size caps (cqw,
-  container on .hero .wrap) keep the longest line ~90% of the column at any width; re-measure caps if
-  copy, weight, stretch or tracking of the H1 changes.
-- BOLD type system (round 4): body 470, leads 520, h3s 900, display 900 at 80% width, tracking -0.03em.
-- CSS marquees (never pause), steps line+numbers animation (IO .go), quiet lift on service numbers,
-  logo-gradient review cards, nowrap towns, WAAPI fluid FAQ (exclusive), v2-style floating badge +
-  popover, static header (only the bottom call bar is fixed), filled teal sticky WhatsApp,
-  left-aligned final call with yellow number underline, service-first chip, photo line under CTAs.
-- ZONE-FIRST copy rule: never "based in Vilvoorde" (seat is a mailbox, the base is a van); rule in
-  landing-page.md section 4, DECISIONS 2026-08-26.
+## The one thing that must not be forgotten
+**The bowl rule in `styles.css` was WRONG all day and is now corrected.** The dirty water sits at
+about 34 to 64 percent across and 71 to 90 percent down of the before photo, its bottom right. The
+old note said 19 to 38 across and 42 to 51 down, which is the SEAT AND LID, and it survived the
+before-photo swap, so every automated clearance check passed against the wrong rectangle. Verify
+composition against the IMAGE, never against a comment, and re-measure after any photo swap.
 
-## Next session mode (Fady's ask)
-Section-by-section review: Fady goes one section at a time and gives notes; apply, rebuild, deploy,
-he refreshes. Keep rounds small. Sections top to bottom: header/hero, ticker+trust, services, steps,
-prices+guarantee, before/after, scam, who+van, equipment, proof+reviews, situations, zone, FAQ,
-final, footer, plus privacy/CGV pages and the chooser.
+## Next: the equipment section (Fady parked his comments on it), then proof and reviews, situations,
+zone, FAQ, final call, footer, then the privacy/CGV pages and the chooser.
 
-## Waiting on whom
-- **Fady:** the section notes; backup double-click (changed today: LOG, NOW, STATE, DECISIONS,
-  HANDOFF, research/18-23 + INDEX, playbook/landing-page.md, design/canvas-v3/*, site-v3/, new images
-  in assets/prepared/web/img, .claude/launch.json); old v2 open calls now answered inside v3.
-- **Roro:** nothing (reviews parked DO NOT CHASE).
-- **A clock:** VIES still INVALID at the overnight poll; depot visit; invoice session owes the signed
-  work-order line (research/22 section 2) and CGV as invoice page 2.
+## Waiting
+**Fady** SAVE-TO-CLOUD DOUBLE-CLICK (a lot moved tonight and my own revert copy died with the
+session, so git is now the only way back); the 149-euro confirm-or-drop; a real phone check of the
+motion, the photo story and the new bubble; whether the source popup should get a "read the
+article" link at all.
+**Roro** a face photo of Afrem for the bubble. Until it lands the avatar is a monogram and the
+build WARNS every run: no invented face goes on a real named person. When it arrives, the portrait
+is made from HIS OWN face, the way the taxi driver portraits are.

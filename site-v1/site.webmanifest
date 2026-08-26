@@ -1,0 +1,21 @@
+{
+  "name": "Pro Débouchage",
+  "short_name": "Pro Débouchage",
+  "start_url": "/fr/",
+  "display": "browser",
+  "background_color": "#F6F3EE",
+  "theme_color": "#102A4A",
+  "icons": [
+    {
+      "src": "/assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

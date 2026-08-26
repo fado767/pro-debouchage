@@ -24,7 +24,7 @@ fady.be (the agency)
 ```
 
 ## 2. Naming, so a screenshot is never ambiguous
-Ads client account `fady.be | Drain | Pro Debouchage`, label `DRAIN` · Cloudflare Pages project `drain-prodebouchage` · Infomaniak Organisation `Pro Débouchage` · GA4 account = the client's legal entity name · Chrome profile `Pro Debouchage` · folder `pro-debouchage/`. (Taxi keeps its own existing names; the pattern applies from this client on.)
+Ads client account `fady.be | Drain | Pro Debouchage`, label `DRAIN` · Cloudflare Pages project `pd-review` (one working Pages project per client; the dead `pro-debouchage-v3` awaits deletion, and the real go-live name is Fady's open call) · Infomaniak Organisation `Pro Débouchage` · GA4 account = the client's legal entity name · Chrome profile `Pro Debouchage` · folder `pro-debouchage/`. (Taxi keeps its own existing names; the pattern applies from this client on.)
 
 ## 3. What must NEVER be shared between clients
 1. A payment method (one card across unrelated Ads accounts is a relatedness signal and a related-accounts suspension is close to unappealable). Roro pays his Ads, his Workspace and his domain renewal himself, from day one; the agency card is at most a build instrument with a removal date, and for Ads not even that.
