@@ -1,0 +1,16 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "title": "FR mobile 375x812, defile dans le cadre", "x": 0, "y": 0, "w": 375, "h": 812 },
+    { "file": "MobileNL.dc.html", "title": "NL mobile 375x812", "x": 455, "y": 0, "w": 375, "h": 812 },
+    { "file": "MobileEN.dc.html", "title": "EN mobile 375x812", "x": 910, "y": 0, "w": 375, "h": 812 },
+    { "file": "Desktop.dc.html", "title": "FR desktop 1440x900", "x": 1365, "y": 0, "w": 1440, "h": 900 },
+    { "file": "FirstScreen.dc.html", "title": "FR mobile, page entiere (pour voir tout d'un coup)", "x": 0, "y": 960, "w": 375, "h": 13400 }
+  ],
+  "annotations": [
+    { "id": "v2-brief", "x": 0, "y": -300, "w": 460, "text": "Pro Débouchage, page v2, retours de Fady des rondes 1 à 10 appliqués, plus l'audit de conversion trilingue du 2026-08-24: voix unifiée (FR parlé en \"on\", NL flamand de tous les jours, EN avec contractions), titres meta réécrits, images allégées.\nSource: design/canvas-v2/page-template.js, copy-en.js et design/ds-bundle/styles.css. Photos réelles uniquement.\nTrois pages réelles /fr/, /nl/ et /en/, même design.\nLa v1 reste intacte sur drain-prodebouchage.pages.dev." },
+    { "id": "v2-scroll", "x": 0, "y": -160, "w": 460, "text": "IMPORTANT: les quatre premiers plans de travail font maintenant la taille d'un vrai écran (375x812 et 1440x900). La page défile À L'INTÉRIEUR du cadre, comme sur un vrai téléphone, donc l'en-tête fixe reste bien collé en haut quand vous faites défiler.\nLe grand plan en dessous montre la page entière d'un seul coup: là, l'en-tête ne peut pas rester collé, c'est normal, il n'y a rien à faire défiler." },
+    { "id": "v2-colors", "x": 1365, "y": -160, "w": 460, "text": "Ronde 10 et suivantes: puces et sélecteur de langue en teal maison, logo 36/44 px. Troisième puce: \"30 ans de métier cumulés\" (le fait confirmé par Roro, jamais l'âge de la société). Barre de confiance EN: \"You can call in English, day or night\".\nRéponses Tally de Roro (2026-08-24) intégrées: rapport d'assurance SUR DEMANDE (carte, bloc et FAQ, trois langues), machine Rioned et assurance RC chez AG Insurance nommées dans \"Qui vient chez vous\"." },
+    { "id": "v2-placeholders", "x": 455, "y": -160, "w": 420, "text": "Les 3 cartes d'avis (Paolo, Daniel, Élodie, mêmes histoires dans les trois langues, empilées sur mobile, pas de carrousel) sont écrites par nous (décision 2026-08-24). Avant la mise en ligne, elles reçoivent les vrais mots de vrais clients; le build avertit tant que ce n'est pas fait." }
+  ],
+  "launch": { "view": "canvas" }
+}

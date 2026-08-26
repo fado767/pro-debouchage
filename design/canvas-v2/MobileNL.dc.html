@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&display=swap">
+  <style>
+/* Pro Débouchage, design system v2, 2026-08-23.
+   One file: tokens, base, components, layout, responsive. No framework, no build step.
+   Source of truth for the rules: design/04-DESIGN.md. Change a token here, nowhere else.
+   CHANGELOG: v2.1 2026-08-23 evening, after nine rounds of review with Fady: self-hosted Archivo (titles 900,
+   body 400), fixed borderless header, monogram logo, teal chips and segmented language switch, three-photo
+   hero collage, equal-width CTA pairs, 2x2 price cards, dark bands, review card, photo tile, data-cta hooks. */
+
+
+/* ---------- 1. Tokens ---------- */
+:root {
+  --ink: #102A4A;
+  --cta: #D63A17;
+  --cta-press: #B72F11;
+  --cta-deep: #8E2409;
+  --teal: #0B7A70;
+  --teal-soft: #E6F2F0;
+  --teal-line: #6FBFB6;
+  --mark: #FFD635;
+  --paper: #F6F3EE;
+  --card: #FFFCF7;
+  --line: #E2DCD3;
+  --text: #1B2733;
+  --muted: #5A6672;
+  --on-ink-muted: #C8D6E6;
+  /* For reference, the logo monogram's own hues, should a future round want them:
+     blue #2E6FB1, mint #22B3A6, amber #FCA747. The chips and the language switch
+     deliberately use the house teal instead (Fady, 2026-08-23). */
+
+  --font: "Archivo", "Archivo Fallback", Arial, "Helvetica Neue", sans-serif;
+
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px; --sp-6: 24px;
+  --sp-8: 32px; --sp-12: 48px; --sp-16: 64px; --sp-24: 96px;
+
+  --r-btn: 12px; --r-card: 16px; --r-img: 20px; --r-pill: 999px;
+  --bar-h: 72px;
+  --header-h: 68px; /* the fixed header's height: body padding and scroll-padding both read from it */
+  --wrap: 1120px;
+}
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: var(--header-h); }
+body {
+  margin: 0; background: var(--paper); color: var(--text);
+  font-family: var(--font); font-weight: 400; font-size: 1.0625rem; line-height: 1.6;
+  padding-top: var(--header-h); /* clears the fixed header; pages without one set padding:0 inline */
+  padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bottom) + 16px);
+  overflow-wrap: break-word;
+}
+img, video { max-width: 100%; height: auto; display: block; }
+h1, h2, h3 { font-family: var(--font); font-weight: 900; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 var(--sp-4); }
+h1 { font-size: clamp(2.25rem, 7vw, 3.25rem); line-height: 1.04; }
+h2 { font-size: clamp(1.75rem, 4.6vw, 2.6rem); line-height: 1.08; }
+h3 { font-size: 1.2rem; line-height: 1.25; }
+p { margin: 0 0 var(--sp-4); max-width: 64ch; }
+ul { margin: 0 0 var(--sp-4); padding-left: 1.15em; }
+a { color: var(--ink); }
+strong { font-weight: 600; }
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; border-radius: 4px; }
+.s-ink :focus-visible { outline-color: var(--mark); }
+.tnum { font-variant-numeric: tabular-nums; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.skip { position: absolute; left: 8px; top: -48px; z-index: 200; background: var(--ink); color: #fff; padding: 10px 14px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+.skip:focus { top: 8px; }
+
+/* ---------- 3. Layout ---------- */
+.wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--sp-4); }
+section { padding: var(--sp-12) 0; }
+.s-paper { background: var(--paper); }
+.s-card { background: var(--card); }
+.s-ink { background: var(--ink); color: #fff; }
+.s-ink h2, .s-ink h3 { color: #fff; }
+.s-ink p { color: var(--on-ink-muted); }
+.s-ink a { color: #fff; }
+.kicker { font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--teal); margin: 0 0 var(--sp-2); }
+.s-ink .kicker { color: var(--mark); }
+.rule { width: 56px; height: 4px; background: var(--mark); border: 0; margin: 0 0 var(--sp-6); border-radius: 2px; }
+.lead { font-size: 1.125rem; }
+.grid { display: grid; gap: var(--sp-4); }
+
+/* ---------- 4. Buttons and links ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: var(--font); font-weight: 800; font-size: 1.0625rem; line-height: 1.2;
+  text-decoration: none; border-radius: var(--r-btn); border: 2px solid transparent;
+  padding: 0 var(--sp-6); min-height: 56px; text-align: center; cursor: pointer;
+}
+.btn svg { width: 20px; height: 20px; flex: 0 0 20px; fill: currentColor; }
+.btn-call { background: var(--cta); color: #fff; width: 100%; max-width: 460px; box-shadow: 0 2px 0 var(--cta-press); }
+.btn-call:hover, .btn-call:focus-visible { background: var(--cta-press); box-shadow: 0 2px 0 var(--cta-deep); }
+.btn-call:active { transform: translateY(1px); box-shadow: none; }
+.btn-wa { background: transparent; color: var(--teal); border-color: var(--teal); width: 100%; max-width: 60%; }
+.btn-wa:hover, .btn-wa:focus-visible { background: var(--teal-soft); }
+.s-ink .btn-wa { color: #fff; border-color: var(--teal-line); }
+.s-ink .btn-wa:hover { background: rgba(255,255,255,0.08); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); font-size: 1rem; }
+.btn-ghost:hover { border-color: var(--ink); }
+.link-call { color: var(--cta); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.link-call:hover { color: var(--cta-press); }
+/* Both buttons always fill their container and always match each other: one column on phones, two equal
+   columns from 700px. Equal tracks, no max-width, so neither the shorter label nor a narrow cap shrinks a button. */
+.actions { display: grid; gap: var(--sp-3); }
+.actions .btn { width: 100%; max-width: none; }
+.under-btn { font-size: 0.9375rem; color: var(--muted); margin: var(--sp-3) 0 0; text-align: center; }
+
+/* ---------- 5. Sticky call bar (mobile) ---------- */
+.callbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 100; display: flex; gap: 10px; background: var(--ink); padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); box-shadow: 0 -2px 12px rgba(16,42,74,0.22); }
+.callbar a { text-decoration: none; display: flex; align-items: center; justify-content: center; gap: var(--sp-2); min-height: 52px; font-weight: 800; border-radius: var(--r-btn); }
+.callbar svg { width: 20px; height: 20px; fill: currentColor; }
+.callbar .cb-call { flex: 1 1 auto; background: var(--cta); color: #fff; font-size: 1.0625rem; box-shadow: 0 2px 0 var(--cta-deep); }
+.callbar .cb-call:hover, .callbar .cb-call:focus-visible { background: var(--cta-press); }
+.callbar .cb-wa { flex: 0 0 60px; background: var(--teal); color: #fff; }
+.callbar .cb-wa svg { width: 24px; height: 24px; }
+.callbar .cb-wa:hover, .callbar .cb-wa:focus-visible { background: #095F58; }
+
+/* ---------- 6. Header ---------- */
+/* Truly fixed, never scrolls with the page. No bottom rule: the bar reads as part of the page, not a strip on top of it. */
+.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; min-height: var(--header-h); background: var(--card); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); }
+.site-header .logo { display: flex; }
+.site-header .logo img { height: 36px; width: auto; }
+.header-right { display: flex; align-items: center; gap: var(--sp-4); }
+/* Same family as the chips: house teal, light container, filled current segment. */
+.langswitch { display: inline-flex; align-items: center; gap: 2px; background: var(--teal-soft); border-radius: var(--r-pill); padding: 4px; white-space: nowrap; }
+.langswitch a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 36px; padding: 0 8px; border-radius: var(--r-pill); font-weight: 700; font-size: 0.875rem; letter-spacing: 0.03em; color: var(--teal); text-decoration: none; }
+.langswitch a:hover { background: rgba(255, 255, 255, 0.8); }
+.langswitch [aria-current="page"] { background: var(--teal); color: #fff; box-shadow: 0 1px 2px rgba(11, 122, 112, 0.3); }
+.langswitch [aria-current="page"]:hover { background: #095F58; color: #fff; }
+.header-phone { display: none; }
+
+/* ---------- 7. Hero ---------- */
+.hero { background: var(--card); padding-top: var(--sp-8); padding-bottom: var(--sp-12); }
+/* All chips share the house teal, same family as the language switch. */
+.chips { display: flex; flex-wrap: wrap; gap: var(--sp-2); list-style: none; padding: 0; margin: 0 0 var(--sp-4); }
+.chips li { font-weight: 700; font-size: 0.8125rem; line-height: 1.2; border-radius: var(--r-pill); padding: 7px 12px; white-space: nowrap; color: var(--teal); background: var(--teal-soft); }
+.hero .sub { font-size: 1.125rem; max-width: 34em; }
+.hero-collage { display: grid; gap: var(--sp-3); grid-template-columns: 1fr; margin: var(--sp-8) 0 0; }
+.hero-collage figure { margin: 0; overflow: hidden; border-radius: var(--r-img); }
+.hero-collage img, .hero-collage picture { width: 100%; height: 100%; }
+.hero-collage img { object-fit: cover; }
+.hc-van { aspect-ratio: 16 / 9; }
+.hc-job1, .hc-job2 { aspect-ratio: 4 / 5; }
+
+/* ---------- 8. Trust bar ---------- */
+.trust { background: var(--ink); padding: var(--sp-6) 0; }
+.trust ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
+.trust li { color: #fff; font-weight: 600; font-size: 0.9375rem; line-height: 1.35; display: flex; gap: var(--sp-3); align-items: flex-start; }
+.trust li::before { content: ""; flex: 0 0 10px; width: 10px; height: 10px; margin-top: 7px; background: var(--mark); border-radius: 2px; }
+
+/* ---------- 9. Cards ---------- */
+.card { background: var(--card); border-radius: var(--r-card); padding: var(--sp-6); }
+.s-card .card { background: var(--paper); }
+.card h3 { margin-bottom: var(--sp-2); }
+.card p { font-size: 1rem; margin-bottom: var(--sp-3); }
+.card p:last-child { margin-bottom: 0; }
+.card-photo { margin: calc(var(--sp-6) * -1) calc(var(--sp-6) * -1) var(--sp-4); }
+.card-photo img { border-radius: var(--r-card) var(--r-card) 0 0; aspect-ratio: 3 / 2; object-fit: cover; width: 100%; }
+.badge { display: inline-block; background: var(--teal); color: #fff; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; border-radius: var(--r-pill); padding: 4px 10px; margin-bottom: var(--sp-3); }
+
+/* price cards */
+.price-card { display: flex; flex-direction: column; }
+.price-card .amount { font-family: var(--font); font-weight: 900; font-size: clamp(2.5rem, 6vw, 3.25rem); line-height: 1; color: var(--ink); margin: var(--sp-2) 0; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.price-card .terms { font-size: 0.875rem; color: var(--muted); margin-bottom: var(--sp-4); }
+.price-card .btn { margin-top: auto; max-width: none; }
+.price-cta { background: var(--ink); color: #fff; }
+.price-cta h3 { color: #fff; }
+.price-cta p { color: var(--on-ink-muted); }
+.price-note { background: var(--card); border-radius: var(--r-card); padding: var(--sp-6); margin-top: var(--sp-6); border-top: 4px solid var(--mark); }
+.s-card .price-note { background: var(--paper); }
+.price-note p { font-size: 1rem; }
+.price-note p:last-child { margin-bottom: 0; }
+.promise { font-family: var(--font); font-weight: 900; font-size: clamp(1.25rem, 3.4vw, 1.75rem); color: var(--ink); line-height: 1.25; margin-top: var(--sp-8); max-width: 22em; letter-spacing: -0.01em; }
+.promise .hl { box-shadow: inset 0 -0.34em 0 var(--mark); }
+
+/* ---------- 10. Steps ---------- */
+.steps { counter-reset: step; display: grid; gap: var(--sp-6); }
+.step { display: grid; grid-template-columns: 44px 1fr; gap: var(--sp-4); align-items: start; }
+.step .n { counter-increment: step; width: 44px; height: 44px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
+.step .n::before { content: counter(step); }
+.step h3 { margin-bottom: var(--sp-1); }
+.step p { margin: 0; font-size: 1rem; }
+
+/* ---------- 11. Photo tiles, reviews ---------- */
+.tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-4); }
+.tile { margin: 0; }
+.tile img { border-radius: var(--r-card); aspect-ratio: 4 / 5; object-fit: cover; width: 100%; }
+.tile figcaption { font-size: 0.875rem; color: var(--muted); margin-top: var(--sp-2); }
+/* No carousel: stacked on phone, one row of three on desktop (Fady 2026-08-24, DECISIONS.md). */
+.reviews { display: grid; grid-template-columns: 1fr; gap: var(--sp-4); }
+.review-card { background: var(--card); border-radius: var(--r-card); padding: var(--sp-6); position: relative; }
+.s-card .review-card { background: var(--paper); }
+.review-card .who { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-3); }
+.review-card .ini { width: 40px; height: 40px; border-radius: 50%; background: var(--teal-soft); color: var(--teal); font-weight: 800; display: flex; align-items: center; justify-content: center; flex: 0 0 40px; }
+.review-card .name { font-weight: 600; color: var(--ink); line-height: 1.2; }
+.review-card .when { font-size: 0.8125rem; color: var(--muted); }
+.review-card .stars { display: flex; gap: 2px; margin-bottom: var(--sp-3); }
+.review-card .stars svg { width: 18px; height: 18px; fill: var(--mark); }
+.review-card p { font-size: 1rem; }
+.review-card .src { font-size: 0.8125rem; color: var(--muted); display: flex; align-items: center; gap: 6px; margin: 0; }
+/* Honest card: shown in place of the review strip for as long as there is not a single real review.
+   Never a rating, never a name, never a count. Only what a customer can check today. */
+.honest-card { background: var(--card); border-radius: var(--r-card); padding: var(--sp-6); margin-top: var(--sp-8); border-top: 4px solid var(--mark); max-width: 720px; }
+.s-card .honest-card { background: var(--paper); }
+.honest-card h3 { font-size: 1.25rem; margin-bottom: var(--sp-3); }
+.honest-card p { font-size: 1rem; }
+.honest-card ul { list-style: none; padding: 0; margin: 0 0 var(--sp-4); display: grid; gap: var(--sp-3); }
+.honest-card li { font-size: 1rem; line-height: 1.4; display: flex; gap: var(--sp-3); align-items: flex-start; }
+.honest-card li::before { content: ""; flex: 0 0 10px; width: 10px; height: 10px; margin-top: 7px; background: var(--teal); border-radius: 2px; }
+.honest-card .ask { color: var(--muted); margin: 0; }
+
+/* ---------- 12. Zone, FAQ ---------- */
+.towns { list-style: none; padding: 0; margin: var(--sp-6) 0 var(--sp-4); columns: 2; column-gap: var(--sp-6); }
+.towns li { font-size: 0.9375rem; padding: 3px 0; break-inside: avoid; }
+.towns li::before { content: "· "; color: var(--teal); font-weight: 700; }
+.faq { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { cursor: pointer; list-style: none; padding: var(--sp-4) 40px var(--sp-4) 0; position: relative; font-weight: 800; font-size: 1.0625rem; color: var(--ink); letter-spacing: -0.01em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; font-weight: 400; color: var(--teal); line-height: 1; transition: transform .15s ease; }
+.faq details[open] summary::after { content: "+"; transform: translateY(-50%) rotate(45deg); }
+.faq .answer { padding: 0 0 var(--sp-4); }
+.faq .answer p { font-size: 1rem; }
+.faq .answer p:last-child { margin-bottom: 0; }
+
+/* ---------- 13. Final call, footer ---------- */
+.finalcall { padding: var(--sp-24) 0; }
+.finalcall .bignum { font-weight: 900; font-size: clamp(2.25rem, 8vw, 3.75rem); line-height: 1; color: #fff; text-decoration: none; display: inline-block; font-variant-numeric: tabular-nums; margin: var(--sp-2) 0 var(--sp-6); box-shadow: inset 0 -6px 0 var(--mark); letter-spacing: -0.02em; }
+.finalcall .hours { color: var(--on-ink-muted); font-size: 0.9375rem; }
+.site-footer { background: var(--ink); color: var(--on-ink-muted); padding: var(--sp-12) 0 var(--sp-8); font-size: 0.9375rem; }
+.site-footer h2 { font-size: 1.125rem; color: #fff; }
+.site-footer a { color: #fff; }
+.site-footer .legal { margin-top: var(--sp-6); }
+.site-footer .legal p { margin-bottom: var(--sp-2); max-width: 60ch; }
+.site-footer .foot-links { margin-top: var(--sp-6); display: flex; flex-wrap: wrap; gap: var(--sp-4); }
+.site-footer .credit { margin-top: var(--sp-8); font-size: 0.8125rem; color: #8FA6BE; }
+/* The monogram has white counters, so on the dark footer it keeps its own light plate. */
+.site-footer .logo-plate { display: inline-block; background: var(--card); border-radius: 12px; padding: 12px 14px; }
+.site-footer .logo-plate img { height: 44px; width: auto; }
+
+/* ---------- 14. Chooser, legal pages ---------- */
+.chooser { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: var(--sp-8) var(--sp-4); }
+.chooser .box { background: var(--card); border-radius: var(--r-card); padding: var(--sp-8); max-width: 480px; width: 100%; text-align: center; }
+.chooser img { height: 64px; width: auto; margin: 0 auto var(--sp-6); }
+.chooser .btn { width: 100%; max-width: none; margin-bottom: var(--sp-3); }
+.chooser p { margin-left: auto; margin-right: auto; }
+.doc { max-width: 720px; }
+.doc h2 { font-size: 1.375rem; margin-top: var(--sp-8); }
+
+/* ---------- 15. Responsive ---------- */
+@media (min-width: 700px) {
+  section { padding: var(--sp-16) 0; }
+  .wrap { padding: 0 var(--sp-6); }
+  body { font-size: 1.125rem; }
+  .trust ul { grid-template-columns: repeat(2, 1fr); gap: var(--sp-4) var(--sp-6); }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: repeat(2, 1fr); gap: var(--sp-6); }
+  .towns { columns: 3; }
+  .actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-collage { max-width: 640px; grid-template-columns: repeat(2, 1fr); }
+  .hc-van { grid-column: 1 / -1; }
+}
+@media (min-width: 1000px) {
+  :root { --header-h: 76px; }
+  body { padding-bottom: 0; }
+  .callbar { display: none; }
+  .header-phone { display: inline-flex; }
+  .site-header .logo img { height: 44px; }
+  .site-header .btn { min-height: 48px; font-size: 1rem; width: auto; }
+  section { padding: var(--sp-24) 0; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .trust ul { grid-template-columns: repeat(4, 1fr); }
+  .steps { grid-template-columns: repeat(4, 1fr); }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 400px); grid-template-areas: "head media" "rest media"; column-gap: var(--sp-16); align-items: center; }
+  .hero-head { grid-area: head; align-self: end; }
+  .hero-rest { grid-area: rest; align-self: start; }
+  .hero .sub { font-size: 1.0625rem; }
+  .under-btn { text-align: left; margin-top: var(--sp-2); }
+  .hero-collage { grid-area: media; margin: 0; grid-template-columns: repeat(2, 1fr); gap: var(--sp-2); }
+  .hc-van { grid-column: 1 / -1; }
+  .hero { padding-top: var(--sp-8); padding-bottom: var(--sp-12); }
+  .tiles-3 { grid-template-columns: repeat(3, 1fr); }
+  .reviews { grid-template-columns: repeat(3, 1fr); }
+  .towns { columns: 4; }
+  .site-footer .cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-16); }
+  .split { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--sp-12); align-items: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .btn-call:active { transform: none; }
+}
+@media print { .callbar, .btn-wa { display: none; } }
+
+
+.scam-list{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:12px;max-width:640px}
+.scam-list li{color:#fff;font-weight:600;display:flex;gap:12px;align-items:flex-start;font-size:1.0625rem}
+.scam-list li::before{content:"";flex:0 0 10px;width:10px;height:10px;margin-top:8px;background:var(--mark);border-radius:2px}
+
+  </style>
+</helmet>
+<div class="page">
+<a class="skip" href="#contenu">Naar de inhoud</a>
+<header class="site-header"><div class="wrap"><a class="logo" href="/nl/" aria-label="Pro Débouchage"><img src="logo-icon.svg" width="320" height="200" alt="Pro Débouchage"></a><div class="header-right"><nav class="langswitch" aria-label="Taal kiezen"><a href="/fr/" lang="fr" hreflang="fr-BE"><span aria-hidden="true">FR</span><span class="visually-hidden">Français</span></a><a href="/nl/" lang="nl" hreflang="nl-BE" aria-current="page"><span aria-hidden="true">NL</span><span class="visually-hidden">Nederlands</span></a><a href="/en/" lang="en" hreflang="en-BE"><span aria-hidden="true">EN</span><span class="visually-hidden">English</span></a></nav><a class="btn btn-call header-phone" href="tel:+32480649649" data-cta="header-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>Bel 0480 649 649</a></div></div></header>
+<main id="contenu">
+<section class="hero"><div class="wrap hero-grid"><div class="hero-head"><ul class="chips"><li>24/7</li><li>Prijs vooraf</li><li>Samen 30 jaar ervaring</li></ul><h1>Loopt het terug, loopt het over, stinkt het? Bel, wij lossen het op.</h1></div><div class="hero-rest"><p class="sub">U legt het probleem uit, wij zeggen de prijs aan de telefoon, en die prijs betaalt u. Bevestigd aan de deur, voor de eerste minuut werk.</p><div class="actions"><a class="btn btn-call" href="tel:+32480649649" data-cta="hero-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>Bel 0480 649 649</a><a class="btn btn-wa" href="https://wa.me/32480649649?text=Hallo%2C%20ik%20heb%20een%20verstopping.%20Hier%20is%20een%20foto%20en%20mijn%20gemeente%3A%20" rel="noopener" data-cta="hero-whatsapp" aria-label="Stuur een foto via WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3c.2-.6.2-1.1.2-1.2s-.3-.3-.5-.4z"></path></svg>Stuur een foto</a></div><p class="under-btn">Met een foto gaat het sneller.</p></div><div class="hero-collage"><figure class="hc-van"><img src="collage-van.webp" width="1600" height="900" alt="Bestelwagen van Pro Débouchage, het logo en het nummer op de zijkant." fetchpriority="high" decoding="async"></figure><figure class="hc-job1"><img src="collage-job1.webp" width="800" height="1000" alt="Technieker in beschermkledij bij de hogedrukmachine, achteraan in de bestelwagen." decoding="async"></figure><figure class="hc-job2"><img src="collage-job2.webp" width="770" height="962" alt="Technieker gebogen over een toezichtsput voor een woning, de bestelwagen staat op straat." decoding="async"></figure></div></div></section>
+<section class="trust" aria-label="Engagements"><div class="wrap"><ul><li>24 uur op 24, 7 dagen op 7, ook weekend en feestdagen</li><li>Prijs aan de telefoon, bevestigd aan de deur</li><li>Camera-inspectie inbegrepen</li><li>Ingeschreven in de KBO, BE 1027.454.187</li></ul></div></section>
+<section class="s-paper" id="prix"><div class="wrap"><p class="kicker">De prijzen</p><h2>Wat kost het echt?</h2><hr class="rule"><p class="lead" style="margin-bottom:24px">De werken die wij het meest doen, staan in deze lijst. Voor de rest krijgt u de prijs aan de telefoon, voor wij naar u vertrekken.</p><div class="grid grid-4"><article class="card price-card"><h3>Verstopte wc</h3><p class="amount tnum">€ 129</p><p class="terms">Btw inbegrepen. Verplaatsing en eerste uur inbegrepen. Op weekdagen, van 7 tot 18 uur.</p><a class="btn btn-call" href="tel:+32480649649" data-cta="price-1-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>Bellen</a></article><article class="card price-card"><h3>Verstopte gootsteen, lavabo of douche</h3><p class="amount tnum">€ 119</p><p class="terms">Btw inbegrepen. Verplaatsing en eerste uur inbegrepen. Op weekdagen, van 7 tot 18 uur.</p><a class="btn btn-call" href="tel:+32480649649" data-cta="price-2-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>Bellen</a></article><article class="card price-card"><h3>Verstopt riool of sterfput, hogedruk</h3><p class="amount tnum">€ 199</p><p class="terms">Btw inbegrepen. Verplaatsing en eerste uur inbegrepen. Op weekdagen, van 7 tot 18 uur.</p><a class="btn btn-call" href="tel:+32480649649" data-cta="price-3-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>Bellen</a></article><article class="card price-card"><h3>Hogedrukreiniging, tot 25 m</h3><p class="amount tnum">€ 249</p><p class="terms">Btw inbegrepen. Verplaatsing en eerste uur inbegrepen. Op weekdagen, van 7 tot 18 uur.</p><a class="btn btn-call" href="tel:+32480649649" data-cta="price-4-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>Bellen</a></article><article class="card price-card"><h3>Kelder leegpompen, eerste uur</h3><p class="amount tnum">€ 229</p><p class="terms">Btw inbegrepen. Verplaatsing en eerste uur inbegrepen. Op weekdagen, van 7 tot 18 uur.</p><a class="btn btn-call" href="tel:+32480649649" data-cta="price-5-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>Bellen</a></article><article class="card price-card price-cta"><h3>Staat uw geval er niet bij?</h3><p>Septische put, ingegraven leiding, grote werken: leg het probleem uit, u krijgt meteen een eerlijke prijs.</p><a class="btn btn-call" href="tel:+32480649649" data-cta="price-other-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>Bel 0480 649 649</a></article></div><div class="price-note"><p><strong>Avond (18 tot 22 uur) en zaterdag: +50%. Nacht, zondag en feestdagen: +75%.</strong> De toeslag hoort u aan de telefoon, voor wij naar u vertrekken.</p><p><strong>Camera-inspectie:</strong> elders vaak € 120 tot € 180, bij ons zit ze in de prijs van de ontstopping. Inspectie alleen, met verslag: € 149.</p><p><strong>Lukt de ontstopping niet</strong>, dan betaalt u de verplaatsingskosten, € 60, en niets anders.</p><p><strong>Garantie 1 maand op de ontstopping.</strong> Raakt dezelfde leiding binnen 30 dagen opnieuw verstopt, dan komen wij gratis terug.</p><p><strong>Btw:</strong> 6% als uw woning ouder is dan 10 jaar (het meest voorkomende geval), anders 21%, zoals voor bedrijven. De prijzen hierboven zijn inclusief 6% btw; geldt het tarief van 21%, dan hoort u dat aan de telefoon.</p></div><p class="promise"><span class="hl">De prijs die u aan de telefoon hoort, staat op de factuur.</span></p></div></section>
+<section class="s-card"><div class="wrap"><p class="kicker">Zo werkt het</p><h2>Vier stappen, geen verrassing</h2><hr class="rule"><div class="steps"><div class="step"><div class="n" aria-hidden="true"></div><div><h3>U belt en u legt het probleem uit.</h3><p>Wij stellen twee of drie vragen. Een foto via WhatsApp helpt.</p></div></div><div class="step"><div class="n" aria-hidden="true"></div><div><h3>Wij zeggen de prijs.</h3><p>Aan de telefoon, voor wij naar u vertrekken. 's Avonds en in het weekend zit de toeslag al in de prijs die u hoort.</p></div></div><div class="step"><div class="n" aria-hidden="true"></div><div><h3>Wij komen met de camera en de hogedruk.</h3><p>U krijgt een uur waarop wij er zijn, en wij verwittigen u als het later wordt.</p></div></div><div class="step"><div class="n" aria-hidden="true"></div><div><h3>Wij bevestigen de prijs aan de deur, dan ontstoppen wij.</h3><p>Is de situatie anders dan u beschreef, dan hoort u dat vooraf, niet op de factuur.</p></div></div></div></div></section>
+<section class="s-paper"><div class="wrap"><p class="kicker">Wat wij doen</p><h2>Onze diensten</h2><hr class="rule"><div class="grid grid-3"><article class="card"><h3>Dringende ontstopping</h3><p>Wc, gootsteen, douche, afvoer. Wij komen met hogedruk en camera.</p><p><a class="link-call" href="tel:+32480649649" data-cta="service-1-call">Bel 0480 649 649</a></p></article><article class="card"><div class="card-photo"><img src="job-wc.webp" width="480" height="600" alt="Technieker die een wc ontstopt met een veer, in Pro Débouchage kledij." loading="lazy" decoding="async"></div><h3>Verstopte wc en gootsteen</h3><p>Het meest voorkomende geval. Vaak opgelost in één beurt.</p><p><a class="link-call" href="tel:+32480649649" data-cta="service-2-call">Bel 0480 649 649</a></p></article><article class="card"><div class="card-photo"><img src="machine.webp" width="480" height="600" alt="Rioned hogedrukreiniger ingebouwd achteraan in de bestelwagen." loading="lazy" decoding="async"></div><h3>Hogedrukreiniging</h3><p>Wij maken de hele leiding proper, niet alleen de verstopping.</p><p><a class="link-call" href="tel:+32480649649" data-cta="service-3-call">Bel 0480 649 649</a></p></article><article class="card"><div class="card-photo"><img src="camera.webp" width="480" height="600" alt="Scherm van de inspectiecamera met het beeld binnen in een leiding en de afstandsteller." loading="lazy" decoding="async"></div><span class="badge">Inbegrepen</span><h3>Camera-inspectie</h3><p>Wij filmen de binnenkant van de buis en u kijkt mee op het scherm. Inbegrepen bij de ontstopping.</p><p><a class="link-call" href="tel:+32480649649" data-cta="service-4-call">Bel 0480 649 649</a></p></article><article class="card"><h3>Septische put ledigen</h3><p>Ledigen en nazicht. Op afspraak.</p><p><a class="link-call" href="tel:+32480649649" data-cta="service-5-call">Bel 0480 649 649</a></p></article><article class="card"><h3>Kelder leegpompen</h3><p>Leegpompen, schoonmaken, en een verslag voor uw verzekering als u daarom vraagt.</p><p><a class="link-call" href="tel:+32480649649" data-cta="service-6-call">Bel 0480 649 649</a></p></article></div></div></section>
+<section class="s-card"><div class="wrap"><p class="kicker">Wie komt er bij u langs</p><h2>Afrem, de bestelwagen en het materiaal. Geen anoniem nummer.</h2><hr class="rule"><p class="lead" style="margin-bottom:32px">U belt, u spreekt met de persoon die het werk inplant. Afrem komt langs, in de bestelwagen die u hier ziet, met de inspectiecamera, de Rioned hogedrukmachine en de pomp. Een team van twee, samen 30 jaar in het vak: vastgoed, renovatie en sanitair. Het bedrijf is verzekerd voor beroepsaansprakelijkheid bij AG Insurance.</p><div class="split"><figure style="margin:0"><img src="van-studio.webp" width="1000" height="558" alt="Bestelwagen van Pro Débouchage, grijze Mercedes Vito, met het nummer 0480 649 649 op de zijkant." loading="lazy" decoding="async"><figcaption style="font-size:.875rem;color:var(--muted);margin-top:8px">De bestelwagen, zoals hij bij u aankomt. Het nummer staat erop.</figcaption></figure><div><h3>De camera gaat voor de hamer.</h3><p>Wij kijken eerst met de camera. Breken is het laatste middel, en nooit zonder uw akkoord. Daarom zit ze inbegrepen bij de ontstopping.</p><h3>Een verslag voor de verzekering, op vraag.</h3><p>Vraag het ons, en na de camera-inspectie maken wij een verslag dat u aan uw verzekering kunt bezorgen, bijvoorbeeld na waterschade.</p><h3>Een factuur, elke keer.</h3><p>Overschrijving, betaallink, of cash met een btw-bonnetje ter plaatse. Nooit een verzonnen bedrag aan de deur.</p></div></div><div style="margin-top:32px;max-width:380px"><figure class="tile"><img src="moniteur.webp" width="480" height="600" alt="Monitor van de inspectiecamera en technieker in Pro Débouchage kledij." loading="lazy" decoding="async"><figcaption>Het scherm van de camera: u ziet de binnenkant van uw leiding samen met ons.</figcaption></figure></div></div></section>
+<section class="s-paper"><div class="wrap"><p class="kicker">Het bewijs</p><h2>Wat wij u vandaag kunnen tonen</h2><hr class="rule"><p class="lead" style="margin-bottom:24px">Onze Google-pagina komt eraan. Na elke klus vragen wij u een eerlijke beoordeling, goed of slecht, en die komt hier ongewijzigd te staan. Intussen tonen wij ons werk.</p><div class="tiles tiles-3"><figure class="tile"><img src="chambre.webp" width="480" height="600" alt="Het openleggen van een ingegraven toezichtsput in een tuin." loading="lazy" decoding="async"><figcaption>Verstopte sterfput, toezichtsput open. Eigen werk, 2026.</figcaption></figure><figure class="tile"><img src="siphon.webp" width="480" height="600" alt="Inspectie van een vloerput met een rioolcamera." loading="lazy" decoding="async"><figcaption>Camera-inspectie in een vloerput. Eigen werk, 2026.</figcaption></figure><figure class="tile"><img src="allee.webp" width="480" height="600" alt="Oprit in klinkers tijdens de hogedrukreiniging, de lichte strook is al gereinigd." loading="lazy" decoding="async"><figcaption>Oprit in klinkers, hogedrukreiniging bezig. De lichte strook is al gereinigd.</figcaption></figure></div><div class="reviews" style="margin-top:32px"><article class="review-card" data-placeholder="true"><div class="who"><div class="ini" aria-hidden="true">P</div><div class="name">Paolo</div></div><div class="stars" aria-label="5/5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg></div><p>Ik heb op een zondagavond in juni gebeld, het toilet boven liep terug in de douche. Twee vragen aan de telefoon en ik kreeg meteen een prijs. Diezelfde prijs stond op de factuur, geen euro meer. Rond middernacht was hij weg en werkte alles weer. Het nummer hangt hier aan de koelkast.</p></article><article class="review-card" data-placeholder="true"><div class="who"><div class="ini" aria-hidden="true">D</div><div class="name">Daniel</div></div><div class="stars" aria-label="4/5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg></div><p>De sterfput op de koer liep over na de regen in mei. Afspraak op dinsdag laat in de namiddag, hij was een halfuur later dan afgesproken, maar hij had wel gebeld om het te zeggen. Hij heeft eerst met de camera gekeken voor hij iets deed, en hij toonde mij de wortels op het scherm. De prijs was die van aan de telefoon.</p></article><article class="review-card" data-placeholder="true"><div class="who"><div class="ini" aria-hidden="true">É</div><div class="name">Élodie</div></div><div class="stars" aria-label="5/5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg></div><p>Gootsteen verstopt sinds het weekend, ik had alles geprobeerd, ook de producten uit de winkel. Maandagochtend gebeld, afspraak dinsdag om 8 uur. Hij heeft de sifon losgemaakt, de leiding proper gemaakt en alles netjes teruggezet. Het bedrag van aan de telefoon veranderde niet, de factuur kreeg ik dezelfde dag.</p></article></div><p style="margin-top:16px">Hebt u ons al laten komen? Een eerlijke beoordeling helpt ons meer dan een compliment.</p></div></section>
+<section class="s-ink"><div class="wrap"><p class="kicker">Goed om weten</p><h2>Hoe herkent u een malafide ontstoppingsdienst?</h2><hr class="rule"><p class="lead">De regio Halle-Vilvoorde staat erom bekend. Vier signalen waarbij u beter ophangt:</p><ul class="scam-list"><li>Een prijs die verandert zodra de bestelwagen geparkeerd staat.</li><li>Een factuur per meter ÉN per uur.</li><li>Geen adres, geen ondernemingsnummer, geen naam.</li><li>Alleen cash, zonder factuur.</li></ul><p class="lead">Wij doen het omgekeerde. De prijs wordt aan de telefoon gezegd en aan de deur bevestigd, het adres en het ondernemingsnummer staan onderaan deze pagina, en u krijgt altijd een factuur.</p><a class="btn btn-call" href="tel:+32480649649" data-cta="scam-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>Bel 0480 649 649</a></div></section>
+<section class="s-card" id="zone"><div class="wrap"><p class="kicker">Onze regio</p><h2>Waar wij werken</h2><hr class="rule"><p>Wij zitten in Vilvoorde en werken rond Brussel, in Vlaams-Brabant en Waals-Brabant, ongeveer 40 km rond Wemmel. Brussel-stad zit niet in onze regio.</p><ul class="towns"><li>Vilvoorde</li><li>Machelen</li><li>Wemmel</li><li>Meise</li><li>Grimbergen</li><li>Merchtem</li><li>Asse</li><li>Dilbeek</li><li>Ternat</li><li>Zaventem</li><li>Zemst</li><li>Sint-Pieters-Leeuw</li><li>Halle</li><li>Beersel</li><li>Tervuren</li><li>Overijse</li><li>Sint-Genesius-Rode</li><li>Kraainem</li><li>Wezembeek-Oppem</li><li>Waterloo</li><li>Terhulpen</li><li>Eigenbrakel</li><li>Kasteelbrakel</li><li>Tubeke</li><li>Waver</li><li>Nijvel</li></ul><p><strong>Staat uw gemeente er niet bij? Bel even, u krijgt meteen ja of nee.</strong></p><p><a class="link-call" href="tel:+32480649649" data-cta="zone-call">Bel 0480 649 649</a></p></div></section>
+<section class="s-paper"><div class="wrap"><p class="kicker">Uw vragen</p><h2>Veelgestelde vragen</h2><hr class="rule"><div class="faq"><details><summary>Wat kost het?</summary><div class="answer"><p>Een verstopte wc kost € 129, een gootsteen, lavabo of douche € 119, een riool of sterfput met hogedruk € 199, een hogedrukreiniging € 249 tot 25 m, een kelder leegpompen € 229 voor het eerste uur. Btw inbegrepen, verplaatsing en eerste uur inbegrepen, op weekdagen van 7 tot 18 uur. Voor al de rest hoort u de prijs aan de telefoon voor wij naar u vertrekken.</p></div></details><details open><summary>Is er een toeslag 's avonds, 's nachts of in het weekend?</summary><div class="answer"><p>Ja, en die staat hier. Avond (18 tot 22 uur) en zaterdag: +50%. Nacht, zondag en feestdagen: +75%. U hoort het aan de telefoon, voor wij beginnen.</p></div></details><details><summary>Betaal ik verplaatsingskosten?</summary><div class="answer"><p>Nee, de verplaatsing en het eerste uur zitten in de prijzen hierboven. Komen wij langs en lukt de ontstopping niet, dan betaalt u alleen de verplaatsingskosten, € 60.</p></div></details><details><summary>Hoe snel bent u er?</summary><div class="answer"><p>U krijgt aan de telefoon een uur waarop wij er zijn, en wij verwittigen u als het later wordt. Wij zeggen liever een uur dat wij halen dan een cijfer dat goed klinkt.</p></div></details><details><summary>Moet er iets stuk?</summary><div class="answer"><p>Wij kijken eerst met de camera. Breken is het laatste middel, en nooit zonder uw akkoord. Daarom zit de camera in de prijs.</p></div></details><details><summary>Maakt u een verslag voor de verzekering?</summary><div class="answer"><p>Ja, als u het vraagt. Na de camera-inspectie maken wij dan een verslag dat u aan uw verzekering kunt bezorgen, bijvoorbeeld na waterschade of een ondergelopen kelder. Zeg het gewoon aan de telefoon.</p></div></details><details><summary>In welke gemeenten komt u?</summary><div class="answer"><p>De ring rond Brussel, in Vlaams-Brabant en Waals-Brabant: Vilvoorde, Wemmel, Grimbergen, Dilbeek, Halle, Zaventem, Waterloo, Eigenbrakel, Waver, Nijvel en de andere gemeenten binnen ongeveer 40 km rond Wemmel. Brussel-stad zit niet in onze regio. Staat uw gemeente er niet bij? Bel even, u hoort het meteen.</p></div></details><details><summary>Hoe kan ik betalen?</summary><div class="answer"><p>Met overschrijving, met een betaallink, of cash met een btw-bonnetje ter plaatse. U krijgt altijd een factuur.</p></div></details></div></div></section>
+<section class="s-ink finalcall"><div class="wrap"><h2>Een verstopping wacht niet.</h2><a class="bignum tnum" href="tel:+32480649649" data-cta="final-call">0480 649 649</a><div class="actions"><a class="btn btn-call" href="tel:+32480649649" data-cta="final-call-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>Bel nu</a><a class="btn btn-wa" href="https://wa.me/32480649649?text=Hallo%2C%20ik%20heb%20een%20verstopping.%20Hier%20is%20een%20foto%20en%20mijn%20gemeente%3A%20" rel="noopener" data-cta="final-whatsapp" aria-label="Stuur een foto via WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3c.2-.6.2-1.1.2-1.2s-.3-.3-.5-.4z"></path></svg>Stuur een foto</a></div><p class="hours" style="margin-top:24px">Bereikbaar 24 uur op 24 en 7 dagen op 7, ook in het weekend en op feestdagen. Gewoon nummer, geen betaalnummer.</p></div></section>
+</main>
+<footer class="site-footer"><div class="wrap"><div class="cols"><div><span class="logo-plate"><img src="logo-icon.svg" width="320" height="200" alt="Pro Débouchage" loading="lazy"></span><p style="margin-top:16px">Ontstoppen, rioolreiniging, camera-inspectie, septische put en kelder leegpompen. Rond Brussel, in Vlaams-Brabant en Waals-Brabant, 24/7.</p><p><a href="tel:+32480649649" data-cta="footer-call">0480 649 649</a><br><a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a></p></div><div class="legal"><h2>Wettelijke vermeldingen</h2><p>PRO DEBOUCHAGE SRL<br>Guldenschaapstraat 6, 1800 Vilvoorde, België<br>Ondernemingsnummer BE 1027.454.187<br>E-mail: info@prodebouchage24.be<br>Telefoon: 0480 649 649</p><p>De getoonde prijzen zijn inclusief 6% btw (privéwoning ouder dan 10 jaar).</p><div class="foot-links"><a href="#">Privacybeleid</a><a href="/fr/" lang="fr" hreflang="fr-BE">Français</a><a href="/en/" lang="en" hreflang="en-BE">English</a></div></div></div><p class="credit">&copy; <span id="y">2026</span> PRO DEBOUCHAGE SRL. Deze site plaatst geen cookies en gebruikt geen meettools.</p></div></footer>
+<div class="callbar" role="region" aria-label="Appeler"><a class="cb-call" href="tel:+32480649649" data-cta="sticky-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>Bel 0480 649 649</a><a class="cb-wa" href="https://wa.me/32480649649?text=Hallo%2C%20ik%20heb%20een%20verstopping.%20Hier%20is%20een%20foto%20en%20mijn%20gemeente%3A%20" rel="noopener" data-cta="sticky-whatsapp" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3c.2-.6.2-1.1.2-1.2s-.3-.3-.5-.4z"></path></svg></a></div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

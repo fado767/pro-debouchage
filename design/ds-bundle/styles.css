@@ -1,0 +1,411 @@
+/* Pro Débouchage, design system v2, 2026-08-23.
+   One file: tokens, base, components, layout, responsive. No framework, no build step.
+   Source of truth for the rules: design/04-DESIGN.md. Change a token here, nowhere else.
+   CHANGELOG: v2.1 2026-08-23 evening, after nine rounds of review with Fady: self-hosted Archivo (titles 900,
+   body 400), fixed borderless header, monogram logo, teal chips and segmented language switch, three-photo
+   hero collage, equal-width CTA pairs, 2x2 price cards, dark bands, review card, photo tile, data-cta hooks. */
+
+@import url("fonts/fonts.css");
+
+/* ---------- 1. Tokens ---------- */
+:root {
+  --ink: #102A4A;
+  --cta: #D63A17;
+  --cta-press: #B72F11;
+  --cta-deep: #8E2409;
+  --teal: #0B7A70;
+  --teal-soft: #E6F2F0;
+  --teal-line: #6FBFB6;
+  --mark: #FFD635;
+  --paper: #F6F3EE;
+  --card: #FFFCF7;
+  --line: #E2DCD3;
+  --text: #1B2733;
+  --muted: #5A6672;
+  --on-ink-muted: #C8D6E6;
+  /* For reference, the logo monogram's own hues, should a future round want them:
+     blue #2E6FB1, mint #22B3A6, amber #FCA747. The chips and the language switch
+     deliberately use the house teal instead (Fady, 2026-08-23). */
+
+  --font: "Archivo", "Archivo Fallback", Arial, "Helvetica Neue", sans-serif;
+
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px; --sp-6: 24px;
+  --sp-8: 32px; --sp-12: 48px; --sp-16: 64px; --sp-24: 96px;
+
+  --r-btn: 12px; --r-card: 16px; --r-img: 20px; --r-pill: 999px;
+  --bar-h: 72px;
+  --header-h: 68px; /* the fixed header's height: body padding and scroll-padding both read from it */
+  --wrap: 1120px;
+}
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: var(--header-h); }
+body {
+  margin: 0; background: var(--paper); color: var(--text);
+  font-family: var(--font); font-weight: 400; font-size: 1.0625rem; line-height: 1.6;
+  padding-top: var(--header-h); /* clears the fixed header; pages without one set padding:0 inline */
+  padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bottom) + 16px);
+  overflow-wrap: break-word;
+}
+img, video { max-width: 100%; height: auto; display: block; }
+h1, h2, h3 { font-family: var(--font); font-weight: 900; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 var(--sp-4); }
+h1 { font-size: clamp(2.25rem, 7vw, 3.25rem); line-height: 1.04; }
+h2 { font-size: clamp(1.75rem, 4.6vw, 2.6rem); line-height: 1.08; }
+h3 { font-size: 1.2rem; line-height: 1.25; }
+p { margin: 0 0 var(--sp-4); max-width: 64ch; }
+ul { margin: 0 0 var(--sp-4); padding-left: 1.15em; }
+a { color: var(--ink); }
+strong { font-weight: 600; }
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; border-radius: 4px; }
+.s-ink :focus-visible { outline-color: var(--mark); }
+.tnum { font-variant-numeric: tabular-nums; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.skip { position: absolute; left: 8px; top: -48px; z-index: 200; background: var(--ink); color: #fff; padding: 10px 14px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+.skip:focus { top: 8px; }
+
+/* ---------- 3. Layout ---------- */
+.wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--sp-4); }
+section { padding: var(--sp-12) 0; }
+.s-paper { background: var(--paper); }
+.s-card { background: var(--card); }
+.s-ink { background: var(--ink); color: #fff; }
+.s-ink h2, .s-ink h3 { color: #fff; }
+.s-ink p { color: var(--on-ink-muted); }
+.s-ink a { color: #fff; }
+.kicker { font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--teal); margin: 0 0 var(--sp-2); }
+.s-ink .kicker { color: var(--mark); }
+.rule { width: 56px; height: 4px; background: var(--mark); border: 0; margin: 0 0 var(--sp-6); border-radius: 2px; }
+.lead { font-size: 1.125rem; }
+.grid { display: grid; gap: var(--sp-4); }
+
+/* ---------- 4. Buttons and links ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: var(--font); font-weight: 800; font-size: 1.0625rem; line-height: 1.2;
+  text-decoration: none; border-radius: var(--r-btn); border: 2px solid transparent;
+  padding: 0 var(--sp-6); min-height: 56px; text-align: center; cursor: pointer;
+}
+.btn svg { width: 20px; height: 20px; flex: 0 0 20px; fill: currentColor; }
+.btn-call { background: var(--cta); color: #fff; width: 100%; max-width: 460px; box-shadow: 0 2px 0 var(--cta-press); }
+.btn-call:hover, .btn-call:focus-visible { background: var(--cta-press); box-shadow: 0 2px 0 var(--cta-deep); }
+.btn-call:active { transform: translateY(1px); box-shadow: none; }
+.btn-wa { background: transparent; color: var(--teal); border-color: var(--teal); width: 100%; max-width: 60%; }
+.btn-wa:hover, .btn-wa:focus-visible { background: var(--teal-soft); }
+.s-ink .btn-wa { color: #fff; border-color: var(--teal-line); }
+.s-ink .btn-wa:hover { background: rgba(255,255,255,0.08); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); font-size: 1rem; }
+.btn-ghost:hover { border-color: var(--ink); }
+.link-call { color: var(--cta); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.link-call:hover { color: var(--cta-press); }
+/* Both buttons always fill their container and always match each other: one column on phones, two equal
+   columns from 700px. Equal tracks, no max-width, so neither the shorter label nor a narrow cap shrinks a button. */
+.actions { display: grid; gap: var(--sp-3); }
+.actions .btn { width: 100%; max-width: none; }
+.under-btn { font-size: 0.9375rem; color: var(--muted); margin: var(--sp-3) 0 0; text-align: center; }
+
+/* ---------- 5. Sticky call bar (mobile) ---------- */
+.callbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 100; display: flex; gap: 10px; background: var(--ink); padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); box-shadow: 0 -2px 12px rgba(16,42,74,0.22); }
+.callbar a { text-decoration: none; display: flex; align-items: center; justify-content: center; gap: var(--sp-2); min-height: 52px; font-weight: 800; border-radius: var(--r-btn); }
+.callbar svg { width: 20px; height: 20px; fill: currentColor; }
+.callbar .cb-call { flex: 1 1 auto; background: var(--cta); color: #fff; font-size: 1.0625rem; box-shadow: 0 2px 0 var(--cta-deep); }
+.callbar .cb-call:hover, .callbar .cb-call:focus-visible { background: var(--cta-press); }
+.callbar .cb-wa { flex: 0 0 60px; background: var(--teal); color: #fff; }
+.callbar .cb-wa svg { width: 24px; height: 24px; }
+.callbar .cb-wa:hover, .callbar .cb-wa:focus-visible { background: #095F58; }
+
+/* ---------- 6. Header ---------- */
+/* Truly fixed, never scrolls with the page. No bottom rule: the bar reads as part of the page, not a strip on top of it. */
+.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; min-height: var(--header-h); background: var(--card); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); }
+.site-header .logo { display: flex; }
+.site-header .logo img { height: 36px; width: auto; }
+.header-right { display: flex; align-items: center; gap: var(--sp-4); }
+/* Same family as the chips: house teal, light container, filled current segment. */
+.langswitch { display: inline-flex; align-items: center; gap: 2px; background: var(--teal-soft); border-radius: var(--r-pill); padding: 4px; white-space: nowrap; }
+.langswitch a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 36px; padding: 0 8px; border-radius: var(--r-pill); font-weight: 700; font-size: 0.875rem; letter-spacing: 0.03em; color: var(--teal); text-decoration: none; }
+.langswitch a:hover { background: rgba(255, 255, 255, 0.8); }
+.langswitch [aria-current="page"] { background: var(--teal); color: #fff; box-shadow: 0 1px 2px rgba(11, 122, 112, 0.3); }
+.langswitch [aria-current="page"]:hover { background: #095F58; color: #fff; }
+.header-phone { display: none; }
+
+/* ---------- 7. Hero ---------- */
+.hero { background: var(--card); padding-top: var(--sp-8); padding-bottom: var(--sp-12); }
+/* All chips share the house teal, same family as the language switch. */
+.chips { display: flex; flex-wrap: wrap; gap: var(--sp-2); list-style: none; padding: 0; margin: 0 0 var(--sp-4); }
+.chips li { font-weight: 700; font-size: 0.8125rem; line-height: 1.2; border-radius: var(--r-pill); padding: 7px 12px; white-space: nowrap; color: var(--teal); background: var(--teal-soft); }
+.hero .sub { font-size: 1.125rem; max-width: 34em; }
+.hero-collage { display: grid; gap: var(--sp-3); grid-template-columns: 1fr; margin: var(--sp-8) 0 0; }
+.hero-collage figure { margin: 0; overflow: hidden; border-radius: var(--r-img); }
+.hero-collage img, .hero-collage picture { width: 100%; height: 100%; }
+.hero-collage img { object-fit: cover; }
+.hc-van { aspect-ratio: 16 / 9; }
+.hc-job1, .hc-job2 { aspect-ratio: 4 / 5; }
+
+/* ---------- 8. Trust bar ---------- */
+.trust { background: var(--ink); padding: var(--sp-6) 0; }
+.trust ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
+.trust li { color: #fff; font-weight: 600; font-size: 0.9375rem; line-height: 1.35; display: flex; gap: var(--sp-3); align-items: flex-start; }
+.trust li::before { content: ""; flex: 0 0 10px; width: 10px; height: 10px; margin-top: 7px; background: var(--mark); border-radius: 2px; }
+
+/* ---------- 9. Cards ---------- */
+.card { background: var(--card); border-radius: var(--r-card); padding: var(--sp-6); }
+.s-card .card { background: var(--paper); }
+.card h3 { margin-bottom: var(--sp-2); }
+.card p { font-size: 1rem; margin-bottom: var(--sp-3); }
+.card p:last-child { margin-bottom: 0; }
+.card-photo { margin: calc(var(--sp-6) * -1) calc(var(--sp-6) * -1) var(--sp-4); }
+.card-photo img { border-radius: var(--r-card) var(--r-card) 0 0; aspect-ratio: 3 / 2; object-fit: cover; width: 100%; }
+.badge { display: inline-block; background: var(--teal); color: #fff; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; border-radius: var(--r-pill); padding: 4px 10px; margin-bottom: var(--sp-3); }
+
+/* price cards */
+.price-card { display: flex; flex-direction: column; }
+.price-card .amount { font-family: var(--font); font-weight: 900; font-size: clamp(2.5rem, 6vw, 3.25rem); line-height: 1; color: var(--ink); margin: var(--sp-2) 0; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.price-card .terms { font-size: 0.875rem; color: var(--muted); margin-bottom: var(--sp-4); }
+.price-card .btn { margin-top: auto; max-width: none; }
+.price-cta { background: var(--ink); color: #fff; }
+.price-cta h3 { color: #fff; }
+.price-cta p { color: var(--on-ink-muted); }
+.price-note { background: var(--card); border-radius: var(--r-card); padding: var(--sp-6); margin-top: var(--sp-6); border-top: 4px solid var(--mark); }
+.s-card .price-note { background: var(--paper); }
+.price-note p { font-size: 1rem; }
+.price-note p:last-child { margin-bottom: 0; }
+.promise { font-family: var(--font); font-weight: 900; font-size: clamp(1.25rem, 3.4vw, 1.75rem); color: var(--ink); line-height: 1.25; margin-top: var(--sp-8); max-width: 22em; letter-spacing: -0.01em; }
+.promise .hl { box-shadow: inset 0 -0.34em 0 var(--mark); }
+
+/* ---------- 10. Steps ---------- */
+.steps { counter-reset: step; display: grid; gap: var(--sp-6); }
+.step { display: grid; grid-template-columns: 44px 1fr; gap: var(--sp-4); align-items: start; }
+.step .n { counter-increment: step; width: 44px; height: 44px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
+.step .n::before { content: counter(step); }
+.step h3 { margin-bottom: var(--sp-1); }
+.step p { margin: 0; font-size: 1rem; }
+
+/* ---------- 11. Photo tiles, reviews ---------- */
+.tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-4); }
+.tile { margin: 0; }
+.tile img { border-radius: var(--r-card); aspect-ratio: 4 / 5; object-fit: cover; width: 100%; }
+.tile figcaption { font-size: 0.875rem; color: var(--muted); margin-top: var(--sp-2); }
+/* No carousel: stacked on phone, one row of three on desktop (Fady 2026-08-24, DECISIONS.md). */
+.reviews { display: grid; grid-template-columns: 1fr; gap: var(--sp-4); }
+.review-card { background: var(--card); border-radius: var(--r-card); padding: var(--sp-6); position: relative; }
+.s-card .review-card { background: var(--paper); }
+.review-card .who { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-3); }
+.review-card .ini { width: 40px; height: 40px; border-radius: 50%; background: var(--teal-soft); color: var(--teal); font-weight: 800; display: flex; align-items: center; justify-content: center; flex: 0 0 40px; }
+.review-card .name { font-weight: 600; color: var(--ink); line-height: 1.2; }
+.review-card .when { font-size: 0.8125rem; color: var(--muted); }
+.review-card .stars { display: flex; gap: 2px; margin-bottom: var(--sp-3); }
+.review-card .stars svg { width: 18px; height: 18px; fill: var(--mark); }
+.review-card p { font-size: 1rem; }
+.review-card .src { font-size: 0.8125rem; color: var(--muted); display: flex; align-items: center; gap: 6px; margin: 0; }
+/* Honest card: shown in place of the review strip for as long as there is not a single real review.
+   Never a rating, never a name, never a count. Only what a customer can check today. */
+.honest-card { background: var(--card); border-radius: var(--r-card); padding: var(--sp-6); margin-top: var(--sp-8); border-top: 4px solid var(--mark); max-width: 720px; }
+.s-card .honest-card { background: var(--paper); }
+.honest-card h3 { font-size: 1.25rem; margin-bottom: var(--sp-3); }
+.honest-card p { font-size: 1rem; }
+.honest-card ul { list-style: none; padding: 0; margin: 0 0 var(--sp-4); display: grid; gap: var(--sp-3); }
+.honest-card li { font-size: 1rem; line-height: 1.4; display: flex; gap: var(--sp-3); align-items: flex-start; }
+.honest-card li::before { content: ""; flex: 0 0 10px; width: 10px; height: 10px; margin-top: 7px; background: var(--teal); border-radius: 2px; }
+.honest-card .ask { color: var(--muted); margin: 0; }
+
+/* ---------- 12. Zone, FAQ ---------- */
+.towns { list-style: none; padding: 0; margin: var(--sp-6) 0 var(--sp-4); columns: 2; column-gap: var(--sp-6); }
+.towns li { font-size: 0.9375rem; padding: 3px 0; break-inside: avoid; }
+.towns li::before { content: "· "; color: var(--teal); font-weight: 700; }
+.faq { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { cursor: pointer; list-style: none; padding: var(--sp-4) 40px var(--sp-4) 0; position: relative; font-weight: 800; font-size: 1.0625rem; color: var(--ink); letter-spacing: -0.01em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; font-weight: 400; color: var(--teal); line-height: 1; transition: transform .15s ease; }
+.faq details[open] summary::after { content: "+"; transform: translateY(-50%) rotate(45deg); }
+.faq .answer { padding: 0 0 var(--sp-4); }
+.faq .answer p { font-size: 1rem; }
+.faq .answer p:last-child { margin-bottom: 0; }
+
+/* ---------- 13. Final call, footer ---------- */
+.finalcall { padding: var(--sp-24) 0; }
+.finalcall .bignum { font-weight: 900; font-size: clamp(2.25rem, 8vw, 3.75rem); line-height: 1; color: #fff; text-decoration: none; display: inline-block; font-variant-numeric: tabular-nums; margin: var(--sp-2) 0 var(--sp-6); box-shadow: inset 0 -6px 0 var(--mark); letter-spacing: -0.02em; }
+.finalcall .hours { color: var(--on-ink-muted); font-size: 0.9375rem; }
+.site-footer { background: var(--ink); color: var(--on-ink-muted); padding: var(--sp-12) 0 var(--sp-8); font-size: 0.9375rem; }
+.site-footer h2 { font-size: 1.125rem; color: #fff; }
+.site-footer a { color: #fff; }
+.site-footer .legal { margin-top: var(--sp-6); }
+.site-footer .legal p { margin-bottom: var(--sp-2); max-width: 60ch; }
+.site-footer .foot-links { margin-top: var(--sp-6); display: flex; flex-wrap: wrap; gap: var(--sp-4); }
+.site-footer .credit { margin-top: var(--sp-8); font-size: 0.8125rem; color: #8FA6BE; }
+/* The monogram has white counters, so on the dark footer it keeps its own light plate. */
+.site-footer .logo-plate { display: inline-block; background: var(--card); border-radius: 12px; padding: 12px 14px; }
+.site-footer .logo-plate img { height: 44px; width: auto; }
+
+/* ---------- 14. Chooser, legal pages ---------- */
+.chooser { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: var(--sp-8) var(--sp-4); }
+.chooser .box { background: var(--card); border-radius: var(--r-card); padding: var(--sp-8); max-width: 480px; width: 100%; text-align: center; }
+.chooser img { height: 64px; width: auto; margin: 0 auto var(--sp-6); }
+.chooser .btn { width: 100%; max-width: none; margin-bottom: var(--sp-3); }
+.chooser p { margin-left: auto; margin-right: auto; }
+.doc { max-width: 720px; }
+.doc h2 { font-size: 1.375rem; margin-top: var(--sp-8); }
+
+/* ---------- 15. Responsive ---------- */
+@media (min-width: 700px) {
+  section { padding: var(--sp-16) 0; }
+  .wrap { padding: 0 var(--sp-6); }
+  body { font-size: 1.125rem; }
+  .trust ul { grid-template-columns: repeat(2, 1fr); gap: var(--sp-4) var(--sp-6); }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: repeat(2, 1fr); gap: var(--sp-6); }
+  .towns { columns: 3; }
+  .actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-collage { max-width: 640px; grid-template-columns: repeat(2, 1fr); }
+  .hc-van { grid-column: 1 / -1; }
+}
+@media (min-width: 1000px) {
+  :root { --header-h: 76px; }
+  body { padding-bottom: 0; }
+  .callbar { display: none; }
+  .header-phone { display: inline-flex; }
+  .site-header .logo img { height: 44px; }
+  .site-header .btn { min-height: 48px; font-size: 1rem; width: auto; }
+  section { padding: var(--sp-24) 0; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .trust ul { grid-template-columns: repeat(4, 1fr); }
+  .steps { grid-template-columns: repeat(4, 1fr); }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 400px); grid-template-areas: "head media" "rest media"; column-gap: var(--sp-16); align-items: center; }
+  .hero-head { grid-area: head; align-self: end; }
+  .hero-rest { grid-area: rest; align-self: start; }
+  .hero .sub { font-size: 1.0625rem; }
+  .under-btn { text-align: left; margin-top: var(--sp-2); }
+  .hero-collage { grid-area: media; margin: 0; grid-template-columns: repeat(2, 1fr); gap: var(--sp-2); }
+  .hc-van { grid-column: 1 / -1; }
+  .hero { padding-top: var(--sp-8); padding-bottom: var(--sp-12); }
+  .tiles-3 { grid-template-columns: repeat(3, 1fr); }
+  .reviews { grid-template-columns: repeat(3, 1fr); }
+  .towns { columns: 4; }
+  .site-footer .cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-16); }
+  .split { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--sp-12); align-items: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .btn-call:active { transform: none; }
+}
+@media print { .callbar, .btn-wa { display: none; } }
+
+/* ---- Hero ticker variant (night test 2026-08-24). Only pages built with the ticker flag use these
+   classes; the classic hero is untouched. Full-bleed looping photo strip under the hero text, constant
+   slow drift; below 820px it splits into two rows ticking in opposite directions. */
+.hero-t { padding-top: var(--sp-4); padding-bottom: 0; overflow: hidden; }
+/* Variant header: on mobile the language switch keeps its right-side spot via the auto margin; the
+   desktop-only WhatsApp button stays hidden here. */
+.header-t .langswitch { margin-left: auto; }
+.header-wa { display: none; }
+/* Mobile stack keeps the conversion order (chips, h1, sub, buttons) even though the markup groups
+   head+actions for the desktop columns: the group dissolves via display:contents and order does the rest. */
+.hero-tx { display: flex; flex-direction: column; }
+.htx-left { display: contents; }
+.htx-head { order: 1; }
+.htx-side { order: 2; }
+.htx-act { order: 3; }
+/* The yellow price marker in the sub shows on every screen size (Fady 2026-08-24 night). */
+.hero-t .sub .hl { box-shadow: inset 0 -0.34em 0 var(--mark); }
+/* Fluid size: ~18px on phones, sliding to the 21px desktop size with no jump at any breakpoint. */
+.hero-t .sub { font-weight: 600; font-size: clamp(1.125rem, 1rem + 0.6vw, 1.3125rem); }
+/* One long chip since 2026-08-24 night: let it wrap on very narrow phones instead of overflowing. */
+.hero-t .chips li { white-space: normal; text-align: center; }
+/* Chips toggled OFF for the no-chips test (Fady 2026-08-24 night). Delete this rule to bring them back. */
+.hero-t .chips { display: none; }
+/* The photo tip pill (Fady 2026-08-24 night): lives where the chips were, above the H1, on desktop;
+   on smaller screens it drops under the CTAs at full width. The markup sits in .htx-head; on mobile
+   .htx-head dissolves (display:contents) so the tip can be reordered to the end of the stack. */
+.htx-head { display: contents; }
+.hero-tip { order: 4; margin: var(--sp-4) 0 0; max-width: none; }
+.tip-pill { display: flex; width: 100%; justify-content: center; align-items: center; gap: 8px; background: var(--teal-soft); color: var(--teal); border-radius: var(--r-pill); padding: 10px 14px; font-weight: 600; font-size: 0.9375rem; line-height: 1.3; }
+/* -1px optical correction: the camera glyph's visual mass sits low in its viewBox. */
+.tip-pill svg { width: 16px; height: 16px; flex: 0 0 16px; fill: currentColor; display: block; margin-top: -1px; }
+/* Tablet band (700-999px): the stacked sub fills the container instead of stopping at 34em. */
+@media (min-width: 700px) {
+  .hero-t .sub { max-width: none; }
+}
+.ticker { --tick-h: 190px; margin-top: var(--sp-8); padding-bottom: var(--sp-12); }
+.tick-row { display: flex; width: max-content; will-change: transform; }
+.tick-row + .tick-row { margin-top: var(--sp-3); }
+.tick-set { display: flex; gap: var(--sp-3); padding-right: var(--sp-3); }
+.tick-item { height: var(--tick-h); flex: none; overflow: hidden; border-radius: var(--r-btn); }
+.tick-item picture { display: block; height: 100%; }
+.tick-item img { height: 100%; width: auto; display: block; object-fit: cover; }
+.tick-static { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tick-static .tick-row { width: auto; }
+/* Below 820px the ticker gives way to the swipe carousel; the empty desktop-buttons container is
+   removed from the header flow so the language switch sits flush right (it reserved a flex gap). */
+.ticker { display: none; }
+@media (max-width: 999.98px) {
+  .header-t .header-right { display: none; }
+}
+/* Mobile carousel: one full-width photo per view, native scroll-snap swipe, dot chip overlaid on the
+   image (ink glass pill, house-yellow active dot: brand contrast on any photo). */
+.hero-car { position: relative; margin-top: var(--sp-6); padding-bottom: var(--sp-8); }
+.car-track { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 0 var(--sp-4); -webkit-overflow-scrolling: touch; }
+.car-track::-webkit-scrollbar { display: none; }
+.car-slide { flex: 0 0 100%; scroll-snap-align: center; border-radius: var(--r-btn); overflow: hidden; aspect-ratio: 4 / 5; }
+.car-slide picture { display: block; height: 100%; }
+.car-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.car-dotwrap { position: absolute; left: 0; right: 0; bottom: calc(var(--sp-8) + 12px); text-align: center; margin: 0; pointer-events: none; }
+/* Frosted glass pill (no stroke), white dots. */
+.car-dots { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.45); -webkit-backdrop-filter: blur(14px) saturate(1.8); backdrop-filter: blur(14px) saturate(1.8); border-radius: var(--r-pill); padding: 8px 12px; box-shadow: 0 2px 10px rgba(16, 42, 74, 0.18); }
+.car-dot { width: 8px; height: 8px; border-radius: var(--r-pill); background: #fff; opacity: 0.55; transition: width 0.2s, opacity 0.2s; }
+.car-dot.on { width: 20px; opacity: 1; }
+/* Trust band as a counter-ticker on desktop only (opposite direction, same speed as the image strip);
+   below 820px the static twin (.trust-s) shows instead. */
+.trust-t { overflow: hidden; display: none; }
+.trust-t .tick-row { display: flex; width: max-content; will-change: transform; }
+.trust-t .tick-set { display: flex; padding-right: var(--sp-12); }
+.trust-t ul { display: flex; gap: var(--sp-12); }
+.trust-t li { white-space: nowrap; align-items: center; }
+.trust-t li::before { margin-top: 0; }
+@media (min-width: 820px) {
+  .trust-t { display: block; }
+  .trust-s { display: none; }
+}
+.trust-t.tick-static { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-left: var(--sp-4); }
+@media (min-width: 820px) {
+  .ticker { display: block; --tick-h: 320px; }
+  .hero-car { display: none; }
+  .tick-item { border-radius: var(--r-img); }
+  .tick-b { display: none; }
+}
+@media (min-width: 1000px) {
+  /* Quieter scale for the ticker hero (Fady 2026-08-24 night): smaller header, smaller type and CTAs,
+     wider gaps, sub bigger and bolder and vertically balanced against the left block. */
+  .header-t .logo img { height: 34px; }
+  .header-t .btn { min-height: 42px; font-size: 0.9375rem; padding: 0 var(--sp-4); }
+  .header-t .langswitch a { min-height: 32px; min-width: 40px; font-size: 0.8125rem; }
+  /* Language switch docks next to the logo; the buttons keep the right edge. */
+  .header-t .langswitch { margin-left: 0; }
+  .header-t .header-right { margin-left: auto; align-items: stretch; gap: 10px; }
+  .header-wa { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 var(--sp-4); background: var(--teal); color: #fff; border-radius: var(--r-btn); box-shadow: 0 2px 0 #074E48; font-weight: 800; font-size: 0.9375rem; line-height: 1.2; text-decoration: none; }
+  .header-wa:active { transform: translateY(1px); box-shadow: none; }
+  .header-wa svg { width: 22px; height: 22px; fill: currentColor; display: block; }
+  .header-wa:hover, .header-wa:focus-visible { background: #095F58; }
+  .hero-t { padding-top: var(--sp-8); }
+  /* Two real columns: the left block (head + CTAs) and the sub. align-items centers the shorter
+     column against the taller one, so a longer sub never pushes the CTAs apart. */
+  .hero-tx { flex-direction: row; align-items: center; gap: clamp(40px, 7.5vw, 96px); }
+  /* Left block anchors to the top: when the sub is the taller column, the gap grows below the CTAs,
+     never between the fixed header and the headline. A shorter sub still centers against the left block. */
+  .htx-left { display: block; flex: 1 1 auto; min-width: 0; align-self: flex-start; }
+  .htx-head { display: block; }
+  .hero-tip { margin: var(--sp-4) 0 0; text-align: left; }
+  .tip-pill { display: inline-flex; width: auto; font-size: 0.75rem; font-weight: 700; padding: 6px 11px; }
+  .tip-pill svg { width: 14px; height: 14px; flex: 0 0 14px; }
+  .htx-side { flex: 0 0 clamp(280px, 23vw, 340px); order: 0; align-self: flex-start; }
+  .hero-t h1 { font-size: 2.375rem; margin-bottom: var(--sp-3); }
+  .hero-t .chips li { font-size: 0.75rem; padding: 6px 11px; }
+  .hero-t .sub { line-height: 1.5; margin: 0; }
+  .hero-t .actions .btn { min-height: 48px; font-size: 1rem; }
+  .htx-act { max-width: 540px; }
+  .htx-act .under-btn { text-align: left; margin-top: var(--sp-2); }
+  .hero-t .ticker { margin-top: var(--sp-12); }
+  /* Ticker build only: trim the gap between the trust band and the prices section (96px felt too much). */
+  .trust-t ~ #prix { padding-top: var(--sp-16); }
+}
