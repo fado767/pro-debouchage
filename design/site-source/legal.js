@@ -66,7 +66,7 @@ const nl = `<main>
     <p class="lead">Laatst bijgewerkt&nbsp;: ${UPDATED.nl}.</p>
 
     <h2>Wie uw gegevens verwerkt</h2>
-    <p>PRO DEBOUCHAGE SRL, Guldenschaapstraat 6, 1800 Vilvoorde, België. Ondernemingsnummer BE 1027.454.187.<br>
+    <p>PRO DEBOUCHAGE BV, Guldenschaapstraat 6, 1800 Vilvoorde, België. Ondernemingsnummer BE 1027.454.187.<br>
     Telefoon&nbsp;: <a href="tel:+32480649649">0480 649 649</a>. E-mail&nbsp;: <a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a>.</p>
 
 <!--cookies-->

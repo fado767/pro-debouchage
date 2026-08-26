@@ -173,12 +173,20 @@ module.exports = {
     ['chambre.webp', `Ouverture d'une chambre de visite enterrée dans un jardin.`, 'Sterput bouché, chambre de visite ouverte. Intervention réelle, 2026.'],
     ['job-wc.webp', 'Technicien qui débouche un WC avec un furet Rioned, veste Pro Débouchage.', `WC bouché, débouché au furet Rioned. Intervention réelle, 2026. C'est la photo d'origine de l'avant/après plus haut.`],
     ['allee.webp', 'Allée pavée en cours de nettoyage haute pression, la bande claire est la partie nettoyée.', 'Allée pavée, nettoyage haute pression en cours. La bande claire est la partie déjà nettoyée.']],
-  // PLACEHOLDERS written by us (DECISIONS.md 2026-08-24): swapped for real customers' words before
-  // go-live. Same three people as NL and EN. The build warns while any are here.
-  reviews: [
-    ['Paolo', 5, `J'ai appelé un dimanche soir de juin, le WC du haut refoulait dans la douche. On m'a posé deux questions et donné un prix au téléphone. C'est ce prix-là qui était sur la facture, au centime près. Il est reparti vers minuit et tout remarchait. Je garde le numéro sur le frigo.`],
-    ['Daniel', 4, `Le sterput de la cour débordait après les pluies de mai. Rendez-vous le mardi en fin d'après-midi, il est arrivé une demi-heure plus tard que prévu, mais il avait téléphoné pour me prévenir. Il a passé la caméra avant de toucher à quoi que ce soit et m'a montré les racines à l'écran. Le prix était bien celui annoncé au téléphone.`],
-    ['Élodie', 5, `Évier de cuisine bouché depuis le week-end, j'avais tout essayé, la ventouse et les produits. Appel le lundi matin, rendez-vous le mardi à 8h. Il a démonté le siphon, nettoyé la conduite et tout remis en place proprement. Le montant annoncé au téléphone n'a pas bougé, facture reçue le jour même.`]],
+  // ONE REAL review (Paolo, received 2026-08-27, Fady confirmed publication with first name; the
+  // invented placeholder cards died here, git keeps them). His exact words, apostrophes normalised
+  // only. `reviews` stays EMPTY on purpose: it is the PARKED 3-card grid, refilled with real
+  // customers' words when two more land (Fady 2026-08-27); while `featured` exists it renders alone.
+  reviews: [],
+  featured: {
+    name: 'Paolo',
+    text: [
+      `Très satisfait de l'intervention de Pro Débouchage. Je pensais au départ que mon évier était simplement bouché. Ils sont intervenus le jour même et, grâce à une inspection par caméra, ont rapidement détecté que le problème venait en réalité des canalisations d'égout.`,
+      `Le travail a été réalisé rapidement, proprement et avec beaucoup de professionnalisme. Tout m'a été clairement expliqué et le prix était très raisonnable pour la qualité du service.`,
+      `Une équipe sérieuse, efficace et honnête que je recommande sans hésiter.`],
+    meta: `Premier avis client, reçu en août 2026.`,
+    note: ``},
+  featG: `Notre page Google arrive${nb}: les prochains avis y seront publics et vérifiables.`,
   askLine: `Vous avez fait appel à nous${nb}? Un avis honnête nous aide plus qu'un compliment.`,
   honestT: `Pas encore d'avis en ligne, et on n'en inventera pas.`,
   honestP: `Pro Débouchage est une jeune entreprise, enregistrée depuis septembre 2025. Nos premiers clients sont venus par le bouche à oreille. Notre page Google arrive, et les premiers avis seront les leurs.`,

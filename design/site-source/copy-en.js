@@ -157,10 +157,18 @@ module.exports = {
     ['chambre.webp', 'Opening a buried inspection chamber in a garden.', 'Blocked street trap, inspection chamber open. Real job, 2026.'],
     ['job-wc.webp', 'Technician unblocking a toilet with a Rioned drain rod, Pro Débouchage jacket.', "Blocked toilet, cleared with the Rioned rod. Real job, 2026. This is the original photo behind the before/after above."],
     ['allee.webp', 'Paved driveway during high-pressure cleaning, the light strip is the part already cleaned.', 'Paved driveway, high-pressure cleaning in progress. The light strip is the part already done.']],
-  reviews: [
-    ['Paolo', 5, "I called on a Sunday evening in June, the upstairs toilet was backing up into the shower. Two questions on the phone and I had a price. That exact price was on the invoice, to the cent. He left around midnight and everything worked again. The number's staying on my fridge."],
-    ['Daniel', 4, "The courtyard trap kept overflowing after the May rains. Appointment Tuesday late afternoon, he arrived half an hour later than agreed, but he'd phoned ahead to say so. He ran the camera before touching anything and showed me the roots on the screen. The price was the one from the phone."],
-    ['Élodie', 5, "Kitchen sink blocked since the weekend, I'd tried everything, the plunger and the shop products. Called Monday morning, appointment Tuesday at 8. He took the trap apart, cleaned the pipe and put everything back neatly. The amount quoted on the phone didn't budge, invoice received the same day."]],
+  // ONE REAL review (Paolo, 2026-08-27, original in French), faithfully translated and marked as
+  // such. `reviews` = the parked grid, refilled when more real reviews land.
+  reviews: [],
+  featured: {
+    name: 'Paolo',
+    text: [
+      'Very happy with Pro Débouchage. At first I thought my sink was simply blocked. They came out the same day and, with a camera inspection, quickly found the problem actually came from the sewer pipes.',
+      'The work was done quickly, cleanly and very professionally. Everything was clearly explained, and the price was very reasonable for the quality of the service.',
+      'A serious, efficient and honest team I recommend without hesitation.'],
+    meta: 'Our first customer review, received in August 2026.',
+    note: 'Translated from French.'},
+  featG: 'Our Google page is on its way; the next reviews will be public and checkable there.',
   askLine: 'Used our services? An honest review helps us more than a compliment.',
   honestT: "No reviews online yet, and we won't invent any.",
   honestP: "Pro Débouchage is a young company, registered since September 2025. Our first customers came by word of mouth. Our Google page is coming, and the first reviews will be theirs.",

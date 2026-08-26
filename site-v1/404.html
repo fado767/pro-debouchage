@@ -510,6 +510,23 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
    card grid: the same .ask inside .honest-card follows a list and keeps that block's own rhythm. */
 .reviews + .ask{margin-top:clamp(20px,2.6vw,30px)}
 
+/* ---------- one real review, featured (Fady 2026-08-27; the grid above is parked) ----------
+   Deliberately ONE wide card, not a lonely third of the grid: teal top bar like the honest card's
+   mark, an oversized opening quote in the house teal, the words at reading size, the person last.
+   No stars anywhere: he wrote words, not a rating. */
+.feat-card{position:relative;background:#fff;border:1px solid var(--line);border-top:5px solid var(--teal);border-radius:var(--r-card);padding:34px 28px 26px;max-width:760px;box-shadow:0 10px 26px rgba(16,42,74,.08)}
+.feat-mark{position:absolute;top:2px;left:22px;font-size:4.5rem;line-height:1;font-weight:900;color:var(--teal);opacity:.28;pointer-events:none}
+.feat-q{margin:0}
+.feat-q p{margin:0 0 12px;font-size:1.0625rem;line-height:1.65}
+.feat-q p:last-child{margin-bottom:0}
+.feat-who{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.feat-who .ini{flex:0 0 44px;width:44px;height:44px;border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:800;font-size:1.125rem;background:linear-gradient(135deg,#27B5A4,#2D6FC0)}
+.feat-who .name{font-weight:900;color:var(--ink)}
+.feat-meta{color:var(--muted);font-size:.875rem}
+.feat-note{opacity:.85}
+.feat-g{color:var(--muted);margin-top:clamp(20px,2.6vw,30px)}
+.feat-card + .feat-g + .ask{margin-top:6px}
+
 /* ---------- situations ---------- */
 .segs{display:grid;gap:0;margin-top:8px;border-top:1px solid var(--line-ink)}
 @media (min-width:700px){.segs{grid-template-columns:repeat(3,1fr);border-top:0;border-left:1px solid var(--line-ink)}}

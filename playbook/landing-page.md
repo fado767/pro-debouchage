@@ -41,7 +41,7 @@ One template, generated outputs. The H1 repeats the ad group: FR `/fr/debouchage
 
 ## 9. Build (rewritten at the 2026-08-26 lock-in)
 
-THE page is the one locked design: source `design/site-source/` (template.js, copy-fr/nl/en.js, styles.css, cgv.js, legal.js, build.js, fonts, README with the exact build, deploy and ADS-flag commands), output `site-v1/` (generated, never edited by hand), deployed on the Pages project `pd-review` at https://pd-review.pages.dev (FR /fr/, NL /nl/, EN /en/, privacy pages, CGV pages, chooser at /, real 404, noindex scoped to the preview hosts). Locked by Fady on 2026-08-26 after five review rounds; the design facts live in STATE.md and the round-by-round history in LOG.md.
+THE page is the one locked design: source `design/site-source/` (template.js, copy-fr/nl/en.js, styles.css, cgv.js, legal.js, build.js, fonts, README with the exact build, deploy and ADS-flag commands), output `site-v1/` (generated, never edited by hand), **LIVE since 2026-08-27 at https://prodebouchage24.be** on the Pages project `prodebouchage24` (FR /fr/, NL /nl/, EN /en/, privacy pages, CGV pages, chooser at /, real 404; the pages.dev host keeps noindex and doubles as the review surface). Locked by Fady on 2026-08-26 after five review rounds; the design facts live in STATE.md and the round-by-round history in LOG.md. The reviews section shows ONE real featured review (Paolo, 2026-08-27, translations marked); the 3-card grid is parked in the template until more real reviews land.
 
 Retention periods on the privacy pages (accountant to glance, unchanged since v1): 7 years invoices, 2 years job messages, 6 months dead leads.
 

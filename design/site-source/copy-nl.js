@@ -155,10 +155,19 @@ module.exports = {
     ['chambre.webp', 'Het openleggen van een ingegraven toezichtsput in een tuin.', 'Verstopte sterfput, toezichtsput open. Eigen werk, 2026.'],
     ['job-wc.webp', 'Technieker die een wc ontstopt met een Rioned veer, in Pro Débouchage kledij.', 'Verstopte wc, ontstopt met de Rioned veer. Eigen werk, 2026. Dit is de originele foto van de voor/na hierboven.'],
     ['allee.webp', 'Oprit in klinkers tijdens de hogedrukreiniging, de lichte strook is al gereinigd.', 'Oprit in klinkers, hogedrukreiniging bezig. De lichte strook is al gereinigd.']],
-  reviews: [
-    ['Paolo', 5, 'Ik heb op een zondagavond in juni gebeld, het toilet boven liep terug in de douche. Twee vragen aan de telefoon en ik kreeg meteen een prijs. Diezelfde prijs stond op de factuur, geen euro meer. Rond middernacht was hij weg en werkte alles weer. Het nummer hangt hier aan de koelkast.'],
-    ['Daniel', 4, 'De sterfput op de koer liep over na de regen in mei. Afspraak op dinsdag laat in de namiddag, hij was een halfuur later dan afgesproken, maar hij had wel gebeld om het te zeggen. Hij heeft eerst met de camera gekeken voor hij iets deed, en hij toonde mij de wortels op het scherm. De prijs was die van aan de telefoon.'],
-    ['Élodie', 5, 'Gootsteen verstopt sinds het weekend, ik had alles geprobeerd, ook de producten uit de winkel. Maandagochtend gebeld, afspraak dinsdag om 8 uur. Hij heeft de sifon losgemaakt, de leiding proper gemaakt en alles netjes teruggezet. Het bedrag van aan de telefoon veranderde niet, de factuur kreeg ik dezelfde dag.']],
+  // ONE REAL review (Paolo, 2026-08-27, original in French). A review is a QUOTE: faithfully
+  // translated and MARKED as such (note key), never rewritten; the convert-not-translate rule is
+  // for our copy, not for a customer's words. `reviews` = the parked grid, refilled when more land.
+  reviews: [],
+  featured: {
+    name: 'Paolo',
+    text: [
+      'Zeer tevreden over de interventie van Pro Débouchage. Ik dacht eerst dat mijn gootsteen gewoon verstopt was. Ze kwamen nog dezelfde dag en zagen met een camera-inspectie snel dat het probleem eigenlijk van de rioolleidingen kwam.',
+      'Het werk werd snel, proper en heel professioneel uitgevoerd. Alles werd mij duidelijk uitgelegd en de prijs was heel redelijk voor de kwaliteit van de service.',
+      'Een serieus, efficiënt en eerlijk team dat ik zonder aarzelen aanbeveel.'],
+    meta: 'Eerste klantenbeoordeling, ontvangen in augustus 2026.',
+    note: 'Vertaald uit het Frans.'},
+  featG: 'Onze Google-pagina komt eraan: de volgende beoordelingen staan daar publiek en controleerbaar.',
   askLine: 'Hebt u ons al laten komen? Een eerlijke beoordeling helpt ons meer dan een compliment.',
   honestT: 'Nog geen beoordelingen online, en wij gaan er geen verzinnen.',
   honestP: 'Pro Débouchage is een jong bedrijf, geregistreerd sinds september 2025. Onze eerste klanten kwamen via mond-tot-mondreclame. Onze Google-pagina komt eraan, en de eerste beoordelingen zullen van hen zijn.',

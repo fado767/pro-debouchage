@@ -24,8 +24,9 @@ not rely on that: save the file without BOM.
 node design/site-source/build.js
 ```
 
-   The build WARNS about placeholder reviews. That warning is the go-live tripwire: clear it with
-   real reviews, never silence it.
+   The placeholder-review tripwire was cleared 2026-08-27 (Paolo's real review ships as the
+   featured card; the invented cards are deleted). The remaining build warning is the Afrem
+   avatar monogram, cleared when his photo lands at the depot visit.
 
    One flag on the same command, for the Ads session once the account exists:
    - `ADS_TAG_ID=AW-XXXXXXXXXX` builds the consent + Google-tag layer: Consent Mode v2
@@ -42,12 +43,13 @@ node design/site-source/build.js
    `WRANGLER_CACHE_DIR` set, so no `.wrangler/` with personal data lands in the site folder:
 
 ```bash
-cd "$TMPDIR" && unset CLOUDFLARE_API_TOKEN && export WRANGLER_CACHE_DIR="$PWD/.wrangler-cache" && npx wrangler pages deploy "C:\Users\fadya\Desktop\pro-debouchage\site-v1" --project-name pd-review --branch main --commit-dirty=true
+cd "$TMPDIR" && unset CLOUDFLARE_API_TOKEN && export WRANGLER_CACHE_DIR="$PWD/.wrangler-cache" && npx wrangler pages deploy "C:\Users\fadya\Desktop\pro-debouchage\site-v1" --project-name prodebouchage24 --branch main --commit-dirty=true
 ```
 
-   (The preview moved to the Pages project `pd-review` on 2026-08-26: the old `pro-debouchage-v3`
-   alias froze on one build and served it even after that build was DELETED, and nothing in wrangler
-   could clear it. The name is a throwaway; the go-live name is still an open call in NOW.md.)
+   (THE project is `prodebouchage24` since 2026-08-27, Fady's go-live pick: it carries the live
+   domain prodebouchage24.be AND the review surface, its pages.dev host stays noindexed by the
+   `_headers` placeholders. `pd-review` and the frozen `pro-debouchage-v3` are retired, deletion
+   is a NOW line.)
 
 4. Verify on the deployed preview, the ONLY review surface:
    https://pd-review.pages.dev/fr/ (and /nl/, /en/). Check the changed strings are live and

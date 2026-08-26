@@ -115,9 +115,15 @@ function pageHtml(c, opts = {}) {
 
   const mat = sec('s-paper', c.matK, c.matH, `<p class="lead">${c.matT}</p><div class="tiles tiles-3">${c.mat.map((m, i) => `<figure class="tile rv">${IMG(m[0], m[1], 480, 600, 'loading="lazy" decoding="async"')}<span class="tile-t">${m[2]}</span><figcaption>${m[3]}</figcaption></figure>`).join('')}</div>`);
 
-  const socialProof = c.reviews.length
-    ? `<div class="reviews">${c.reviews.map(r => `<article class="review-card rv" data-placeholder="true"><div class="who"><div class="ini" aria-hidden="true">${r[0][0]}</div><div class="name">${r[0]}</div></div>${stars(r[1])}<p>${r[2]}</p></article>`).join('')}</div><p class="ask">${c.askLine}</p>`
-    : `<article class="honest-card rv"><h3>${c.honestT}</h3><p>${c.honestP}</p><ul>${c.honestL.map(t => `<li>${t}</li>`).join('')}</ul><p class="ask">${c.askLine}</p></article>`;
+  // One real review, featured (Fady 2026-08-27). No stars: Paolo wrote words, not a rating, and we
+  // never invent one. The 3-card grid below it is PARKED: refill `reviews` and it returns by itself
+  // (data-placeholder dropped: whatever refills it must be real). Order of precedence: featured,
+  // then grid, then the honest card.
+  const socialProof = c.featured
+    ? `<article class="feat-card rv"><div class="feat-mark" aria-hidden="true">&#8220;</div><blockquote class="feat-q">${c.featured.text.map(p => `<p>${p}</p>`).join('')}</blockquote><footer class="feat-who"><div class="ini" aria-hidden="true">${c.featured.name[0]}</div><div><div class="name">${c.featured.name}</div><div class="feat-meta">${c.featured.meta}${c.featured.note ? ` <span class="feat-note">${c.featured.note}</span>` : ''}</div></div></footer></article><p class="feat-g">${c.featG}</p><p class="ask">${c.askLine}</p>`
+    : c.reviews.length
+      ? `<div class="reviews">${c.reviews.map(r => `<article class="review-card rv"><div class="who"><div class="ini" aria-hidden="true">${r[0][0]}</div><div class="name">${r[0]}</div></div>${stars(r[1])}<p>${r[2]}</p></article>`).join('')}</div><p class="ask">${c.askLine}</p>`
+      : `<article class="honest-card rv"><h3>${c.honestT}</h3><p>${c.honestP}</p><ul>${c.honestL.map(t => `<li>${t}</li>`).join('')}</ul><p class="ask">${c.askLine}</p></article>`;
   const proof = sec('s-card', c.proofK, c.proofH, `<p class="lead">${c.honest}</p><div class="tiles tiles-3">${c.tiles.map(t => `<figure class="tile rv">${IMG(t[0], t[1], 480, 600, 'loading="lazy" decoding="async"')}<figcaption>${t[2]}</figcaption></figure>`).join('')}</div><div style="height:34px"></div>${socialProof}`);
 
   const segs = sec('s-paper', c.segK, c.segH, `<div class="segs">${c.segs.map(s => `<div class="seg"><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('')}</div>`);

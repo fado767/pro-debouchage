@@ -329,8 +329,9 @@ ${ADS_TAG_ID ? `/assets/js/consent.js
   Cache-Control: public, max-age=3600
 ` : ''}`);
 
-const ph = Object.entries(COPY).map(([l, c]) => [l, c.reviews.length]).filter(([, n]) => n);
-if (ph.length) console.warn('WARNING: ' + ph.map(([l, n]) => n + ' placeholder reviews in /' + l + '/').join(', ') + '. Written by us as placeholders (DECISIONS.md 2026-08-24): before go-live they must carry the real words of real customers, or be emptied so the honest card shows.');
+// The placeholder-review tripwire retired 2026-08-27: the invented cards are deleted from the copy
+// files and Paolo's real review ships as `featured` (DECISIONS). `reviews` is the parked grid and
+// may only ever be refilled with real customers' words, so a non-empty array is no longer a fault.
 const avatarPh = Object.keys(COPY).filter(l => fs.readFileSync(path.join(OUT, l, 'index.html'), 'utf8').includes('data-placeholder'));
 if (avatarPh.length) console.warn('WARNING: the Afrem avatar is still the monogram placeholder in /' + avatarPh.join('/, /') + '/. Roro was asked for a face photo (Fady, 2026-08-26); until it lands the bubble must NOT carry an invented face for a real person (rule 5). Swap the span for IMG() in template.js and drop data-placeholder.');
 console.log('site-v1 built');
