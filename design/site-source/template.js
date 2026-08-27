@@ -35,15 +35,31 @@ function pageHtml(c, opts = {}) {
   const tickSet = tickCopy(false, true) + tickCopy(true, false).repeat(TICK_REPEAT - 1);
   const tickSetLazy = tickCopy(false, false).repeat(TICK_REPEAT);
   const tick = `<div class="ticker"><div class="tick-row"><div class="tick-set">${tickSet}</div><div class="tick-set" aria-hidden="true">${tickSetLazy}</div></div></div>`;
-  // The swipe hint replaced the dots on 2026-08-27 (Fady): dots report how many photos there are,
-  // which nobody needs; an arrow bleeding off the left edge of the screen onto the bottom-left of
-  // the first photo says "move me", which is the only job here. Decorative for AT: the carousel
-  // already carries role=group and a label that says to swipe. THE CHIP IS THE ARROW (Fady, second
-  // note the same day), so there is no icon in here: styles.css cuts the point. It no longer fades
-  // on first touch either, and the carousel now ships NO SCRIPT AT ALL: the dots are gone and he
-  // turned the autoplay off, because a hint saying "swipe" over a strip that swipes itself is two
-  // instructions at once.
-  const car = `<div class="hero-car" role="group" aria-label="${c.carAria}"><div class="car-track">${c.carousel.map((t, i) => `<div class="car-slide">${IMG(t[0], t[1], t[2], t[3], i === 0 ? 'decoding="async"' : 'loading="lazy" decoding="async"')}</div>`).join('')}</div><p class="car-hint" aria-hidden="true">${c.swipe}</p></div>`;
+  // THE SWIPE HINT, fourth version (Fady 2026-08-27): the hand alone, no container, sitting inside
+  // the first photo at its bottom left with a generous inset, TRAILING DOTS behind the finger as it
+  // moves. It went dots, then an arrow chip reading "Glissez pour voir", then a hand in a navy pill,
+  // then this. A gesture is read the same by a French and a Dutch customer, and the strip already
+  // carries a labelled role=group for anyone who cannot see it, so the words were doing nothing.
+  // Drawn here rather than fetched, so it costs no request. Decorative for AT.
+  // WITHOUT THE PILL IT HAS TO SURVIVE THE PHOTO UNDER IT: white ink and a drop-shadow, since every
+  // slide is a different job photo and some are pale. The dots are real circles, not a dashed
+  // stroke, because each has to appear on its own beat as the finger clears it; a dash pattern can
+  // only slide, it cannot arrive. All of it stops under prefers-reduced-motion, where the hand
+  // simply rests at the end of its travel with the trail behind it.
+  const HAND = '<svg class="car-hand" viewBox="0 0 72 40" aria-hidden="true" focusable="false">'
+    + '<circle class="car-dot car-dot-1" cx="62" cy="26" r="2.1"/>'
+    + '<circle class="car-dot car-dot-2" cx="54" cy="26" r="2.1"/>'
+    + '<circle class="car-dot car-dot-3" cx="46" cy="26" r="2.1"/>'
+    + '<g class="car-hand-g" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">'
+    + '<path d="M22.6 19.3V9.6a2.3 2.3 0 0 1 4.6 0v8.8"/>'
+    + '<path d="M27.2 18.6v-2.9a2.25 2.25 0 0 1 4.5 0v3.2"/>'
+    + '<path d="M31.7 19.3v-2a2.25 2.25 0 0 1 4.5 0v9a8.4 8.4 0 0 1-8.4 8.4h-2.3a7.8 7.8 0 0 1-6-2.9l-4.1-5a2.3 2.3 0 0 1 3.3-3.2l2.9 2.5"/>'
+    + '</g></svg>';
+  const car = `<div class="hero-car" role="group" aria-label="${c.carAria}"><div class="car-track">${c.carousel.map((t, i) => `<div class="car-slide">${IMG(t[0], t[1], t[2], t[3], i === 0 ? 'decoding="async"' : 'loading="lazy" decoding="async"')}</div>`).join('')}</div><p class="car-hint" aria-hidden="true">${HAND}</p></div>`;
+  // THE LABEL IS PLAIN TEXT for v1 (Fady 2026-08-27, after five rounds on it). It was a pill with a
+  // moving brand-coloured stroke, and before that a text version with the colour inside the letters;
+  // the agreement was that if the last attempt at the pill still did not read right, v1 ships the
+  // label with no effect at all, and it did not. The copy he picked in the widget stays.
   const hero = `<section class="hero"><div class="wrap"><p class="eyebrow">${c.eyebrow}</p><div class="hero-grid"><div>${h1}</div><div><p class="sub">${c.sub}</p></div></div><div class="actions">${callBtn(c.callMain, 'hero-call')}${waBtn(c.waBtn, 'hero-whatsapp')}</div><p class="under-btn">${c.under}</p></div>${tick}${car}</section>`;
 
   // Trust: CSS marquee on desktop (clone aria-hidden, reverse direction), static list on mobile.
@@ -59,7 +75,7 @@ function pageHtml(c, opts = {}) {
   const trustSetB = trustUlH.repeat(TRUST_REPEAT);
   const trust = `<section class="trust trust-t" aria-label="Engagements"><div class="tick-row"><div class="tick-set">${trustSetA}</div><div class="tick-set" aria-hidden="true">${trustSetB}</div></div></section><section class="trust trust-s" aria-label="Engagements"><div class="wrap">${trustUl}</div></section>`;
 
-  const services = sec('s-card', c.servK, c.servH, `<ol class="servlist">${c.services.map((s, i) => `<li><h3>${s[0]}</h3><p>${s[1]}</p><a class="link-call" href="${TEL}" data-cta="service-${i + 1}-call">${c.servLink}</a></li>`).join('')}</ol>`);
+  const services = sec('s-card', c.servK, c.servH, `<ol class="servlist">${c.services.map((s, i) => `<li><h3><span class="serv-t">${s[0]}</span></h3><p>${s[1]}</p><a class="link-call" href="${TEL}" data-cta="service-${i + 1}-call">${c.servLink}</a></li>`).join('')}</ol>`);
 
   const steps = sec('s-paper', c.stepK, c.stepH, `<div class="steps">${c.steps.map(s => `<div class="step"><div class="n" aria-hidden="true"></div><div><h3>${s[0]}</h3><p>${s[1]}</p></div></div>`).join('')}</div>`);
 
@@ -68,7 +84,7 @@ function pageHtml(c, opts = {}) {
   // y=64.7 is v2's baseline for the bigger 46px numeral: it optically centres inside the ring.
   const seal = (id) => `<span class="guar-spin" aria-hidden="true"><svg viewBox="0 0 100 100" focusable="false"><defs><path id="${id}" d="M50,50 m0,-38 a38,38 0 1,1 -0.02,0 z"/></defs><text class="guar-ring-t"><textPath href="#${id}" textLength="238.7" lengthAdjust="spacing">${ringTxt}</textPath></text></svg></span><svg class="guar-core" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><text class="guar-one" x="50" y="64.7">1</text></svg>`;
 
-  const prices = sec('s-card', c.priceK, c.priceH, `<p class="lead">${c.priceIntro}</p><ul class="chips-inc">${c.included.map(t => `<li>${t}</li>`).join('')}</ul><ol class="pricelist">${c.prices.map((p, i) => `<li><a class="p-row" href="${TEL}" data-cta="price-${i + 1}-call" aria-label="${p[0]}, ${p[1]}, ${c.priceBtn}"><span class="p-name">${p[0]}</span><span class="p-amt tnum">${p[1]}</span></a></li>`).join('')}</ol><p class="p-terms">${c.terms}</p><div class="p-other rv"><div><h3>${c.p4t}</h3><p>${c.p4}</p></div>${callBtn(c.p4b, 'price-other-call')}</div><aside class="guar rv"><span class="guar-badge" aria-hidden="true">${seal('guar-ring-b')}</span><div><h3>${c.guarH}</h3><p>${c.guarP}</p><p class="guar-fine">${c.guarLegal}</p></div></aside><p class="promise"><span class="hl">${c.promise}</span></p>`, ' id="prix"');
+  const prices = sec('s-card', c.priceK, c.priceH, `<p class="lead">${c.priceIntro}</p><ul class="chips-inc">${c.included.map(t => `<li>${t}</li>`).join('')}</ul><ol class="pricelist">${c.prices.map((p, i) => `<li><a class="p-row" href="${TEL}" data-cta="price-${i + 1}-call" aria-label="${p[0]}, ${c.priceFrom} ${p[1]}, ${c.priceBtn}"><span class="p-name">${p[0]}</span><span class="p-price"><span class="p-from">${c.priceFrom}</span><span class="p-amt tnum">${p[1]}</span></span></a></li>`).join('')}</ol><p class="p-terms">${c.terms}</p><div class="p-other rv"><div><h3>${c.p4t}</h3><p>${c.p4}</p></div>${callBtn(c.p4b, 'price-other-call')}</div><aside class="guar rv"><span class="guar-badge" aria-hidden="true">${seal('guar-ring-b')}</span><div><h3>${c.guarH}</h3><p>${c.guarP}</p><p class="guar-fine">${c.guarLegal}</p></div></aside><p class="promise"><span class="hl">${c.promise}</span></p>`, ' id="prix"');
 
   // Before / after slider: real range input under the pointer, clip-path on the top image.
   // The heading lives INSIDE the left column here, not above the grid (Fady 2026-08-26): with only
@@ -98,25 +114,29 @@ function pageHtml(c, opts = {}) {
   // is the one that reads going downwards. The unused one is display:none, so it is never fetched.
   const baArrow = (n, cls, file, w, h) => `<span class="ba-ar ba-ar-${n}${cls}" aria-hidden="true">${IMG(file, '', w, h, 'loading="lazy" decoding="async"')}</span>`;
   const baArrows = baArrow(1, '', 'arrow-curve.png', 273, 185) + baArrow(2, ' only-wide', 'arrow-zig.png', 267, 138) + baArrow(3, ' only-narrow', 'arrow-hook.png', 157, 271);
-  // The handwritten note (Fady 2026-08-27, his own composition): two short lines in Caveat with a
-  // yellow swoosh under the number, the first piece of the "one pen" pass. Two lines, not one,
-  // because that is how he drew it and because one line does not fit the phone's free corner.
-  // NOT aria-hidden: "done in 20 min" is information, and it is the only place the page says it.
-  const baNote = `<p class="ba-note"><span>${c.baNote[0]}</span><span class="ba-note-2">${c.baNote[1]}<svg class="ba-note-u" viewBox="0 0 120 12" aria-hidden="true" focusable="false"><path d="M3 8.6C27 3.4 76 2.6 117 6.4" fill="none" stroke="var(--mark)" stroke-width="5" stroke-linecap="round"/></svg></span></p>`;
+  // The handwritten note. It started as two lines with a yellow swoosh ("Fait en / 20 min"), became
+  // the customer's reaction, and on 2026-08-27 Fady cut it to ONE WORD with no underline at all:
+  // "Parfait !" in French, "Perfect!" in Dutch and English. The Caveat subset was re-cut to the ten
+  // glyphs those two strings need, so anything else falls back to a system script face in silence
+  // and the guard in build.js exists to stop exactly that.
+  const baNote = `<p class="ba-note"><span>${c.baNote}</span></p>`;
   const ba = `<section class="s-card s-ba"><div class="wrap"><p class="kicker">${c.baK}</p><h2>${c.baH}</h2><hr class="rule"><div class="ba-collage rv">${BA_DEFS}<ol class="ba-pics">${baItems}</ol>${baArrows}${baNote}</div></div></section>`;
 
-  const scam = `<section class="s-ink"><div class="wrap"><p class="kicker">${c.scamK}</p><h2>${c.scamH}</h2><hr class="rule"><div class="scam-cols"><div><p class="lead">${c.scamI1}<button type="button" class="cite" data-cite aria-expanded="false" aria-controls="cite-pop"><span class="cite-t">${c.scamICite}</span><span class="cite-i" aria-hidden="true">i</span><span class="sr-only">, ${c.citeHint}</span></button>${c.scamI2}</p><ul class="scam-list">${c.scam.map(s => `<li>${s}</li>`).join('')}</ul></div><div><h3 class="scam-h3">${c.usH}</h3><ul class="us-list">${c.us.map(s => `<li>${s}</li>`).join('')}</ul></div></div>${callBtn(c.scamB, 'scam-call')}</div></section>`;
+  const scam = `<section class="s-ink"><div class="wrap"><p class="kicker">${c.scamK}</p><h2>${c.scamH}</h2><hr class="rule"><div class="scam-cols"><div><p class="lead">${c.scamI1}<span class="cite" role="button" tabindex="0" data-cite aria-expanded="false" aria-controls="cite-pop"><span class="cite-t">${c.scamICite}</span><span class="cite-i" aria-hidden="true">i</span><span class="sr-only">, ${c.citeHint}</span></span>${c.scamI2}</p><ul class="scam-list">${c.scam.map(s => `<li>${s}</li>`).join('')}</ul></div><div><h3 class="scam-h3">${c.usH}</h3><ul class="us-list">${c.us.map(s => `<li>${s}</li>`).join('')}</ul></div></div>${callBtn(c.scamB, 'scam-call')}</div></section>`;
 
   // WHO COMES, rebuilt 2026-08-26 on Fady's call: the old two-column split (van beside three
   // unlabelled text blocks) did not say what the section WAS on a wide screen. It now reads as one
-  // introduction: the paragraph, then Afrem speaking to the visitor, then the van under him. The
+  // introduction: the paragraph, then Afrim speaking to the visitor, then the van under him. The
   // three rules that used to sit in that column became their own section, `inc`, as cards.
-  // THE AVATAR IS A PLACEHOLDER: Roro has been asked for a face photo of Afrem (Fady, 2026-08-26).
+  // THE AVATAR IS A PLACEHOLDER: Roro has been asked for a face photo of Afrim (Fady, 2026-08-26).
   // Until it arrives the bubble carries a monogram, never an invented face for a real, named person
   // (rule 5, never fake anything). build.js warns while data-placeholder is on it; when the photo
   // lands, swap the inner span for IMG(...) and drop the attribute.
   const bubble = `<div class="bub-row rv"><div class="bub-av" data-placeholder aria-hidden="true"><span class="bub-mono">A</span></div><div class="bub"><p class="bub-txt">${c.bubble}</p><p class="bub-who">${c.bubbleWho}</p></div></div>`;
-  const who = sec('s-card', c.whoK, c.whoH, `<p class="lead">${c.whoT}</p>${bubble}<figure class="van rv">${IMG('van-street.webp', c.vanAlt, 1600, 1067, 'loading="lazy" decoding="async"')}<figcaption>${c.vanCap}</figcaption></figure>`);
+  // TWO COLUMNS ON A WIDE SCREEN (Fady 2026-08-27): the van photo is 1600px of picture and it was
+  // sitting under the paragraph and the bubble, which left the words stranded above a slab. Words
+  // left, van right. The DOM order is unchanged, so a phone still reads paragraph, Afrim, van.
+  const who = sec('s-card', c.whoK, c.whoH, `<div class="who-grid"><div class="who-words"><p class="lead">${c.whoT}</p>${bubble}</div><figure class="van rv">${IMG('van-street.webp', c.vanAlt, 1600, 1067, 'loading="lazy" decoding="async"')}<figcaption>${c.vanCap}</figcaption></figure></div>`);
 
   // The three rules as their own band of cards, one colour each, drawn icons rather than photos.
   const INC_ICONS = [
@@ -263,10 +283,19 @@ new IntersectionObserver(function(es){es.forEach(function(e){de.classList.toggle
 var x=p.querySelector('[data-cite-close]');
 function open(){p.hidden=false;bk.hidden=false;b.setAttribute('aria-expanded','true');document.documentElement.style.overflow='hidden';if(x)x.focus()}
 function close(){p.hidden=true;bk.hidden=true;b.setAttribute('aria-expanded','false');document.documentElement.style.overflow='';b.focus()}
-b.addEventListener('click',open);bk.addEventListener('click',close);if(x)x.addEventListener('click',close);
+b.addEventListener('click',open);b.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '||e.key==='Spacebar'){e.preventDefault();open()}});bk.addEventListener('click',close);if(x)x.addEventListener('click',close);
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!p.hidden)close()});
 p.addEventListener('keydown',function(e){if(e.key!=='Tab')return;var f=p.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])');if(!f.length)return;var a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}});
 })();
+/* The swipe hint bows out once the visitor reaches the third photo (Fady 2026-08-27): by then the
+   gesture has been understood and a permanent hint is just furniture. One passive scroll listener,
+   removed the moment it fires, and the whole thing is a no-op on a desktop where .hero-car is
+   display:none and never scrolls. */
+(function(){var t=document.querySelector('.car-track'),h=document.querySelector('.car-hint');if(!t||!h)return;
+var ss=t.querySelectorAll('.car-slide');if(ss.length<3)return;
+function chk(){var step=ss[1].offsetLeft-ss[0].offsetLeft;if(step<=0)return;
+if(t.scrollLeft>=step*1.5){h.classList.add('car-hint-off');t.removeEventListener('scroll',chk)}}
+t.addEventListener('scroll',chk,{passive:true})})();
 /* steps: the line fills and the numbers light up in sequence when the section arrives */
 (function(){var st=document.querySelector('.steps');if(!st)return;
 if(reduce||!('IntersectionObserver' in window)){st.classList.add('go');return}

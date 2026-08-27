@@ -14,7 +14,7 @@ const fixBce = s => s
   .replace(/Numéro d'entreprise BE 1027\.454\.187/g, `Numéro d'entreprise 1027.454.187`)
   .replace(/Ondernemingsnummer BE 1027\.454\.187/g, 'Ondernemingsnummer 1027.454.187')
   .replace(/(Company|Enterprise) number BE 1027\.454\.187/g, '$1 number 1027.454.187');
-const LEGAL_TEXT = { fr: fixBce(LEGAL_V2.fr), nl: fixBce(LEGAL_V2.nl), en: fixBce(LEGAL_V2.en), COOKIES_TAG: LEGAL_V2.COOKIES_TAG };
+const LEGAL_TEXT = { fr: fixBce(LEGAL_V2.fr), nl: fixBce(LEGAL_V2.nl), en: fixBce(LEGAL_V2.en), COOKIES_TAG: LEGAL_V2.COOKIES_TAG, RECIP_TAG: LEGAL_V2.RECIP_TAG, BASIS_TAG: LEGAL_V2.BASIS_TAG };
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const OUT = path.join(ROOT, 'site-v1');
@@ -33,7 +33,8 @@ const GA4_ID = TAGS_OFF ? '' : (process.env.GA4_ID || 'G-S3SQ25WZMK');
 // One switch for the whole tag layer: consent stub, banner, consent.js, footer credit, privacy
 // cookie section, reopen link, Google CSP. TAGS_OFF=1 = none of it exists in the output.
 const TAG_ON = !!(ADS_TAG_ID || GA4_ID);
-const CONSENT_VER = '2026-08-26';
+let CONSENT_HASH = ''; // set below from the generated consent.js; busts the edge cache on any change
+const CONSENT_VER = '2026-08-27-purposes'; // bumped with the two-purpose shape: old one-button records are invalidated
 
 const rm = p => fs.rmSync(p, { recursive: true, force: true });
 const mk = p => fs.mkdirSync(p, { recursive: true });
@@ -50,10 +51,10 @@ for (const f of ['archivo-var-latin.woff2', 'archivo-var-latin-ext.woff2', 'cave
 // build refuses it: change `baNote` and this throws with the character it cannot draw. To widen the
 // set, re-subset (fonts.googleapis.com/css2?family=Caveat:wght@600&text=...) and update BOTH lists,
 // here and the @font-face unicode-range in styles.css.
-const NOTE_GLYPHS = ' 02DFKaeilmnort';
+const NOTE_GLYPHS = ' !Pacefirt'; // re-subsetted 2026-08-27 for the one-word note: 'Parfait !' / 'Perfect!'
 for (const [l] of T.LANGS) {
-  const note = (COPY[l].baNote || []).join('');
-  if (note.length < 2) throw new Error(`copy-${l}.js: baNote must be the two lines of the handwritten note.`);
+  const note = COPY[l].baNote || '';
+  if (typeof note !== 'string' || note.length < 2) throw new Error(`copy-${l}.js: baNote must be the handwritten note, one short string.`);
   for (const ch of note) if (!NOTE_GLYPHS.includes(ch)) throw new Error(`copy-${l}.js baNote uses "${ch}", which is not in the subsetted Caveat (${NOTE_GLYPHS.trim()} and space). Re-subset the font or change the wording.`);
 }
 // The BOM strip is not cosmetic. This CSS is INLINED into <style>, where a leading U+FEFF is a
@@ -65,14 +66,127 @@ for (const [l] of T.LANGS) {
 let css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8').replace(/^﻿/, '');
 if (!/^\s*\/\*|^\s*@|^\s*[.#:a-zA-Z]/.test(css)) throw new Error('styles.css starts with an unexpected character; the first CSS rule would be swallowed.');
 if (TAG_ON) css += `
-/* consent card + reopen link (built only with the tag layer on) */
+/* THE CONSENT CARD (built only with the tag layer on). Restyled 2026-08-27 to read as part of the
+   site and not as a bolted-on legal widget: paper card, the page's radius ladder, the same yellow
+   rule that opens every section, the same weight ladder, the same teal focus ring.
+   TWO THINGS HERE ARE LAW, NOT TASTE (research/29 A4, B11, Mediahuis September 2024):
+   1. Refuse and Accept are ONE rule, so they can never drift apart: same size, same weight, same
+      fill, same border. Never give Accept a colour that Refuse does not have.
+   2. "Choisir" is quieter than both, but it is full-weight, full-contrast, underlined and 44px
+      tall. It ADDS a layer, it never replaces the Refuse button. */
 .linklike{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}
-.consent{position:fixed;left:16px;right:16px;bottom:calc(var(--bar-h) + env(safe-area-inset-bottom) + 14px);z-index:290;background:#fff;color:var(--ink);border:1px solid rgba(16,42,74,.15);box-shadow:0 8px 30px rgba(16,42,74,.18);padding:16px;max-width:420px;margin-inline:auto}
+/* THE DIM BEHIND THE CARD (Fady 2026-08-27 round 4). It is POINTER-EVENTS:NONE and that is not a
+   detail, it is the whole reason it is allowed: the page underneath stays fully usable, so this is
+   a visual weighting and never a cookie wall (research/29 A7). It also sits at z-index 190, UNDER
+   the sticky call bar at 200, so the phone number stays bright and tappable while the card is up,
+   which B9 asks for by name. The choices layer dims harder than the first, because by then the
+   visitor is deciding rather than glancing. */
+.c-dim{position:fixed;inset:0;z-index:190;background:rgba(16,42,74,.34);pointer-events:none;transition:background-color .3s ease}
+.c-dim-2{background:rgba(16,42,74,.6)}
+
+/* THE MOVING STROKE (Fady 2026-08-27 round 4, a test). Colours lifted from the logo file itself,
+   not invented: its aqua #25FEC0 and #22B3A6, its blues #2E6FB1 and #0F4A6A, its yellow #FFDC52 and
+   its orange #FE7740. One slow turn every 18 seconds.
+   IT IS BUILT TO COST NOTHING. A conic gradient on a square that is only ROTATED is a compositor
+   animation: the GPU spins one existing layer and the main thread never repaints, which is why this
+   and not an animated gradient angle (that one repaints the whole card every frame) or an SVG dash
+   offset. The card clips it, and .c-body sits on top leaving 2px of it showing as the border.
+   The scroll had to move from .consent to .c-body for this: overflow:hidden on the frame is what
+   clips the spinning square, so the body is what scrolls now. */
+.consent{position:fixed;left:16px;right:16px;bottom:calc(var(--bar-h) + env(safe-area-inset-bottom) + 14px);z-index:290;border-radius:var(--r-card);box-shadow:0 14px 44px rgba(16,42,74,.22);max-width:440px;margin-inline:auto;background:var(--card);overflow:hidden}
+.consent:focus{outline:none}
 @media (min-width:1000px){.consent{left:auto;right:24px;bottom:24px;margin:0}}
-.consent h2{font-size:1.0625rem;margin:0 0 8px;text-transform:none;font-stretch:100%;letter-spacing:0}
-.consent p{font-size:.9375rem;margin:0 0 12px}
-.consent .c-btns{display:flex;gap:8px}
-.consent .c-btns button{flex:1;font:inherit;font-weight:800;font-size:.9375rem;padding:10px 12px;cursor:pointer;border:2px solid var(--ink);background:#fff;color:var(--ink)}
+.c-ring{position:absolute;top:50%;left:50%;width:820px;height:820px;pointer-events:none;
+  background:conic-gradient(from 0turn,#25FEC0,#22B3A6,#2E6FB1,#0F4A6A,#2E6FB1,#FFDC52,#FE7740,#25FEC0);
+  animation:cring 18s linear infinite}
+@keyframes cring{from{transform:translate(-50%,-50%) rotate(0turn)}to{transform:translate(-50%,-50%) rotate(1turn)}}
+/* Bottom padding is bigger than the top on purpose: the card ends in 13px fine print, which needs
+   more room under it than a 20px block would give before it reads as sitting on the edge (Fady
+   2026-08-27 round 6). */
+.c-body{position:relative;z-index:1;margin:2px;border-radius:calc(var(--r-card) - 2px);background:var(--card);color:var(--text);padding:20px 20px 26px;max-height:min(82vh,680px);overflow:auto;overscroll-behavior:contain}
+/* THE CHOICES LAYER CENTRES ITSELF ON A PHONE (Fady 2026-08-27 round 6). Layer one is a glance, so
+   it stays a sheet at the bottom near the thumb; layer two is a decision, it is the tallest thing
+   the card ever shows, and bottom-anchored it ran from just under the status bar to just above the
+   call bar and read as a page rather than a dialog. Centred it is a dialog again, and it leaves the
+   bottom of the screen free, which keeps the call bar clear as well.
+   Desktop keeps its corner: the card is small there and a corner card is the point. */
+@media (max-width:999px){.consent.c-mid{top:50%;bottom:auto;transform:translateY(-50%)}}
+@media (prefers-reduced-motion:reduce){.c-ring{animation:none}.c-dim{transition:none}}
+/* ONE SPACING RHYTHM (Fady 2026-08-27): 10px inside a group, 16px between groups, 18px before the
+   fine print. Nothing in this card is spaced by feel any more. */
+/* The mark, small and left-aligned above the title (Fady 2026-08-27 round 5), which also buys the
+   card the extra height he wanted so it covers a little more of the page. 26px against the site
+   header's 34 and the footer's 44: the smallest of the three, because here it is a signature and
+   not a navigation target. Decorative, alt="", since the dialog already carries its own label. */
+.c-logo{display:block;height:26px;width:auto;margin:0 0 12px}
+.consent h2{font-size:1.25rem;font-weight:900;line-height:1.15;margin:0;color:var(--ink);text-transform:none;font-stretch:100%;letter-spacing:var(--track-title)}
+.c-rule{border:0;width:44px;height:5px;border-radius:var(--r-dot);background:var(--mark);margin:12px 0 14px}
+.consent p{font-size:.9375rem;line-height:1.5;margin:0 0 16px}
+/* Restyled on Fady's round 2 (2026-08-27): the two answers are FILLED NAVY and hover to the house
+   yellow, because the old white-on-white pair with a paper tint on hover did not look pressable at
+   all. "Choisir" became a real ghost button in the same shape.
+   THE LAW IS UNTOUCHED AND IT IS WHY REFUSE AND ACCEPT SHARE ONE SELECTOR (research/29 A4, B11;
+   APD v Mediahuis, September 2024): same fill, same border, same size, same weight, same hover.
+   A ghost next to them is fine, and only fine, because it is the THIRD control: it opens the
+   per-purpose layer, it never stands in for the reject button, which is right there beside Accept
+   at full strength. If anyone ever gives Accept a colour Refuse does not have, that is the breach.
+   One hover language across the whole card: yellow fill, navy ink. */
+/* EVERY CONTROL IN THE CARD IS THE SAME BUTTON (Fady 2026-08-27, his round 3: the ghost "looked
+   like it did not belong"). Shared shape, height, radius, border weight, type size and hover, set
+   once on .c-btns button, .c-more so they cannot drift; only the fill separates a decision from the
+   ghost. The ghost runs the FULL WIDTH under the answers, which is what makes the hierarchy read:
+   two answers side by side, then the quieter full-width way in, then the fine print with real air
+   under it.
+   THE LAW IS UNCHANGED. Refuse and Accept are two children of the same rule with the same flex, so
+   they are identical by construction (research/29 A4 and B11, APD v Mediahuis September 2024).
+   The ghost is legal because it ADDS the per-purpose layer and never stands in for the reject
+   button, which is on layer one at full strength. */
+.c-btns,.c-more{font:inherit;font-weight:800;font-size:.9375rem;line-height:1.2}
+.c-btns{display:flex;gap:10px}
+.c-btns button,.c-more{min-height:52px;padding:12px 14px;cursor:pointer;border:2px solid var(--ink);border-radius:var(--r-btn);font:inherit;font-weight:800;font-size:.9375rem;line-height:1.2;transition:background-color .16s ease,color .16s ease,border-color .16s ease}
+.c-btns button{flex:1;background:var(--ink);color:#fff}
+.c-more{display:block;width:100%;margin:10px 0 0;background:transparent;color:var(--ink)}
+/* HOVER IS A DARKER NAVY, NOT YELLOW, AND IT ONLY EXISTS WHERE A REAL POINTER DOES.
+   Fady reported the answer button showing yellow on a fresh incognito load and only turning navy
+   after switching layers. Both halves of that are the yellow hover: the resting fill has been navy
+   since round 5, the ONLY yellow rule left was :hover, and a browser does not re-evaluate hover
+   when innerHTML is replaced until the pointer moves again, which is exactly why toggling the
+   layers "fixed" it. On a touchscreen the same rule sticks to whatever was last tapped, the defect
+   .servlist already carries a comment about.
+   So: --ink-press, the darker navy, following the same convention the red CTA already uses
+   (--cta / --cta-press), and every hover wrapped in (hover:hover). :focus-visible stays outside it,
+   because keyboard focus is real on any device, and it gets the darker fill plus the global teal
+   ring. */
+@media (hover:hover){
+  .c-btns button:hover{background:var(--ink-press);border-color:var(--ink-press);color:#fff}
+  .c-more:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+}
+.c-btns button:focus-visible{background:var(--ink-press);border-color:var(--ink-press);color:#fff}
+.c-more:focus-visible{background:var(--ink);border-color:var(--ink);color:#fff}
+.c-btns button:active{background:var(--ink-press);border-color:var(--ink-press);color:#fff}
+.c-more:active{background:var(--ink);border-color:var(--ink);color:#fff}
+/* Yellow answers on phones were tried on 2026-08-27 (round 4) and dropped the same evening: Fady
+   prefers the navy, at every width. Do not reintroduce a width-dependent fill here without keeping
+   both answers on this one selector. */
+@media (prefers-reduced-motion:reduce){.c-btns button,.c-more{transition:none}}
+/* .consent .c-fine, NOT .c-fine: the fine print is a <p>, so ".consent p" (one class plus one type)
+   outranks a lone class and was silently winning the margin. It has had NO gap above it and a stray
+   16px below it since the card was built; Fady spotted the missing gap on 2026-08-27 round 3. */
+.consent .c-fine{font-size:.8125rem;line-height:1.45;color:var(--muted);margin:18px 0 0}
+.c-fine a{color:var(--ink);font-weight:600}
+/* layer two: one row per purpose, both switches OFF on a first visit (no pre-ticked anything,
+   Planet49 C-673/17). On a reopen they show what is actually stored, which is a readout of the
+   visitor's own decision, not a pre-tick. */
+.c-sw{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:10px}
+.c-sw li{background:var(--paper);border-radius:var(--r-img);padding:10px 14px 12px}
+.c-lab{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:44px;cursor:pointer}
+.c-lt{font-weight:900;font-size:1rem;color:var(--ink);letter-spacing:var(--track-title)}
+.c-sw p{font-size:.8125rem;line-height:1.45;color:var(--muted);margin:2px 0 0}
+.c-tog{appearance:none;-webkit-appearance:none;position:relative;flex:none;width:52px;height:30px;margin:0;cursor:pointer;background:#fff;border:2px solid var(--ink);border-radius:999px;transition:background-color .18s ease,border-color .18s ease}
+.c-tog::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--ink);transition:transform .18s ease,background-color .18s ease}
+.c-tog:checked{background:var(--teal);border-color:var(--teal)}
+.c-tog:checked::after{background:#fff;transform:translateX(22px)}
+@media (prefers-reduced-motion:reduce){.c-tog,.c-tog::after{transition:none}}
 `;
 
 // THE CSS INTEGRITY CHECK. A stray "*/" or one unbalanced brace does not break the build and does
@@ -97,44 +211,122 @@ if (TAG_ON) css += `
   if (open !== close) throw new Error(`styles.css: ${open} opening braces against ${close} closing. Everything after the mismatch is dropped by the browser.`);
 }
 
+// THE COMMENTS DO NOT SHIP (design/05 section C14, checked 2026-08-28). styles.css is INLINED into
+// every page, and it carries long explanations of why each rule is the way it is: 76KB of CSS in
+// the page against a 25KB budget, and about two thirds of it was prose no visitor will ever read.
+// It belongs in the SOURCE, where the next person to edit a rule needs it, not in the delivered
+// bytes.  is the comment-stripped text the integrity check above already had to build, so
+// this reuses that one parse rather than running a second, differently-wrong stripper over the
+// file. Blank runs are collapsed; nothing inside a rule is touched.
+{
+  let bare = "", i = 0;
+  while (i < css.length) {
+    const a = css.indexOf("/*", i);
+    if (a < 0) { bare += css.slice(i); break; }
+    bare += css.slice(i, a);
+    i = css.indexOf("*/", a + 2) + 2;
+  }
+  const shipped = bare.split(String.fromCharCode(10)).map(function(l){return l.replace(/[ 	]+$/, "")}).filter(function(l,n,arr){return l !== "" || (arr[n-1]||"") !== ""}).join(String.fromCharCode(10));
+  if (shipped.length > css.length) throw new Error("styles.css: the comment strip grew the file, which means it went wrong.");
+  if (shipped.indexOf("{") < 0) throw new Error("styles.css: the comment strip left no rules.");
+  css = shipped;
+}
+
+const LEGAL_PATH = { fr: '/fr/confidentialite', nl: '/nl/privacy', en: '/en/privacy' }; // declared here, above the consent card, which links to it (research/29 B1)
+// THE SCRIPT URL CARRIES A CONTENT HASH (2026-08-27). Cloudflare caches /assets/js/consent.js
+// at the edge for an hour and the browser for four, so a deploy that changes the banner would keep
+// serving the OLD card to real visitors, and to our own verification, long after the HTML is new.
+// The URL now ends in a hash of the file itself, so ANY change to the banner is live the second
+// the deploy is, and a change that does not touch stored consent needs no CONSENT_VER bump.
 // consent.js: written only with a tag id (same proven machinery as v2, research/13). One gtag.js
 // loader serves both destinations: the Ads tag (conversions) and the GA4 property (traffic).
+// LAYER TWO HAS NO "REFUSE ALL" since Fady's round 3 (2026-08-27), and that is safe: the reject
+// button the APD requires has to sit on the FIRST layer beside accept, at equal prominence, and it
+// does. Both switches are off until the visitor turns them on, so Save with nothing ticked IS a
+// refusal and runs the same wipe; Back returns to the pair in one tap. research/29 B2 suggested
+// keeping a second Refuse here, which was a belt-and-braces preference, not the requirement.
+// TWO LAYERS since 2026-08-27 (research/29 B2): layer one is the simple pair of equal buttons,
+// layer two splits the choice by purpose, which the Belgian APD asks for. pd_consent therefore
+// carries {ads, analytics} and CONSENT_VER was bumped, so every record written by the one-button
+// version is invalidated and the question is asked again. Nothing is granted that was not ticked:
+// ad_storage and ad_user_data ride `ads`, analytics_storage rides `analytics`, ad_personalization
+// is granted in NO branch, ever, which is what keeps "no profiling, no retargeting" true.
 if (TAG_ON) {
   const STR = {};
-  for (const [l] of T.LANGS) STR[l] = { t: COPY[l].consentT, p: COPY[l].consentP, refuse: COPY[l].consentRefuse, accept: COPY[l].consentAccept };
-  w('assets/js/consent.js', `// Generated by design/site-source/build.js. Do not edit here.
+  for (const [l] of T.LANGS) STR[l] = {
+    t: COPY[l].consentT, p: COPY[l].consentP, refuse: COPY[l].consentRefuse, accept: COPY[l].consentAccept,
+    choose: COPY[l].consentChoose, fine: COPY[l].consentFine, more: COPY[l].consentMore, href: LEGAL_PATH[l],
+    t2: COPY[l].consentT2, p2: COPY[l].consentP2, sw: COPY[l].consentSw,
+    save: COPY[l].consentSave, back: COPY[l].consentBack,
+  };
+  const consentJs = `// Generated by design/site-source/build.js. Do not edit here.
 (function(){
 var ID=${JSON.stringify(ADS_TAG_ID)},GA=${JSON.stringify(GA4_ID)},CALL=${JSON.stringify(ADS_CALL_LABEL)},WA=${JSON.stringify(ADS_WA_LABEL)};
-var LOADER=ID||GA;
 var KEY='pd_consent',VER=${JSON.stringify(CONSENT_VER)},DAYS=182;
 var STR=${JSON.stringify(STR)};
 var s=STR[(document.documentElement.lang||'fr').slice(0,2)]||STR.fr;
 function read(){try{var r=JSON.parse(localStorage.getItem(KEY));if(!r||r.v!==VER)return null;if(Date.now()-r.t>DAYS*864e5){localStorage.removeItem(KEY);return null}return r}catch(e){return null}}
-function save(ok){try{localStorage.setItem(KEY,JSON.stringify({ads:ok,v:VER,t:Date.now()}))}catch(e){}}
-var loaded=false;
-function enable(){if(loaded)return;loaded=true;
-gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',analytics_storage:'granted'});
-var sc=document.createElement('script');sc.async=true;sc.src='https://www.googletagmanager.com/gtag/js?id='+LOADER;document.head.appendChild(sc);
-gtag('js',new Date());if(ID)gtag('config',ID);if(GA)gtag('config',GA);}
-function wipe(){document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(!/^(_ga|_gcl)/.test(n))return;
+function save(c){try{localStorage.setItem(KEY,JSON.stringify({ads:!!c.ads,analytics:!!c.analytics,v:VER,t:Date.now()}))}catch(e){}}
+var loaded=false,state={ads:false,analytics:false};
+function enable(c){
+var was={ads:state.ads,analytics:state.analytics};
+state.ads=!!c.ads;state.analytics=!!c.analytics;
+if(loaded){var d={};
+if(!state.ads&&was.ads){d.ad_storage='denied';d.ad_user_data='denied'}
+if(!state.analytics&&was.analytics){d.analytics_storage='denied'}
+if(d.ad_storage||d.analytics_storage)gtag('consent','update',d);}
+var addAds=state.ads&&!was.ads,addAn=state.analytics&&!was.analytics;
+if(!addAds&&!addAn)return;
+var u={};if(addAds){u.ad_storage='granted';u.ad_user_data='granted'}if(addAn){u.analytics_storage='granted'}
+gtag('consent','update',u);
+var lid=state.ads&&ID?ID:(state.analytics&&GA?GA:null);if(!lid)return;
+if(!loaded){loaded=true;
+var sc=document.createElement('script');sc.async=true;sc.src='https://www.googletagmanager.com/gtag/js?id='+lid;document.head.appendChild(sc);
+gtag('js',new Date());}
+if(ID&&addAds)gtag('config',ID);
+if(GA&&addAn)gtag('config',GA);}
+function wipe(c){document.cookie.split(';').forEach(function(k){var n=k.split('=')[0].trim();
+if(!((/^_gcl/.test(n)&&!c.ads)||(/^_ga/.test(n)&&!c.analytics)))return;
 ['','domain='+location.hostname+';','domain=.'+location.hostname+';'].forEach(function(d){document.cookie=n+'=;path=/;'+d+'expires=Thu, 01 Jan 1970 00:00:00 GMT';});});}
-var card=null;
-function close(){if(card){card.remove();card=null}}
-function show(){if(card)return;
-card=document.createElement('div');card.className='consent';card.setAttribute('role','dialog');card.setAttribute('aria-label',s.t);
-card.innerHTML='<h2>'+s.t+'</h2><p>'+s.p+'</p><div class="c-btns"><button type="button" data-c="0">'+s.refuse+'</button><button type="button" data-c="1">'+s.accept+'</button></div>';
-card.addEventListener('click',function(e){var b=e.target.closest('button[data-c]');if(!b)return;var ok=b.dataset.c==='1';save(ok);close();if(ok)enable();else wipe();});
-document.body.appendChild(card);}
+function stored(){var r=read();return{ads:!!(r&&r.ads),analytics:!!(r&&r.analytics)}}
+var card=null,dim=null,opener=null,layer=1,pend={ads:false,analytics:false};
+function close(){if(dim){dim.remove();dim=null}if(!card)return;card.remove();card=null;layer=1;if(opener&&document.contains(opener)){opener.focus()}opener=null}
+function esc(e){if(e.key==='Escape'&&card&&opener){close()}}
+function fine(full){return '<p class="c-fine">'+(full?s.fine+' ':'')+'<a href="'+s.href+'">'+s.more+'</a></p>'}
+function paint(){
+card.setAttribute('aria-label',layer===1?s.t:s.t2);
+if(dim)dim.className=layer===2?'c-dim c-dim-2':'c-dim';
+card.className='consent'+(layer===2?' c-mid':'');
+card.innerHTML='<span class="c-ring" aria-hidden="true"></span><div class="c-body">'+(layer===1
+?'<img class="c-logo" src="/assets/img/logo-icon.svg" alt="" width="816" height="499"><h2>'+s.t+'</h2><hr class="c-rule"><p>'+s.p+'</p><div class="c-btns"><button type="button" data-c="no">'+s.refuse+'</button><button type="button" data-c="yes">'+s.accept+'</button></div><button type="button" class="c-more" data-c="more">'+s.choose+'</button>'+fine(1)
+:'<h2>'+s.t2+'</h2><hr class="c-rule"><p>'+s.p2+'</p><ul class="c-sw">'+s.sw.map(function(x,i){var k=i===0?'analytics':'ads';
+return '<li><label class="c-lab"><span class="c-lt">'+x[0]+'</span><input type="checkbox" class="c-tog" data-p="'+k+'"'+(pend[k]?' checked':'')+'></label><p>'+x[1]+'</p></li>'}).join('')
++'</ul><div class="c-btns"><button type="button" data-c="save">'+s.save+'</button></div><button type="button" class="c-more" data-c="back">'+s.back+'</button>'+fine(0))+'</div>'}
+function apply(c){save(c);close();wipe(c);enable(c)}
+function show(focus){if(card)return;
+dim=document.createElement('div');dim.className='c-dim';document.body.appendChild(dim);
+card=document.createElement('div');card.className='consent';card.setAttribute('role','dialog');card.setAttribute('tabindex','-1');
+layer=1;pend=stored();paint();
+card.addEventListener('click',function(e){var b=e.target.closest('button[data-c]');if(!b)return;var v=b.getAttribute('data-c');
+if(v==='more'||v==='back'){layer=v==='more'?2:1;if(layer===2){pend=stored()}paint();card.focus();return}
+if(v==='save'){var g=function(k){var el=card.querySelector('[data-p="'+k+'"]');return !!(el&&el.checked)};apply({ads:g('ads'),analytics:g('analytics')});return}
+apply({ads:v==='yes',analytics:v==='yes'})});
+document.body.appendChild(card);
+if(focus){card.focus()}}
+document.addEventListener('keydown',esc);
 document.addEventListener('click',function(e){
-if(e.target.closest('[data-consent-open]')){show();return}
+var o=e.target.closest('[data-consent-open]');
+if(o){opener=o;show(true);return}
 var a=e.target.closest('a[data-cta]');if(!a||!loaded)return;
 var isWa=a.dataset.cta.indexOf('whatsapp')>-1;
 gtag('event',isWa?'whatsapp_click':'call_click',{cta:a.dataset.cta});
-var lb=isWa?WA:CALL;if(ID&&lb)gtag('event','conversion',{send_to:ID+'/'+lb});
+var lb=isWa?WA:CALL;if(ID&&lb&&state.ads)gtag('event','conversion',{send_to:ID+'/'+lb});
 });
-var r=read();if(!r)show();else if(r.ads)enable();
+var r=read();if(!r)show(false);else enable(r);
 })();
-`);
+`;
+  w('assets/js/consent.js', consentJs);
+  CONSENT_HASH = require('crypto').createHash('sha256').update(consentJs).digest('hex').slice(0, 10);
 }
 
 // images: manifest key -> exported sizes in assets/prepared/web/img/
@@ -212,6 +404,7 @@ ${alts}
 <meta property="og:image:alt" content="${m.ogAlt}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/apple-touch-icon.png" type="image/png" sizes="180x180">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/archivo-var-latin.woff2" crossorigin>
@@ -223,7 +416,7 @@ ${alts}
 
 const TAIL = (extra = '') => `
 <script>${T.PAGE_JS}</script>${TAG_ON ? `
-<script src="/assets/js/consent.js" defer></script>` : ''}${extra}
+<script src="/assets/js/consent.js?v=${CONSENT_HASH}" defer></script>` : ''}${extra}
 </body>
 </html>
 `;
@@ -239,7 +432,14 @@ function jsonld(c, lang) {
       address: { '@type': 'PostalAddress', streetAddress: 'Guldenschaapstraat 6', postalCode: '1800', addressLocality: 'Vilvoorde', addressCountry: 'BE' },
       openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' }],
       areaServed: towns,
-      availableLanguage: [{ '@type': 'Language', name: 'French', alternateName: 'fr' }, { '@type': 'Language', name: 'Dutch', alternateName: 'nl' }, { '@type': 'Language', name: 'English', alternateName: 'en' }] },
+      availableLanguage: [{ '@type': 'Language', name: 'French', alternateName: 'fr' }, { '@type': 'Language', name: 'Dutch', alternateName: 'nl' }, { '@type': 'Language', name: 'English', alternateName: 'en' }],
+      // MINIMUMS, NOT PRICES (Roro's walkthrough, 2026-08-27). The page stopped claiming fixed
+      // amounts the day the rows became "à partir de", and the schema has to say the same thing or
+      // it contradicts the page it describes. Offer.price would assert a fixed amount; a
+      // PriceSpecification with minPrice asserts a floor, which is what we actually promise.
+      // Parsed from the same copy the rows render, so the two can never drift apart.
+      makesOffer: c.prices.map(p => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: strip(p[0]) },
+        priceSpecification: { '@type': 'PriceSpecification', minPrice: Number(String(p[1]).replace(/[^0-9]/g, '')), priceCurrency: 'EUR', valueAddedTaxIncluded: true } })) },
     { '@type': 'FAQPage', '@id': HOST + '/' + lang + '/#faq', inLanguage: lang + '-BE', mainEntity: faq },
   ] };
   return `<script type="application/ld+json">\n${JSON.stringify(data, null, 1)}\n</script>`;
@@ -247,12 +447,16 @@ function jsonld(c, lang) {
 
 // ---------- pages ----------
 const LANDING = {}; for (const [l] of T.LANGS) LANDING[l] = '/' + l + '/';
-const LEGAL_PATH = { fr: '/fr/confidentialite', nl: '/nl/privacy', en: '/en/privacy' };
 const CGV_PATH = { fr: '/fr/conditions-generales', nl: '/nl/algemene-voorwaarden', en: '/en/terms' };
 const shell = (c, lang) => T.pageHtml(c, { img: IMG, privacyHref: LEGAL_PATH[lang], cgvHref: CGV_PATH[lang], adsTag: TAG_ON });
 function landing(c, lang) {
   const { body } = shell(c, lang);
-  return head(lang, LANDING, c.meta) + body + '\n' + jsonld(c, lang) + TAIL();
+  // THE SHARE CARD LEADS ON THE NAME, the <title> tag does not (Fady 2026-08-27). A page title is
+  // written for a search result, where the brand can come last; a WhatsApp card is written for
+  // someone a person they know just sent a link to, and it has to say WHOSE link it is first. So
+  // og:title is meta.ogTitle (name, then service, then zone) and <title> is untouched. meta.ogt,
+  // the pain headline, is no longer used as a share title: it reads as a complaint out of context.
+  return head(lang, LANDING, { ...c.meta, ogt: c.meta.ogTitle || c.meta.title }) + body + '\n' + jsonld(c, lang) + TAIL();
 }
 for (const [l] of T.LANGS) w(l + '/index.html', landing(COPY[l], l));
 
@@ -282,7 +486,11 @@ function docShell(lang, paths, main, title, desc) {
   for (const [l, p] of Object.entries(paths)) header = header.replace(`href="/${l}/" lang="${l}"`, `href="${p}" lang="${l}"`);
   const footer = grab('<footer class="site-footer"', '</footer>', ['class="credit"', 'id="y"', 'foot-links'], 'site footer');
   const bar = grab('<div class="callbar"', '</div>', ['cb-call', 'cb-wa'], 'sticky call bar');
-  const m = { title, desc, ogt: title, ogd: desc, locale: c.meta.locale, ogAlt: c.meta.ogAlt };
+  // The share card's title is NOT the <title> tag (Fady 2026-08-27). A page title is written for a
+  // search result, where the brand can come last; a WhatsApp card is written for someone who was
+  // sent a link by a person they know, and it has to say WHOSE it is first. So og:title leads on
+  // the name and then carries the service and the zone, while <title> is left exactly as it was.
+  const m = { title, desc, ogt: c.meta.ogTitle || title, ogd: desc, locale: c.meta.locale, ogAlt: c.meta.ogAlt };
   return head(lang, paths, m) + `<a class="skip" href="#contenu">${c.skip}</a>\n` + header + '\n' + main + '\n' + footer + '\n' + bar + TAIL();
 }
 // privacy (v2 text under the v3 shell; give its <main> the skip-link id)
@@ -293,10 +501,16 @@ const LEGAL_META = {
   en: ['Privacy policy | Pro Débouchage', 'Privacy policy of PRO DEBOUCHAGE SRL. What data we handle, why, for how long, and your rights.'],
 };
 for (const [l] of T.LANGS) {
+  // Three tag-day swaps, not one (research/29 B3, B4, B5, B7). The markers are removed in BOTH
+  // branches, so a tag-off build can never leak an empty <!--recip--> into the page and can never
+  // claim a recipient or a legal basis that does not exist on that build.
   const main = (TAG_ON
     ? LEGAL_TEXT[l].replace(/<!--cookies-->[\s\S]*?<!--\/cookies-->/, LEGAL_TEXT.COOKIES_TAG[l])
-    : LEGAL_TEXT[l].replace('<!--cookies-->\n', '').replace('\n<!--/cookies-->', ''))
+        .replace('<!--recip-->', LEGAL_TEXT.RECIP_TAG[l]).replace('<!--basis-->', LEGAL_TEXT.BASIS_TAG[l])
+    : LEGAL_TEXT[l].replace('<!--cookies-->\n', '').replace('\n<!--/cookies-->', '')
+        .replace('<!--recip-->', '').replace('<!--basis-->', ''))
     .replace('<main>', '<main id="contenu">');
+  if (main.includes('<!--recip-->') || main.includes('<!--basis-->')) throw new Error('legal.js: a tag-day marker survived the swap in ' + l);
   w(LEGAL_FILE[l], docShell(l, LEGAL_PATH, main, LEGAL_META[l][0], LEGAL_META[l][1]));
 }
 // CGV
@@ -312,14 +526,18 @@ for (const [l] of T.LANGS) w(CGV_FILE[l], docShell(l, CGV_PATH, CGV[l], CGV_META
 const CHOOSE = { fr: ['Français', 'Débouchage 24h/24'], nl: ['Nederlands', 'Ontstopping 24/7'], en: ['English', 'Drain unblocking 24/7'] };
 const chooserBtns = T.LANGS.map(([l]) => `<a class="btn btn-ghost" href="/${l}/" lang="${l}" hreflang="${l}-BE">${CHOOSE[l][0]} &rarr; ${CHOOSE[l][1]}</a>`).join('\n');
 const chooserTitle = T.LANGS.map(([l]) => CHOOSE[l][0]).join(' &middot; ');
-w('index.html', head('fr', LANDING, { title: 'Pro Débouchage | ' + chooserTitle.replace(/&middot;/g, '·'), desc: 'Débouchage 24h/24 autour de Bruxelles. Choisissez votre langue. Ontstopping 24/7 rond Brussel. Kies uw taal. Drain unblocking around Brussels, 24/7. 0480 649 649.', ogt: 'Pro Débouchage', ogd: 'Débouchage 24h/24 autour de Bruxelles. Ontstopping 24/7 rond Brussel. Drain unblocking around Brussels, 24/7.', locale: 'fr_BE', ogAlt: COPY.fr.meta.ogAlt }, { noindex: true }) + `
+w('index.html', head('fr', LANDING, { title: 'Pro Débouchage | ' + chooserTitle.replace(/&middot;/g, '·'), desc: 'Débouchage 24h/24 autour de Bruxelles. Choisissez votre langue. Ontstopping 24/7 rond Brussel. Kies uw taal. Drain unblocking around Brussels, 24/7. 0480 649 649.', ogt: 'Pro Débouchage · Débouchage 24h/24 autour de Bruxelles', ogd: 'Débouchage 24h/24 autour de Bruxelles. Ontstopping 24/7 rond Brussel. Drain unblocking around Brussels, 24/7. 0480 649 649.', locale: 'fr_BE', ogAlt: COPY.fr.meta.ogAlt }, { noindex: true }) + `
 <main class="chooser"><div class="box">
 ${IMG('logo-icon.svg', 'Pro Débouchage', 320, 200, '')}
 <h1 style="font-size:1.5rem">${chooserTitle}</h1>
 <p class="lead" style="font-size:1rem">Choisissez votre langue. Kies uw taal. Choose your language.</p>
 ${chooserBtns}
 <p><a class="btn btn-call" href="tel:+32480649649" data-cta="chooser-call">${T.PHONE}0480 649 649</a></p>
-<p style="font-size:0.875rem;color:var(--muted);margin-bottom:0">PRO DEBOUCHAGE SRL, Guldenschaapstraat 6, 1800 Vilvoorde. 1027.454.187.</p>
+<p class="chooser-legal">PRO DEBOUCHAGE SRL, Guldenschaapstraat 6, 1800 Vilvoorde. 1027.454.187.<br>
+<a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a><br>
+<span class="cl-set"><a href="/fr/confidentialite" lang="fr" hreflang="fr-BE">Vie priv&eacute;e</a> <a href="/fr/conditions-generales" lang="fr" hreflang="fr-BE">Conditions g&eacute;n&eacute;rales</a></span>
+<span class="cl-set"><a href="/nl/privacy" lang="nl" hreflang="nl-BE">Privacy</a> <a href="/nl/algemene-voorwaarden" lang="nl" hreflang="nl-BE">Algemene voorwaarden</a></span>
+<span class="cl-set"><a href="/en/privacy" lang="en" hreflang="en-BE">Privacy</a> <a href="/en/terms" lang="en" hreflang="en-BE">Terms</a></span></p>
 </div></main>
 <span id="y" hidden>${BUILD_YEAR}</span>
 <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
@@ -341,6 +559,11 @@ w('404.html', head('fr', LANDING, { title: 'Page introuvable | Pro Débouchage',
 <main class="chooser"><div class="box">
 ${IMG('logo-icon.svg', 'Pro Débouchage', 320, 200, '')}
 ${nf}
+<p class="chooser-legal">PRO DEBOUCHAGE SRL, Guldenschaapstraat 6, 1800 Vilvoorde. 1027.454.187.<br>
+<a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a><br>
+<span class="cl-set"><a href="/fr/confidentialite" lang="fr" hreflang="fr-BE">Vie priv&eacute;e</a> <a href="/fr/conditions-generales" lang="fr" hreflang="fr-BE">Conditions g&eacute;n&eacute;rales</a></span>
+<span class="cl-set"><a href="/nl/privacy" lang="nl" hreflang="nl-BE">Privacy</a> <a href="/nl/algemene-voorwaarden" lang="nl" hreflang="nl-BE">Algemene voorwaarden</a></span>
+<span class="cl-set"><a href="/en/privacy" lang="en" hreflang="en-BE">Privacy</a> <a href="/en/terms" lang="en" hreflang="en-BE">Terms</a></span></p>
 </div></main>
 <span id="y" hidden>${BUILD_YEAR}</span>
 <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
@@ -396,5 +619,5 @@ ${TAG_ON ? `/assets/js/consent.js
 // files and Paolo's real review ships as `featured` (DECISIONS). `reviews` is the parked grid and
 // may only ever be refilled with real customers' words, so a non-empty array is no longer a fault.
 const avatarPh = Object.keys(COPY).filter(l => fs.readFileSync(path.join(OUT, l, 'index.html'), 'utf8').includes('data-placeholder'));
-if (avatarPh.length) console.warn('WARNING: the Afrem avatar is still the monogram placeholder in /' + avatarPh.join('/, /') + '/. Roro was asked for a face photo (Fady, 2026-08-26); until it lands the bubble must NOT carry an invented face for a real person (rule 5). Swap the span for IMG() in template.js and drop data-placeholder.');
+if (avatarPh.length) console.warn('WARNING: the Afrim avatar is still the monogram placeholder in /' + avatarPh.join('/, /') + '/. Roro was asked for a face photo (Fady, 2026-08-26); until it lands the bubble must NOT carry an invented face for a real person (rule 5). Swap the span for IMG() in template.js and drop data-placeholder.');
 console.log('site-v1 built');

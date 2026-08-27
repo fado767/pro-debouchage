@@ -36,14 +36,15 @@
 }
 /* Caveat, the handwriting, for ONE decorative note on the before/during/after collage (Fady
    2026-08-27, from his own Figma composition). SUBSETTED to the 15 glyphs those three strings need,
-   which is why it costs 8KB instead of 75: "Fait en 20 min", "Klaar in 20 min", "Done in 20 min".
+   which is why it costs 7KB instead of 75. Re-subsetted twice on 2026-08-27, now down to ONE WORD:
+   "Parfait !" (FR) and "Perfect!" (NL, EN), ten glyphs, 6.4KB.
    Change that copy and the missing letters silently fall back to a system script face, so build.js
    asserts every character against the range below and fails the build instead. */
 @font-face{
   font-family:'Caveat';
   src:url('/assets/fonts/caveat-note.woff2') format('woff2');
   font-weight:600;font-style:normal;font-display:swap;
-  unicode-range:U+20,U+30,U+32,U+44,U+46,U+4B,U+61,U+65,U+69,U+6C-6F,U+72,U+74;
+  unicode-range:U+20-21,U+50,U+61,U+63,U+65-66,U+69,U+72,U+74;
 }
 /* metric-matched fallback so the swap never shifts a line */
 @font-face{
@@ -54,7 +55,7 @@
 
 /* ---------- tokens ---------- */
 :root{
-  --ink:#102A4A;--ink-2:#1B3D66;--cta:#D63A17;--cta-press:#B72F11;
+  --ink:#102A4A;--ink-2:#1B3D66;--ink-press:#0A1D33;--cta:#D63A17;--cta-press:#B72F11;
   --teal:#0B7A70;--teal-soft:#E6F2F0;--mark:#FFD635;
   --paper:#F6F3EE;--card:#FFFCF7;--line:#E2DCD3;--line-ink:rgba(16,42,74,.16);--star:#F0A83C;
   --text:#1B2733;--muted:#5A6672;--on-ink-muted:#C8D6E6;
@@ -185,15 +186,30 @@ main{padding-top:0}
 
 /* ---------- hero ---------- */
 .hero{padding-block:clamp(28px,4vw,46px) 0;overflow:clip}
+/* THE HERO LABEL IS PLAIN TEXT in v1 (Fady 2026-08-27). It was a pill carrying the same moving
+   brand stroke as the consent card, and before that a text version with the colour clipped inside
+   the letters. Five rounds went into it; the standing agreement was that if the last attempt still
+   did not read right, v1 ships the label with no effect at all. This is that label, back to exactly
+   what it was, with the shorter copy he picked in the widget. */
 .eyebrow{font-size:var(--t-label);font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--muted);margin:0 0 18px}
 /* The H1 must fill the line but NEVER touch the edge, in any language, at any width. The wrap is a
    size container and each language carries its measured cap (longest pain line, ~90% of the wrap).
    Browsers without container units use the --h1-fit fallback factors. */
 .hero .wrap{container-type:inline-size}
 .hero h1{font-size:calc(var(--t-display) * var(--h1-fit,1));font-size:min(var(--t-display),var(--h1-cap,200cqw));font-weight:900;font-stretch:var(--stretch-d);letter-spacing:var(--stretch-tight);line-height:.96;text-transform:uppercase;padding-top:.09em}
+/* THE THREE CAPS, RE-MEASURED 2026-08-27 (Fady: "the French headline is perfect, the other two
+   break badly"). Each cap is the largest size at which the language's LONGEST hard-broken line
+   still fits its column, which is why they differ so much: French's longest is "Ça remonte," at 11
+   characters, Dutch's is "Loopt het terug," at 16.
+   English and Dutch were set far below their real ceiling, and the damage was not the size, it was
+   the WRAP: the highlighted answer line broke one word early and left a 51px "it." and a 55px "op."
+   stranded alone on the last line. Growing the type past the point where the long version fits
+   forces the break one word earlier instead, which is what balances it. Measured at 375 on the live
+   page: EN 38.5 to about 44px, NL 33.2 to about 38px, both landing at roughly 93% of the column,
+   against French's 87%. RE-MEASURE ALL THREE if the H1 copy, weight, width or tracking changes. */
 html[lang="fr-BE"]{--h1-fit:.87;--h1-cap:13.9cqw}
-html[lang="en-BE"]{--h1-fit:.75;--h1-cap:11.5cqw}
-html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
+html[lang="en-BE"]{--h1-fit:.75;--h1-cap:13.05cqw}
+html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 .hero h1 .h1b{background:var(--mark);color:var(--ink);padding:.04em .14em .06em;-webkit-box-decoration-break:clone;box-decoration-break:clone;line-height:1.12}
 .hero-grid{display:block}
 .hero .sub{font-size:var(--t-lead);max-width:56ch;margin:24px 0 0;text-wrap:pretty}
@@ -228,19 +244,46 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .car-track::-webkit-scrollbar{display:none}
 .car-slide{flex:0 0 78vw;max-width:380px;scroll-snap-align:start}
 .car-slide img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-img)}
-/* THE SWIPE HINT replaces the dots (Fady 2026-08-27): dots say "there are 10 photos", which nobody
-   needs. THE CHIP ITSELF IS THE ARROW (his second note, same day): a banner running in from the left
-   edge of the screen and ending in a point aimed the way the photos move, instead of a rounded pill
-   with a little arrow drawn inside it. It bleeds off the left edge, lands on the bottom-left corner
-   of the first photo, and sits on .hero-car rather than inside the scroller, so the photos travel
-   under it. It STAYS: it used to fade on first touch, which meant it vanished the instant you
-   touched the thing it was pointing at. The point is cut with clip-path, so the shadow has to be a
-   filter (a box-shadow would be clipped away with the corners). */
-.car-hint{position:absolute;left:0;bottom:14px;z-index:3;margin:0;display:flex;align-items:center;
-  padding:11px 30px 11px 20px;background:var(--ink);color:#fff;font-weight:800;font-size:.875rem;
-  letter-spacing:-.01em;white-space:nowrap;
-  clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%);
-  filter:drop-shadow(0 4px 10px rgba(16,42,74,.32))}
+/* THE SWIPE HINT, fourth version (Fady 2026-08-27): the bare hand, no pill, set INSIDE the first
+   photo at its bottom left with a generous inset, leaving a trail of dots behind the finger. It was
+   dots, then an arrow chip reading "Glissez pour voir", then a hand in a navy pill, now this.
+   It sits on .hero-car, not inside the scroller, so the photos travel under it, and it STAYS: it
+   used to fade on first touch, which made it vanish the instant you touched the thing it pointed at.
+   .hero-car's bottom edge IS the photo's bottom edge (measured 2026-08-27, both at y=1107 on a
+   375px screen), so the bottom value here is a real inset into the picture, and left is the gutter
+   plus the same inset.
+   WITHOUT THE PILL IT HAS TO SURVIVE THE PHOTO: white ink plus a drop-shadow, because every slide
+   is a different job photo and some are pale. The trail is three real circles, each on its own beat
+   as the finger clears it, which a dashed stroke cannot do (a dash pattern slides, it never
+   arrives). Under prefers-reduced-motion nothing moves: the hand rests at the end of its travel
+   with the whole trail already behind it, which still reads as "this slides". */
+.car-hint{position:absolute;left:calc(var(--gut) + 20px);bottom:20px;z-index:3;margin:0;display:flex;
+  transition:opacity .4s ease}
+/* IT RETIRES AFTER THE SECOND PHOTO (Fady 2026-08-27). A hint that never leaves stops being a hint:
+   once the visitor has swiped to the third slide they have understood the gesture, so it fades once
+   and does not come back for the visit. PAGE_JS adds the class from a passive scroll listener, which
+   is the only script the carousel carries. */
+.car-hint-off{opacity:0;pointer-events:none}
+.car-hand{width:72px;height:40px;color:#fff;filter:drop-shadow(0 2px 5px rgba(16,42,74,.55))}
+.car-hand-g{animation:carswipe 2.8s cubic-bezier(.4,0,.2,1) infinite}
+.car-dot{fill:#fff;opacity:0;animation:cardot 2.8s linear infinite}
+.car-dot-1{animation-delay:0s}
+.car-dot-2{animation-delay:.11s}
+.car-dot-3{animation-delay:.22s}
+@keyframes carswipe{
+  0%,7%{transform:translateX(8px);opacity:1}
+  36%{transform:translateX(-14px);opacity:1}
+  50%{transform:translateX(-14px);opacity:1}
+  60%{transform:translateX(-14px);opacity:0}
+  70%{transform:translateX(8px);opacity:0}
+  78%,100%{transform:translateX(8px);opacity:1}}
+@keyframes cardot{
+  0%,10%{opacity:0}
+  20%,50%{opacity:.95}
+  60%,100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .car-hand-g{animation:none;transform:translateX(-14px)}
+  .car-dot{animation:none;opacity:.95}}
 
 /* ---------- trust marquee ---------- */
 .trust{background:var(--ink);padding-block:0;border-block:0}
@@ -275,17 +318,22 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
   .servlist p{grid-column:3}
   .servlist .link-call{grid-column:4;justify-self:end}
 }
-/* hover: the quiet lift ONLY, and only where a real pointer exists. The row-wide highlight is gone
-   (Fady 2026-08-26): it ran edge to edge behind the "Appeler" link, and a stray touch on a phone
-   left the row painted. @media (hover:hover) means a touchscreen never sees any of this. */
+/* HOVER IS A YELLOW LINE UNDER THE TITLE (Fady 2026-08-27). The two-pixel lift it replaced was
+   invisible: he could not tell the rows reacted at all. Same highlighter the page already uses on
+   .hl, .p-amt and .cite, so this adds no new idiom, and it is painted with background-size rather
+   than a pseudo-element so it follows the words across two lines instead of underlining the whole
+   grid column.
+   ON A TOUCHSCREEN THE LINES ARE SIMPLY THERE, drawn from the start (his call): a phone has no
+   hover, and a row nobody taps should still look like the deliberate list it is. So the marker is
+   full width by default and only a real pointer gets the slide-in. */
 .servlist li{position:relative}
+.serv-t{background-image:linear-gradient(var(--mark),var(--mark));background-repeat:no-repeat;
+  background-position:0 100%;background-size:100% .17em;padding-bottom:.04em}
 @media (hover:hover){
-  .servlist li::before{transition:transform .35s cubic-bezier(.22,1,.36,1)}
-  .servlist li h3{transition:transform .35s cubic-bezier(.22,1,.36,1)}
-  .servlist li:hover::before{transform:translateY(-5px)}
-  .servlist li:hover h3{transform:translateY(-2px)}
+  .serv-t{background-size:0% .17em;transition:background-size .38s cubic-bezier(.22,1,.36,1)}
+  .servlist li:hover .serv-t,.servlist li:focus-within .serv-t{background-size:100% .17em}
 }
-@media (prefers-reduced-motion:reduce){.servlist li::before,.servlist li h3{transition:none}.servlist li:hover::before,.servlist li:hover h3{transform:none}}
+@media (prefers-reduced-motion:reduce){.serv-t{transition:none}}
 
 /* ---------- steps ---------- */
 .steps{position:relative;display:grid;gap:34px;max-width:760px;counter-reset:step}
@@ -311,6 +359,12 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .pricelist{list-style:none;margin:26px 0 0;padding:0}
 .pricelist li{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 0;border-bottom:1px solid var(--line-ink)}
 .pricelist .p-name{font-weight:900;font-size:clamp(1.1rem,1rem + .8vw,1.5rem);letter-spacing:var(--track-title);color:var(--ink);text-wrap:balance}
+/* THE "FROM" LINE (Roro's walkthrough, 2026-08-27). Every listed amount is a starting price now,
+   so the prefix has to be read BEFORE the number without competing with it: its own quiet line
+   above, right-aligned to the amount, at label size and weight. It sits OUTSIDE .p-amt on purpose,
+   because the yellow marker is painted on .p-amt and must stay under the figure alone. */
+.p-price{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.p-from{font-size:var(--t-label);font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--muted);line-height:1.1;white-space:nowrap}
 .pricelist .p-amt{font-weight:900;font-stretch:82%;font-size:clamp(1.9rem,1.4rem + 2.6vw,3.4rem);letter-spacing:-.02em;line-height:1;color:var(--ink);white-space:nowrap}
 .pricelist a.p-row{display:flex;align-items:center;justify-content:space-between;gap:18px;flex:1;text-decoration:none}
 /* THE YELLOW MARKER UNDER EACH AMOUNT (Fady 2026-08-26). Same idea as .hl, the page's highlighter.
@@ -414,15 +468,25 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
   color:var(--ink);line-height:.95;white-space:nowrap;rotate:-7deg;transform-origin:left bottom;
   pointer-events:none}
 .ba-note > span{display:block}
-.ba-note > span.ba-note-2{position:relative;display:inline-block}
-.ba-note-u{position:absolute;left:-3%;bottom:-.16em;width:106%;height:auto;overflow:visible}
-.ba-note{left:6%;top:79%;font-size:clamp(1.4rem,6.9vw,2.4rem)}
+/* PHONE (Fady 2026-08-27): the note drops out of the collage and straddles the seam between this
+   white section and the grey one under it, sitting mostly on the white side, a little right of
+   where it used to be. The section has no bottom padding and does not clip, so the note simply
+   hangs past its edge; z-index keeps it over the grey band's background. Measured at 375: about
+   two thirds of the note sits on the white, one third on the grey, which is where he wanted it.
+   TOP IS TUNED TO THE NOTE'S HEIGHT, so it moves whenever the wording does: cutting the two lines
+   to the single word "Parfait !" halved the note and lifted it clear of the seam entirely, and 92%
+   had to become 96.4% to put it back across.
+   MEASURE THIS WITH THE REVEAL NEUTRALISED. The collage carries .rv, which holds it at
+   translateY(10px) until the observer fires, and the observer never fires in a hidden preview pane:
+   a straight measurement reads the note 10px LOWER than a real visitor sees it, which is a sixth of
+   the overlap. Set transform:none and opacity:1 inline before reading the rects. */
+.ba-note{left:8%;top:97.9%;font-size:clamp(1.3rem,6.2vw,2.2rem)}
 @media (min-width:56rem){
   .ba-collage{aspect-ratio:330/100}
   .only-wide{display:block}
   .only-narrow{display:none}
   /* Bottoms sit level, tops stagger (Fady 2026-08-26): the before photo is the anchor and does not
-     move; Afrem and the after photo come up so the row stops hanging raggedly into the white below.
+     move; Afrim and the after photo come up so the row stops hanging raggedly into the white below.
      Photo 2 is the tallest, so it is the one that rises above the box. */
   .ba-pic-1{left:4%;top:4%;width:25%;rotate:-3.5deg}
   .ba-pic-2{left:36%;top:-3.5%;width:27%;rotate:2deg}
@@ -440,6 +504,17 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
     font-size:clamp(1.5rem,2.6vw,2.2rem);rotate:-8deg;text-align:right}
 }
 @media (prefers-reduced-motion:reduce){.ba-pic,.ba-edge{rotate:none}}
+
+/* WHO COMES: two columns from 56rem (Fady 2026-08-27). The van is a 3:2 photo at full wrap width,
+   and under a short paragraph plus Afrim's bubble it read as a slab with the words stranded on top
+   of it. The words take the narrower track because they are already a measured column, the photo
+   takes the wider one because that is what it is for. Below 56rem nothing changes: the DOM order
+   is paragraph, Afrim, van, and it stacks in exactly that order. */
+.who-grid{display:grid;gap:28px}
+@media (min-width:56rem){
+  .who-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(28px,4vw,52px);align-items:center}
+  .who-grid .van{margin-top:0}
+}
 
 /* ---------- scam band: signs vs us ---------- */
 .scam-cols{display:grid;gap:40px;margin-top:8px}
@@ -460,6 +535,11 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
    without sending anybody to a news site and losing them. The phrase is a button, marked with the
    page's yellow, and it opens a real dialog carrying the prosecutor's date, the file and the
    publications. Nothing here leaves the page. */
+/* A SPAN WITH role=button, NOT A BUTTON (Fady 2026-08-27). Blink coerces display:inline on a
+   <button> to inline-block, so the whole cited clause became one atomic 335px box that could not
+   wrap with the sentence around it and fell onto a line of its own. A span is inline for real, the
+   highlighter and the round "i" ride along with the last word (there is no whitespace between them
+   in the markup, so they cannot be split), and PAGE_JS gives back Enter and Space. */
 .cite{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:left;display:inline;-webkit-tap-highlight-color:transparent}
 .cite .cite-t{background-image:linear-gradient(var(--mark),var(--mark));background-repeat:no-repeat;background-position:0 92%;background-size:100% .18em;padding-bottom:.06em;transition:background-size .18s ease}
 .cite:hover .cite-t,.cite:focus-visible .cite-t{background-size:100% .55em}
@@ -475,7 +555,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .cite-x{font:inherit;font-weight:800;cursor:pointer;background:var(--ink);color:#fff;border:0;border-radius:var(--r-btn);padding:12px 22px}
 .cite-x:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
 
-/* ---------- who comes: the paragraph, Afrem speaking, then the van ----------
+/* ---------- who comes: the paragraph, Afrim speaking, then the van ----------
    Rebuilt 2026-08-26 (Fady): the old .split put the van beside three unlabelled text blocks and the
    section stopped announcing itself on a wide screen. The three blocks moved out to .inc-cards.
    .split is kept because other bands still use it. */
@@ -488,7 +568,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .split .blocks h3 + p{color:var(--muted)}
 .split .blocks h3:not(:first-child){margin-top:26px}
 
-/* Afrem's line. A chat bubble, because that is the one shape everybody reads as a person talking.
+/* Afrim's line. A chat bubble, because that is the one shape everybody reads as a person talking.
    The avatar ring is the brand gradient (ink to teal, with the yellow at the far stop) and the
    monogram inside is a PLACEHOLDER until Roro sends a face photo: never an invented face. */
 .bub-row{display:flex;align-items:flex-start;gap:clamp(12px,2.2vw,18px);margin:30px 0 0;max-width:660px}
@@ -554,7 +634,11 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
    Deliberately ONE wide card, not a lonely third of the grid: teal top bar like the honest card's
    mark, an oversized opening quote in the house teal, the words at reading size, the person last.
    No stars anywhere: he wrote words, not a rating. */
-.feat-card{position:relative;background:#fff;border:1px solid var(--line);border-top:5px solid var(--teal);border-radius:var(--r-card);padding:34px 28px 26px;max-width:760px;box-shadow:0 10px 26px rgba(16,42,74,.08)}
+/* The opening quote's ink ended 3px above the first line of the review (measured on the live page,
+   2026-08-27, canvas ink metrics, not box metrics: the 72px glyph sits high in its own line box, so
+   the boxes said 40px of clearance while the eye saw them touching). 46px of top padding puts a
+   clean 15px between them without moving the quote, which still hangs slightly left of the text. */
+.feat-card{position:relative;background:#fff;border:1px solid var(--line);border-top:5px solid var(--teal);border-radius:var(--r-card);padding:46px 28px 26px;max-width:760px;box-shadow:0 10px 26px rgba(16,42,74,.08)}
 .feat-mark{position:absolute;top:2px;left:22px;font-size:4.5rem;line-height:1;font-weight:900;color:var(--teal);opacity:.28;pointer-events:none}
 .feat-q{margin:0}
 .feat-q p{margin:0 0 12px;font-size:1.0625rem;line-height:1.65}
@@ -732,9 +816,26 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .doc h3{margin:22px 0 8px}
 .doc ul{padding-left:22px}
 .doc blockquote{margin:16px 0;padding:14px 18px;background:var(--card);border-left:4px solid var(--mark);font-style:normal}
+/* The per-cookie table on the privacy pages (research/29 B4). It is the only table on the site.
+   It scrolls INSIDE its own box on a phone: five real columns will not fit 375px and the page
+   itself must never scroll sideways. */
+.doc .tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0 20px;border:1px solid var(--line);border-radius:var(--r-img);background:#fff}
+.doc table{border-collapse:collapse;width:100%;min-width:600px;font-size:.875rem;line-height:1.45}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--line)}
+.doc thead th{font-weight:900;color:var(--ink);background:var(--paper);letter-spacing:var(--track-title)}
+.doc tbody tr:last-child td{border-bottom:0}
+.doc code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;background:var(--paper);padding:2px 6px;border-radius:5px;white-space:nowrap}
 
 /* ---------- chooser / 404 ---------- */
 .chooser{min-height:100svh;display:grid;place-items:center;padding:32px 16px}
 .chooser .box{max-width:520px;text-align:center;display:grid;gap:14px;justify-items:center}
 .chooser .box img{height:56px;width:auto}
 .chooser .btn{width:100%}
+/* The legal bar both pages now carry (legal audit, 2026-08-27). Small print, but real links: the
+   chooser is what a bare prodebouchage24.be resolves to and it is the first page anyone sent the
+   link sees, so it has to give a way to reach the company and a way to read the terms. Trilingual,
+   because neither page has picked a language yet. Each language's pair stays on one line. */
+.chooser-legal{font-size:.8125rem;line-height:1.7;color:var(--muted);margin:6px 0 0}
+.chooser-legal a{color:var(--muted)}
+.cl-set{display:inline-block;white-space:nowrap;margin:0 6px}
+.cl-set a + a{margin-left:6px;border-left:1px solid var(--line);padding-left:8px}

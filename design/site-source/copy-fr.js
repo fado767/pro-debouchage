@@ -12,7 +12,6 @@ module.exports = {
   callHeader: 'Appeler', callBar: 'Appeler 0480 649 649', waBar: 'WhatsApp',
   waAria: 'Envoyer une photo par WhatsApp',
   carAria: 'Photos de nos interventions, faites défiler',
-  swipe: 'Glissez pour voir',
 
   meta: {
     title: 'Débouchage 24h/24 autour de Bruxelles | Prix dit au téléphone',
@@ -20,13 +19,14 @@ module.exports = {
     ogt: 'Ça remonte, ça déborde, ça pue ? Appelez, on s’en occupe.',
     ogd: 'Déboucheur autour de Bruxelles, 24h/24. Le prix annoncé au téléphone est le prix sur la facture.',
     locale: 'fr_BE',
-    ogAlt: 'Camionnette Pro Débouchage avec le numéro 0480 649 649',
+    ogTitle: 'Pro Débouchage · Débouchage 24h/24 autour de Bruxelles',
+    ogAlt: 'Logo Pro Débouchage',
   },
 
   // Hero. The pain in the customer's words, stacked huge, then the answer.
-  eyebrow: `Débouchage pro et honnête · 24h/24`,
+  eyebrow: `Débouchage 24h/24`,
   h1: ['Ça remonte,', 'ça déborde,', `ça pue${nb}?`],
-  h1b: `Appelez. On s'en occupe.`,
+  h1b: `Appelez. On s'en occupe.`,
   sub: `Vous décrivez le problème, <strong>on vous dit le prix au téléphone, et c'est ce prix-là que vous payez.</strong> Confirmé à votre porte, avant la première minute de travail.`,
   callMain: 'Appeler 0480 649 649',
   waBtn: 'Envoyer une photo',
@@ -89,7 +89,11 @@ module.exports = {
 
   // Prices: editorial rows, the surcharge grid published in full.
   priceK: 'Les prix', priceH: `Combien ça coûte vraiment${nb}?`,
-  priceIntro: `Les interventions les plus fréquentes sont dans cette liste. Pour le reste, vous avez le prix au téléphone, avant qu'on prenne la route.`,
+  // "À partir de" since Roro's walkthrough (2026-08-27): the listed amounts are starting prices
+  // until his own price list lands. What does NOT change is the phone quote, which stays exact and
+  // binding: see `promise` below, which is the sentence the whole page is built on.
+  priceFrom: `À partir de`,
+  priceIntro: `Les interventions les plus fréquentes sont dans cette liste, avec leur prix de départ. Votre prix exact, vous l'avez au téléphone, avant qu'on prenne la route, et c'est celui-là que vous payez.`,
   prices: [
     ['WC bouché', `129${nb}€`],
     ['Évier, lavabo ou douche', `119${nb}€`],
@@ -97,7 +101,7 @@ module.exports = {
     [`Curage haute pression, jusqu'à 25${nb}m`, `249${nb}€`],
     ['Pompage de cave inondée, première heure', `229${nb}€`]],
   included: ['TVA comprise', 'Déplacement compris', 'Première heure comprise'],
-  terms: `Ces prix valent en semaine, de 7h à 18h. Soir (18h à 22h) et samedi${nb}: +50${nb}%. Nuit, dimanche et jours fériés${nb}: +75${nb}%. Le supplément vous est dit au téléphone, avec le prix, avant qu'on prenne la route.`,
+  terms: `Ces prix de départ valent en semaine, de 7h à 18h. Soir (18h à 22h) et samedi${nb}: +50${nb}%. Nuit, dimanche et jours fériés${nb}: +75${nb}%. Le supplément vous est dit au téléphone, avec le prix, avant qu'on prenne la route.`,
   p4t: `Votre cas n'est pas dans la liste${nb}?`,
   p4: `Fosse septique, canalisation enterrée, gros chantiers${nb}: dites-nous le problème, vous avez le prix tout de suite, au téléphone.`,
   p4b: 'Appeler 0480 649 649',
@@ -120,7 +124,7 @@ module.exports = {
       'Le même WC, propre et débouché, après l’intervention.']],
   // The handwritten note on the collage. TWO LINES, and every letter must exist in the subsetted
   // Caveat: build.js refuses the build otherwise (allowed set in styles.css and build.js).
-  baNote: ['Fait en', '20 min'],
+  baNote: 'Parfait !',
 
   // Scam band + our checklist, point by point.
   scamK: 'Bon à savoir', scamH: `Comment reconnaître une arnaque au débouchage`,
@@ -149,13 +153,13 @@ module.exports = {
   scamB: 'Appeler 0480 649 649',
 
   // Who comes.
-  whoK: 'Qui vient chez vous', whoH: 'Afrem, la camionnette et le matériel. Pas un numéro anonyme.',
-  bubble: `Bonjour, je suis Afrem. C'est moi qui viens chez vous, et c'est moi qui débouche.`,
-  bubbleWho: `Afrem, technicien`,
-  bubbleAlt: `Afrem, le technicien de Pro Débouchage.`,
-  whoT: `Vous appelez, vous parlez à la personne qui organise l'intervention. C'est Afrem qui vient, dans la camionnette que vous voyez ici, avec la caméra d'inspection, la machine haute pression et la pompe. Une équipe de deux, 30 ans de métier à eux deux${nb}: immobilier, rénovation et plomberie. L'entreprise est assurée en RC professionnelle chez AG Insurance.`,
+  whoK: 'Qui vient chez vous', whoH: 'Afrim, la camionnette et le matériel. Pas un numéro anonyme.',
+  bubble: `Bonjour, je suis Afrim. C'est moi qui viens chez vous, et c'est moi qui débouche.`,
+  bubbleWho: `Afrim, technicien`,
+  bubbleAlt: `Afrim, le technicien de Pro Débouchage.`,
+  whoT: `Vous appelez, vous parlez à la personne qui organise l'intervention. C'est Afrim qui vient, dans la camionnette que vous voyez ici, avec la caméra d'inspection, la machine haute pression et la pompe. Une équipe de deux, 30 ans de métier à eux deux${nb}: immobilier, rénovation et plomberie. L'entreprise est assurée en RC professionnelle chez AG Insurance.`,
   vanAlt: 'La camionnette Pro Débouchage, une Mercedes Vito grise, garée dans une rue résidentielle belge.',
-  vanCap: `La camionnette, telle qu'elle arrive chez vous. Le numéro est dessus. (Image recréée à partir de nos propres photos.)`,
+  vanCap: `La camionnette, telle qu'elle arrive chez vous.`,
   whoBlocks: [
     ['La caméra passe avant le marteau.', `On regarde d'abord avec la caméra. Casser est le dernier recours, et jamais sans votre accord. C'est pour cela qu'elle est comprise.`],
     [`Un rapport pour l'assurance, sur demande.`, `Demandez-le, et après l'inspection caméra on rédige un rapport que vous pouvez remettre à votre assurance, par exemple après un dégât des eaux.`],
@@ -221,10 +225,10 @@ module.exports = {
   // FAQ.
   faqK: 'Vos questions', faqH: 'Questions fréquentes',
   faq: [
-    [`Combien ça coûte${nb}?`, `Un WC bouché coûte 129${nb}€, un évier, un lavabo ou une douche 119${nb}€, un égout ou un sterput à la haute pression 199${nb}€, un curage haute pression 249${nb}€ jusqu'à 25${nb}m, le pompage d'une cave inondée 229${nb}€ pour la première heure. TVA comprise, déplacement et première heure compris, en semaine de 7h à 18h. Pour tout le reste, le prix vous est dit au téléphone avant qu'on prenne la route.`],
+    [`Combien ça coûte${nb}?`, `Un WC bouché démarre à 129${nb}€, un évier, un lavabo ou une douche à 119${nb}€, un égout ou un sterput à la haute pression à 199${nb}€, un curage haute pression à 249${nb}€ jusqu'à 25${nb}m, le pompage d'une cave inondée à 229${nb}€ pour la première heure. TVA comprise, déplacement et première heure compris, en semaine de 7h à 18h. Ce sont des prix de départ${nb}: votre prix exact vous est dit au téléphone, avant qu'on prenne la route, et c'est celui-là qui est sur la facture.`],
     [`Y a-t-il un supplément le soir, la nuit ou le week-end${nb}?`, `Oui, et il est écrit ici. Soir (18h à 22h) et samedi${nb}: +50${nb}%. Nuit, dimanche et jours fériés${nb}: +75${nb}%. Vous l'entendez au téléphone, avant l'intervention.`],
     [`Le déplacement est-il payant${nb}?`, `Non, le déplacement et la première heure sont compris dans les prix ci-dessus. Si on vient et que rien ne peut être débouché, vous payez seulement le déplacement, 60${nb}€.`],
-    [`Combien coûte l'inspection caméra seule${nb}?`, `Quand on fait l'intervention, elle est comprise, vous ne payez rien en plus. Seule, avec un rapport écrit que vous pouvez remettre à votre assurance ou à votre syndic, elle coûte 149${nb}€, TVA comprise.`],
+    [`Combien coûte l'inspection caméra seule${nb}?`, `Quand on fait l'intervention, elle est comprise, vous ne payez rien en plus. Seule, avec un rapport écrit que vous pouvez remettre à votre assurance ou à votre syndic, elle démarre à 149${nb}€, TVA comprise.`],
     [`Quel taux de TVA s'applique chez moi${nb}?`, `6${nb}% si votre habitation a plus de 10 ans, le cas le plus courant. Sinon 21${nb}%, comme pour les entreprises. Les prix de cette page sont TVA 6${nb}% comprise${nb}; si le taux de 21${nb}% s'applique chez vous, on vous le dit au téléphone, avant qu'on prenne la route.`],
     [`Je suis locataire${nb}: qui paie${nb}?`, `Vous pouvez nous faire venir sans attendre l'accord du propriétaire, et c'est vous qui recevez la facture. Si la cause revient au propriétaire, par exemple une canalisation vétuste ou cassée, notre facture et le rapport d'intervention vous servent à demander le remboursement. On vous dit honnêtement ce qu'on a trouvé.`],
     [`En combien de temps êtes-vous là${nb}?`, `On vous donne une heure d'arrivée au téléphone, et on vous prévient si elle bouge. On préfère annoncer une heure qu'on tient plutôt qu'un chiffre qui fait plaisir.`],
@@ -239,7 +243,7 @@ module.exports = {
 
   // Footer.
   footD: `Débouchage, curage, inspection caméra, fosse septique et pompage de cave. Autour de Bruxelles, en Brabant flamand et en Brabant wallon, 24h/24.`,
-  photoNote: `Toutes les photos viennent de nos propres interventions. La photo « avant » de la section preuve a été reconstituée d'après notre photo d'origine.`,
+  photoNote: `Toutes les photos viennent de nos propres interventions. La photo « avant » de la section preuve et l'image de la camionnette ont été reconstituées d'après nos photos d'origine.`,
   legalT: 'Mentions légales',
   legal: ['PRO DEBOUCHAGE SRL', 'Guldenschaapstraat 6, 1800 Vilvoorde, Belgique', `Numéro d'entreprise 1027.454.187`, `E-mail${nb}: info@prodebouchage24.be`, `Téléphone${nb}: 0480 649 649`],
   vat: `Les prix affichés sont TVA 6${nb}% comprise (habitation privée de plus de 10 ans).`,
@@ -248,7 +252,22 @@ module.exports = {
 
   // Tag-day strings (used only when the build gets ADS_TAG_ID).
   creditTag: `PRO DEBOUCHAGE SRL. Ce site n'utilise qu'un outil de mesure des appels, et seulement si vous l'acceptez.`,
+
+  // THE CONSENT CARD, two layers (research/29 B1 and B2, 2026-08-27).
+  // Layer one asks the simple question. Layer two lets the visitor split it by purpose, which the
+  // Belgian APD asks for. Every string here ships in FR, NL and EN in the same build: a banner
+  // half translated is worse than a monolingual one (research/29 B11).
   consentT: `Mesurer les appels, avec votre accord`,
-  consentP: `On utilise l'outil de Google pour savoir si nos annonces amènent des appels. Rien n'est chargé avant votre choix, et refuser ne change rien à votre visite.`,
+  consentP: `On utilise la mesure de Google (Google Ireland Ltd) pour savoir si nos annonces amènent des appels, et quelles pages sont lues. Rien n'est chargé avant votre choix, et refuser ne change rien à votre visite.`,
   consentRefuse: `Tout refuser`, consentAccept: `Tout accepter`, consentLink: `Cookies et mesure`,
+  consentChoose: `Choisir`,
+  consentFine: `Responsable&nbsp;: PRO DEBOUCHAGE SRL. Vous pouvez changer d'avis quand vous voulez, via le lien «&nbsp;Cookies et mesure&nbsp;» en bas de page.`,
+  consentMore: `Tout savoir sur les cookies`,
+  consentT2: `Choisissez ce que vous acceptez`,
+  consentP2: `Vous décidez ligne par ligne. Rien n'est chargé tant que vous n'avez pas enregistré.`,
+  consentSw: [
+    [`Mesure d'audience`, `Nous dit combien de personnes lisent la page, et laquelle. Outil&nbsp;: Google Analytics (Google Ireland Ltd).`],
+    [`Mesure des annonces`, `Nous dit si un appel vient d'une annonce Google. Aucune publicité personnalisée, aucun reciblage. Outil&nbsp;: Google Ads (Google Ireland Ltd).`],
+  ],
+  consentSave: `Enregistrer mes choix`, consentBack: `Retour`,
 };

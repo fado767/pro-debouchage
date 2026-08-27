@@ -9,7 +9,6 @@ module.exports = {
   callHeader: 'Bellen', callBar: 'Bel 0480 649 649', waBar: 'WhatsApp',
   waAria: 'Stuur een foto via WhatsApp',
   carAria: `Foto's van onze interventies, veeg om te bladeren`,
-  swipe: 'Veeg voor meer',
 
   meta: {
     title: 'Ontstopping 24/7 rond Brussel | Prijs aan de telefoon',
@@ -17,12 +16,13 @@ module.exports = {
     ogt: 'Loopt het terug, loopt het over, stinkt het? Bel, wij lossen het op.',
     ogd: 'Ontstoppingsdienst rond Brussel, 24/7. De prijs die u aan de telefoon hoort, staat op de factuur.',
     locale: 'nl_BE',
-    ogAlt: 'Bestelwagen van Pro Débouchage met het nummer 0480 649 649',
+    ogTitle: 'Pro Débouchage · Ontstopping 24/7 rond Brussel',
+    ogAlt: 'Logo Pro Débouchage',
   },
 
-  eyebrow: 'Pro en eerlijk ontstoppen · 24/7',
+  eyebrow: 'Ontstopping 24/7',
   h1: ['Loopt het terug,', 'loopt het over,', 'stinkt het?'],
-  h1b: 'Bel. Wij lossen het op.',
+  h1b: 'Bel. Wij lossen het op.',
   sub: 'U legt het probleem uit, <strong>wij zeggen de prijs aan de telefoon, en die prijs betaalt u.</strong> Bevestigd aan de deur, voor de eerste minuut werk.',
   callMain: 'Bel 0480 649 649',
   waBtn: 'Stuur een foto',
@@ -80,7 +80,10 @@ module.exports = {
     ['Wij bevestigen de prijs aan de deur, dan ontstoppen wij.', 'Is de situatie anders dan u beschreef, dan hoort u dat vooraf, niet op de factuur.']],
 
   priceK: 'De prijzen', priceH: 'Wat kost het echt?',
-  priceIntro: 'De werken die wij het meest doen, staan in deze lijst. Voor de rest krijgt u de prijs aan de telefoon, voor wij naar u vertrekken.',
+  // "Vanaf" sinds de rondgang met Roro (2026-08-27): vanafprijzen tot zijn eigen prijslijst er is.
+  // De prijs aan de telefoon blijft wel exact en bindend, zie `promise`.
+  priceFrom: 'Vanaf',
+  priceIntro: 'De werken die wij het meest doen, staan in deze lijst, met hun vanafprijs. Uw exacte prijs hoort u aan de telefoon, voor wij naar u vertrekken, en die prijs betaalt u.',
   prices: [
     ['Verstopte wc', '€ 129'],
     ['Verstopte gootsteen, lavabo of douche', '€ 119'],
@@ -88,7 +91,7 @@ module.exports = {
     ['Hogedrukreiniging, tot 25 m', '€ 249'],
     ['Kelder leegpompen, eerste uur', '€ 229']],
   included: ['Btw inbegrepen', 'Verplaatsing inbegrepen', 'Eerste uur inbegrepen'],
-  terms: `Deze prijzen gelden op weekdagen van 7 tot 18 uur. Avond (18 tot 22 uur) en zaterdag: +50%. Nacht, zondag en feestdagen: +75%. De toeslag hoort u aan de telefoon, samen met de prijs, voor wij vertrekken.`,
+  terms: `Deze vanafprijzen gelden op weekdagen van 7 tot 18 uur. Avond (18 tot 22 uur) en zaterdag: +50%. Nacht, zondag en feestdagen: +75%. De toeslag hoort u aan de telefoon, samen met de prijs, voor wij vertrekken.`,
   p4t: 'Staat uw geval er niet bij?',
   p4: 'Septische put, ingegraven leiding, grote werken: leg het probleem uit, u krijgt meteen een eerlijke prijs.',
   p4b: 'Bel 0480 649 649',
@@ -110,7 +113,7 @@ module.exports = {
       'Dezelfde wc, proper en ontstopt, na de interventie.']],
   // Het handgeschreven briefje op de collage. TWEE REGELS, en elke letter moet in de versmalde
   // Caveat zitten: build.js weigert de build als dat niet klopt.
-  baNote: ['Klaar in', '20 min'],
+  baNote: 'Perfect!',
 
   scamK: 'Goed om weten', scamH: 'Hoe herkent u een malafide ontstoppings­dienst?',
   scamI1: 'De regio Halle-Vilvoorde staat er triest genoeg om bekend: ',
@@ -135,14 +138,14 @@ module.exports = {
     'Ons adres en ons ondernemingsnummer staan onderaan deze pagina, na te kijken in het openbaar register.'],
   scamB: 'Bel 0480 649 649',
 
-  whoK: 'Wie komt er bij u langs', whoH: 'Afrem, de bestelwagen en het materiaal. Geen anoniem nummer.',
-  bubble: 'Dag, ik ben Afrem. Ik kom bij u langs, en ik krijg het weer open.',
-  bubbleWho: 'Afrem, technieker',
-  bubbleAlt: 'Afrem, de technieker van Pro Débouchage.',
+  whoK: 'Wie komt er bij u langs', whoH: 'Afrim, de bestelwagen en het materiaal. Geen anoniem nummer.',
+  bubble: 'Dag, ik ben Afrim. Ik kom bij u langs, en ik krijg het weer open.',
+  bubbleWho: 'Afrim, technieker',
+  bubbleAlt: 'Afrim, de technieker van Pro Débouchage.',
   incK: 'Zo werken wij', incH: 'Drie dingen waar wij niet van afwijken.',
-  whoT: 'U belt, u spreekt met de persoon die het werk inplant. Afrem komt langs, in de bestelwagen die u hier ziet, met de inspectiecamera, de hogedrukmachine en de pomp. Een team van twee, samen 30 jaar in het vak: vastgoed, renovatie en sanitair. Het bedrijf is verzekerd voor beroepsaansprakelijkheid bij AG Insurance.',
+  whoT: 'U belt, u spreekt met de persoon die het werk inplant. Afrim komt langs, in de bestelwagen die u hier ziet, met de inspectiecamera, de hogedrukmachine en de pomp. Een team van twee, samen 30 jaar in het vak: vastgoed, renovatie en sanitair. Het bedrijf is verzekerd voor beroepsaansprakelijkheid bij AG Insurance.',
   vanAlt: 'De bestelwagen van Pro Débouchage, een grijze Mercedes Vito, geparkeerd in een Belgische woonstraat.',
-  vanCap: 'De bestelwagen, zoals hij bij u aankomt. Het nummer staat erop. (Beeld hersteld op basis van onze eigen foto\'s.)',
+  vanCap: 'De bestelwagen, zoals hij bij u aankomt.',
   whoBlocks: [
     ['De camera gaat voor de hamer.', 'Wij kijken eerst met de camera. Breken is het laatste middel, en nooit zonder uw akkoord. Daarom zit ze inbegrepen.'],
     ['Een verslag voor de verzekering, op vraag.', 'Vraag het ons, en na de camera-inspectie maken wij een verslag dat u aan uw verzekering kunt bezorgen, bijvoorbeeld na waterschade.'],
@@ -199,10 +202,10 @@ module.exports = {
 
   faqK: 'Uw vragen', faqH: 'Veelgestelde vragen',
   faq: [
-    ['Wat kost het?', 'Een verstopte wc kost € 129, een gootsteen, lavabo of douche € 119, een riool of sterfput met hogedruk € 199, een hogedrukreiniging € 249 tot 25 m, een kelder leegpompen € 229 voor het eerste uur. Btw inbegrepen, verplaatsing en eerste uur inbegrepen, op weekdagen van 7 tot 18 uur. Voor al de rest hoort u de prijs aan de telefoon voor wij naar u vertrekken.'],
+    ['Wat kost het?', 'Een verstopte wc start vanaf € 129, een gootsteen, lavabo of douche vanaf € 119, een riool of sterfput met hogedruk vanaf € 199, een hogedrukreiniging vanaf € 249 tot 25 m, een kelder leegpompen vanaf € 229 voor het eerste uur. Btw inbegrepen, verplaatsing en eerste uur inbegrepen, op weekdagen van 7 tot 18 uur. Het zijn vanafprijzen: uw exacte prijs hoort u aan de telefoon voor wij vertrekken, en die prijs staat op de factuur.'],
     [`Is er een toeslag 's avonds, 's nachts of in het weekend?`, 'Ja, en die staat hier. Avond (18 tot 22 uur) en zaterdag: +50%. Nacht, zondag en feestdagen: +75%. U hoort het aan de telefoon, voor wij beginnen.'],
     ['Betaal ik verplaatsingskosten?', 'Nee, de verplaatsing en het eerste uur zitten in de prijzen hierboven. Komen wij langs en lukt de ontstopping niet, dan betaalt u alleen de verplaatsingskosten, € 60.'],
-    ['Wat kost de camera-inspectie alleen?', 'Doen wij de interventie, dan is ze inbegrepen en betaalt u niets extra. Alleen, met een schriftelijk verslag voor uw verzekering of uw syndicus, kost ze € 149, btw inbegrepen.'],
+    ['Wat kost de camera-inspectie alleen?', 'Doen wij de interventie, dan is ze inbegrepen en betaalt u niets extra. Alleen, met een schriftelijk verslag voor uw verzekering of uw syndicus, kost ze vanaf € 149, btw inbegrepen.'],
     ['Welk btw-tarief geldt bij mij?', '6% als uw woning ouder is dan 10 jaar, het meest voorkomende geval. Anders 21%, zoals voor bedrijven. De prijzen op deze pagina zijn inclusief 6% btw. Geldt bij u het tarief van 21%, dan hoort u dat aan de telefoon, voor wij naar u vertrekken.'],
     ['Ik huur: wie betaalt?', 'U mag ons laten komen zonder eerst het akkoord van de eigenaar, en u krijgt de factuur. Ligt de oorzaak bij de eigenaar, bijvoorbeeld een oude of gebroken leiding, dan dienen onze factuur en het interventieverslag om de terugbetaling te vragen. Wij zeggen u eerlijk wat wij gevonden hebben.'],
     ['Hoe snel bent u er?', 'U krijgt aan de telefoon een uur waarop wij er zijn, en wij verwittigen u als het later wordt. Wij zeggen liever een uur dat wij halen dan een cijfer dat goed klinkt.'],
@@ -215,7 +218,7 @@ module.exports = {
   finalL: 'Bereikbaar 24 uur op 24 en 7 dagen op 7, ook in het weekend en op feestdagen. Gewoon nummer, geen betaalnummer.',
 
   footD: 'Ontstoppen, rioolreiniging, camera-inspectie, septische put en kelder leegpompen. Rond Brussel, in Vlaams-Brabant en Waals-Brabant, 24/7.',
-  photoNote: `Alle foto's komen van onze eigen interventies. De 'voor'-foto in de bewijssectie is nagemaakt naar onze originele foto.`,
+  photoNote: `Alle foto's komen van onze eigen interventies. De 'voor'-foto in de bewijssectie en het beeld van de bestelwagen zijn nagemaakt naar onze eigen foto's.`,
   legalT: 'Wettelijke vermeldingen',
   legal: ['PRO DEBOUCHAGE BV', 'Guldenschaapstraat 6, 1800 Vilvoorde, België', 'Ondernemingsnummer 1027.454.187', 'E-mail: info@prodebouchage24.be', 'Telefoon: 0480 649 649'],
   vat: 'De getoonde prijzen zijn inclusief 6% btw (privéwoning ouder dan 10 jaar).',
@@ -223,7 +226,19 @@ module.exports = {
   credit: 'PRO DEBOUCHAGE BV. Deze site plaatst geen cookies en gebruikt geen meettools.',
 
   creditTag: 'PRO DEBOUCHAGE BV. Deze site gebruikt één meettool voor oproepen, en alleen als u die aanvaardt.',
+
+  // De toestemmingskaart, twee lagen (research/29 B1 en B2, 2026-08-27).
   consentT: 'Oproepen meten, met uw akkoord',
-  consentP: 'We gebruiken de tool van Google om te weten of onze advertenties telefoontjes opleveren. Er wordt niets geladen voor u kiest, en weigeren verandert niets aan uw bezoek.',
+  consentP: 'We gebruiken de meting van Google (Google Ireland Ltd) om te weten of onze advertenties telefoontjes opleveren, en welke pagina\'s gelezen worden. Er wordt niets geladen voor u kiest, en weigeren verandert niets aan uw bezoek.',
   consentRefuse: 'Alles weigeren', consentAccept: 'Alles aanvaarden', consentLink: 'Cookies en meting',
+  consentChoose: 'Zelf kiezen',
+  consentFine: 'Verantwoordelijke&nbsp;: PRO DEBOUCHAGE BV. U kunt altijd van gedachten veranderen via de link "Cookies en meting" onderaan de pagina.',
+  consentMore: 'Alles over onze cookies',
+  consentT2: 'Kies wat u aanvaardt',
+  consentP2: 'U beslist lijn per lijn. Er wordt niets geladen zolang u niet bewaard hebt.',
+  consentSw: [
+    ['Bezoekersmeting', 'Vertelt ons hoeveel mensen de pagina lezen, en welke. Tool&nbsp;: Google Analytics (Google Ireland Ltd).'],
+    ['Advertentiemeting', 'Vertelt ons of een telefoontje van een Google-advertentie komt. Geen gepersonaliseerde reclame, geen retargeting. Tool&nbsp;: Google Ads (Google Ireland Ltd).'],
+  ],
+  consentSave: 'Mijn keuze bewaren', consentBack: 'Terug',
 };

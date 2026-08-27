@@ -9,7 +9,6 @@ module.exports = {
   callHeader: 'Call us', callBar: 'Call 0480 649 649', waBar: 'WhatsApp',
   waAria: 'Send a photo on WhatsApp',
   carAria: 'Photos of our jobs, swipe to browse',
-  swipe: 'Swipe for more',
 
   meta: {
     title: 'Drain unblocking 24/7 around Brussels | Price quoted on the phone',
@@ -17,18 +16,27 @@ module.exports = {
     ogt: "Backing up, overflowing, smells awful? Call us, we'll sort it.",
     ogd: 'Drain unblocking around Brussels, 24/7. The price you hear on the phone is the price on the invoice.',
     locale: 'en_BE',
-    ogAlt: 'Pro Débouchage van with the phone number 0480 649 649',
+    ogTitle: 'Pro Débouchage · Drain unblocking 24/7 around Brussels',
+    ogAlt: 'Pro Débouchage logo',
   },
 
-  eyebrow: '24/7 pro and honest drain unblocking',
+  eyebrow: 'Drain unblocking 24/7',
   h1: ['Backing up,', 'overflowing,', 'smells awful?'],
-  h1b: "Call. We'll sort it.",
+  h1b: "Call. We'll sort it.",
   sub: "You describe the problem, <strong>we quote the price on the phone, and that's the price you pay.</strong> Confirmed at your door, before the first minute of work.",
   callMain: 'Call 0480 649 649',
   waBtn: 'Send a photo',
   // A tip, not a second promise (Fady 2026-08-26). The "call in English" line was living here and
   // nowhere else; it moved into the trust band below so the page does not lose it.
-  under: "<b>Tip</b> send a photo, we'll see it right away.",
+  // "we'll see it right away" read as a promise about how fast we LOOK, which is not the point
+  // (Fady 2026-08-27). The point, and what the French and Dutch lines both say, is that one photo
+  // is enough for us to understand the job before we even speak.
+  // IT HAS TO BE ONE LINE. Measured on the live page at the hero's own font: the column is the
+  // viewport minus 40, and this line is 303px, so it stays on one line down to a 343px screen,
+  // which is narrower than the French line manages (353px). "one photo and we already know what
+  // we're dealing with" was 395px and wrapped, and Fady's shorter "one photo and we know what we're
+  // dealing with" was still 348px and wrapped by 13px. Re-measure if this copy changes.
+  under: "<b>Tip</b> a photo, and we already see the problem.",
   waNote: 'A photo helps us help you faster.',
 
   ticker: [
@@ -82,7 +90,10 @@ module.exports = {
     ['We confirm the price at your door, then we unblock.', "If things differ from what you described, you'll know before we start, not on the invoice."]],
 
   priceK: 'Prices', priceH: 'What does it really cost?',
-  priceIntro: "The most common jobs are on this list. For anything else, you get the price on the phone, before we hit the road.",
+  // "From" since Roro's walkthrough (2026-08-27): starting prices until his own price list lands.
+  // The phone quote stays exact and binding, which is what `promise` says.
+  priceFrom: 'From',
+  priceIntro: "The most common jobs are on this list, with their starting price. Your exact price comes on the phone, before we hit the road, and that's the one you pay.",
   prices: [
     ['Blocked toilet', '€ 129'],
     ['Sink, basin or shower', '€ 119'],
@@ -90,7 +101,7 @@ module.exports = {
     ['High-pressure cleaning, up to 25 m', '€ 249'],
     ['Flooded cellar, first hour', '€ 229']],
   included: ['VAT included', 'Call-out included', 'First hour included'],
-  terms: 'These prices apply on weekdays, 7 am to 6 pm. Evenings (6 pm to 10 pm) and Saturdays: +50%. Nights, Sundays and public holidays: +75%. You hear the surcharge on the phone, with the price, before we set off.',
+  terms: 'These starting prices apply on weekdays, 7 am to 6 pm. Evenings (6 pm to 10 pm) and Saturdays: +50%. Nights, Sundays and public holidays: +75%. You hear the surcharge on the phone, with the price, before we set off.',
   p4t: "Your case isn't on the list?",
   p4: "Septic tank, buried pipe, bigger works: tell us the problem and you'll have an honest price right away, on the phone.",
   p4b: 'Call 0480 649 649',
@@ -112,7 +123,7 @@ module.exports = {
       'The same toilet, clean and unblocked, after the job.']],
   // The handwritten note on the collage. TWO LINES, and every letter has to exist in the subsetted
   // Caveat: build.js refuses the build otherwise.
-  baNote: ['Done in', '20 min'],
+  baNote: 'Perfect!',
 
   scamK: 'Worth knowing', scamH: 'How to spot a drain-unblocking scam',
   scamI1: 'The Halle-Vilvoorde area is sadly known for this: ',
@@ -137,14 +148,14 @@ module.exports = {
     'Our address and company number are at the bottom of this page, checkable in the public register.'],
   scamB: 'Call 0480 649 649',
 
-  whoK: 'Who comes to your door', whoH: 'Afrem, the van and the gear. Not an anonymous number.',
-  bubble: "Hi, I'm Afrem. I'm the one who comes round, and I'm the one who clears it.",
-  bubbleWho: 'Afrem, technician',
-  bubbleAlt: 'Afrem, the Pro Débouchage technician.',
+  whoK: 'Who comes to your door', whoH: 'Afrim, the van and the gear. Not an anonymous number.',
+  bubble: "Hi, I'm Afrim. I'm the one who comes round, and I'm the one who clears it.",
+  bubbleWho: 'Afrim, technician',
+  bubbleAlt: 'Afrim, the Pro Débouchage technician.',
   incK: 'How we work', incH: "Three things we don't bend on.",
-  whoT: "You call, you talk to the person who organises the job. Afrem comes out, in the van you see here, with the inspection camera, the high-pressure machine and the pump. A team of two with 30 years in the trade between them: property, renovation and plumbing. The company carries professional liability insurance with AG Insurance.",
+  whoT: "You call, you talk to the person who organises the job. Afrim comes out, in the van you see here, with the inspection camera, the high-pressure machine and the pump. A team of two with 30 years in the trade between them: property, renovation and plumbing. The company carries professional liability insurance with AG Insurance.",
   vanAlt: 'The Pro Débouchage van, a grey Mercedes Vito, parked on a Belgian residential street.',
-  vanCap: "The van, exactly as it arrives at your place. The number's on the side. (Image recreated from our own photos.)",
+  vanCap: "The van, exactly as it arrives at your place.",
   whoBlocks: [
     ['The camera comes before the hammer.', "We look with the camera first. Breaking anything is the last resort, and never without your say-so. That's why the camera is included."],
     ['An insurance report, on request.', "Ask for it, and after the camera inspection we'll write a report you can hand to your insurer, for example after water damage."],
@@ -200,10 +211,10 @@ module.exports = {
 
   faqK: 'Your questions', faqH: 'Frequently asked questions',
   faq: [
-    ['How much does it cost?', 'A blocked toilet is € 129, a sink, basin or shower € 119, a sewer or street trap with high pressure € 199, high-pressure cleaning € 249 up to 25 m, pumping a flooded cellar € 229 for the first hour. VAT included, call-out and first hour included, on weekdays from 7 am to 6 pm. For everything else, you get the price on the phone before we set off.'],
+    ['How much does it cost?', "A blocked toilet starts at € 129, a sink, basin or shower at € 119, a sewer or street trap with high pressure at € 199, high-pressure cleaning at € 249 up to 25 m, pumping a flooded cellar at € 229 for the first hour. VAT included, call-out and first hour included, on weekdays from 7 am to 6 pm. These are starting prices: your exact price comes on the phone before we set off, and that's the one on the invoice."],
     ['Is there a surcharge in the evening, at night or on weekends?', "Yes, and it's written right here. Evenings (6 pm to 10 pm) and Saturdays: +50%. Nights, Sundays and public holidays: +75%. You hear it on the phone, before the job."],
     ['Do I pay a call-out fee?', "No, the call-out and the first hour are included in the prices above. If we come and nothing can be unblocked, you only pay the call-out, € 60."],
-    ['How much is a camera inspection on its own?', "When we do the job, it's included and you pay nothing extra. On its own, with a written report you can pass to your insurer or syndic, it's € 149, VAT included."],
+    ['How much is a camera inspection on its own?', "When we do the job, it's included and you pay nothing extra. On its own, with a written report you can pass to your insurer or syndic, it starts at € 149, VAT included."],
     ['Which VAT rate applies at my place?', "6% if your home is over 10 years old, which is the most common case. Otherwise 21%, same as for businesses. The prices on this page include 6% VAT; if the 21% rate applies to you, we tell you on the phone, before we set off."],
     ["I'm a tenant: who pays?", "You can call us out without waiting for your landlord's okay, and the invoice goes to you. If the cause is the landlord's, say an old or broken pipe, our invoice and the job report are what you need to claim it back. We'll tell you honestly what we found."],
     ['How fast can you be here?', "We give you an arrival time on the phone, and we call if it slips. We'd rather name a time we can keep than a number that just sounds good."],
@@ -216,7 +227,7 @@ module.exports = {
   finalL: 'Reachable 24/7, weekends and holidays included. A normal number, no premium rate.',
 
   footD: 'Drain unblocking, high-pressure cleaning, camera inspection, septic tanks and cellar pumping. Around Brussels, in Flemish and Walloon Brabant, 24/7.',
-  photoNote: "All photos come from our own jobs. The 'before' photo in the proof section was recreated from our original photo.",
+  photoNote: "All photos come from our own jobs. The 'before' photo in the proof section and the image of the van were recreated from our own photos.",
   legalT: 'Legal information',
   legal: ['PRO DEBOUCHAGE SRL', 'Guldenschaapstraat 6, 1800 Vilvoorde, Belgium', 'Company number 1027.454.187', 'E-mail: info@prodebouchage24.be', 'Phone: 0480 649 649'],
   vat: 'Displayed prices include 6% VAT (private homes over 10 years old).',
@@ -224,7 +235,19 @@ module.exports = {
   credit: 'PRO DEBOUCHAGE SRL. This site sets no cookies and uses no analytics.',
 
   creditTag: 'PRO DEBOUCHAGE SRL. This site uses one call-measurement tool, and only if you accept it.',
+
+  // The consent card, two layers (research/29 B1 and B2, 2026-08-27).
   consentT: 'Measuring calls, with your consent',
-  consentP: "We use Google's tool to know whether our ads bring in calls. Nothing loads before you choose, and refusing changes nothing about your visit.",
+  consentP: "We use Google's measurement (Google Ireland Ltd) to know whether our ads bring in calls, and which pages get read. Nothing loads before you choose, and refusing changes nothing about your visit.",
   consentRefuse: 'Refuse all', consentAccept: 'Accept all', consentLink: 'Cookies and measurement',
+  consentChoose: 'Choose',
+  consentFine: 'Controller: PRO DEBOUCHAGE SRL. You can change your mind whenever you want, with the "Cookies and measurement" link at the bottom of the page.',
+  consentMore: 'All about our cookies',
+  consentT2: 'Choose what you accept',
+  consentP2: "You decide line by line. Nothing loads until you've saved.",
+  consentSw: [
+    ['Audience measurement', 'Tells us how many people read the page, and which one. Tool: Google Analytics (Google Ireland Ltd).'],
+    ['Ad measurement', 'Tells us whether a call came from a Google ad. No personalised advertising, no retargeting. Tool: Google Ads (Google Ireland Ltd).'],
+  ],
+  consentSave: 'Save my choices', consentBack: 'Back',
 };

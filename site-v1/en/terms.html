@@ -19,41 +19,21 @@
 <meta property="og:locale" content="en_BE">
 <meta property="og:url" content="https://prodebouchage24.be/en/terms">
 <meta property="og:site_name" content="Pro Débouchage">
-<meta property="og:title" content="Terms and conditions | Pro Débouchage">
+<meta property="og:title" content="Pro Débouchage · Drain unblocking 24/7 around Brussels">
 <meta property="og:description" content="Terms and conditions of PRO DEBOUCHAGE SRL: price confirmed before we start, published surcharges, 30-day guarantee, your rights.">
 <meta property="og:image" content="https://prodebouchage24.be/assets/img/og-banner.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Pro Débouchage van with the phone number 0480 649 649">
+<meta property="og:image:alt" content="Pro Débouchage logo">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/apple-touch-icon.png" type="image/png" sizes="180x180">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/archivo-var-latin.woff2" crossorigin>
-<style>/* Pro Débouchage design system, v1 (the locked design, 2026-08-26).
-   Direction: "the honest trade sign, set loud". Belgian signage confidence: warm paper, deep ink,
-   one red action colour, yellow only as a marker stroke, softly rounded edges, hairlines, and
-   Archivo Variable doing the shouting (narrow width on phones so the long FR/NL words can be huge,
-   wider on desktop). Flat: no gradients, no glass, no card shadows. Generated into the site
-   by design/site-source/build.js (inlined in <head>); edit HERE, never in site-v1/.
+<style>
 
-   NEVER let this file begin with a byte order mark. It is inlined into <style>, where a leading
-   U+FEFF opens a bogus rule and swallows the FIRST real rule below, i.e. the main Archivo
-   @font-face. The page then silently falls back to Arial, which has no weight axis, so every
-   weight from 600 up renders as one faux bold. That bug shipped from the overnight build until
-   2026-08-26 and is why four rounds of "make it thicker" changed nothing on screen. build.js
-   strips the BOM and asserts, so it cannot come back.
 
-   TWO SYSTEM RULES, set on 2026-08-26 (Fady, section pass 1 and 2):
-   1. ONE WEIGHT LADDER, taken from v2 by measurement because Fady prefers v2's thickness:
-      400 body and lead, 600 emphasis and small print, 800 buttons, links and FAQ questions,
-      900 every heading and every number. No other value anywhere.
-      font-stretch below 100% is reserved for type that must physically fit (the H1, the H2s and
-      the giant numerals); narrowing a normal heading is what made v3 read thinner than v2.
-   2. ONE RADIUS LADDER: --r-btn buttons, --r-img photos, --r-card cards and bands. Softer than
-      v3's original square edges, a touch tighter than v2's. */
-
-/* ---------- fonts ---------- */
 @font-face{
   font-family:'Archivo';
   src:url('/assets/fonts/archivo-var-latin.woff2') format('woff2');
@@ -66,27 +46,23 @@
   font-weight:100 900;font-stretch:62% 125%;font-style:normal;font-display:swap;
   unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
-/* Caveat, the handwriting, for ONE decorative note on the before/during/after collage (Fady
-   2026-08-27, from his own Figma composition). SUBSETTED to the 15 glyphs those three strings need,
-   which is why it costs 8KB instead of 75: "Fait en 20 min", "Klaar in 20 min", "Done in 20 min".
-   Change that copy and the missing letters silently fall back to a system script face, so build.js
-   asserts every character against the range below and fails the build instead. */
+
 @font-face{
   font-family:'Caveat';
   src:url('/assets/fonts/caveat-note.woff2') format('woff2');
   font-weight:600;font-style:normal;font-display:swap;
-  unicode-range:U+20,U+30,U+32,U+44,U+46,U+4B,U+61,U+65,U+69,U+6C-6F,U+72,U+74;
+  unicode-range:U+20-21,U+50,U+61,U+63,U+65-66,U+69,U+72,U+74;
 }
-/* metric-matched fallback so the swap never shifts a line */
+
 @font-face{
   font-family:'Archivo Fallback';
   src:local('Arial'),local('Helvetica Neue'),local('Roboto');
   size-adjust:98.5%;ascent-override:89%;descent-override:19%;line-gap-override:0%;
 }
 
-/* ---------- tokens ---------- */
+
 :root{
-  --ink:#102A4A;--ink-2:#1B3D66;--cta:#D63A17;--cta-press:#B72F11;
+  --ink:#102A4A;--ink-2:#1B3D66;--ink-press:#0A1D33;--cta:#D63A17;--cta-press:#B72F11;
   --teal:#0B7A70;--teal-soft:#E6F2F0;--mark:#FFD635;
   --paper:#F6F3EE;--card:#FFFCF7;--line:#E2DCD3;--line-ink:rgba(16,42,74,.16);--star:#F0A83C;
   --text:#1B2733;--muted:#5A6672;--on-ink-muted:#C8D6E6;
@@ -99,27 +75,18 @@
   --t-label:.8125rem;
   --wrap:1160px;--gut:20px;
   --bar-h:72px;
-  /* ONE timing for the sticky bar and the guarantee badge that rides it. They MUST stay equal or
-     the two stop moving as one object. Fady 2026-08-27: 250ms "jumped suddenly"; 420ms on an
-     out-quint curve read as UNCHANGED to him, and he was right, because out-quint covers two thirds
-     of the distance in the first fifth of the time, so a longer duration only lengthens the tail
-     nobody sees. The fix is the CURVE, not the number: a standard ease-in-out spends real time
-     accelerating, so the bar reads as arriving instead of appearing. 480ms with a fade on top. */
+  
   --cb-dur:.48s;--cb-ease:cubic-bezier(.4,0,.2,1);
   --hand:'Caveat','Segoe Script','Bradley Hand',cursive;
   --stretch-d:80%;--stretch-tight:-0.03em;--track-title:-.02em;--track-label:.09em;
   --r-btn:10px;--r-img:12px;--r-card:14px;--r-dot:2px;
-  /* THE ALL-CAPS SWITCH (Fady 2026-08-26, may be reverted). These three lines govern every section
-     heading: the H2s, the service titles, the scam and situation h3s, the equipment tile titles and
-     the legal-page H1. TO REVERT, set exactly:  --case-head:uppercase; --track-head:-.03em; --lh-head:1.0
-     Deliberately NOT on the switch: the hero H1 (the signature, stays in caps) and the small labels
-     (kicker, eyebrow, chips, slider labels, footer legal label) which are labels, not headings. */
+  
   --case-head:none;--track-head:-.02em;--lh-head:1.05;
   color-scheme:light;
 }
 @media (min-width:56rem){:root{--stretch-d:104%;--gut:24px}}
 
-/* ---------- base ---------- */
+
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:20px;scroll-padding-bottom:calc(var(--bar-h) + 24px)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -135,12 +102,10 @@ p{margin:0 0 1em}
 h1,h2,h3{margin:0;color:var(--ink)}
 h2{font-size:var(--t-h2);font-weight:900;font-stretch:var(--stretch-d);letter-spacing:var(--track-head);line-height:var(--lh-head);text-transform:var(--case-head);text-wrap:balance;padding-top:.08em}
 h3{font-size:var(--t-h3);font-weight:900;line-height:1.25}
-/* every sub/intro paragraph on the page is this one object at one weight (v2's), so no section
-   invents its own bold sub text; emphasis inside it is carried by .hl, never by extra weight */
+
 .lead{font-size:var(--t-lead);font-weight:400;max-width:62ch;text-wrap:pretty}
 .lead strong,.lead b{font-weight:600}
-/* the marker is a background only: it never changes weight, so it works inside a 400 lead and
-   inside the 900 promise line alike */
+
 .hl{background:linear-gradient(transparent 60%,var(--mark) 60%);padding-inline:2px}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
 .tnum{font-variant-numeric:tabular-nums}
@@ -149,15 +114,9 @@ h3{font-size:var(--t-h3);font-weight:900;line-height:1.25}
 .skip:focus{left:0}
 :focus-visible{outline:3px solid var(--teal);outline-offset:2px}
 
-/* section rhythm: kicker, big H2, mark rule.
-   Tightened 2026-08-26 (Fady): the old clamp left too much air between every band. */
+
 section{padding-block:clamp(44px,6.4vw,84px)}
-/* TWO BANDS ON THE SAME BACKGROUND HAVE NO SEAM, so their two paddings read as one dead gap: 168px
-   of nothing between "Notre façon de travailler" and the equipment band (Fady 2026-08-27, and the
-   same fault the before/after band was fixed for on 2026-08-26). The LOWER band gives up its top
-   padding and the band above supplies the whole separation, so a colour change is worth two
-   paddings and a shared colour is worth one. General on purpose: reorder the sections and the
-   rhythm still holds. */
+
 .s-paper + .s-paper,.s-card + .s-card,.s-ink + .s-ink{padding-top:0}
 .kicker{font-size:var(--t-label);font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--teal);margin:0 0 10px}
 .s-ink .kicker{color:var(--mark)}
@@ -169,9 +128,7 @@ section{padding-block:clamp(44px,6.4vw,84px)}
 .s-ink p{color:var(--on-ink-muted)}
 .s-ink .lead{color:#fff}
 
-/* ---------- buttons ----------
-   The pair is ONE object in two colours (Fady 2026-08-26): identical height, type size, padding,
-   radius and seat. Only the fill and the border say which one is primary. */
+
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-weight:800;line-height:1.2;text-align:center;text-decoration:none;cursor:pointer;border:2px solid transparent;border-radius:var(--r-btn);min-height:64px;padding:10px 26px;font-size:1.125rem;transition:transform .09s ease-out,background-color .18s ease}
 .btn:active{transform:translateY(1px)}
 .btn svg{width:20px;height:20px;fill:currentColor;flex:0 0 auto}
@@ -179,17 +136,13 @@ section{padding-block:clamp(44px,6.4vw,84px)}
 .btn-call:hover,.btn-call:focus-visible{background:var(--cta-press);box-shadow:0 3px 0 #8E2409}
 .btn-wa{background:var(--teal-soft);color:var(--teal);border-color:var(--teal);box-shadow:0 3px 0 rgba(11,122,112,.3)}
 .btn-wa:hover,.btn-wa:focus-visible{background:#D8EAE7}
-/* On the dark band the WhatsApp button used to be a hollow outline standing beside a solid red one,
-   so the pair stopped being one object (Fady 2026-08-27). It is FILLED here, in the brand teal with
-   white on it, exactly like the WhatsApp key in the mobile call bar: same shape, same height, same
-   ledge as its partner, only the colour saying which one is primary. */
+
 .s-ink .btn-wa{background:var(--teal);color:#fff;border-color:var(--teal);box-shadow:0 3px 0 #08554E}
 .s-ink .btn-wa:hover,.s-ink .btn-wa:focus-visible{background:#0A6A61;border-color:#0A6A61}
-/* one column on phones, both auto and side by side from 56rem: neither label shrinks its button */
+
 .actions .btn{width:100%;max-width:460px}
 @media (min-width:56rem){.actions .btn{width:auto;max-width:none}}
-/* The ONE deliberate exception to the single button size: a secondary action that must not compete
-   with "Appeler". Used once, on the review invitation (Fady 2026-08-27). */
+
 .btn-sm{min-height:50px;padding:8px 20px;font-size:1rem}
 .btn-sm svg{width:18px;height:18px}
 .btn-ghost{border-color:var(--ink);color:var(--ink)}
@@ -197,9 +150,8 @@ section{padding-block:clamp(44px,6.4vw,84px)}
 .link-call{color:var(--cta);font-weight:800;text-decoration-thickness:2px;text-underline-offset:4px}
 .link-call:hover{color:var(--cta-press)}
 
-/* ---------- header ---------- */
-/* The header scrolls away with the page (Fady 2026-08-26 morning): the sticky bottom call bar is
-   the one persistent element; nobody switches language mid-scroll. */
+
+
 .site-header{position:relative;z-index:150;background:var(--paper);border-bottom:1px solid var(--line)}
 .site-header .wrap{display:flex;align-items:center;gap:14px;min-height:64px}
 .site-header .logo{display:flex;align-items:center}
@@ -215,35 +167,34 @@ section{padding-block:clamp(44px,6.4vw,84px)}
 }
 main{padding-top:0}
 
-/* ---------- hero ---------- */
+
 .hero{padding-block:clamp(28px,4vw,46px) 0;overflow:clip}
+
 .eyebrow{font-size:var(--t-label);font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--muted);margin:0 0 18px}
-/* The H1 must fill the line but NEVER touch the edge, in any language, at any width. The wrap is a
-   size container and each language carries its measured cap (longest pain line, ~90% of the wrap).
-   Browsers without container units use the --h1-fit fallback factors. */
+
 .hero .wrap{container-type:inline-size}
 .hero h1{font-size:calc(var(--t-display) * var(--h1-fit,1));font-size:min(var(--t-display),var(--h1-cap,200cqw));font-weight:900;font-stretch:var(--stretch-d);letter-spacing:var(--stretch-tight);line-height:.96;text-transform:uppercase;padding-top:.09em}
+
 html[lang="fr-BE"]{--h1-fit:.87;--h1-cap:13.9cqw}
-html[lang="en-BE"]{--h1-fit:.75;--h1-cap:11.5cqw}
-html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
+html[lang="en-BE"]{--h1-fit:.75;--h1-cap:13.05cqw}
+html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 .hero h1 .h1b{background:var(--mark);color:var(--ink);padding:.04em .14em .06em;-webkit-box-decoration-break:clone;box-decoration-break:clone;line-height:1.12}
 .hero-grid{display:block}
 .hero .sub{font-size:var(--t-lead);max-width:56ch;margin:24px 0 0;text-wrap:pretty}
 @media (min-width:56rem){.hero .sub{font-size:1.375rem;margin-top:34px}}
 .hero .sub strong{background:linear-gradient(transparent 62%,var(--mark) 62%);font-weight:800}
 .hero .actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:26px}
-/* the line under the CTAs is a TIP, not a second promise: light body type, one marked word
-   carrying the weight (Fady 2026-08-26, the old semi-bold two-liner competed with the sub) */
+
 .under-btn{font-size:.9375rem;font-weight:400;color:var(--muted);margin:14px 0 0;max-width:46ch}
 .under-btn b{font-weight:800;color:var(--ink);background:linear-gradient(transparent 60%,var(--mark) 60%);padding-inline:3px}
 .wa-note{font-size:.875rem;color:var(--muted);margin:6px 0 0}
 
-/* image ticker (>=820px): pure CSS marquee, two identical sets each translating -100% */
-/* the strip sits directly ON the blue band: its own bottom hairline is the seam (Fady 2026-08-26) */
+
+
 .ticker{display:none;margin-top:clamp(26px,4vw,44px);margin-bottom:0;padding-block:16px;border-block:1px solid var(--line-ink);background:var(--card)}
 .tick-row{overflow:hidden;display:flex}
 .tick-set{display:flex;flex:0 0 auto;min-width:max-content;will-change:transform;animation:tick-scroll var(--tick-dur,80s) linear infinite}
-/* 80s per copy of the strip x TICK_REPEAT copies per set (template.js): keep them in step. */
+
 .ticker .tick-set{--tick-dur:160s}
 .tick-item{flex:0 0 auto;height:250px;margin-right:16px}
 .tick-item img{height:100%;width:auto;object-fit:cover;border-radius:var(--r-img)}
@@ -254,38 +205,48 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
   .tick-set[aria-hidden="true"]{display:none}
   .ticker .tick-set{flex-wrap:wrap;min-width:0}
 }
-/* mobile swipe carousel */
+
 .hero-car{position:relative;margin-top:26px;margin-bottom:34px}
 .car-track{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);padding-inline:var(--gut);overscroll-behavior-x:contain;scrollbar-width:none}
 .car-track::-webkit-scrollbar{display:none}
 .car-slide{flex:0 0 78vw;max-width:380px;scroll-snap-align:start}
 .car-slide img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-img)}
-/* THE SWIPE HINT replaces the dots (Fady 2026-08-27): dots say "there are 10 photos", which nobody
-   needs. THE CHIP ITSELF IS THE ARROW (his second note, same day): a banner running in from the left
-   edge of the screen and ending in a point aimed the way the photos move, instead of a rounded pill
-   with a little arrow drawn inside it. It bleeds off the left edge, lands on the bottom-left corner
-   of the first photo, and sits on .hero-car rather than inside the scroller, so the photos travel
-   under it. It STAYS: it used to fade on first touch, which meant it vanished the instant you
-   touched the thing it was pointing at. The point is cut with clip-path, so the shadow has to be a
-   filter (a box-shadow would be clipped away with the corners). */
-.car-hint{position:absolute;left:0;bottom:14px;z-index:3;margin:0;display:flex;align-items:center;
-  padding:11px 30px 11px 20px;background:var(--ink);color:#fff;font-weight:800;font-size:.875rem;
-  letter-spacing:-.01em;white-space:nowrap;
-  clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%);
-  filter:drop-shadow(0 4px 10px rgba(16,42,74,.32))}
 
-/* ---------- trust marquee ---------- */
+.car-hint{position:absolute;left:calc(var(--gut) + 20px);bottom:20px;z-index:3;margin:0;display:flex;
+  transition:opacity .4s ease}
+
+.car-hint-off{opacity:0;pointer-events:none}
+.car-hand{width:72px;height:40px;color:#fff;filter:drop-shadow(0 2px 5px rgba(16,42,74,.55))}
+.car-hand-g{animation:carswipe 2.8s cubic-bezier(.4,0,.2,1) infinite}
+.car-dot{fill:#fff;opacity:0;animation:cardot 2.8s linear infinite}
+.car-dot-1{animation-delay:0s}
+.car-dot-2{animation-delay:.11s}
+.car-dot-3{animation-delay:.22s}
+@keyframes carswipe{
+  0%,7%{transform:translateX(8px);opacity:1}
+  36%{transform:translateX(-14px);opacity:1}
+  50%{transform:translateX(-14px);opacity:1}
+  60%{transform:translateX(-14px);opacity:0}
+  70%{transform:translateX(8px);opacity:0}
+  78%,100%{transform:translateX(8px);opacity:1}}
+@keyframes cardot{
+  0%,10%{opacity:0}
+  20%,50%{opacity:.95}
+  60%,100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .car-hand-g{animation:none;transform:translateX(-14px)}
+  .car-dot{animation:none;opacity:.95}}
+
+
 .trust{background:var(--ink);padding-block:0;border-block:0}
 .trust ul{list-style:none;display:flex;margin:0;padding:16px 0;gap:0}
 .trust li{color:#fff;font-weight:600;font-size:.9875rem;white-space:nowrap;display:flex;align-items:center;gap:12px;padding-inline:18px}
 .trust li::before{content:"";width:10px;height:10px;border-radius:var(--r-dot);background:var(--mark);flex:0 0 auto}
-/* the band and the first section under it were floating apart (Fady 2026-08-26).
-   :not(.trust) so the mobile twin of the band keeps its own zero padding. */
+
 .trust + section:not(.trust){padding-top:clamp(38px,5vw,64px)}
 .trust-t{overflow:hidden;display:none}
 .trust-t .tick-row{overflow:hidden}
-/* 46s per copy of the list x TRUST_REPEAT copies per set (template.js): keep them in step or the
-   strip changes speed. */
+
 .trust-t .tick-set{--tick-dur:138s;animation-direction:reverse}
 .trust-t .tick-set > ul{flex:0 0 auto}
 @media (min-width:820px){.trust-t{display:block}.trust-s{display:none}}
@@ -294,7 +255,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .trust-s{padding-block:0}
 .trust-s .wrap{padding-inline:0}
 
-/* ---------- services: numbered editorial rows ---------- */
+
 .servlist{list-style:none;margin:0;padding:0;counter-reset:serv}
 .servlist li{counter-increment:serv;display:grid;grid-template-columns:auto 1fr;gap:6px 22px;padding:22px 0;border-bottom:1px solid var(--line-ink);align-items:start}
 .servlist li::before{content:"0" counter(serv);grid-row:1/span 3;font-weight:900;font-stretch:82%;font-size:clamp(2.2rem,1.4rem + 4vw,3.9rem);line-height:.82;margin-top:.07em;color:var(--ink);letter-spacing:-.03em}
@@ -307,25 +268,23 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
   .servlist p{grid-column:3}
   .servlist .link-call{grid-column:4;justify-self:end}
 }
-/* hover: the quiet lift ONLY, and only where a real pointer exists. The row-wide highlight is gone
-   (Fady 2026-08-26): it ran edge to edge behind the "Appeler" link, and a stray touch on a phone
-   left the row painted. @media (hover:hover) means a touchscreen never sees any of this. */
-.servlist li{position:relative}
-@media (hover:hover){
-  .servlist li::before{transition:transform .35s cubic-bezier(.22,1,.36,1)}
-  .servlist li h3{transition:transform .35s cubic-bezier(.22,1,.36,1)}
-  .servlist li:hover::before{transform:translateY(-5px)}
-  .servlist li:hover h3{transform:translateY(-2px)}
-}
-@media (prefers-reduced-motion:reduce){.servlist li::before,.servlist li h3{transition:none}.servlist li:hover::before,.servlist li:hover h3{transform:none}}
 
-/* ---------- steps ---------- */
+.servlist li{position:relative}
+.serv-t{background-image:linear-gradient(var(--mark),var(--mark));background-repeat:no-repeat;
+  background-position:0 100%;background-size:100% .17em;padding-bottom:.04em}
+@media (hover:hover){
+  .serv-t{background-size:0% .17em;transition:background-size .38s cubic-bezier(.22,1,.36,1)}
+  .servlist li:hover .serv-t,.servlist li:focus-within .serv-t{background-size:100% .17em}
+}
+@media (prefers-reduced-motion:reduce){.serv-t{transition:none}}
+
+
 .steps{position:relative;display:grid;gap:34px;max-width:760px;counter-reset:step}
 .steps::before{content:"";position:absolute;left:26px;top:10px;bottom:10px;width:2px;background:var(--line)}
 .step{position:relative;display:grid;grid-template-columns:56px 1fr;gap:20px;counter-increment:step}
 .step .n{width:52px;height:52px;border-radius:var(--r-btn);background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink);display:grid;place-items:center;font-weight:900;font-size:1.375rem;position:relative;z-index:1;transition:background-color .4s ease,color .4s ease,box-shadow .4s ease}
 .step .n::before{content:counter(step)}
-/* the line fills and the numbers light up one after the other when the section arrives (JS adds .go) */
+
 .steps::after{content:"";position:absolute;left:26px;top:10px;bottom:10px;width:2px;background:var(--mark);transform-origin:top;transform:scaleY(0);transition:transform 1.5s cubic-bezier(.22,1,.36,1)}
 .steps.go::after{transform:scaleY(1)}
 .steps.go .step .n{background:var(--ink);color:#fff;box-shadow:inset 0 0 0 2px var(--ink)}
@@ -337,20 +296,18 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .step h3{margin-bottom:4px}
 .step p{margin:0;color:var(--muted)}
 
-/* ---------- prices: editorial rows ---------- */
+
 .chips-inc{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 8px;padding:0;list-style:none}
 .chips-inc li{background:var(--teal-soft);color:var(--teal);font-weight:600;font-size:.8125rem;letter-spacing:var(--track-label);text-transform:uppercase;padding:7px 12px;border-radius:8px}
 .pricelist{list-style:none;margin:26px 0 0;padding:0}
 .pricelist li{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 0;border-bottom:1px solid var(--line-ink)}
 .pricelist .p-name{font-weight:900;font-size:clamp(1.1rem,1rem + .8vw,1.5rem);letter-spacing:var(--track-title);color:var(--ink);text-wrap:balance}
+
+.p-price{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.p-from{font-size:var(--t-label);font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--muted);line-height:1.1;white-space:nowrap}
 .pricelist .p-amt{font-weight:900;font-stretch:82%;font-size:clamp(1.9rem,1.4rem + 2.6vw,3.4rem);letter-spacing:-.02em;line-height:1;color:var(--ink);white-space:nowrap}
 .pricelist a.p-row{display:flex;align-items:center;justify-content:space-between;gap:18px;flex:1;text-decoration:none}
-/* THE YELLOW MARKER UNDER EACH AMOUNT (Fady 2026-08-26). Same idea as .hl, the page's highlighter.
-   It is a background gradient, not a pseudo-element: a ::after with z-index:-1 would fall behind the
-   section's own background and vanish, since nothing here opens a stacking context.
-   NO ANIMATION, and that is the decision, not an omission: the rows were staggered in one by one and
-   Fady could not catch it, it fired before he reached the list or read as a flicker. The marker is
-   simply there, on every row, from the first paint. */
+
 .p-amt{background-image:linear-gradient(var(--mark),var(--mark));background-repeat:no-repeat;background-position:0 86%;background-size:100% .2em}
 .p-terms{font-size:.9375rem;color:var(--muted);margin:30px 0 0;max-width:70ch}
 .p-other{margin-top:34px;background:var(--ink);color:#fff;border-radius:var(--r-card);padding:30px clamp(22px,4vw,44px);display:grid;gap:14px}
@@ -359,15 +316,12 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .p-other p{color:var(--on-ink-muted);margin:0;max-width:56ch}
 .p-other .btn-call{margin:0}
 
-/* guarantee band + seal.
-   v2's setting wins here and Fady called it (2026-08-26): sentence case at full width and 900
-   reads THICKER than v3's condensed uppercase, the title names what the "1" means, and the seal
-   gets v2's bigger numeral plus the plate shadow that makes it a stamp instead of a decal. */
+
 .guar{display:flex;align-items:center;gap:clamp(20px,4vw,40px);background:var(--mark);border-radius:var(--r-card);padding:clamp(24px,4vw,40px);margin-top:40px}
 .guar-badge{position:relative;flex:0 0 96px;width:96px;height:96px;border-radius:50%;background:var(--mark);box-shadow:0 4px 14px rgba(16,42,74,.22)}
 .guar h3{margin:0 0 4px;font-size:clamp(1.375rem,1.15rem + 1.1vw,1.625rem);color:var(--ink);font-weight:900;letter-spacing:-.02em;line-height:1.2}
 .guar p{margin:0;color:var(--ink);font-weight:600;font-size:1.0625rem;max-width:60ch}
-/* the legal-rights line is a MUST (research/22, art. VI.83 14°); it stays, one step quieter */
+
 .guar p.guar-fine{margin:8px 0 0;font-size:.8125rem;font-weight:400;line-height:1.5;color:rgba(16,42,74,.72);max-width:62ch}
 @media (max-width:640px){.guar{flex-direction:row;gap:18px}.guar-badge{flex-basis:74px;width:74px;height:74px}}
 .guar-spin{position:absolute;inset:0;display:block;animation:guar-spin 22s linear infinite;will-change:transform}
@@ -380,33 +334,11 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .promise{margin:34px 0 0;font-size:clamp(1.15rem,1rem + 1vw,1.6rem);font-weight:900;letter-spacing:var(--track-title);color:var(--ink)}
 .promise .hl{background:linear-gradient(transparent 60%,var(--mark) 60%)}
 
-/* ---------- before / during / after: one job in three photos ---------- */
-/* Replaced the drag slider on 2026-08-26 (Fady): the section needed imagery and needed to SHOW the
-   technician working, which a two-photo wipe hid. Rebuilt the same evening to FADY'S OWN Figma
-   composition, then refined on his notes: smaller arrows (a hint, not a shout), a DRAWN wobbly edge
-   instead of a CSS border, and no white gap between photo and edge.
-   HOW IT HOLDS TOGETHER: every photo and arrow is placed in PERCENT inside one aspect-ratio box, so
-   the whole collage scales as a unit. Change a percentage, never a pixel, or the overlaps drift at
-   widths nobody tested. Two compositions only: a portrait cascade under 56rem, a wide row above it.
-   THE PHONE RULE, learned the hard way: photo 3 must clear the BOWL of photo 1, the dirty water,
-   which sits at about 34 to 64 percent ACROSS and 71 to 90 percent DOWN, the bottom right of the
-   photo. Cover that and the first photo shows a clean wall and a seat, which tells the visitor
-   nothing. CORRECTED 2026-08-26 by opening the file and looking: the old note here said 19 to 38
-   across and 42 to 51 down, which is the SEAT AND LID, and it survived the before-photo swap. Any
-   repositioning has to keep the real corner free, and the check has to be made against the image,
-   never against this comment alone.
-   THE STICKER COLOURS ARE THE PAGE'S OWN TOKENS (Fady, 2026-08-26, replacing the brighter Figma
-   yellow and turquoise): --ink on the before photo, --teal during, and --cta, the red of the call
-   button, on the after photo, so the resolved state carries the colour the visitor is asked to act on. */
-/* services and this band share the same background, so their two paddings stacked into 164px of
-   dead white with the kicker floating in it (Fady, 2026-08-26). The band keeps no top padding of
-   its own: the section above supplies the whole separation, one rhythm instead of two. */
+
+
+
 .s-ba{position:relative;z-index:2;padding-block:0}
-/* The next band starts under the overhanging photos, so its heading needs the room back. The
-   overhang is a share of the collage WIDTH, not a fixed number, so the give-back is a percentage
-   (percentage padding resolves against width): a fixed 68px was down to 4px of clearance at 880px
-   and left 93px of white at 1280px. The wide row hangs far less than the phone cascade and needs
-   no extra push at all. Measured 2026-08-26; re-measure if a photo's top or width changes. */
+
 .s-ba + section{padding-top:calc(clamp(44px,6.4vw,84px) + 22.5%)}
 @media (min-width:56rem){.s-ba + section{padding-top:max(clamp(44px,6.4vw,84px),78px)}}
 .ba-collage{--st-1:var(--ink);--st-2:var(--teal);--st-3:var(--cta);position:relative;z-index:2;margin-top:36px;aspect-ratio:80/90}
@@ -418,7 +350,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .ba-pic-1{z-index:1}
 .ba-pic-2{z-index:2}
 .ba-pic-3{z-index:3}
-/* the drawn edge: sits over the photo, a touch askew, and is allowed to wobble past its own box */
+
 .ba-edge{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
 .ba-pic-1 .ba-edge{rotate:.7deg}
 .ba-pic-2 .ba-edge{rotate:-.6deg}
@@ -426,54 +358,44 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .ba-ar{position:absolute;z-index:4;display:block}
 .ba-ar img{display:block;width:100%;height:auto}
 .only-wide{display:none}
-/* phone: the cascade, top left to bottom right, the way Fady drew it. Photo 3 is pushed right and
-   down so the blocked bowl in photo 1 stays in the open. */
+
 .ba-pic-1{left:1%;top:13%;width:53%;rotate:-4deg}
 .ba-pic-2{left:48%;top:0%;width:50%;rotate:3deg}
 .ba-pic-3{left:44%;top:62%;width:53%;rotate:-2.5deg}
 .ba-ar-1{left:38%;top:6%;width:16.5%;rotate:-14deg}
 .ba-ar-3{left:82.5%;top:53%;width:11%}
-/* THE HANDWRITTEN NOTE (Fady 2026-08-27, from his own composition): two short lines in Caveat with
-   a yellow swoosh under the number, the first piece of the "one pen" pass that will eventually
-   redraw the arrows too. Placed like everything else here, in PERCENT of the collage box.
-   Phone: the empty bottom-left corner, exactly where Fady drew it, clear of photo 3 (left 44%).
-   Wide: ABOVE the collage, hard right, over the after photo's column. Measured on the live page
-   2026-08-27: the wide row is packed edge to edge (the widest gap between two photos is 60px) but
-   the heading block beside it is empty from x=680 to the right margin, because the H2 never runs
-   past two thirds of the wrap in any of the three languages. Anchored to the RIGHT edge, not to a
-   left percentage, so a narrower desktop cannot walk it back into the headline. */
+
 .ba-note{position:absolute;z-index:5;margin:0;font-family:var(--hand);font-weight:600;
   color:var(--ink);line-height:.95;white-space:nowrap;rotate:-7deg;transform-origin:left bottom;
   pointer-events:none}
 .ba-note > span{display:block}
-.ba-note > span.ba-note-2{position:relative;display:inline-block}
-.ba-note-u{position:absolute;left:-3%;bottom:-.16em;width:106%;height:auto;overflow:visible}
-.ba-note{left:6%;top:79%;font-size:clamp(1.4rem,6.9vw,2.4rem)}
+
+.ba-note{left:8%;top:97.9%;font-size:clamp(1.3rem,6.2vw,2.2rem)}
 @media (min-width:56rem){
   .ba-collage{aspect-ratio:330/100}
   .only-wide{display:block}
   .only-narrow{display:none}
-  /* Bottoms sit level, tops stagger (Fady 2026-08-26): the before photo is the anchor and does not
-     move; Afrem and the after photo come up so the row stops hanging raggedly into the white below.
-     Photo 2 is the tallest, so it is the one that rises above the box. */
+  
   .ba-pic-1{left:4%;top:4%;width:25%;rotate:-3.5deg}
   .ba-pic-2{left:36%;top:-3.5%;width:27%;rotate:2deg}
   .ba-pic-3{left:69%;top:4%;width:25%;rotate:-2.5deg}
   .ba-ar-1{left:27%;top:30%;width:8.6%;rotate:-6deg}
   .ba-ar-2{left:61%;top:41.5%;width:9%;rotate:4deg}
-  /* The note lives in the band between the heading and the photos, so that band has to be tall
-     enough to hold it at every width. 64px instead of 36 buys 96px of clearance against a note
-     that is at most ~80px tall; without it the Dutch heading, which runs to 95% of the wrap at
-     900px, ends 15px above the note's first letter. This white is OCCUPIED, not dead. 80px and a
-     24px standoff after Fady asked for more air around the note (2026-08-27): the photos are left
-     alone, the room comes from the band the note lives in. */
+  
   .ba-collage{margin-top:80px}
   .ba-note{left:auto;right:0;top:auto;bottom:calc(100% + 24px);transform-origin:right bottom;
     font-size:clamp(1.5rem,2.6vw,2.2rem);rotate:-8deg;text-align:right}
 }
 @media (prefers-reduced-motion:reduce){.ba-pic,.ba-edge{rotate:none}}
 
-/* ---------- scam band: signs vs us ---------- */
+
+.who-grid{display:grid;gap:28px}
+@media (min-width:56rem){
+  .who-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(28px,4vw,52px);align-items:center}
+  .who-grid .van{margin-top:0}
+}
+
+
 .scam-cols{display:grid;gap:40px;margin-top:8px}
 @media (min-width:56rem){.scam-cols{grid-template-columns:1fr 1fr;gap:64px}}
 .scam-list,.us-list{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:14px}
@@ -481,17 +403,11 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .scam-list li::before{content:"";flex:0 0 12px;width:12px;height:12px;margin-top:8px;border-radius:var(--r-dot);background:var(--cta)}
 .us-list li::before{content:"";flex:0 0 12px;width:12px;height:12px;margin-top:8px;border-radius:var(--r-dot);background:var(--mark)}
 .scam-h3{color:#fff;font-size:clamp(1.25rem,1.05rem + 1vw,1.5rem);text-transform:var(--case-head);font-stretch:100%;letter-spacing:var(--track-head)}
-/* Scoped to THIS band's own button (Fady 2026-08-27). As `.s-ink .btn-call` it also hit the final
-   call section, where the call button sits in a flex row with the WhatsApp one: 34px of top margin
-   on one of the pair and none on the other, so the two buttons stood at different heights. That is
-   the "WA cta looking weird" he saw; the pair is ONE object and must never be split by a margin. */
+
 .scam-cols ~ .btn-call{margin-top:34px}
 
-/* ---------- the cited fact: an inline source the visitor can open in place ----------
-   Fady 2026-08-26: the victim number is the one hard claim on the page, so it has to be checkable
-   without sending anybody to a news site and losing them. The phrase is a button, marked with the
-   page's yellow, and it opens a real dialog carrying the prosecutor's date, the file and the
-   publications. Nothing here leaves the page. */
+
+
 .cite{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:left;display:inline;-webkit-tap-highlight-color:transparent}
 .cite .cite-t{background-image:linear-gradient(var(--mark),var(--mark));background-repeat:no-repeat;background-position:0 92%;background-size:100% .18em;padding-bottom:.06em;transition:background-size .18s ease}
 .cite:hover .cite-t,.cite:focus-visible .cite-t{background-size:100% .55em}
@@ -507,10 +423,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .cite-x{font:inherit;font-weight:800;cursor:pointer;background:var(--ink);color:#fff;border:0;border-radius:var(--r-btn);padding:12px 22px}
 .cite-x:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
 
-/* ---------- who comes: the paragraph, Afrem speaking, then the van ----------
-   Rebuilt 2026-08-26 (Fady): the old .split put the van beside three unlabelled text blocks and the
-   section stopped announcing itself on a wide screen. The three blocks moved out to .inc-cards.
-   .split is kept because other bands still use it. */
+
 .split{display:grid;gap:30px;margin-top:8px}
 @media (min-width:56rem){.split{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:56px;align-items:start}}
 .split figure{margin:0}
@@ -520,14 +433,12 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .split .blocks h3 + p{color:var(--muted)}
 .split .blocks h3:not(:first-child){margin-top:26px}
 
-/* Afrem's line. A chat bubble, because that is the one shape everybody reads as a person talking.
-   The avatar ring is the brand gradient (ink to teal, with the yellow at the far stop) and the
-   monogram inside is a PLACEHOLDER until Roro sends a face photo: never an invented face. */
+
 .bub-row{display:flex;align-items:flex-start;gap:clamp(12px,2.2vw,18px);margin:30px 0 0;max-width:660px}
 .bub-av{position:relative;flex:0 0 auto;width:clamp(58px,11vw,76px);height:clamp(58px,11vw,76px);border-radius:50%;padding:3px;background:linear-gradient(145deg,var(--ink) 0%,var(--teal) 62%,var(--mark) 100%);box-shadow:0 6px 18px rgba(16,42,74,.18)}
 .bub-av img,.bub-mono{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;object-fit:cover;background:var(--ink);color:#fff;font-weight:900;font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:0}
 .bub{position:relative;background:linear-gradient(160deg,var(--teal-soft) 0%,var(--card) 68%);border:1px solid var(--line);border-radius:var(--r-card);border-top-left-radius:6px;padding:clamp(14px,2.4vw,20px) clamp(16px,2.8vw,24px);box-shadow:0 8px 22px rgba(16,42,74,.08)}
-/* the tail, drawn as a rotated square so the bubble's own border carries through it */
+
 .bub::before{content:"";position:absolute;left:-7px;top:16px;width:12px;height:12px;background:var(--teal-soft);border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg);border-radius:2px}
 .bub-txt{margin:0;font-size:clamp(1.0625rem,1rem + .45vw,1.3rem);font-weight:600;color:var(--ink);line-height:1.4;text-wrap:pretty}
 .bub-who{margin:8px 0 0;font-size:.8125rem;font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--teal)}
@@ -535,10 +446,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .van img{border-radius:var(--r-img);width:100%;height:auto}
 .van figcaption{font-size:.875rem;color:var(--muted);margin-top:10px;max-width:62ch}
 
-/* ---------- the three rules, as cards ----------
-   One colour per card, matching the trio already used on the before/during/after frames, so the
-   page keeps ONE colour system instead of inventing a second one here. The icons are drawn, not
-   photographed, because there is no honest photo of "an invoice, every time". */
+
 .inc-cards{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:18px}
 @media (min-width:48rem){.inc-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}}
 .inc-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:clamp(22px,3vw,30px);box-shadow:0 6px 18px rgba(16,42,74,.06);overflow:hidden}
@@ -551,7 +459,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .inc-2{--acc:var(--ink);--acc-soft:#E7EDF5}
 .inc-3{--acc:var(--cta);--acc-soft:#FBE7E2}
 
-/* ---------- equipment tiles ---------- */
+
 .tiles{display:grid;gap:26px;margin-top:8px}
 .tiles-3{grid-template-columns:1fr}
 @media (min-width:700px){.tiles-3{grid-template-columns:repeat(3,1fr)}}
@@ -560,7 +468,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .tile figcaption{font-size:.875rem;color:var(--muted);margin-top:10px;max-width:44ch}
 .tile .tile-t{display:block;font-weight:900;color:var(--ink);font-size:clamp(1.125rem,1.05rem + .3vw,1.1875rem);text-transform:var(--case-head);font-stretch:100%;letter-spacing:var(--track-head);margin:12px 0 4px}
 
-/* ---------- reviews (cards stand out; avatars carry the logo's colours) ---------- */
+
 .reviews{display:grid;gap:20px}
 @media (min-width:700px){.reviews{grid-template-columns:repeat(3,1fr)}}
 .review-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-card);padding:26px 24px;box-shadow:0 10px 26px rgba(16,42,74,.08)}
@@ -578,15 +486,12 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .honest-card li{display:flex;gap:12px;align-items:flex-start}
 .honest-card li::before{content:"";flex:0 0 10px;width:10px;height:10px;margin-top:8px;border-radius:var(--r-dot);background:var(--teal)}
 .ask{color:var(--muted)}
-/* the line under the cards sat flush against them (margin-top 0, Fady 2026-08-26). Scoped to the
-   card grid: the same .ask inside .honest-card follows a list and keeps that block's own rhythm. */
+
 .reviews + .ask{margin-top:clamp(20px,2.6vw,30px)}
 
-/* ---------- one real review, featured (Fady 2026-08-27; the grid above is parked) ----------
-   Deliberately ONE wide card, not a lonely third of the grid: teal top bar like the honest card's
-   mark, an oversized opening quote in the house teal, the words at reading size, the person last.
-   No stars anywhere: he wrote words, not a rating. */
-.feat-card{position:relative;background:#fff;border:1px solid var(--line);border-top:5px solid var(--teal);border-radius:var(--r-card);padding:34px 28px 26px;max-width:760px;box-shadow:0 10px 26px rgba(16,42,74,.08)}
+
+
+.feat-card{position:relative;background:#fff;border:1px solid var(--line);border-top:5px solid var(--teal);border-radius:var(--r-card);padding:46px 28px 26px;max-width:760px;box-shadow:0 10px 26px rgba(16,42,74,.08)}
 .feat-mark{position:absolute;top:2px;left:22px;font-size:4.5rem;line-height:1;font-weight:900;color:var(--teal);opacity:.28;pointer-events:none}
 .feat-q{margin:0}
 .feat-q p{margin:0 0 12px;font-size:1.0625rem;line-height:1.65}
@@ -596,13 +501,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .feat-who .name{font-weight:900;color:var(--ink)}
 .feat-meta{color:var(--muted);font-size:.875rem}
 .feat-note{opacity:.85}
-/* Under Paolo's card. Two loose muted sentences used to sit here with a gap between them that read
-   as a mistake on a wide screen and fine on a phone (Fady 2026-08-27). They are now ONE object with
-   a job: it says why there is a single review, and it gives the visitor the way to send the next
-   one. The only secondary CTA on the page, deliberately smaller than "Appeler".
-   ONE COLUMN AT EVERY WIDTH (Fady 2026-08-27: the phone version was right, the desktop one wasn't).
-   Text left, button under it, was: text in a 474px column beside a 212px button, which left a hole
-   in the panel's bottom-right corner that no amount of vertical centring closed. */
+
 .rev-ask{max-width:760px;margin-top:16px;background:var(--teal-soft);border:1px solid rgba(11,122,112,.22);border-radius:var(--r-card);padding:clamp(18px,2.6vw,26px);display:grid;justify-items:start;gap:18px}
 .rev-ask p{margin:0;color:var(--ink)}
 .rev-ask .rev-t{font-weight:800;font-size:clamp(1.0625rem,1rem + .3vw,1.1875rem);line-height:1.35;text-wrap:balance}
@@ -611,7 +510,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .rev-ask .btn-wa{background:#fff}
 .rev-ask .btn-wa:hover,.rev-ask .btn-wa:focus-visible{background:#D8EAE7}
 
-/* ---------- situations ---------- */
+
 .segs{display:grid;gap:0;margin-top:8px;border-top:1px solid var(--line-ink)}
 @media (min-width:700px){.segs{grid-template-columns:repeat(3,1fr);border-top:0;border-left:1px solid var(--line-ink)}}
 .seg{padding:24px 0;border-bottom:1px solid var(--line-ink)}
@@ -619,23 +518,13 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .seg h3{text-transform:var(--case-head);font-stretch:100%;letter-spacing:var(--track-head);font-size:clamp(1.1875rem,1.1rem + .35vw,1.25rem);margin-bottom:8px}
 .seg p{margin:0;color:var(--text);font-size:.9875rem}
 
-/* ---------- zone ---------- */
+
 .towns{list-style:none;padding:0;margin:20px 0 24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:12px;max-width:980px}
 @media (min-width:700px){.towns{grid-template-columns:repeat(auto-fill,minmax(212px,1fr))}}
 .towns li{font-weight:600;color:var(--ink);font-size:.9375rem;display:flex;align-items:center;gap:10px;white-space:nowrap}
 .towns li::before{content:"";flex:0 0 8px;width:8px;height:8px;border-radius:var(--r-dot);background:var(--mark)}
 
-/* ---------- FAQ ----------
-   Rebuilt 2026-08-27 (Fady: "jittery, not smooth at all"). Three real faults, all invisible in a
-   screenshot and all felt under the finger:
-   1. .answer carried the bottom padding while its height was animated to 0. With border-box, a box
-      cannot be shorter than its own padding, so every close stopped dead at 20px and then snapped
-      to nothing when the panel unmounted. The padding now lives on the paragraph inside, so 0 is 0.
-   2. The chevron's open state was keyed off [open], which JS keeps true until the close animation
-      ENDS, so the arrow hung upside down for the whole close. It is keyed off .is-open now, and the
-      [open] fallback is scoped to the no-JS page, where it is the only thing that can work.
-   3. A 320ms "busy" lock swallowed the next click, which reads as a dead accordion. Gone: the
-      script cancels the running animation and reverses from wherever it is. */
+
 .faq{max-width:800px}
 .faq details{border-bottom:1px solid var(--line-ink)}
 .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:56px;padding:16px 0;font-weight:800;letter-spacing:var(--track-title);font-size:1.0625rem;color:var(--ink);
@@ -650,11 +539,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .faq .answer{padding:0;overflow:hidden}
 .faq .answer p{margin:0;padding-bottom:20px;max-width:68ch}
 
-/* ---------- final call (left aligned, the number carries the page's own marker) ----------
-   The number used to hang a detached 6px rule under itself, which is a fifth way of using yellow on
-   a page that already has exactly one: the highlighter stroke (.hl, .p-amt, .cite). It now carries
-   the SAME stroke as every price on the page, one step thicker because the type is five times
-   bigger, and it grows on hover the way the cited fact does. (Fady 2026-08-27.) */
+
 .finalcall h2{margin-bottom:10px}
 .bignum{display:inline-block;font-size:clamp(2.6rem,1.5rem + 7vw,6rem);font-weight:900;font-stretch:82%;letter-spacing:-.01em;color:#fff;text-decoration:none;line-height:1.05;margin:10px 0 30px;padding-bottom:6px;
   background-image:linear-gradient(var(--mark),var(--mark));background-repeat:no-repeat;background-position:0 88%;background-size:100% .16em;
@@ -663,10 +548,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .finalcall .actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:4px}
 .finalcall .hours{color:var(--on-ink-muted);font-size:.9375rem;margin-top:22px;max-width:56ch}
 
-/* ---------- footer ----------
-   White, no yellow rule, no logo plate (Fady 2026-08-26). The dark final-call section above is the
-   separator; the monogram has no white artwork (only its clip rect is white) so it sits on white
-   unframed, and a size up. */
+
 .site-footer{background:#fff;color:var(--muted);padding:clamp(44px,6vw,64px) 0 28px}
 .site-footer .cols{display:grid;gap:44px;align-items:start}
 @media (min-width:700px){.site-footer .cols{grid-template-columns:1.1fr 1fr;gap:64px}}
@@ -684,16 +566,9 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .foot-note{font-size:.8125rem;color:var(--muted);margin-top:10px;max-width:52ch}
 .credit{margin:44px 0 0;padding-top:18px;border-top:1px solid var(--line);font-size:.8125rem;color:var(--muted)}
 
-/* ---------- sticky call bar ----------
-   It arrives only once the hero's own CTA pair has scrolled out of view (Fady 2026-08-26): while
-   the big buttons are on screen the bar is a duplicate. The .js gate is set by a blocking script in
-   <head>, so the bar starts off-screen with no flash; without JS it simply stays visible, which is
-   the safe failure for the page's main conversion element. Space for it is reserved by the body's
-   padding-bottom either way, so nothing shifts when it slides in. */
+
 .callbar{position:fixed;left:0;right:0;bottom:0;z-index:200;display:flex;gap:10px;background:var(--ink);padding:10px 12px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));box-shadow:0 -2px 12px rgba(16,42,74,.25);transition:transform var(--cb-dur) var(--cb-ease),opacity var(--cb-dur) ease}
-/* translateY(0), never "none": interpolating a percentage transform against none is what made the
-   bar jump instead of slide (Fady saw a flash of the page, then a pop). The state class lives on
-   <html> so the floating badge can ride the same class and the same timing. */
+
 .js .callbar{transform:translateY(calc(100% + 14px));opacity:0;pointer-events:none}
 .js.cb-on .callbar{transform:translateY(0);opacity:1;pointer-events:auto}
 .cb-call{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--cta);color:#fff;font-weight:800;font-size:1.0625rem;text-decoration:none;min-height:52px;border-radius:var(--r-btn)}
@@ -705,47 +580,33 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 @media (min-width:1000px){.callbar{display:none}}
 @media (prefers-reduced-motion:reduce){.callbar{transition:none}}
 
-/* ---------- reveals (JS adds .in; no-js and reduced-motion stay visible; triggered BEFORE the
-   element enters the viewport so nothing visibly pops, Fady 2026-08-26 morning) ---------- */
+
 .js .rv{opacity:.001;transform:translate3d(0,10px,0);transition:opacity .4s ease-out,transform .45s ease-out;transition-delay:calc(var(--i,0) * 50ms)}
 .js .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
 
-/* ---------- floating guarantee badge (ported from v2 2026-08-26; made to EXPAND 2026-08-27) ----------
-   The badge rides ON the call bar instead of sitting where the bar would be: it rests 14px off the
-   bottom while the bar is away, and the bar's arrival pushes it up by exactly the bar's height, in
-   the same duration and easing (--cb-dur / --cb-ease), so the two move as one. --cb-lift composes
-   with the bye/away transform so a single transition covers both.
-   WHAT CHANGED 2026-08-27 (Fady): it no longer pops a separate card ABOVE itself. The badge IS the
-   card. The seal keeps its place against the right edge of the screen and the yellow box grows out
-   of it leftwards, which is why the seal appears to travel left: it is pinned to the left edge of a
-   box whose right edge never moves. Same content as the old popover, plus an X.
-   The open height cannot be a CSS value (it depends on how the title wraps), so the script measures
-   it once at the final width and animates to that pixel value, then releases it to auto. */
+
 .guar-float{--cb-lift:0px;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:95;transform:translateY(var(--cb-lift));transition:transform var(--cb-dur) var(--cb-ease),opacity .35s ease}
 .guar-float.guar-bye,.guar-float.guar-away{opacity:0;transform:translateY(calc(var(--cb-lift) + 10px));pointer-events:none}
-/* only where the bar exists; from 1000px it is display:none and the badge keeps its own corner */
+
 @media (max-width:999.98px){.cb-on .guar-float{--cb-lift:calc(-1 * var(--bar-h))}}
 @media (min-width:1000px){.guar-float{right:24px;bottom:24px}}
-/* the morphing box: a 78px yellow disc closed, a 340px yellow card open */
+
 .guar-card{--guar-d:78px;position:relative;width:var(--guar-d);height:var(--guar-d);border-radius:50%;background:var(--mark);box-shadow:0 4px 18px rgba(16,42,74,.3);overflow:hidden;
   transition:width .42s cubic-bezier(.22,1,.36,1),height .42s cubic-bezier(.22,1,.36,1),border-radius .34s ease,box-shadow .34s ease}
 @media (min-width:1000px){.guar-card{--guar-d:100px}}
-/* Phones get the FULL width the screen allows (Fady 2026-08-27), tablets and desktop a fixed card:
-   340px was one hair narrower than full width on a 375px phone, which just looked like a mistake. */
+
 .guar-card.is-open{width:calc(100vw - 28px);border-radius:var(--r-card);box-shadow:0 14px 38px rgba(16,42,74,.38)}
 @media (min-width:700px){.guar-card.is-open{width:360px}}
 .guar-card.no-anim{transition:none}
-/* The seal fills the disc when closed and lands in the open card VERTICALLY CENTRED, not pinned to
-   the top (Fady 2026-08-27), carrying the same plate shadow as the badge in the guarantee band, so
-   the two read as the same stamp rather than as a big one and a small flat one. */
+
 .guar-fab{position:absolute;left:0;top:0;width:var(--guar-d);height:var(--guar-d);border-radius:50%;background:none;border:0;padding:0;cursor:pointer;
   transition:width .42s cubic-bezier(.22,1,.36,1),height .42s cubic-bezier(.22,1,.36,1),left .42s cubic-bezier(.22,1,.36,1),top .42s cubic-bezier(.22,1,.36,1),box-shadow .34s ease,transform .15s ease}
 .guar-card.is-open .guar-fab{width:64px;height:64px;left:18px;top:calc(50% - 32px);box-shadow:0 4px 14px rgba(16,42,74,.22)}
 .guar-fab:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 @media (hover:hover){.guar-card:not(.is-open) .guar-fab:hover{transform:scale(1.06)}}
-/* the content: same hierarchy as v2's popover, laid out clear of the seal and of the X */
-/* padding-left = the seal's 18px inset + its 64px + 16px of air */
+
+
 .guar-pop{padding:20px 20px 20px 98px;opacity:0;visibility:hidden;transition:opacity .16s ease}
 .guar-card.is-open .guar-pop{opacity:1;visibility:visible;transition:opacity .3s ease .14s}
 .guar-pop h3{margin:0 0 6px;padding-right:26px;font-size:1.125rem;font-weight:900;color:var(--ink);text-transform:none;font-stretch:100%;letter-spacing:-.02em;line-height:1.25}
@@ -757,7 +618,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .guar-x:focus-visible{outline:3px solid var(--ink);outline-offset:1px}
 @media (prefers-reduced-motion:reduce){.guar-card,.guar-fab,.guar-pop,.guar-x{transition:none}}
 
-/* ---------- legal / doc pages ---------- */
+
 .doc{max-width:820px}
 .doc h1{font-size:clamp(2rem,1.4rem + 3vw,3.25rem);font-weight:900;font-stretch:92%;text-transform:var(--case-head);letter-spacing:var(--track-head);line-height:1.05;padding-top:.08em}
 .doc h2{font-size:clamp(1.35rem,1.15rem + 1vw,1.75rem);text-transform:none;font-stretch:100%;letter-spacing:var(--track-title);margin:34px 0 10px}
@@ -765,20 +626,77 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .doc ul{padding-left:22px}
 .doc blockquote{margin:16px 0;padding:14px 18px;background:var(--card);border-left:4px solid var(--mark);font-style:normal}
 
-/* ---------- chooser / 404 ---------- */
+.doc .tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0 20px;border:1px solid var(--line);border-radius:var(--r-img);background:#fff}
+.doc table{border-collapse:collapse;width:100%;min-width:600px;font-size:.875rem;line-height:1.45}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--line)}
+.doc thead th{font-weight:900;color:var(--ink);background:var(--paper);letter-spacing:var(--track-title)}
+.doc tbody tr:last-child td{border-bottom:0}
+.doc code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;background:var(--paper);padding:2px 6px;border-radius:5px;white-space:nowrap}
+
+
 .chooser{min-height:100svh;display:grid;place-items:center;padding:32px 16px}
 .chooser .box{max-width:520px;text-align:center;display:grid;gap:14px;justify-items:center}
 .chooser .box img{height:56px;width:auto}
 .chooser .btn{width:100%}
 
-/* consent card + reopen link (built only with the tag layer on) */
+.chooser-legal{font-size:.8125rem;line-height:1.7;color:var(--muted);margin:6px 0 0}
+.chooser-legal a{color:var(--muted)}
+.cl-set{display:inline-block;white-space:nowrap;margin:0 6px}
+.cl-set a + a{margin-left:6px;border-left:1px solid var(--line);padding-left:8px}
+
 .linklike{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}
-.consent{position:fixed;left:16px;right:16px;bottom:calc(var(--bar-h) + env(safe-area-inset-bottom) + 14px);z-index:290;background:#fff;color:var(--ink);border:1px solid rgba(16,42,74,.15);box-shadow:0 8px 30px rgba(16,42,74,.18);padding:16px;max-width:420px;margin-inline:auto}
+
+.c-dim{position:fixed;inset:0;z-index:190;background:rgba(16,42,74,.34);pointer-events:none;transition:background-color .3s ease}
+.c-dim-2{background:rgba(16,42,74,.6)}
+
+.consent{position:fixed;left:16px;right:16px;bottom:calc(var(--bar-h) + env(safe-area-inset-bottom) + 14px);z-index:290;border-radius:var(--r-card);box-shadow:0 14px 44px rgba(16,42,74,.22);max-width:440px;margin-inline:auto;background:var(--card);overflow:hidden}
+.consent:focus{outline:none}
 @media (min-width:1000px){.consent{left:auto;right:24px;bottom:24px;margin:0}}
-.consent h2{font-size:1.0625rem;margin:0 0 8px;text-transform:none;font-stretch:100%;letter-spacing:0}
-.consent p{font-size:.9375rem;margin:0 0 12px}
-.consent .c-btns{display:flex;gap:8px}
-.consent .c-btns button{flex:1;font:inherit;font-weight:800;font-size:.9375rem;padding:10px 12px;cursor:pointer;border:2px solid var(--ink);background:#fff;color:var(--ink)}
+.c-ring{position:absolute;top:50%;left:50%;width:820px;height:820px;pointer-events:none;
+  background:conic-gradient(from 0turn,#25FEC0,#22B3A6,#2E6FB1,#0F4A6A,#2E6FB1,#FFDC52,#FE7740,#25FEC0);
+  animation:cring 18s linear infinite}
+@keyframes cring{from{transform:translate(-50%,-50%) rotate(0turn)}to{transform:translate(-50%,-50%) rotate(1turn)}}
+
+.c-body{position:relative;z-index:1;margin:2px;border-radius:calc(var(--r-card) - 2px);background:var(--card);color:var(--text);padding:20px 20px 26px;max-height:min(82vh,680px);overflow:auto;overscroll-behavior:contain}
+
+@media (max-width:999px){.consent.c-mid{top:50%;bottom:auto;transform:translateY(-50%)}}
+@media (prefers-reduced-motion:reduce){.c-ring{animation:none}.c-dim{transition:none}}
+
+.c-logo{display:block;height:26px;width:auto;margin:0 0 12px}
+.consent h2{font-size:1.25rem;font-weight:900;line-height:1.15;margin:0;color:var(--ink);text-transform:none;font-stretch:100%;letter-spacing:var(--track-title)}
+.c-rule{border:0;width:44px;height:5px;border-radius:var(--r-dot);background:var(--mark);margin:12px 0 14px}
+.consent p{font-size:.9375rem;line-height:1.5;margin:0 0 16px}
+
+.c-btns,.c-more{font:inherit;font-weight:800;font-size:.9375rem;line-height:1.2}
+.c-btns{display:flex;gap:10px}
+.c-btns button,.c-more{min-height:52px;padding:12px 14px;cursor:pointer;border:2px solid var(--ink);border-radius:var(--r-btn);font:inherit;font-weight:800;font-size:.9375rem;line-height:1.2;transition:background-color .16s ease,color .16s ease,border-color .16s ease}
+.c-btns button{flex:1;background:var(--ink);color:#fff}
+.c-more{display:block;width:100%;margin:10px 0 0;background:transparent;color:var(--ink)}
+
+@media (hover:hover){
+  .c-btns button:hover{background:var(--ink-press);border-color:var(--ink-press);color:#fff}
+  .c-more:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+}
+.c-btns button:focus-visible{background:var(--ink-press);border-color:var(--ink-press);color:#fff}
+.c-more:focus-visible{background:var(--ink);border-color:var(--ink);color:#fff}
+.c-btns button:active{background:var(--ink-press);border-color:var(--ink-press);color:#fff}
+.c-more:active{background:var(--ink);border-color:var(--ink);color:#fff}
+
+@media (prefers-reduced-motion:reduce){.c-btns button,.c-more{transition:none}}
+
+.consent .c-fine{font-size:.8125rem;line-height:1.45;color:var(--muted);margin:18px 0 0}
+.c-fine a{color:var(--ink);font-weight:600}
+
+.c-sw{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:10px}
+.c-sw li{background:var(--paper);border-radius:var(--r-img);padding:10px 14px 12px}
+.c-lab{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:44px;cursor:pointer}
+.c-lt{font-weight:900;font-size:1rem;color:var(--ink);letter-spacing:var(--track-title)}
+.c-sw p{font-size:.8125rem;line-height:1.45;color:var(--muted);margin:2px 0 0}
+.c-tog{appearance:none;-webkit-appearance:none;position:relative;flex:none;width:52px;height:30px;margin:0;cursor:pointer;background:#fff;border:2px solid var(--ink);border-radius:999px;transition:background-color .18s ease,border-color .18s ease}
+.c-tog::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--ink);transition:transform .18s ease,background-color .18s ease}
+.c-tog:checked{background:var(--teal);border-color:var(--teal)}
+.c-tog:checked::after{background:#fff;transform:translateX(22px)}
+@media (prefers-reduced-motion:reduce){.c-tog,.c-tog::after{transition:none}}
 </style>
 </head>
 <body>
@@ -818,7 +736,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
   </div>
 </section>
 </main>
-<footer class="site-footer"><div class="wrap"><div class="cols"><div><span class="foot-logo"><img src="/assets/img/logo-icon.svg" width="816" height="499" alt="Pro Débouchage" loading="lazy"></span><p>Drain unblocking, high-pressure cleaning, camera inspection, septic tanks and cellar pumping. Around Brussels, in Flemish and Walloon Brabant, 24/7.</p><p><a class="foot-tel" href="tel:+32480649649" data-cta="footer-call">0480 649 649</a><br><a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a></p></div><div class="legal"><h2>Legal information</h2><p>PRO DEBOUCHAGE SRL<br>Guldenschaapstraat 6, 1800 Vilvoorde, Belgium<br>Company number 1027.454.187<br>E-mail: info@prodebouchage24.be<br>Phone: 0480 649 649</p><p>Displayed prices include 6% VAT (private homes over 10 years old).</p><p class="foot-note">All photos come from our own jobs. The 'before' photo in the proof section was recreated from our original photo.</p><div class="foot-links"><a href="/en/privacy">Privacy policy</a><a href="/en/terms">Terms and conditions</a><a href="/fr/" lang="fr" hreflang="fr-BE">Français</a><a href="/nl/" lang="nl" hreflang="nl-BE">Nederlands</a><button type="button" class="linklike" data-consent-open>Cookies and measurement</button></div></div></div><p class="credit">&copy; <span id="y">2026</span> PRO DEBOUCHAGE SRL. This site uses one call-measurement tool, and only if you accept it.</p></div></footer>
+<footer class="site-footer"><div class="wrap"><div class="cols"><div><span class="foot-logo"><img src="/assets/img/logo-icon.svg" width="816" height="499" alt="Pro Débouchage" loading="lazy"></span><p>Drain unblocking, high-pressure cleaning, camera inspection, septic tanks and cellar pumping. Around Brussels, in Flemish and Walloon Brabant, 24/7.</p><p><a class="foot-tel" href="tel:+32480649649" data-cta="footer-call">0480 649 649</a><br><a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a></p></div><div class="legal"><h2>Legal information</h2><p>PRO DEBOUCHAGE SRL<br>Guldenschaapstraat 6, 1800 Vilvoorde, Belgium<br>Company number 1027.454.187<br>E-mail: info@prodebouchage24.be<br>Phone: 0480 649 649</p><p>Displayed prices include 6% VAT (private homes over 10 years old).</p><p class="foot-note">All photos come from our own jobs. The 'before' photo in the proof section and the image of the van were recreated from our own photos.</p><div class="foot-links"><a href="/en/privacy">Privacy policy</a><a href="/en/terms">Terms and conditions</a><a href="/fr/" lang="fr" hreflang="fr-BE">Français</a><a href="/nl/" lang="nl" hreflang="nl-BE">Nederlands</a><button type="button" class="linklike" data-consent-open>Cookies and measurement</button></div></div></div><p class="credit">&copy; <span id="y">2026</span> PRO DEBOUCHAGE SRL. This site uses one call-measurement tool, and only if you accept it.</p></div></footer>
 <div class="callbar" role="region" aria-label="Call us"><a class="cb-call" href="tel:+32480649649" data-cta="sticky-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>Call 0480 649 649</a><a class="cb-wa" href="https://wa.me/32480649649?text=Hello%2C%20I%20have%20a%20blocked%20drain.%20Here's%20a%20photo%20and%20my%20town%3A%20" rel="noopener" data-cta="sticky-whatsapp" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3c.2-.6.2-1.1.2-1.2s-.3-.3-.5-.4z"></path></svg></a></div>
 <script>(function(){
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -880,10 +798,19 @@ new IntersectionObserver(function(es){es.forEach(function(e){de.classList.toggle
 var x=p.querySelector('[data-cite-close]');
 function open(){p.hidden=false;bk.hidden=false;b.setAttribute('aria-expanded','true');document.documentElement.style.overflow='hidden';if(x)x.focus()}
 function close(){p.hidden=true;bk.hidden=true;b.setAttribute('aria-expanded','false');document.documentElement.style.overflow='';b.focus()}
-b.addEventListener('click',open);bk.addEventListener('click',close);if(x)x.addEventListener('click',close);
+b.addEventListener('click',open);b.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '||e.key==='Spacebar'){e.preventDefault();open()}});bk.addEventListener('click',close);if(x)x.addEventListener('click',close);
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!p.hidden)close()});
 p.addEventListener('keydown',function(e){if(e.key!=='Tab')return;var f=p.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])');if(!f.length)return;var a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}});
 })();
+/* The swipe hint bows out once the visitor reaches the third photo (Fady 2026-08-27): by then the
+   gesture has been understood and a permanent hint is just furniture. One passive scroll listener,
+   removed the moment it fires, and the whole thing is a no-op on a desktop where .hero-car is
+   display:none and never scrolls. */
+(function(){var t=document.querySelector('.car-track'),h=document.querySelector('.car-hint');if(!t||!h)return;
+var ss=t.querySelectorAll('.car-slide');if(ss.length<3)return;
+function chk(){var step=ss[1].offsetLeft-ss[0].offsetLeft;if(step<=0)return;
+if(t.scrollLeft>=step*1.5){h.classList.add('car-hint-off');t.removeEventListener('scroll',chk)}}
+t.addEventListener('scroll',chk,{passive:true})})();
 /* steps: the line fills and the numbers light up in sequence when the section arrives */
 (function(){var st=document.querySelector('.steps');if(!st)return;
 if(reduce||!('IntersectionObserver' in window)){st.classList.add('go');return}
@@ -921,6 +848,6 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-cta
 window.dataLayer.push({event:a.dataset.cta.indexOf('whatsapp')>-1?'whatsapp_click':'call_click',cta:a.dataset.cta,lang:document.documentElement.lang.slice(0,2),ts:Date.now()});
 },{passive:true});
 })();</script>
-<script src="/assets/js/consent.js" defer></script>
+<script src="/assets/js/consent.js?v=4a9e43fcba" defer></script>
 </body>
 </html>
