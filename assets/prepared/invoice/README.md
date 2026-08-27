@@ -1,20 +1,30 @@
 # The invoice pack, hand-over note (simple English)
 
-*Built overnight 2026-08-27 from research/26 (the legal musts) and research/22 (the work-order wording). One Word file, three parts. Fady checks it once in Word before first use (built and content-verified by machine, but no Word render was possible on this machine tonight).*
+*Built overnight 2026-08-27 from research/26 (the legal musts) and research/22 (the work-order wording), then fully redesigned the same day. TWO Word files now, Dutch and French, same layout, only the words change. Each file has three parts. Fady checks them once in Word before first use (built and content-verified by machine).*
 
-## What is in the file
+## Which file to use
 
-`PRO-DEBOUCHAGE-facture-bon-intervention-FR.docx`
+`PRO-DEBOUCHAGE-factuur-werkbon-NL.docx` (Dutch) is the **default**. The company seat is in Vilvoorde, so it sits in the Flemish Region, and the Flemish language decree wants the papers of the employer relationship and the official documents in Dutch. Dutch is the safe one.
 
-1. **Page 1, FACTURE.** The invoice template. Logo, full legal identity (SRL, seat, TVA BE 1027.454.187, RPM Bruxelles, phone, e-mail, site), invoice number and dates, client block with the intervention address, service lines with price excl. VAT per line, the VAT table (6 and 21 percent rows), total, payment block with the IBAN, and the legal small print.
-2. **Page 2, BON D'INTERVENTION.** The work order. Afrem or Roro has the client SIGN THIS BEFORE THE WORK STARTS. It carries the urgent-works waiver, the immediate-execution consent, the price line, the surcharges tickboxes, the 60-euro no-fix line, the guarantee exclusions and the conditions acceptance. Without this signature a customer can legally cancel within 14 days AFTER the work is done.
-3. **Pages 3+, CONDITIONS GÉNÉRALES.** The same conditions as on the website, print version, so the client really receives them.
+`PRO-DEBOUCHAGE-facture-bon-intervention-FR.docx` (French) is for French-speaking customers, in Brussels and in Wallonia, and for any customer who asks for French. A French copy handed to a French-speaking customer next to the Dutch one is fine; the Dutch one is the one that always exists.
+
+Simple rule for the wife: Dutch customer, Dutch file. French customer, French file. Doubt, send both.
+
+## What is in each file
+
+1. **Page 1, FACTURE / FACTUUR.** The invoice template. Logo, full legal identity (SRL and RPM Bruxelles in French, BV and RPR Brussel in Dutch, seat, VAT number, phone, e-mail, site), invoice number and dates, client block with the intervention address, six service lines with price excl. VAT per line, the VAT table (6 and 21 percent rows), the total, the payment block with the IBAN, and the legal small print.
+2. **Page 2, BON D'INTERVENTION / WERKBON.** The work order. Afrem or Roro has the client SIGN THIS BEFORE THE WORK STARTS. It carries the urgent-works waiver, the immediate-execution consent, the price line, the surcharge tickboxes, the 60-euro no-fix line, the guarantee exclusions and the conditions acceptance. Without this signature a customer can legally cancel within 14 days AFTER the work is done.
+3. **Pages 3+, CONDITIONS GÉNÉRALES / ALGEMENE VOORWAARDEN.** The same conditions as on the website, taken live from the site the day of the build, print version, so the client really receives them.
+
+## The redesign, 2026-08-27
+
+The first draft had the company address squeezed to the right of a big logo and it looked unbalanced. It is now: a small logo on the left, the word FACTURE / FACTUUR large on the right on the same line, one teal rule under them, and the whole legal identity as one quiet grey line across the page. No underscore lines anywhere any more: every place to write is a real box with a soft grey fill and a thin rule, with the label in small type above it, tall enough for a pen in the van. The totals table is the anchor at the bottom right of page 1, its last row in soft teal. The conditions pages are set as a proper terms sheet, article by article. Both languages are built from one script so they stay identical.
 
 ## Rules for Roro's wife (short version, tell her on WhatsApp)
 
 - One invoice for EVERY job, even small cash jobs at night. No exceptions in this trade, the law says so.
 - Numbers run in order, no gaps: 2026-0001, 2026-0002... Never reuse or skip a number.
-- One line per service, real words: "Débouchage WC, furet électrique". For high-pressure work write "curage" or "débouchage", NEVER the word "nettoyage" (wrong word can mean 21 percent VAT).
+- One line per service, real words: "Débouchage WC, furet électrique" / "Ontstoppen wc, elektrische veer". For high-pressure work write "curage" or "débouchage" / "ontstoppen", NEVER the word "nettoyage" / "reinigen" alone (wrong word can mean 21 percent VAT).
 - The long grey sentence at the bottom about the VAT rate is THE LAW's exact text. Never shorten it, never edit it, never delete it.
 - 6 percent only when: house older than 10 years, mainly a private home, invoiced to the person living there. Anything else: 21 percent, use the 21 percent row.
 - Mistake on a sent invoice? Never delete it. Make a credit note (separate paper, own numbers NC-2026-001) that names the wrong invoice.
@@ -30,10 +40,10 @@
 
 ## Two small checks for Fady
 
-- RPM Bruxelles is printed (correct for a Vilvoorde seat under the Dutch-language Brussels enterprise court). Confirm once against the KBO extract.
-- The invoice prints "TVA BE 1027.454.187". The accountant says the VAT is in order; VIES still showed INVALID at the last poll. The wife already invoices with this number, so nothing new, but the VIES poll continues each session until VALID.
+- RPM Bruxelles (FR) / RPR Brussel (NL) is printed, correct for a Vilvoorde seat under the Dutch-language Brussels enterprise court. Confirm once against the KBO extract.
+- The invoices print the VAT number "BE 1027.454.187". The accountant says the VAT is in order; VIES still showed INVALID at the last poll. The wife already invoices with this number, so nothing new, but the VIES poll continues each session until VALID.
 
-## Wanted later, not now
+## Housekeeping
 
-- NL version of the same file (for Flemish customers who ask): same layout, Dutch legal wording is ready in research/26. Say the word and it exists.
+- Swap DONE 2026-08-27 midday: the redesigned French file now carries the normal name; the first draft moved to `to-delete/2026-08-27-invoice-v1/` (only Fady empties that folder). The folder holds exactly the two live .docx files plus this note.
 - The old invoice's problems this replaces: no legal form, no seat, no RPM, no sequential number (used the devis number), no due date, no VAT-rate sentence, old .com e-mail.

@@ -35,7 +35,15 @@ function pageHtml(c, opts = {}) {
   const tickSet = tickCopy(false, true) + tickCopy(true, false).repeat(TICK_REPEAT - 1);
   const tickSetLazy = tickCopy(false, false).repeat(TICK_REPEAT);
   const tick = `<div class="ticker"><div class="tick-row"><div class="tick-set">${tickSet}</div><div class="tick-set" aria-hidden="true">${tickSetLazy}</div></div></div>`;
-  const car = `<div class="hero-car" role="group" aria-label="${c.carAria}"><div class="car-track">${c.carousel.map((t, i) => `<div class="car-slide">${IMG(t[0], t[1], t[2], t[3], i === 0 ? 'decoding="async"' : 'loading="lazy" decoding="async"')}</div>`).join('')}</div><div class="car-dotwrap"><div class="car-dots" aria-hidden="true">${c.carousel.map((_, i) => `<span class="car-dot${i === 0 ? ' on' : ''}"></span>`).join('')}</div></div></div>`;
+  // The swipe hint replaced the dots on 2026-08-27 (Fady): dots report how many photos there are,
+  // which nobody needs; an arrow bleeding off the left edge of the screen onto the bottom-left of
+  // the first photo says "move me", which is the only job here. Decorative for AT: the carousel
+  // already carries role=group and a label that says to swipe. THE CHIP IS THE ARROW (Fady, second
+  // note the same day), so there is no icon in here: styles.css cuts the point. It no longer fades
+  // on first touch either, and the carousel now ships NO SCRIPT AT ALL: the dots are gone and he
+  // turned the autoplay off, because a hint saying "swipe" over a strip that swipes itself is two
+  // instructions at once.
+  const car = `<div class="hero-car" role="group" aria-label="${c.carAria}"><div class="car-track">${c.carousel.map((t, i) => `<div class="car-slide">${IMG(t[0], t[1], t[2], t[3], i === 0 ? 'decoding="async"' : 'loading="lazy" decoding="async"')}</div>`).join('')}</div><p class="car-hint" aria-hidden="true">${c.swipe}</p></div>`;
   const hero = `<section class="hero"><div class="wrap"><p class="eyebrow">${c.eyebrow}</p><div class="hero-grid"><div>${h1}</div><div><p class="sub">${c.sub}</p></div></div><div class="actions">${callBtn(c.callMain, 'hero-call')}${waBtn(c.waBtn, 'hero-whatsapp')}</div><p class="under-btn">${c.under}</p></div>${tick}${car}</section>`;
 
   // Trust: CSS marquee on desktop (clone aria-hidden, reverse direction), static list on mobile.
@@ -90,7 +98,12 @@ function pageHtml(c, opts = {}) {
   // is the one that reads going downwards. The unused one is display:none, so it is never fetched.
   const baArrow = (n, cls, file, w, h) => `<span class="ba-ar ba-ar-${n}${cls}" aria-hidden="true">${IMG(file, '', w, h, 'loading="lazy" decoding="async"')}</span>`;
   const baArrows = baArrow(1, '', 'arrow-curve.png', 273, 185) + baArrow(2, ' only-wide', 'arrow-zig.png', 267, 138) + baArrow(3, ' only-narrow', 'arrow-hook.png', 157, 271);
-  const ba = `<section class="s-card s-ba"><div class="wrap"><p class="kicker">${c.baK}</p><h2>${c.baH}</h2><hr class="rule"><div class="ba-collage rv">${BA_DEFS}<ol class="ba-pics">${baItems}</ol>${baArrows}</div></div></section>`;
+  // The handwritten note (Fady 2026-08-27, his own composition): two short lines in Caveat with a
+  // yellow swoosh under the number, the first piece of the "one pen" pass. Two lines, not one,
+  // because that is how he drew it and because one line does not fit the phone's free corner.
+  // NOT aria-hidden: "done in 20 min" is information, and it is the only place the page says it.
+  const baNote = `<p class="ba-note"><span>${c.baNote[0]}</span><span class="ba-note-2">${c.baNote[1]}<svg class="ba-note-u" viewBox="0 0 120 12" aria-hidden="true" focusable="false"><path d="M3 8.6C27 3.4 76 2.6 117 6.4" fill="none" stroke="var(--mark)" stroke-width="5" stroke-linecap="round"/></svg></span></p>`;
+  const ba = `<section class="s-card s-ba"><div class="wrap"><p class="kicker">${c.baK}</p><h2>${c.baH}</h2><hr class="rule"><div class="ba-collage rv">${BA_DEFS}<ol class="ba-pics">${baItems}</ol>${baArrows}${baNote}</div></div></section>`;
 
   const scam = `<section class="s-ink"><div class="wrap"><p class="kicker">${c.scamK}</p><h2>${c.scamH}</h2><hr class="rule"><div class="scam-cols"><div><p class="lead">${c.scamI1}<button type="button" class="cite" data-cite aria-expanded="false" aria-controls="cite-pop"><span class="cite-t">${c.scamICite}</span><span class="cite-i" aria-hidden="true">i</span><span class="sr-only">, ${c.citeHint}</span></button>${c.scamI2}</p><ul class="scam-list">${c.scam.map(s => `<li>${s}</li>`).join('')}</ul></div><div><h3 class="scam-h3">${c.usH}</h3><ul class="us-list">${c.us.map(s => `<li>${s}</li>`).join('')}</ul></div></div>${callBtn(c.scamB, 'scam-call')}</div></section>`;
 
@@ -119,8 +132,15 @@ function pageHtml(c, opts = {}) {
   // never invent one. The 3-card grid below it is PARKED: refill `reviews` and it returns by itself
   // (data-placeholder dropped: whatever refills it must be real). Order of precedence: featured,
   // then grid, then the honest card.
+  // Under the featured card: ONE object instead of the two loose muted sentences that sat there with
+  // a gap reading as a mistake on a wide screen (Fady 2026-08-27). It says why there is a single
+  // review and it hands over the way to send the next one.
+  // NO data-cta on that link, on purpose: the taxonomy is binary (anything containing "whatsapp" is
+  // a lead, everything else is a call), so on tag day a review click would be counted and paid for
+  // as a conversion. A review is not a lead. If it ever needs measuring, it needs its own event.
+  const revAsk = `<div class="rev-ask rv"><div><p class="rev-t">${c.revT}</p><p class="rev-p">${c.revP}</p></div><a class="btn btn-wa btn-sm" href="${c.waReview}" rel="noopener">${WA}${c.revB}</a></div>`;
   const socialProof = c.featured
-    ? `<article class="feat-card rv"><div class="feat-mark" aria-hidden="true">&#8220;</div><blockquote class="feat-q">${c.featured.text.map(p => `<p>${p}</p>`).join('')}</blockquote><footer class="feat-who"><div class="ini" aria-hidden="true">${c.featured.name[0]}</div><div><div class="name">${c.featured.name}</div><div class="feat-meta">${c.featured.meta}${c.featured.note ? ` <span class="feat-note">${c.featured.note}</span>` : ''}</div></div></footer></article><p class="feat-g">${c.featG}</p><p class="ask">${c.askLine}</p>`
+    ? `<article class="feat-card rv"><div class="feat-mark" aria-hidden="true">&#8220;</div><blockquote class="feat-q">${c.featured.text.map(p => `<p>${p}</p>`).join('')}</blockquote><footer class="feat-who"><div class="ini" aria-hidden="true">${c.featured.name[0]}</div><div><div class="name">${c.featured.name}</div><div class="feat-meta">${c.featured.meta}${c.featured.note ? ` <span class="feat-note">${c.featured.note}</span>` : ''}</div></div></footer></article>${revAsk}`
     : c.reviews.length
       ? `<div class="reviews">${c.reviews.map(r => `<article class="review-card rv"><div class="who"><div class="ini" aria-hidden="true">${r[0][0]}</div><div class="name">${r[0]}</div></div>${stars(r[1])}<p>${r[2]}</p></article>`).join('')}</div><p class="ask">${c.askLine}</p>`
       : `<article class="honest-card rv"><h3>${c.honestT}</h3><p>${c.honestP}</p><ul>${c.honestL.map(t => `<li>${t}</li>`).join('')}</ul><p class="ask">${c.askLine}</p></article>`;
@@ -134,16 +154,24 @@ function pageHtml(c, opts = {}) {
   // plain independent details, fully functional.
   const faq = sec('s-paper', c.faqK, c.faqH, `<div class="faq">${c.faq.map((q, i) => `<details${i === 0 ? ' open' : ''}><summary>${q[0]}</summary><div class="answer"><p>${q[1]}</p></div></details>`).join('')}</div>`);
 
+  // NO kicker and NO rule here, and that is deliberate, not an omission: this band is the one place
+  // on the page that opens on a bare H2. A kicker and a yellow rule were added on 2026-08-27 for
+  // consistency with the other bands and removed the same day on Fady's call, because the closing
+  // section already carries a headline, a huge number with a marker under it, two buttons and the
+  // hours, and they were all competing. Consistency loses to hierarchy here.
   const finalcall = `<section class="s-ink finalcall"><div class="wrap"><h2>${c.finalH}</h2><a class="bignum tnum" href="${TEL}" data-cta="final-call">0480 649 649</a><div class="actions">${callBtn(c.finalB, 'final-call-btn')}${waBtn(c.finalWa, 'final-whatsapp')}</div><p class="hours">${c.finalL}</p></div></section>`;
 
   const footer = `<footer class="site-footer"><div class="wrap"><div class="cols"><div><span class="foot-logo">${IMG('logo-icon.svg', 'Pro Débouchage', 320, 200, 'loading="lazy"')}</span><p>${c.footD}</p><p><a class="foot-tel" href="${TEL}" data-cta="footer-call">0480 649 649</a><br><a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a></p></div><div class="legal"><h2>${c.legalT}</h2><p>${c.legal.join('<br>')}</p><p>${c.vat}</p><p class="foot-note">${c.photoNote}</p><div class="foot-links"><a href="${opts.privacyHref || '#'}">${c.privacy}</a><a href="${opts.cgvHref || '#'}">${c.cgvLabel}</a>${others.map(([d, , full]) => `<a href="/${d}/" lang="${d}" hreflang="${d}-BE">${full}</a>`).join('')}${opts.adsTag ? `<button type="button" class="linklike" data-consent-open>${c.consentLink}</button>` : ''}</div></div></div><p class="credit">&copy; <span id="y">2026</span> ${opts.adsTag ? c.creditTag : c.credit}</p></div></footer>`;
 
   const bar = `<div class="callbar" role="region" aria-label="${c.callHeader}"><a class="cb-call" href="${TEL}" data-cta="sticky-call">${PHONE}${c.callBar}</a><a class="cb-wa" href="${c.wa}" rel="noopener" data-cta="sticky-whatsapp" aria-label="${c.waBar}">${WA}</a></div>`;
 
-  // Floating guarantee badge (v2's, ported on Fady's ask 2026-08-26): click opens the popover, any
-  // close fades it away for the visit, it hides while the band above is on screen (JS in PAGE_JS).
-  // The popover carries the promise only; guarLegal is its own key now, so no string splitting.
-  const fab = `<div class="guar-float"><button type="button" class="guar-fab" data-guar-toggle aria-expanded="false" aria-controls="guar-pop">${seal('guar-ring')}<span class="sr-only">${c.guarH}</span></button><div class="guar-pop" id="guar-pop" hidden><h3>${c.guarH}</h3><p>${c.guarP}</p></div></div>`;
+  // Floating guarantee badge. It EXPANDS now instead of popping a card above itself (Fady
+  // 2026-08-27): the seal is pinned to the left edge of a yellow box whose right edge never moves,
+  // so growing the box slides the seal left and the badge becomes the card. Same promise inside,
+  // plus an X. Any close still fades it away for the visit; it hides while the guarantee band is on
+  // screen. All of that lives in PAGE_JS, which also measures the open height.
+  const X_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6 18 18M18 6 6 18"/></svg>';
+  const fab = `<div class="guar-float"><div class="guar-card"><button type="button" class="guar-fab" data-guar-toggle aria-expanded="false" aria-controls="guar-pop">${seal('guar-ring')}<span class="sr-only">${c.guarH}</span></button><div class="guar-pop" id="guar-pop"><h3>${c.guarH}</h3><p>${c.guarP}</p></div><button type="button" class="guar-x" data-guar-close>${X_ICON}<span class="sr-only">${c.citeClose}</span></button></div></div>`;
 
   // The cited fact's panel: a real dialog, so the claim can be checked without leaving the page.
   const citePop = `<div class="cite-back" data-cite-back hidden></div><div class="cite-pop" id="cite-pop" role="dialog" aria-modal="true" aria-labelledby="cite-h" hidden><h3 id="cite-h">${c.citeH}</h3><p>${c.citeBody}</p><p class="cite-src">${c.citeSrc}</p><p class="cite-why">${c.citeWhy}</p><button type="button" class="cite-x" data-cite-close>${c.citeClose}</button></div>`;
@@ -194,35 +222,37 @@ var rv=document.querySelectorAll('.rv');for(var i=0;i<rv.length;i++){rv[i].style
 var go=function(){var im=t.querySelectorAll('img[loading="lazy"]');for(var i=0;i<im.length;i++){im[i].removeAttribute('loading')}};
 if(!('IntersectionObserver' in window)){go();return}
 new IntersectionObserver(function(es,o){for(var i=0;i<es.length;i++){if(es[i].isIntersecting){go();o.disconnect();return}}},{rootMargin:'300px'}).observe(t)})();
-/* floating guarantee badge: v2 behavior (open on click; any close fades it for the visit; hidden
-   while the guarantee band is on screen, back on scroll-away) */
-function guarBye(){var w=document.querySelector('.guar-float');if(!w)return;var pop=document.getElementById('guar-pop');pop.setAttribute('hidden','');w.querySelector('[data-guar-toggle]').setAttribute('aria-expanded','false');w.classList.add('guar-bye')}
-document.addEventListener('click',function(e){var pop=document.getElementById('guar-pop');if(!pop)return;var btn=document.querySelector('[data-guar-toggle]');if(e.target.closest('[data-guar-toggle]')){if(pop.hasAttribute('hidden')){pop.removeAttribute('hidden');btn.setAttribute('aria-expanded','true')}else{guarBye()}}else if(!pop.hasAttribute('hidden')&&!e.target.closest('.guar-float')){guarBye()}});
-document.addEventListener('keydown',function(e){var pop=document.getElementById('guar-pop');if(e.key==='Escape'&&pop&&!pop.hasAttribute('hidden')){guarBye()}});
-(function(){var band=document.querySelector('aside.guar');var w=document.querySelector('.guar-float');if(!band||!w||!('IntersectionObserver' in window))return;new IntersectionObserver(function(es){es.forEach(function(en){var pop=document.getElementById('guar-pop');if(en.isIntersecting&&pop&&!pop.hasAttribute('hidden'))return;w.classList.toggle('guar-away',en.isIntersecting)})},{threshold:0.2}).observe(band)})();
+/* floating guarantee badge: the disc EXPANDS into the card (Fady 2026-08-27). The open height
+   depends on how the title wraps, so it cannot be a CSS value: measure it once at the FINAL width
+   with transitions off, animate to that pixel value, then release to auto so a rotation reflows
+   cleanly. Behaviour is otherwise v2's: any close fades the badge for the rest of the visit, and it
+   hides while the guarantee band itself is on screen. */
+(function(){var w=document.querySelector('.guar-float');if(!w)return;
+var card=w.querySelector('.guar-card'),btn=w.querySelector('[data-guar-toggle]'),open=false;
+function measure(){card.classList.add('no-anim');var was=card.classList.contains('is-open');
+card.classList.add('is-open');card.style.height='auto';var h=card.offsetHeight;
+card.style.height='';if(!was)card.classList.remove('is-open');
+void card.offsetHeight;card.classList.remove('no-anim');return h}
+function set(v){if(v===open)return;open=v;btn.setAttribute('aria-expanded',v?'true':'false');
+if(v){var h=measure();card.classList.add('is-open');card.style.height=h+'px'}
+else{card.style.height=card.offsetHeight+'px';void card.offsetHeight;card.classList.remove('is-open');card.style.height=''}}
+card.addEventListener('transitionend',function(e){if(e.target===card&&e.propertyName==='height'&&open)card.style.height='auto'});
+function bye(){set(false);w.classList.add('guar-bye')}
+document.addEventListener('click',function(e){
+if(e.target.closest('[data-guar-close]')){bye();return}
+if(e.target.closest('[data-guar-toggle]')){if(open){bye()}else{set(true)}return}
+if(open&&!e.target.closest('.guar-float'))bye()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&open)bye()});
+var band=document.querySelector('aside.guar');
+if(band&&'IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(en){
+if(en.isIntersecting&&open)return;w.classList.toggle('guar-away',en.isIntersecting)})},{threshold:0.2}).observe(band)}
+})();
 /* the before/after drag slider was replaced on 2026-08-26 by the three-photo story, which needs no
    script at all: no handler here on purpose. */
-/* carousel dots + gentle autoplay until first touch */
-var car=document.querySelector('.hero-car');
-if(car){
-var tr=car.querySelector('.car-track'),dots=[].slice.call(car.querySelectorAll('.car-dot')),ct;
-function stp(){var sl=tr.firstElementChild;return sl?sl.getBoundingClientRect().width+10:0}
-function cur(){var s=stp();if(!s)return 0;var i=Math.round(tr.scrollLeft/s);return Math.max(0,Math.min(dots.length-1,i))}
-tr.addEventListener('scroll',function(){if(ct)return;ct=1;requestAnimationFrame(function(){ct=0;
-var i=cur();for(var j=0;j<dots.length;j++)dots[j].className='car-dot'+(j===i?' on':'')})},{passive:true});
-if(!reduce&&'IntersectionObserver' in window){
-var auto=true,timer=null;
-var stop=function(){if(timer){clearInterval(timer);timer=null}};
-var start=function(){if(!auto||timer)return;timer=setInterval(function(){
-var i=cur()+1;if(i>dots.length-1)i=0;
-tr.scrollTo({left:i*stp(),behavior:'smooth'})},2500)};
-var kill=function(){auto=false;stop()};
-tr.addEventListener('touchstart',kill,{passive:true});
-tr.addEventListener('pointerdown',kill,{passive:true});
-tr.addEventListener('wheel',kill,{passive:true});
-new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){start()}else{stop()}})},{threshold:0.4}).observe(car);
-}
-}
+/* The hero carousel has NO SCRIPT (Fady 2026-08-27): the dots went with the swipe hint, and the
+   gentle autoplay went with them, because the strip moving on its own contradicted the arrow asking
+   the visitor to move it. It is a scroll-snap strip and nothing else. Do not put the timer back
+   without putting the hint's fade back too. */
 /* sticky call bar: hidden while the hero's CTA pair is on screen, slides in once it leaves */
 (function(){var de=document.documentElement,act=document.querySelector('.hero .actions');
 if(!document.querySelector('.callbar'))return;
@@ -241,20 +271,32 @@ p.addEventListener('keydown',function(e){if(e.key!=='Tab')return;var f=p.querySe
 (function(){var st=document.querySelector('.steps');if(!st)return;
 if(reduce||!('IntersectionObserver' in window)){st.classList.add('go');return}
 new IntersectionObserver(function(es,ob){es.forEach(function(e){if(e.isIntersecting){st.classList.add('go');ob.disconnect()}})},{threshold:0.25}).observe(st)})();
-/* FAQ: fluid open and close (WAAPI), one open at a time; plain details without JS */
+/* FAQ, rebuilt 2026-08-27 (Fady: "jittery, not smooth at all"). One open at a time; a plain,
+   fully working <details> list without JS.
+   The rules that make it smooth, all learned from what was wrong before:
+   - measure the target height AFTER cancelling whatever is running, never from scrollHeight while
+     an animation is mid-flight (that is what made a fast second click stutter);
+   - take the CURRENT rendered height as the start, so a reversal continues from where the panel
+     actually is instead of snapping to 0 or to full height first;
+   - the element stays [open] for the whole close and only unmounts on finish, while .is-open comes
+     off immediately, so the chevron turns with the panel and not 300ms after it;
+   - no input lock. Every click lands, and a running animation is simply replaced. */
 (function(){var ds=[].slice.call(document.querySelectorAll('.faq details'));if(!ds.length)return;
-var busy=false;
-function closeD(d,animate){var b=d.querySelector('.answer');d.classList.remove('is-open');
-if(!animate||reduce||!b.animate){d.open=false;return}
-var a=b.animate([{blockSize:b.scrollHeight+'px',opacity:1},{blockSize:'0px',opacity:0}],{duration:260,easing:'cubic-bezier(.4,0,.2,1)'});
-a.onfinish=function(){d.open=false};}
-function openD(d){d.open=true;d.classList.add('is-open');var b=d.querySelector('.answer');
-if(reduce||!b.animate)return;
-b.animate([{blockSize:'0px',opacity:0},{blockSize:b.scrollHeight+'px',opacity:1}],{duration:300,easing:'cubic-bezier(.22,1,.36,1)'});}
+var DUR=300,EASE='cubic-bezier(.22,1,.36,1)';
+function run(d,want){var b=d.querySelector('.answer');
+var from=d.open?b.getBoundingClientRect().height:0;
+if(d._a){d._a.cancel();d._a=null}
+d.open=true;d.classList.toggle('is-open',want);
+var to=want?b.getBoundingClientRect().height:0;
+if(reduce||!b.animate||from===to){d.open=want;return}
+var a=b.animate([{height:from+'px',opacity:from?1:0},{height:to+'px',opacity:want?1:0}],{duration:DUR,easing:EASE});
+d._a=a;
+a.onfinish=function(){if(d._a===a)d._a=null;d.open=want};
+a.oncancel=function(){if(d._a===a)d._a=null}}
 ds.forEach(function(d){if(d.open)d.classList.add('is-open');
 d.querySelector('summary').addEventListener('click',function(e){e.preventDefault();
-if(busy)return;busy=true;setTimeout(function(){busy=false},320);
-if(d.open){closeD(d,true)}else{ds.forEach(function(o){if(o!==d&&o.open)closeD(o,true)});openD(d)}})});
+if(d.open&&d.classList.contains('is-open')){run(d,false)}
+else{ds.forEach(function(o){if(o!==d&&o.classList.contains('is-open'))run(o,false)});run(d,true)}})});
 })();
 /* click taxonomy shim: ready for the Ads tag day, zero requests today */
 window.dataLayer=window.dataLayer||[];

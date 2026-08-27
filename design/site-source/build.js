@@ -2,7 +2,7 @@
 // styles.css (design, INLINED into every <head>), cgv.js (general terms), the local legal.js
 // (privacy pages, reused with the enterprise-number prefix fix) and assets/prepared/web/ (images).
 // Run: node design/site-source/build.js     Output is generated: never edit site-v1/ by hand.
-// ADS_TAG_ID=AW-... builds the consent + Google-tag layer (commands in ./README.md).
+// ADS_TAG_ID=AW-... and/or GA4_ID=G-... build the consent + Google-tag layer (commands in ./README.md).
 const fs = require('fs'), path = require('path');
 const T = require('./template.js');
 const COPY = { fr: require('./copy-fr.js'), nl: require('./copy-nl.js'), en: require('./copy-en.js') };
@@ -21,9 +21,18 @@ const OUT = path.join(ROOT, 'site-v1');
 const WEB = path.join(ROOT, 'assets', 'prepared', 'web');
 const HOST = 'https://prodebouchage24.be';
 const BUILD_YEAR = '2026';
-const ADS_TAG_ID = process.env.ADS_TAG_ID || '';
-const ADS_CALL_LABEL = process.env.ADS_CALL_LABEL || '';
-const ADS_WA_LABEL = process.env.ADS_WA_LABEL || '';
+// Since G5 (2026-08-27) the tag ids are baked in as DEFAULTS so a plain `node build.js` ships
+// the live tagged site; a bare build can no longer silently drop the tags. The ids are public
+// (visible in the page source), never secrets. TAGS_OFF=1 builds the clean zero-Google output.
+const TAGS_OFF = process.env.TAGS_OFF === '1';
+const ADS_TAG_ID = TAGS_OFF ? '' : (process.env.ADS_TAG_ID || 'AW-18413234511');
+const ADS_CALL_LABEL = TAGS_OFF ? '' : (process.env.ADS_CALL_LABEL || '_diMCKD12OgcEM_SjsxE');
+const ADS_WA_LABEL = TAGS_OFF ? '' : (process.env.ADS_WA_LABEL || 'XldOCKP12OgcEM_SjsxE');
+// GA4_ID rides the SAME consent gate as ADS_TAG_ID (added 2026-08-27, tag round G5).
+const GA4_ID = TAGS_OFF ? '' : (process.env.GA4_ID || 'G-S3SQ25WZMK');
+// One switch for the whole tag layer: consent stub, banner, consent.js, footer credit, privacy
+// cookie section, reopen link, Google CSP. TAGS_OFF=1 = none of it exists in the output.
+const TAG_ON = !!(ADS_TAG_ID || GA4_ID);
 const CONSENT_VER = '2026-08-26';
 
 const rm = p => fs.rmSync(p, { recursive: true, force: true });
@@ -34,7 +43,19 @@ const w = (rel, s) => { const p = path.join(OUT, rel); mk(path.dirname(p)); fs.w
 mk(OUT); for (const e of fs.readdirSync(OUT)) rm(path.join(OUT, e));
 
 // ---------- assets ----------
-for (const f of ['archivo-var-latin.woff2', 'archivo-var-latin-ext.woff2']) cp(path.join(__dirname, f), path.join(OUT, 'assets', 'fonts', f));
+for (const f of ['archivo-var-latin.woff2', 'archivo-var-latin-ext.woff2', 'caveat-note.woff2']) cp(path.join(__dirname, f), path.join(OUT, 'assets', 'fonts', f));
+// caveat-note.woff2 is Caveat (SIL Open Font License) SUBSET to the 15 glyphs the handwritten note
+// on the photo story needs, 8KB instead of 75 for one decorative line. A letter outside that set
+// renders in a system script face, silently, and only in the language nobody re-checked. So the
+// build refuses it: change `baNote` and this throws with the character it cannot draw. To widen the
+// set, re-subset (fonts.googleapis.com/css2?family=Caveat:wght@600&text=...) and update BOTH lists,
+// here and the @font-face unicode-range in styles.css.
+const NOTE_GLYPHS = ' 02DFKaeilmnort';
+for (const [l] of T.LANGS) {
+  const note = (COPY[l].baNote || []).join('');
+  if (note.length < 2) throw new Error(`copy-${l}.js: baNote must be the two lines of the handwritten note.`);
+  for (const ch of note) if (!NOTE_GLYPHS.includes(ch)) throw new Error(`copy-${l}.js baNote uses "${ch}", which is not in the subsetted Caveat (${NOTE_GLYPHS.trim()} and space). Re-subset the font or change the wording.`);
+}
 // The BOM strip is not cosmetic. This CSS is INLINED into <style>, where a leading U+FEFF is a
 // stray token: the parser opens a bogus rule on it and swallows the FIRST real rule, which is the
 // main Archivo @font-face. The page then falls back to Arial, which has no weight axis, so every
@@ -43,8 +64,8 @@ for (const f of ['archivo-var-latin.woff2', 'archivo-var-latin-ext.woff2']) cp(p
 // stripped here as well as in the file. Guarded by the assert below.
 let css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8').replace(/^﻿/, '');
 if (!/^\s*\/\*|^\s*@|^\s*[.#:a-zA-Z]/.test(css)) throw new Error('styles.css starts with an unexpected character; the first CSS rule would be swallowed.');
-if (ADS_TAG_ID) css += `
-/* consent card + reopen link (built only with ADS_TAG_ID) */
+if (TAG_ON) css += `
+/* consent card + reopen link (built only with the tag layer on) */
 .linklike{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}
 .consent{position:fixed;left:16px;right:16px;bottom:calc(var(--bar-h) + env(safe-area-inset-bottom) + 14px);z-index:290;background:#fff;color:var(--ink);border:1px solid rgba(16,42,74,.15);box-shadow:0 8px 30px rgba(16,42,74,.18);padding:16px;max-width:420px;margin-inline:auto}
 @media (min-width:1000px){.consent{left:auto;right:24px;bottom:24px;margin:0}}
@@ -54,13 +75,37 @@ if (ADS_TAG_ID) css += `
 .consent .c-btns button{flex:1;font:inherit;font-weight:800;font-size:.9375rem;padding:10px 12px;cursor:pointer;border:2px solid var(--ink);background:#fff;color:var(--ink)}
 `;
 
-// consent.js: written only with ADS_TAG_ID (same proven machinery as v2, research/13).
-if (ADS_TAG_ID) {
+// THE CSS INTEGRITY CHECK. A stray "*/" or one unbalanced brace does not break the build and does
+// not look wrong in the file: the browser's parser gives up at that point and silently drops EVERY
+// RULE AFTER IT. On 2026-08-27 a rewritten comment left one line of prose outside its /* */ and the
+// FAQ, the sticky call bar, the guarantee badge, the final call and the footer all shipped unstyled
+// to the live site. A DOM measurement caught it; the build had said "site-v1 built". Now it cannot.
+{
+  let bare = "", i = 0, unclosed = false;
+  while (i < css.length) {
+    const a = css.indexOf("/*", i);
+    if (a < 0) { bare += css.slice(i); break; }
+    bare += css.slice(i, a);
+    const b = css.indexOf("*/", a + 2);
+    if (b < 0) { unclosed = true; break; }
+    i = b + 2;
+  }
+  if (unclosed) throw new Error("styles.css: a /* comment that is never closed.");
+  if (bare.includes("*/")) throw new Error("styles.css: a */ that closes nothing. Every rule after it is dropped by the browser.");
+  let open = 0, close = 0;
+  for (const ch of bare) { if (ch === "{") open++; else if (ch === "}") close++; }
+  if (open !== close) throw new Error(`styles.css: ${open} opening braces against ${close} closing. Everything after the mismatch is dropped by the browser.`);
+}
+
+// consent.js: written only with a tag id (same proven machinery as v2, research/13). One gtag.js
+// loader serves both destinations: the Ads tag (conversions) and the GA4 property (traffic).
+if (TAG_ON) {
   const STR = {};
   for (const [l] of T.LANGS) STR[l] = { t: COPY[l].consentT, p: COPY[l].consentP, refuse: COPY[l].consentRefuse, accept: COPY[l].consentAccept };
   w('assets/js/consent.js', `// Generated by design/site-source/build.js. Do not edit here.
 (function(){
-var ID=${JSON.stringify(ADS_TAG_ID)},CALL=${JSON.stringify(ADS_CALL_LABEL)},WA=${JSON.stringify(ADS_WA_LABEL)};
+var ID=${JSON.stringify(ADS_TAG_ID)},GA=${JSON.stringify(GA4_ID)},CALL=${JSON.stringify(ADS_CALL_LABEL)},WA=${JSON.stringify(ADS_WA_LABEL)};
+var LOADER=ID||GA;
 var KEY='pd_consent',VER=${JSON.stringify(CONSENT_VER)},DAYS=182;
 var STR=${JSON.stringify(STR)};
 var s=STR[(document.documentElement.lang||'fr').slice(0,2)]||STR.fr;
@@ -69,8 +114,8 @@ function save(ok){try{localStorage.setItem(KEY,JSON.stringify({ads:ok,v:VER,t:Da
 var loaded=false;
 function enable(){if(loaded)return;loaded=true;
 gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',analytics_storage:'granted'});
-var sc=document.createElement('script');sc.async=true;sc.src='https://www.googletagmanager.com/gtag/js?id='+ID;document.head.appendChild(sc);
-gtag('js',new Date());gtag('config',ID);}
+var sc=document.createElement('script');sc.async=true;sc.src='https://www.googletagmanager.com/gtag/js?id='+LOADER;document.head.appendChild(sc);
+gtag('js',new Date());if(ID)gtag('config',ID);if(GA)gtag('config',GA);}
 function wipe(){document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(!/^(_ga|_gcl)/.test(n))return;
 ['','domain='+location.hostname+';','domain=.'+location.hostname+';'].forEach(function(d){document.cookie=n+'=;path=/;'+d+'expires=Thu, 01 Jan 1970 00:00:00 GMT';});});}
 var card=null;
@@ -85,7 +130,7 @@ if(e.target.closest('[data-consent-open]')){show();return}
 var a=e.target.closest('a[data-cta]');if(!a||!loaded)return;
 var isWa=a.dataset.cta.indexOf('whatsapp')>-1;
 gtag('event',isWa?'whatsapp_click':'call_click',{cta:a.dataset.cta});
-var lb=isWa?WA:CALL;if(lb)gtag('event','conversion',{send_to:ID+'/'+lb});
+var lb=isWa?WA:CALL;if(ID&&lb)gtag('event','conversion',{send_to:ID+'/'+lb});
 });
 var r=read();if(!r)show();else if(r.ads)enable();
 })();
@@ -147,7 +192,7 @@ function head(lang, paths, m, opts = {}) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="format-detection" content="telephone=no">
-<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');${ADS_TAG_ID ? `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});` : ''}</script>
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');${TAG_ON ? `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});` : ''}</script>
 <title>${m.title}</title>
 <meta name="description" content="${m.desc}">
 <link rel="canonical" href="${HOST}${self}">
@@ -177,7 +222,7 @@ ${alts}
 }
 
 const TAIL = (extra = '') => `
-<script>${T.PAGE_JS}</script>${ADS_TAG_ID ? `
+<script>${T.PAGE_JS}</script>${TAG_ON ? `
 <script src="/assets/js/consent.js" defer></script>` : ''}${extra}
 </body>
 </html>
@@ -204,7 +249,7 @@ function jsonld(c, lang) {
 const LANDING = {}; for (const [l] of T.LANGS) LANDING[l] = '/' + l + '/';
 const LEGAL_PATH = { fr: '/fr/confidentialite', nl: '/nl/privacy', en: '/en/privacy' };
 const CGV_PATH = { fr: '/fr/conditions-generales', nl: '/nl/algemene-voorwaarden', en: '/en/terms' };
-const shell = (c, lang) => T.pageHtml(c, { img: IMG, privacyHref: LEGAL_PATH[lang], cgvHref: CGV_PATH[lang], adsTag: !!ADS_TAG_ID });
+const shell = (c, lang) => T.pageHtml(c, { img: IMG, privacyHref: LEGAL_PATH[lang], cgvHref: CGV_PATH[lang], adsTag: TAG_ON });
 function landing(c, lang) {
   const { body } = shell(c, lang);
   return head(lang, LANDING, c.meta) + body + '\n' + jsonld(c, lang) + TAIL();
@@ -215,10 +260,28 @@ for (const [l] of T.LANGS) w(l + '/index.html', landing(COPY[l], l));
 function docShell(lang, paths, main, title, desc) {
   const c = COPY[lang];
   const { body } = shell(c, lang);
-  let header = body.match(/<header[\s\S]*?<\/header>/)[0];
+  // ANCHOR EVERY ONE OF THESE ON ITS OWN CLASS, AND CHECK WHAT CAME BACK. Taking the FIRST footer
+  // element in the page gives Paolo's review-card footer, not the site one, because the featured
+  // review card ships a <footer class="feat-who"> above it. The six legal and CGV pages went live
+  // on 2026-08-27 carrying a stray review credit where the legal mentions, the enterprise number,
+  // the privacy and terms links and the credit line belong; and because the credit line is what
+  // carries <span id="y">, the page script threw on its very first statement, so NOTHING ran on
+  // those pages and the sticky call bar stayed off screen for good. Found by reading the console
+  // on the CGV page. The asserts are the real fix: slicing markup out is fine, slicing it out
+  // without checking what you got is what shipped this.
+  const grab = (openTag, closeTag, must, what) => {
+    const from = body.indexOf(openTag);
+    if (from < 0) throw new Error(`docShell: no ${what} (${openTag}) in the landing body.`);
+    const to = body.indexOf(closeTag, from);
+    if (to < 0) throw new Error(`docShell: the ${what} is never closed by ${closeTag}.`);
+    const out = body.slice(from, to + closeTag.length);
+    for (const needle of must) if (!out.includes(needle)) throw new Error(`docShell: the ${what} it took has no "${needle}" in it, so it matched the wrong element or was cut short.`);
+    return out;
+  };
+  let header = grab('<header class="site-header"', '</header>', ['langswitch', 'header-call'], 'site header');
   for (const [l, p] of Object.entries(paths)) header = header.replace(`href="/${l}/" lang="${l}"`, `href="${p}" lang="${l}"`);
-  const footer = body.match(/<footer[\s\S]*?<\/footer>/)[0];
-  const bar = body.match(/<div class="callbar"[\s\S]*?<\/div>/)[0];
+  const footer = grab('<footer class="site-footer"', '</footer>', ['class="credit"', 'id="y"', 'foot-links'], 'site footer');
+  const bar = grab('<div class="callbar"', '</div>', ['cb-call', 'cb-wa'], 'sticky call bar');
   const m = { title, desc, ogt: title, ogd: desc, locale: c.meta.locale, ogAlt: c.meta.ogAlt };
   return head(lang, paths, m) + `<a class="skip" href="#contenu">${c.skip}</a>\n` + header + '\n' + main + '\n' + footer + '\n' + bar + TAIL();
 }
@@ -230,7 +293,7 @@ const LEGAL_META = {
   en: ['Privacy policy | Pro Débouchage', 'Privacy policy of PRO DEBOUCHAGE SRL. What data we handle, why, for how long, and your rights.'],
 };
 for (const [l] of T.LANGS) {
-  const main = (ADS_TAG_ID
+  const main = (TAG_ON
     ? LEGAL_TEXT[l].replace(/<!--cookies-->[\s\S]*?<!--\/cookies-->/, LEGAL_TEXT.COOKIES_TAG[l])
     : LEGAL_TEXT[l].replace('<!--cookies-->\n', '').replace('\n<!--/cookies-->', ''))
     .replace('<main>', '<main id="contenu">');
@@ -305,7 +368,7 @@ w('_headers', `/*
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
-  ${ADS_TAG_ID ? CSP_TAG : CSP_DAY1}
+  ${TAG_ON ? CSP_TAG : CSP_DAY1}
 
 # Preview hosts only: never index ANY *.pages.dev host. Written with placeholders, not with the
 # project name, so moving the preview to another Pages project cannot silently make it indexable
@@ -325,7 +388,7 @@ https://:version.:project.pages.dev/*
   Cache-Control: public, max-age=604800
 /site.webmanifest
   Cache-Control: public, max-age=604800
-${ADS_TAG_ID ? `/assets/js/consent.js
+${TAG_ON ? `/assets/js/consent.js
   Cache-Control: public, max-age=3600
 ` : ''}`);
 

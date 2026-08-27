@@ -4,7 +4,7 @@
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; frame-src 'none'; media-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://*.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.doubleclick.net https://*.google.com https://*.google.be https://*.google.nl https://*.google.fr; font-src 'self'; connect-src 'self' https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.googleadservices.com https://*.doubleclick.net https://pagead2.googlesyndication.com https://*.google.com https://*.google.be https://*.google.nl https://*.google.fr; frame-src https://td.doubleclick.net https://www.googletagmanager.com; media-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
 
 # Preview hosts only: never index ANY *.pages.dev host. Written with placeholders, not with the
 # project name, so moving the preview to another Pages project cannot silently make it indexable
@@ -24,3 +24,5 @@ https://:version.:project.pages.dev/*
   Cache-Control: public, max-age=604800
 /site.webmanifest
   Cache-Control: public, max-age=604800
+/assets/js/consent.js
+  Cache-Control: public, max-age=3600

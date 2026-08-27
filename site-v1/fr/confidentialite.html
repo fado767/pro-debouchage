@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="format-detection" content="telephone=no">
-<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});</script>
 <title>Politique de vie privée | Pro Débouchage</title>
 <meta name="description" content="Politique de vie privée de PRO DEBOUCHAGE SRL. Quelles données nous traitons, pourquoi, combien de temps, et vos droits.">
 <link rel="canonical" href="https://prodebouchage24.be/fr/confidentialite">
@@ -66,6 +66,17 @@
   font-weight:100 900;font-stretch:62% 125%;font-style:normal;font-display:swap;
   unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
+/* Caveat, the handwriting, for ONE decorative note on the before/during/after collage (Fady
+   2026-08-27, from his own Figma composition). SUBSETTED to the 15 glyphs those three strings need,
+   which is why it costs 8KB instead of 75: "Fait en 20 min", "Klaar in 20 min", "Done in 20 min".
+   Change that copy and the missing letters silently fall back to a system script face, so build.js
+   asserts every character against the range below and fails the build instead. */
+@font-face{
+  font-family:'Caveat';
+  src:url('/assets/fonts/caveat-note.woff2') format('woff2');
+  font-weight:600;font-style:normal;font-display:swap;
+  unicode-range:U+20,U+30,U+32,U+44,U+46,U+4B,U+61,U+65,U+69,U+6C-6F,U+72,U+74;
+}
 /* metric-matched fallback so the swap never shifts a line */
 @font-face{
   font-family:'Archivo Fallback';
@@ -88,6 +99,14 @@
   --t-label:.8125rem;
   --wrap:1160px;--gut:20px;
   --bar-h:72px;
+  /* ONE timing for the sticky bar and the guarantee badge that rides it. They MUST stay equal or
+     the two stop moving as one object. Fady 2026-08-27: 250ms "jumped suddenly"; 420ms on an
+     out-quint curve read as UNCHANGED to him, and he was right, because out-quint covers two thirds
+     of the distance in the first fifth of the time, so a longer duration only lengthens the tail
+     nobody sees. The fix is the CURVE, not the number: a standard ease-in-out spends real time
+     accelerating, so the bar reads as arriving instead of appearing. 480ms with a fade on top. */
+  --cb-dur:.48s;--cb-ease:cubic-bezier(.4,0,.2,1);
+  --hand:'Caveat','Segoe Script','Bradley Hand',cursive;
   --stretch-d:80%;--stretch-tight:-0.03em;--track-title:-.02em;--track-label:.09em;
   --r-btn:10px;--r-img:12px;--r-card:14px;--r-dot:2px;
   /* THE ALL-CAPS SWITCH (Fady 2026-08-26, may be reverted). These three lines govern every section
@@ -133,6 +152,13 @@ h3{font-size:var(--t-h3);font-weight:900;line-height:1.25}
 /* section rhythm: kicker, big H2, mark rule.
    Tightened 2026-08-26 (Fady): the old clamp left too much air between every band. */
 section{padding-block:clamp(44px,6.4vw,84px)}
+/* TWO BANDS ON THE SAME BACKGROUND HAVE NO SEAM, so their two paddings read as one dead gap: 168px
+   of nothing between "Notre façon de travailler" and the equipment band (Fady 2026-08-27, and the
+   same fault the before/after band was fixed for on 2026-08-26). The LOWER band gives up its top
+   padding and the band above supplies the whole separation, so a colour change is worth two
+   paddings and a shared colour is worth one. General on purpose: reorder the sections and the
+   rhythm still holds. */
+.s-paper + .s-paper,.s-card + .s-card,.s-ink + .s-ink{padding-top:0}
 .kicker{font-size:var(--t-label);font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--teal);margin:0 0 10px}
 .s-ink .kicker{color:var(--mark)}
 .rule{border:0;width:64px;height:5px;border-radius:var(--r-dot);background:var(--mark);margin:18px 0 26px}
@@ -153,11 +179,19 @@ section{padding-block:clamp(44px,6.4vw,84px)}
 .btn-call:hover,.btn-call:focus-visible{background:var(--cta-press);box-shadow:0 3px 0 #8E2409}
 .btn-wa{background:var(--teal-soft);color:var(--teal);border-color:var(--teal);box-shadow:0 3px 0 rgba(11,122,112,.3)}
 .btn-wa:hover,.btn-wa:focus-visible{background:#D8EAE7}
-.s-ink .btn-wa{background:transparent;color:#fff;border-color:#6FBFB6;box-shadow:0 3px 0 rgba(111,191,182,.35)}
-.s-ink .btn-wa:hover{background:rgba(255,255,255,.08)}
+/* On the dark band the WhatsApp button used to be a hollow outline standing beside a solid red one,
+   so the pair stopped being one object (Fady 2026-08-27). It is FILLED here, in the brand teal with
+   white on it, exactly like the WhatsApp key in the mobile call bar: same shape, same height, same
+   ledge as its partner, only the colour saying which one is primary. */
+.s-ink .btn-wa{background:var(--teal);color:#fff;border-color:var(--teal);box-shadow:0 3px 0 #08554E}
+.s-ink .btn-wa:hover,.s-ink .btn-wa:focus-visible{background:#0A6A61;border-color:#0A6A61}
 /* one column on phones, both auto and side by side from 56rem: neither label shrinks its button */
 .actions .btn{width:100%;max-width:460px}
 @media (min-width:56rem){.actions .btn{width:auto;max-width:none}}
+/* The ONE deliberate exception to the single button size: a secondary action that must not compete
+   with "Appeler". Used once, on the review invitation (Fady 2026-08-27). */
+.btn-sm{min-height:50px;padding:8px 20px;font-size:1rem}
+.btn-sm svg{width:18px;height:18px}
 .btn-ghost{border-color:var(--ink);color:var(--ink)}
 .btn-ghost:hover{background:var(--ink);color:#fff}
 .link-call{color:var(--cta);font-weight:800;text-decoration-thickness:2px;text-underline-offset:4px}
@@ -221,15 +255,24 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
   .ticker .tick-set{flex-wrap:wrap;min-width:0}
 }
 /* mobile swipe carousel */
-.hero-car{margin-top:26px}
+.hero-car{position:relative;margin-top:26px;margin-bottom:34px}
 .car-track{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);padding-inline:var(--gut);overscroll-behavior-x:contain;scrollbar-width:none}
 .car-track::-webkit-scrollbar{display:none}
 .car-slide{flex:0 0 78vw;max-width:380px;scroll-snap-align:start}
 .car-slide img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-img)}
-.car-dotwrap{display:flex;justify-content:center;padding-top:18px;padding-bottom:30px}
-.car-dots{display:flex;gap:13px}
-.car-dot{width:7px;height:7px;background:#C9C2B6;border-radius:50%}
-.car-dot.on{background:var(--ink);transform:scale(1.45)}
+/* THE SWIPE HINT replaces the dots (Fady 2026-08-27): dots say "there are 10 photos", which nobody
+   needs. THE CHIP ITSELF IS THE ARROW (his second note, same day): a banner running in from the left
+   edge of the screen and ending in a point aimed the way the photos move, instead of a rounded pill
+   with a little arrow drawn inside it. It bleeds off the left edge, lands on the bottom-left corner
+   of the first photo, and sits on .hero-car rather than inside the scroller, so the photos travel
+   under it. It STAYS: it used to fade on first touch, which meant it vanished the instant you
+   touched the thing it was pointing at. The point is cut with clip-path, so the shadow has to be a
+   filter (a box-shadow would be clipped away with the corners). */
+.car-hint{position:absolute;left:0;bottom:14px;z-index:3;margin:0;display:flex;align-items:center;
+  padding:11px 30px 11px 20px;background:var(--ink);color:#fff;font-weight:800;font-size:.875rem;
+  letter-spacing:-.01em;white-space:nowrap;
+  clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%);
+  filter:drop-shadow(0 4px 10px rgba(16,42,74,.32))}
 
 /* ---------- trust marquee ---------- */
 .trust{background:var(--ink);padding-block:0;border-block:0}
@@ -390,6 +433,22 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .ba-pic-3{left:44%;top:62%;width:53%;rotate:-2.5deg}
 .ba-ar-1{left:38%;top:6%;width:16.5%;rotate:-14deg}
 .ba-ar-3{left:82.5%;top:53%;width:11%}
+/* THE HANDWRITTEN NOTE (Fady 2026-08-27, from his own composition): two short lines in Caveat with
+   a yellow swoosh under the number, the first piece of the "one pen" pass that will eventually
+   redraw the arrows too. Placed like everything else here, in PERCENT of the collage box.
+   Phone: the empty bottom-left corner, exactly where Fady drew it, clear of photo 3 (left 44%).
+   Wide: ABOVE the collage, hard right, over the after photo's column. Measured on the live page
+   2026-08-27: the wide row is packed edge to edge (the widest gap between two photos is 60px) but
+   the heading block beside it is empty from x=680 to the right margin, because the H2 never runs
+   past two thirds of the wrap in any of the three languages. Anchored to the RIGHT edge, not to a
+   left percentage, so a narrower desktop cannot walk it back into the headline. */
+.ba-note{position:absolute;z-index:5;margin:0;font-family:var(--hand);font-weight:600;
+  color:var(--ink);line-height:.95;white-space:nowrap;rotate:-7deg;transform-origin:left bottom;
+  pointer-events:none}
+.ba-note > span{display:block}
+.ba-note > span.ba-note-2{position:relative;display:inline-block}
+.ba-note-u{position:absolute;left:-3%;bottom:-.16em;width:106%;height:auto;overflow:visible}
+.ba-note{left:6%;top:79%;font-size:clamp(1.4rem,6.9vw,2.4rem)}
 @media (min-width:56rem){
   .ba-collage{aspect-ratio:330/100}
   .only-wide{display:block}
@@ -402,6 +461,15 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
   .ba-pic-3{left:69%;top:4%;width:25%;rotate:-2.5deg}
   .ba-ar-1{left:27%;top:30%;width:8.6%;rotate:-6deg}
   .ba-ar-2{left:61%;top:41.5%;width:9%;rotate:4deg}
+  /* The note lives in the band between the heading and the photos, so that band has to be tall
+     enough to hold it at every width. 64px instead of 36 buys 96px of clearance against a note
+     that is at most ~80px tall; without it the Dutch heading, which runs to 95% of the wrap at
+     900px, ends 15px above the note's first letter. This white is OCCUPIED, not dead. 80px and a
+     24px standoff after Fady asked for more air around the note (2026-08-27): the photos are left
+     alone, the room comes from the band the note lives in. */
+  .ba-collage{margin-top:80px}
+  .ba-note{left:auto;right:0;top:auto;bottom:calc(100% + 24px);transform-origin:right bottom;
+    font-size:clamp(1.5rem,2.6vw,2.2rem);rotate:-8deg;text-align:right}
 }
 @media (prefers-reduced-motion:reduce){.ba-pic,.ba-edge{rotate:none}}
 
@@ -413,7 +481,11 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .scam-list li::before{content:"";flex:0 0 12px;width:12px;height:12px;margin-top:8px;border-radius:var(--r-dot);background:var(--cta)}
 .us-list li::before{content:"";flex:0 0 12px;width:12px;height:12px;margin-top:8px;border-radius:var(--r-dot);background:var(--mark)}
 .scam-h3{color:#fff;font-size:clamp(1.25rem,1.05rem + 1vw,1.5rem);text-transform:var(--case-head);font-stretch:100%;letter-spacing:var(--track-head)}
-.s-ink .btn-call{margin-top:34px}
+/* Scoped to THIS band's own button (Fady 2026-08-27). As `.s-ink .btn-call` it also hit the final
+   call section, where the call button sits in a flex row with the WhatsApp one: 34px of top margin
+   on one of the pair and none on the other, so the two buttons stood at different heights. That is
+   the "WA cta looking weird" he saw; the pair is ONE object and must never be split by a margin. */
+.scam-cols ~ .btn-call{margin-top:34px}
 
 /* ---------- the cited fact: an inline source the visitor can open in place ----------
    Fady 2026-08-26: the victim number is the one hard claim on the page, so it has to be checkable
@@ -524,8 +596,20 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .feat-who .name{font-weight:900;color:var(--ink)}
 .feat-meta{color:var(--muted);font-size:.875rem}
 .feat-note{opacity:.85}
-.feat-g{color:var(--muted);margin-top:clamp(20px,2.6vw,30px)}
-.feat-card + .feat-g + .ask{margin-top:6px}
+/* Under Paolo's card. Two loose muted sentences used to sit here with a gap between them that read
+   as a mistake on a wide screen and fine on a phone (Fady 2026-08-27). They are now ONE object with
+   a job: it says why there is a single review, and it gives the visitor the way to send the next
+   one. The only secondary CTA on the page, deliberately smaller than "Appeler".
+   ONE COLUMN AT EVERY WIDTH (Fady 2026-08-27: the phone version was right, the desktop one wasn't).
+   Text left, button under it, was: text in a 474px column beside a 212px button, which left a hole
+   in the panel's bottom-right corner that no amount of vertical centring closed. */
+.rev-ask{max-width:760px;margin-top:16px;background:var(--teal-soft);border:1px solid rgba(11,122,112,.22);border-radius:var(--r-card);padding:clamp(18px,2.6vw,26px);display:grid;justify-items:start;gap:18px}
+.rev-ask p{margin:0;color:var(--ink)}
+.rev-ask .rev-t{font-weight:800;font-size:clamp(1.0625rem,1rem + .3vw,1.1875rem);line-height:1.35;text-wrap:balance}
+.rev-ask .rev-p{margin-top:8px;font-size:.9375rem;color:var(--muted);line-height:1.55;max-width:64ch;text-wrap:pretty}
+.rev-ask .btn{justify-self:start;white-space:nowrap}
+.rev-ask .btn-wa{background:#fff}
+.rev-ask .btn-wa:hover,.rev-ask .btn-wa:focus-visible{background:#D8EAE7}
 
 /* ---------- situations ---------- */
 .segs{display:grid;gap:0;margin-top:8px;border-top:1px solid var(--line-ink)}
@@ -541,22 +625,42 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .towns li{font-weight:600;color:var(--ink);font-size:.9375rem;display:flex;align-items:center;gap:10px;white-space:nowrap}
 .towns li::before{content:"";flex:0 0 8px;width:8px;height:8px;border-radius:var(--r-dot);background:var(--mark)}
 
-/* ---------- FAQ ---------- */
+/* ---------- FAQ ----------
+   Rebuilt 2026-08-27 (Fady: "jittery, not smooth at all"). Three real faults, all invisible in a
+   screenshot and all felt under the finger:
+   1. .answer carried the bottom padding while its height was animated to 0. With border-box, a box
+      cannot be shorter than its own padding, so every close stopped dead at 20px and then snapped
+      to nothing when the panel unmounted. The padding now lives on the paragraph inside, so 0 is 0.
+   2. The chevron's open state was keyed off [open], which JS keeps true until the close animation
+      ENDS, so the arrow hung upside down for the whole close. It is keyed off .is-open now, and the
+      [open] fallback is scoped to the no-JS page, where it is the only thing that can work.
+   3. A 320ms "busy" lock swallowed the next click, which reads as a dead accordion. Gone: the
+      script cancels the running animation and reverses from wherever it is. */
 .faq{max-width:800px}
 .faq details{border-bottom:1px solid var(--line-ink)}
-.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:56px;padding:16px 0;font-weight:800;letter-spacing:var(--track-title);font-size:1.0625rem;color:var(--ink)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:56px;padding:16px 0;font-weight:800;letter-spacing:var(--track-title);font-size:1.0625rem;color:var(--ink);
+  user-select:none;-webkit-tap-highlight-color:transparent;transition:color .18s ease}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"";flex:0 0 14px;width:14px;height:14px;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);rotate:45deg;translate:0 -4px;transition:rotate .3s cubic-bezier(.22,1,.36,1),translate .3s cubic-bezier(.22,1,.36,1)}
-.faq details.is-open summary::after,.faq details[open]:not(.js-faq) summary::after{rotate:225deg;translate:0 4px}
-@media (prefers-reduced-motion:reduce){.faq summary::after{transition:none}}
-.faq .answer{padding:0 0 20px;overflow:hidden}
-.faq .answer p{margin:0;max-width:68ch}
+.faq summary::after{content:"";flex:0 0 14px;width:14px;height:14px;border-right:3px solid currentColor;border-bottom:3px solid currentColor;rotate:45deg;translate:0 -4px;transition:rotate .3s cubic-bezier(.22,1,.36,1),translate .3s cubic-bezier(.22,1,.36,1)}
+.faq details.is-open summary,.faq details.is-open summary::after{color:var(--teal)}
+@media (hover:hover){.faq summary:hover{color:var(--teal)}}
+.faq details.is-open summary::after{rotate:225deg;translate:0 4px}
+.no-js .faq details[open] summary::after{rotate:225deg;translate:0 4px}
+@media (prefers-reduced-motion:reduce){.faq summary::after,.faq summary{transition:none}}
+.faq .answer{padding:0;overflow:hidden}
+.faq .answer p{margin:0;padding-bottom:20px;max-width:68ch}
 
-/* ---------- final call (left aligned, the number carries the yellow underline) ---------- */
+/* ---------- final call (left aligned, the number carries the page's own marker) ----------
+   The number used to hang a detached 6px rule under itself, which is a fifth way of using yellow on
+   a page that already has exactly one: the highlighter stroke (.hl, .p-amt, .cite). It now carries
+   the SAME stroke as every price on the page, one step thicker because the type is five times
+   bigger, and it grows on hover the way the cited fact does. (Fady 2026-08-27.) */
 .finalcall h2{margin-bottom:10px}
-.bignum{display:inline-block;font-size:clamp(2.6rem,1.5rem + 7vw,6rem);font-weight:900;font-stretch:82%;letter-spacing:-.01em;color:#fff;text-decoration:none;line-height:1.05;margin:10px 0 30px;padding-bottom:10px;border-bottom:6px solid var(--mark)}
-.bignum:hover{color:var(--mark)}
-.finalcall .actions{display:flex;flex-wrap:wrap;gap:14px}
+.bignum{display:inline-block;font-size:clamp(2.6rem,1.5rem + 7vw,6rem);font-weight:900;font-stretch:82%;letter-spacing:-.01em;color:#fff;text-decoration:none;line-height:1.05;margin:10px 0 30px;padding-bottom:6px;
+  background-image:linear-gradient(var(--mark),var(--mark));background-repeat:no-repeat;background-position:0 88%;background-size:100% .16em;
+  transition:background-size .22s ease,color .18s ease}
+.bignum:hover,.bignum:focus-visible{color:var(--mark);background-size:100% .3em}
+.finalcall .actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:4px}
 .finalcall .hours{color:var(--on-ink-muted);font-size:.9375rem;margin-top:22px;max-width:56ch}
 
 /* ---------- footer ----------
@@ -586,12 +690,12 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
    <head>, so the bar starts off-screen with no flash; without JS it simply stays visible, which is
    the safe failure for the page's main conversion element. Space for it is reserved by the body's
    padding-bottom either way, so nothing shifts when it slides in. */
-.callbar{position:fixed;left:0;right:0;bottom:0;z-index:200;display:flex;gap:10px;background:var(--ink);padding:10px 12px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));box-shadow:0 -2px 12px rgba(16,42,74,.25);transition:transform .25s cubic-bezier(.32,.72,0,1)}
+.callbar{position:fixed;left:0;right:0;bottom:0;z-index:200;display:flex;gap:10px;background:var(--ink);padding:10px 12px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));box-shadow:0 -2px 12px rgba(16,42,74,.25);transition:transform var(--cb-dur) var(--cb-ease),opacity var(--cb-dur) ease}
 /* translateY(0), never "none": interpolating a percentage transform against none is what made the
    bar jump instead of slide (Fady saw a flash of the page, then a pop). The state class lives on
    <html> so the floating badge can ride the same class and the same timing. */
-.js .callbar{transform:translateY(calc(100% + 14px));pointer-events:none}
-.js.cb-on .callbar{transform:translateY(0);pointer-events:auto}
+.js .callbar{transform:translateY(calc(100% + 14px));opacity:0;pointer-events:none}
+.js.cb-on .callbar{transform:translateY(0);opacity:1;pointer-events:auto}
 .cb-call{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--cta);color:#fff;font-weight:800;font-size:1.0625rem;text-decoration:none;min-height:52px;border-radius:var(--r-btn)}
 .cb-call:active{background:var(--cta-press)}
 .cb-call svg{width:20px;height:20px;fill:currentColor}
@@ -607,25 +711,51 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .js .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
 
-/* ---------- floating guarantee badge (ported from v2 on Fady's ask, 2026-08-26 morning) ---------- */
-/* The badge rides ON the call bar instead of sitting where the bar would be: it rests 14px off the
+/* ---------- floating guarantee badge (ported from v2 2026-08-26; made to EXPAND 2026-08-27) ----------
+   The badge rides ON the call bar instead of sitting where the bar would be: it rests 14px off the
    bottom while the bar is away, and the bar's arrival pushes it up by exactly the bar's height, in
-   the same 250ms and the same easing, so the two move as one (Fady 2026-08-26). --cb-lift composes
-   with the bye/away transform so a single transition covers both. */
-.guar-float{--cb-lift:0px;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:95;transform:translateY(var(--cb-lift));transition:transform .25s cubic-bezier(.32,.72,0,1),opacity .35s ease}
+   the same duration and easing (--cb-dur / --cb-ease), so the two move as one. --cb-lift composes
+   with the bye/away transform so a single transition covers both.
+   WHAT CHANGED 2026-08-27 (Fady): it no longer pops a separate card ABOVE itself. The badge IS the
+   card. The seal keeps its place against the right edge of the screen and the yellow box grows out
+   of it leftwards, which is why the seal appears to travel left: it is pinned to the left edge of a
+   box whose right edge never moves. Same content as the old popover, plus an X.
+   The open height cannot be a CSS value (it depends on how the title wraps), so the script measures
+   it once at the final width and animates to that pixel value, then releases it to auto. */
+.guar-float{--cb-lift:0px;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:95;transform:translateY(var(--cb-lift));transition:transform var(--cb-dur) var(--cb-ease),opacity .35s ease}
 .guar-float.guar-bye,.guar-float.guar-away{opacity:0;transform:translateY(calc(var(--cb-lift) + 10px));pointer-events:none}
 /* only where the bar exists; from 1000px it is display:none and the badge keeps its own corner */
 @media (max-width:999.98px){.cb-on .guar-float{--cb-lift:calc(-1 * var(--bar-h))}}
 @media (min-width:1000px){.guar-float{right:24px;bottom:24px}}
-.guar-fab{position:relative;display:block;width:78px;height:78px;border-radius:50%;background:var(--mark);border:0;padding:0;cursor:pointer;box-shadow:0 4px 18px rgba(16,42,74,.3);transition:transform .15s ease}
-.guar-fab:hover,.guar-fab:focus-visible{transform:scale(1.06)}
-@media (min-width:1000px){.guar-fab{width:100px;height:100px}}
-/* the popover keeps v2's hierarchy: bold sentence-case title, calm body, rounded card */
-.guar-pop{position:absolute;right:0;bottom:calc(100% + 12px);width:min(340px,calc(100vw - 28px));background:var(--mark);color:var(--ink);border-radius:var(--r-card);padding:20px 22px;box-shadow:0 10px 30px rgba(16,42,74,.35);animation:pop-in .25s cubic-bezier(.22,1,.36,1)}
-.guar-pop h3{margin:0 0 6px;font-size:1.125rem;font-weight:900;color:var(--ink);text-transform:none;font-stretch:100%;letter-spacing:-.02em;line-height:1.25}
+/* the morphing box: a 78px yellow disc closed, a 340px yellow card open */
+.guar-card{--guar-d:78px;position:relative;width:var(--guar-d);height:var(--guar-d);border-radius:50%;background:var(--mark);box-shadow:0 4px 18px rgba(16,42,74,.3);overflow:hidden;
+  transition:width .42s cubic-bezier(.22,1,.36,1),height .42s cubic-bezier(.22,1,.36,1),border-radius .34s ease,box-shadow .34s ease}
+@media (min-width:1000px){.guar-card{--guar-d:100px}}
+/* Phones get the FULL width the screen allows (Fady 2026-08-27), tablets and desktop a fixed card:
+   340px was one hair narrower than full width on a 375px phone, which just looked like a mistake. */
+.guar-card.is-open{width:calc(100vw - 28px);border-radius:var(--r-card);box-shadow:0 14px 38px rgba(16,42,74,.38)}
+@media (min-width:700px){.guar-card.is-open{width:360px}}
+.guar-card.no-anim{transition:none}
+/* The seal fills the disc when closed and lands in the open card VERTICALLY CENTRED, not pinned to
+   the top (Fady 2026-08-27), carrying the same plate shadow as the badge in the guarantee band, so
+   the two read as the same stamp rather than as a big one and a small flat one. */
+.guar-fab{position:absolute;left:0;top:0;width:var(--guar-d);height:var(--guar-d);border-radius:50%;background:none;border:0;padding:0;cursor:pointer;
+  transition:width .42s cubic-bezier(.22,1,.36,1),height .42s cubic-bezier(.22,1,.36,1),left .42s cubic-bezier(.22,1,.36,1),top .42s cubic-bezier(.22,1,.36,1),box-shadow .34s ease,transform .15s ease}
+.guar-card.is-open .guar-fab{width:64px;height:64px;left:18px;top:calc(50% - 32px);box-shadow:0 4px 14px rgba(16,42,74,.22)}
+.guar-fab:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+@media (hover:hover){.guar-card:not(.is-open) .guar-fab:hover{transform:scale(1.06)}}
+/* the content: same hierarchy as v2's popover, laid out clear of the seal and of the X */
+/* padding-left = the seal's 18px inset + its 64px + 16px of air */
+.guar-pop{padding:20px 20px 20px 98px;opacity:0;visibility:hidden;transition:opacity .16s ease}
+.guar-card.is-open .guar-pop{opacity:1;visibility:visible;transition:opacity .3s ease .14s}
+.guar-pop h3{margin:0 0 6px;padding-right:26px;font-size:1.125rem;font-weight:900;color:var(--ink);text-transform:none;font-stretch:100%;letter-spacing:-.02em;line-height:1.25}
 .guar-pop p{margin:0;font-weight:600;font-size:1.0625rem;color:var(--ink)}
-@keyframes pop-in{from{opacity:0;transform:translateY(8px) scale(.97)}}
-@media (prefers-reduced-motion:reduce){.guar-pop{animation:none}}
+.guar-x{position:absolute;right:8px;top:8px;width:34px;height:34px;display:grid;place-items:center;border:0;border-radius:50%;background:none;color:var(--ink);cursor:pointer;padding:0;opacity:0;visibility:hidden;transition:opacity .16s ease,background-color .18s ease}
+.guar-card.is-open .guar-x{opacity:1;visibility:visible;transition:opacity .3s ease .14s,background-color .18s ease}
+.guar-x:hover{background:rgba(16,42,74,.1)}
+.guar-x svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;fill:none}
+.guar-x:focus-visible{outline:3px solid var(--ink);outline-offset:1px}
+@media (prefers-reduced-motion:reduce){.guar-card,.guar-fab,.guar-pop,.guar-x{transition:none}}
 
 /* ---------- legal / doc pages ---------- */
 .doc{max-width:820px}
@@ -640,6 +770,15 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
 .chooser .box{max-width:520px;text-align:center;display:grid;gap:14px;justify-items:center}
 .chooser .box img{height:56px;width:auto}
 .chooser .btn{width:100%}
+
+/* consent card + reopen link (built only with the tag layer on) */
+.linklike{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}
+.consent{position:fixed;left:16px;right:16px;bottom:calc(var(--bar-h) + env(safe-area-inset-bottom) + 14px);z-index:290;background:#fff;color:var(--ink);border:1px solid rgba(16,42,74,.15);box-shadow:0 8px 30px rgba(16,42,74,.18);padding:16px;max-width:420px;margin-inline:auto}
+@media (min-width:1000px){.consent{left:auto;right:24px;bottom:24px;margin:0}}
+.consent h2{font-size:1.0625rem;margin:0 0 8px;text-transform:none;font-stretch:100%;letter-spacing:0}
+.consent p{font-size:.9375rem;margin:0 0 12px}
+.consent .c-btns{display:flex;gap:8px}
+.consent .c-btns button{flex:1;font:inherit;font-weight:800;font-size:.9375rem;padding:10px 12px;cursor:pointer;border:2px solid var(--ink);background:#fff;color:var(--ink)}
 </style>
 </head>
 <body>
@@ -657,9 +796,9 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
     <p>PRO DEBOUCHAGE SRL, Guldenschaapstraat 6, 1800 Vilvoorde, Belgique. Numéro d'entreprise 1027.454.187.<br>
     Téléphone&nbsp;: <a href="tel:+32480649649">0480 649 649</a>. E-mail&nbsp;: <a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a>.</p>
 
-    <h2>Ce site ne dépose aucun cookie</h2>
-    <p>Ce site est un site statique. Il ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience, aucun pixel publicitaire et aucun bouton de réseau social. Il n'y a donc rien à accepter ni à refuser. Le jour où nous ajouterons un outil de mesure, une bannière de consentement apparaîtra avant tout dépôt, avec un bouton "Refuser tout" aussi visible et aussi simple que "Accepter tout", et cette page sera mise à jour.</p>
-    <p>Les polices de caractères et les images sont hébergées sur notre propre serveur. En ouvrant cette page, votre navigateur ne demande donc aucun fichier à une autre société.</p>
+    <h2>Cookies et mesure</h2>
+    <p>Ce site utilise un seul outil tiers&nbsp;: la mesure de Google (Google Ireland Ltd), qui nous dit si nos annonces Google amènent des appels et comment nos pages sont utilisées. Rien n'est chargé avant votre choix&nbsp;: une bannière propose "Tout refuser" et "Tout accepter", aussi visibles et aussi simples l'un que l'autre. Si vous acceptez, Google peut déposer des cookies (préfixes _gcl et _ga) sur votre appareil. Votre choix est gardé sur votre appareil, six mois au maximum, puis la question vous est reposée. Vous pouvez changer d'avis à tout moment via le lien "Cookies et mesure" en bas de chaque page&nbsp;; refuser efface ces cookies.</p>
+    <p>Les polices de caractères et les images restent hébergées sur notre propre serveur. Tant que vous n'avez pas accepté, votre navigateur ne demande aucun fichier à une autre société en ouvrant cette page.</p>
     <p>Une seule exception, et elle ne vient pas de nous&nbsp;: notre hébergeur, Cloudflare Pages, ajoute lui-même deux en-têtes techniques à chaque page (NEL et Report-To), et nous ne pouvons pas les retirer. Ils servent uniquement à signaler une erreur technique si une page n'arrive pas à se charger. Dans ce cas, le navigateur envoie un rapport technique à Cloudflare. Lors de nos tests, aucun rapport de ce genre n'a été envoyé.</p>
     <p>Notre hébergeur enregistre des journaux techniques (adresse IP, date, page demandée, type de navigateur) pour la sécurité et le bon fonctionnement du site. Ces journaux sont conservés brièvement et ne servent pas à vous profiler.</p>
 
@@ -694,7 +833,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:9.9cqw}
   </div>
 </section>
 </main>
-<footer class="feat-who"><div class="ini" aria-hidden="true">P</div><div><div class="name">Paolo</div><div class="feat-meta">Premier avis client, reçu en août 2026.</div></div></footer>
+<footer class="site-footer"><div class="wrap"><div class="cols"><div><span class="foot-logo"><img src="/assets/img/logo-icon.svg" width="816" height="499" alt="Pro Débouchage" loading="lazy"></span><p>Débouchage, curage, inspection caméra, fosse septique et pompage de cave. Autour de Bruxelles, en Brabant flamand et en Brabant wallon, 24h/24.</p><p><a class="foot-tel" href="tel:+32480649649" data-cta="footer-call">0480 649 649</a><br><a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a></p></div><div class="legal"><h2>Mentions légales</h2><p>PRO DEBOUCHAGE SRL<br>Guldenschaapstraat 6, 1800 Vilvoorde, Belgique<br>Numéro d'entreprise 1027.454.187<br>E-mail : info@prodebouchage24.be<br>Téléphone : 0480 649 649</p><p>Les prix affichés sont TVA 6 % comprise (habitation privée de plus de 10 ans).</p><p class="foot-note">Toutes les photos viennent de nos propres interventions. La photo « avant » de la section preuve a été reconstituée d'après notre photo d'origine.</p><div class="foot-links"><a href="/fr/confidentialite">Politique de vie privée</a><a href="/fr/conditions-generales">Conditions générales</a><a href="/nl/" lang="nl" hreflang="nl-BE">Nederlands</a><a href="/en/" lang="en" hreflang="en-BE">English</a><button type="button" class="linklike" data-consent-open>Cookies et mesure</button></div></div></div><p class="credit">&copy; <span id="y">2026</span> PRO DEBOUCHAGE SRL. Ce site n'utilise qu'un outil de mesure des appels, et seulement si vous l'acceptez.</p></div></footer>
 <div class="callbar" role="region" aria-label="Appeler"><a class="cb-call" href="tel:+32480649649" data-cta="sticky-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>Appeler 0480 649 649</a><a class="cb-wa" href="https://wa.me/32480649649?text=Bonjour%2C%20j'ai%20un%20probl%C3%A8me%20de%20canalisation%20bouch%C3%A9e.%20Voici%20une%20photo%20et%20ma%20commune%20%3A%20" rel="noopener" data-cta="sticky-whatsapp" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3c.2-.6.2-1.1.2-1.2s-.3-.3-.5-.4z"></path></svg></a></div>
 <script>(function(){
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -715,35 +854,37 @@ var rv=document.querySelectorAll('.rv');for(var i=0;i<rv.length;i++){rv[i].style
 var go=function(){var im=t.querySelectorAll('img[loading="lazy"]');for(var i=0;i<im.length;i++){im[i].removeAttribute('loading')}};
 if(!('IntersectionObserver' in window)){go();return}
 new IntersectionObserver(function(es,o){for(var i=0;i<es.length;i++){if(es[i].isIntersecting){go();o.disconnect();return}}},{rootMargin:'300px'}).observe(t)})();
-/* floating guarantee badge: v2 behavior (open on click; any close fades it for the visit; hidden
-   while the guarantee band is on screen, back on scroll-away) */
-function guarBye(){var w=document.querySelector('.guar-float');if(!w)return;var pop=document.getElementById('guar-pop');pop.setAttribute('hidden','');w.querySelector('[data-guar-toggle]').setAttribute('aria-expanded','false');w.classList.add('guar-bye')}
-document.addEventListener('click',function(e){var pop=document.getElementById('guar-pop');if(!pop)return;var btn=document.querySelector('[data-guar-toggle]');if(e.target.closest('[data-guar-toggle]')){if(pop.hasAttribute('hidden')){pop.removeAttribute('hidden');btn.setAttribute('aria-expanded','true')}else{guarBye()}}else if(!pop.hasAttribute('hidden')&&!e.target.closest('.guar-float')){guarBye()}});
-document.addEventListener('keydown',function(e){var pop=document.getElementById('guar-pop');if(e.key==='Escape'&&pop&&!pop.hasAttribute('hidden')){guarBye()}});
-(function(){var band=document.querySelector('aside.guar');var w=document.querySelector('.guar-float');if(!band||!w||!('IntersectionObserver' in window))return;new IntersectionObserver(function(es){es.forEach(function(en){var pop=document.getElementById('guar-pop');if(en.isIntersecting&&pop&&!pop.hasAttribute('hidden'))return;w.classList.toggle('guar-away',en.isIntersecting)})},{threshold:0.2}).observe(band)})();
+/* floating guarantee badge: the disc EXPANDS into the card (Fady 2026-08-27). The open height
+   depends on how the title wraps, so it cannot be a CSS value: measure it once at the FINAL width
+   with transitions off, animate to that pixel value, then release to auto so a rotation reflows
+   cleanly. Behaviour is otherwise v2's: any close fades the badge for the rest of the visit, and it
+   hides while the guarantee band itself is on screen. */
+(function(){var w=document.querySelector('.guar-float');if(!w)return;
+var card=w.querySelector('.guar-card'),btn=w.querySelector('[data-guar-toggle]'),open=false;
+function measure(){card.classList.add('no-anim');var was=card.classList.contains('is-open');
+card.classList.add('is-open');card.style.height='auto';var h=card.offsetHeight;
+card.style.height='';if(!was)card.classList.remove('is-open');
+void card.offsetHeight;card.classList.remove('no-anim');return h}
+function set(v){if(v===open)return;open=v;btn.setAttribute('aria-expanded',v?'true':'false');
+if(v){var h=measure();card.classList.add('is-open');card.style.height=h+'px'}
+else{card.style.height=card.offsetHeight+'px';void card.offsetHeight;card.classList.remove('is-open');card.style.height=''}}
+card.addEventListener('transitionend',function(e){if(e.target===card&&e.propertyName==='height'&&open)card.style.height='auto'});
+function bye(){set(false);w.classList.add('guar-bye')}
+document.addEventListener('click',function(e){
+if(e.target.closest('[data-guar-close]')){bye();return}
+if(e.target.closest('[data-guar-toggle]')){if(open){bye()}else{set(true)}return}
+if(open&&!e.target.closest('.guar-float'))bye()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&open)bye()});
+var band=document.querySelector('aside.guar');
+if(band&&'IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(en){
+if(en.isIntersecting&&open)return;w.classList.toggle('guar-away',en.isIntersecting)})},{threshold:0.2}).observe(band)}
+})();
 /* the before/after drag slider was replaced on 2026-08-26 by the three-photo story, which needs no
    script at all: no handler here on purpose. */
-/* carousel dots + gentle autoplay until first touch */
-var car=document.querySelector('.hero-car');
-if(car){
-var tr=car.querySelector('.car-track'),dots=[].slice.call(car.querySelectorAll('.car-dot')),ct;
-function stp(){var sl=tr.firstElementChild;return sl?sl.getBoundingClientRect().width+10:0}
-function cur(){var s=stp();if(!s)return 0;var i=Math.round(tr.scrollLeft/s);return Math.max(0,Math.min(dots.length-1,i))}
-tr.addEventListener('scroll',function(){if(ct)return;ct=1;requestAnimationFrame(function(){ct=0;
-var i=cur();for(var j=0;j<dots.length;j++)dots[j].className='car-dot'+(j===i?' on':'')})},{passive:true});
-if(!reduce&&'IntersectionObserver' in window){
-var auto=true,timer=null;
-var stop=function(){if(timer){clearInterval(timer);timer=null}};
-var start=function(){if(!auto||timer)return;timer=setInterval(function(){
-var i=cur()+1;if(i>dots.length-1)i=0;
-tr.scrollTo({left:i*stp(),behavior:'smooth'})},2500)};
-var kill=function(){auto=false;stop()};
-tr.addEventListener('touchstart',kill,{passive:true});
-tr.addEventListener('pointerdown',kill,{passive:true});
-tr.addEventListener('wheel',kill,{passive:true});
-new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){start()}else{stop()}})},{threshold:0.4}).observe(car);
-}
-}
+/* The hero carousel has NO SCRIPT (Fady 2026-08-27): the dots went with the swipe hint, and the
+   gentle autoplay went with them, because the strip moving on its own contradicted the arrow asking
+   the visitor to move it. It is a scroll-snap strip and nothing else. Do not put the timer back
+   without putting the hint's fade back too. */
 /* sticky call bar: hidden while the hero's CTA pair is on screen, slides in once it leaves */
 (function(){var de=document.documentElement,act=document.querySelector('.hero .actions');
 if(!document.querySelector('.callbar'))return;
@@ -762,20 +903,32 @@ p.addEventListener('keydown',function(e){if(e.key!=='Tab')return;var f=p.querySe
 (function(){var st=document.querySelector('.steps');if(!st)return;
 if(reduce||!('IntersectionObserver' in window)){st.classList.add('go');return}
 new IntersectionObserver(function(es,ob){es.forEach(function(e){if(e.isIntersecting){st.classList.add('go');ob.disconnect()}})},{threshold:0.25}).observe(st)})();
-/* FAQ: fluid open and close (WAAPI), one open at a time; plain details without JS */
+/* FAQ, rebuilt 2026-08-27 (Fady: "jittery, not smooth at all"). One open at a time; a plain,
+   fully working <details> list without JS.
+   The rules that make it smooth, all learned from what was wrong before:
+   - measure the target height AFTER cancelling whatever is running, never from scrollHeight while
+     an animation is mid-flight (that is what made a fast second click stutter);
+   - take the CURRENT rendered height as the start, so a reversal continues from where the panel
+     actually is instead of snapping to 0 or to full height first;
+   - the element stays [open] for the whole close and only unmounts on finish, while .is-open comes
+     off immediately, so the chevron turns with the panel and not 300ms after it;
+   - no input lock. Every click lands, and a running animation is simply replaced. */
 (function(){var ds=[].slice.call(document.querySelectorAll('.faq details'));if(!ds.length)return;
-var busy=false;
-function closeD(d,animate){var b=d.querySelector('.answer');d.classList.remove('is-open');
-if(!animate||reduce||!b.animate){d.open=false;return}
-var a=b.animate([{blockSize:b.scrollHeight+'px',opacity:1},{blockSize:'0px',opacity:0}],{duration:260,easing:'cubic-bezier(.4,0,.2,1)'});
-a.onfinish=function(){d.open=false};}
-function openD(d){d.open=true;d.classList.add('is-open');var b=d.querySelector('.answer');
-if(reduce||!b.animate)return;
-b.animate([{blockSize:'0px',opacity:0},{blockSize:b.scrollHeight+'px',opacity:1}],{duration:300,easing:'cubic-bezier(.22,1,.36,1)'});}
+var DUR=300,EASE='cubic-bezier(.22,1,.36,1)';
+function run(d,want){var b=d.querySelector('.answer');
+var from=d.open?b.getBoundingClientRect().height:0;
+if(d._a){d._a.cancel();d._a=null}
+d.open=true;d.classList.toggle('is-open',want);
+var to=want?b.getBoundingClientRect().height:0;
+if(reduce||!b.animate||from===to){d.open=want;return}
+var a=b.animate([{height:from+'px',opacity:from?1:0},{height:to+'px',opacity:want?1:0}],{duration:DUR,easing:EASE});
+d._a=a;
+a.onfinish=function(){if(d._a===a)d._a=null;d.open=want};
+a.oncancel=function(){if(d._a===a)d._a=null}}
 ds.forEach(function(d){if(d.open)d.classList.add('is-open');
 d.querySelector('summary').addEventListener('click',function(e){e.preventDefault();
-if(busy)return;busy=true;setTimeout(function(){busy=false},320);
-if(d.open){closeD(d,true)}else{ds.forEach(function(o){if(o!==d&&o.open)closeD(o,true)});openD(d)}})});
+if(d.open&&d.classList.contains('is-open')){run(d,false)}
+else{ds.forEach(function(o){if(o!==d&&o.classList.contains('is-open'))run(o,false)});run(d,true)}})});
 })();
 /* click taxonomy shim: ready for the Ads tag day, zero requests today */
 window.dataLayer=window.dataLayer||[];
@@ -783,5 +936,6 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-cta
 window.dataLayer.push({event:a.dataset.cta.indexOf('whatsapp')>-1?'whatsapp_click':'call_click',cta:a.dataset.cta,lang:document.documentElement.lang.slice(0,2),ts:Date.now()});
 },{passive:true});
 })();</script>
+<script src="/assets/js/consent.js" defer></script>
 </body>
 </html>

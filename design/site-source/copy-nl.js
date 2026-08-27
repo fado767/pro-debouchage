@@ -3,10 +3,13 @@
 module.exports = {
   lang: 'nl-BE', dir: 'nl',
   wa: 'https://wa.me/32480649649?text=' + encodeURIComponent('Hallo, ik heb een verstopping. Hier is een foto en mijn gemeente: '),
+  // Eigen aanhef: een beoordeling in de klusdraad leest als een klacht.
+  waReview: 'https://wa.me/32480649649?text=' + encodeURIComponent('Hallo, hier is mijn beoordeling van jullie werk: '),
   skip: 'Naar de inhoud', langNav: 'Taal kiezen',
   callHeader: 'Bellen', callBar: 'Bel 0480 649 649', waBar: 'WhatsApp',
   waAria: 'Stuur een foto via WhatsApp',
   carAria: `Foto's van onze interventies, veeg om te bladeren`,
+  swipe: 'Veeg voor meer',
 
   meta: {
     title: 'Ontstopping 24/7 rond Brussel | Prijs aan de telefoon',
@@ -105,6 +108,9 @@ module.exports = {
       'Onze technieker in Pro Débouchage-vest ontstopt de wc met een Rioned-machine.'],
     ['Na', 'Dezelfde wc. Het water loopt weer.',
       'Dezelfde wc, proper en ontstopt, na de interventie.']],
+  // Het handgeschreven briefje op de collage. TWEE REGELS, en elke letter moet in de versmalde
+  // Caveat zitten: build.js weigert de build als dat niet klopt.
+  baNote: ['Klaar in', '20 min'],
 
   scamK: 'Goed om weten', scamH: 'Hoe herkent u een malafide ontstoppings­dienst?',
   scamI1: 'De regio Halle-Vilvoorde staat er triest genoeg om bekend: ',
@@ -167,7 +173,10 @@ module.exports = {
       'Een serieus, efficiënt en eerlijk team dat ik zonder aarzelen aanbeveel.'],
     meta: 'Eerste klantenbeoordeling, ontvangen in augustus 2026.',
     note: 'Vertaald uit het Frans.'},
-  featG: 'Onze Google-pagina komt eraan: de volgende beoordelingen staan daar publiek en controleerbaar.',
+  // Onder de kaart: waarom er één staat, en hoe de volgende hier raakt. Kort gehouden.
+  revT: 'Eén beoordeling, want wij plaatsen alleen de echte.',
+  revP: 'Onze Google-pagina komt eraan, de volgende staan daar publiek. Zijn wij bij u langs geweest? Stuur twee regels, wij zetten ze hier, ongewijzigd.',
+  revB: 'Mijn beoordeling sturen',
   askLine: 'Hebt u ons al laten komen? Een eerlijke beoordeling helpt ons meer dan een compliment.',
   honestT: 'Nog geen beoordelingen online, en wij gaan er geen verzinnen.',
   honestP: 'Pro Débouchage is een jong bedrijf, geregistreerd sinds september 2025. Onze eerste klanten kwamen via mond-tot-mondreclame. Onze Google-pagina komt eraan, en de eerste beoordelingen zullen van hen zijn.',

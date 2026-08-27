@@ -3,10 +3,13 @@
 module.exports = {
   lang: 'en-BE', dir: 'en',
   wa: 'https://wa.me/32480649649?text=' + encodeURIComponent("Hello, I have a blocked drain. Here's a photo and my town: "),
+  // Its own opener: a review dropped into the job thread reads like a complaint.
+  waReview: 'https://wa.me/32480649649?text=' + encodeURIComponent("Hello, here's my review of your job: "),
   skip: 'Skip to content', langNav: 'Choose language',
   callHeader: 'Call us', callBar: 'Call 0480 649 649', waBar: 'WhatsApp',
   waAria: 'Send a photo on WhatsApp',
   carAria: 'Photos of our jobs, swipe to browse',
+  swipe: 'Swipe for more',
 
   meta: {
     title: 'Drain unblocking 24/7 around Brussels | Price quoted on the phone',
@@ -107,6 +110,9 @@ module.exports = {
       'Our technician in a Pro Débouchage top unblocking the toilet with a Rioned machine.'],
     ['After', 'The same toilet. The water runs again.',
       'The same toilet, clean and unblocked, after the job.']],
+  // The handwritten note on the collage. TWO LINES, and every letter has to exist in the subsetted
+  // Caveat: build.js refuses the build otherwise.
+  baNote: ['Done in', '20 min'],
 
   scamK: 'Worth knowing', scamH: 'How to spot a drain-unblocking scam',
   scamI1: 'The Halle-Vilvoorde area is sadly known for this: ',
@@ -168,7 +174,10 @@ module.exports = {
       'A serious, efficient and honest team I recommend without hesitation.'],
     meta: 'Our first customer review, received in August 2026.',
     note: 'Translated from French.'},
-  featG: 'Our Google page is on its way; the next reviews will be public and checkable there.',
+  // Under the card: why there is one, and how the next one gets here. Kept short.
+  revT: 'One review, because we only publish the real ones.',
+  revP: "Our Google page is on its way, and the next ones will be public there. Had us round? Send two lines and we'll put them here, exactly as you wrote them.",
+  revB: 'Send my review',
   askLine: 'Used our services? An honest review helps us more than a compliment.',
   honestT: "No reviews online yet, and we won't invent any.",
   honestP: "Pro Débouchage is a young company, registered since September 2025. Our first customers came by word of mouth. Our Google page is coming, and the first reviews will be theirs.",

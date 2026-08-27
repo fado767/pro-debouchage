@@ -6,10 +6,13 @@ const nb = ' ';
 module.exports = {
   lang: 'fr-BE', dir: 'fr',
   wa: 'https://wa.me/32480649649?text=' + encodeURIComponent("Bonjour, j'ai un problème de canalisation bouchée. Voici une photo et ma commune : "),
+  // Its own opener: a review sent on the job's WhatsApp thread reads as a complaint.
+  waReview: 'https://wa.me/32480649649?text=' + encodeURIComponent('Bonjour, voici mon avis sur votre intervention : '),
   skip: 'Aller au contenu', langNav: 'Choisir la langue',
   callHeader: 'Appeler', callBar: 'Appeler 0480 649 649', waBar: 'WhatsApp',
   waAria: 'Envoyer une photo par WhatsApp',
   carAria: 'Photos de nos interventions, faites défiler',
+  swipe: 'Glissez pour voir',
 
   meta: {
     title: 'Débouchage 24h/24 autour de Bruxelles | Prix dit au téléphone',
@@ -115,6 +118,9 @@ module.exports = {
       'Notre technicien en veste Pro Débouchage débouche le WC avec une machine Rioned.'],
     ['Après', `Le même WC. L'eau repart.`,
       'Le même WC, propre et débouché, après l’intervention.']],
+  // The handwritten note on the collage. TWO LINES, and every letter must exist in the subsetted
+  // Caveat: build.js refuses the build otherwise (allowed set in styles.css and build.js).
+  baNote: ['Fait en', '20 min'],
 
   // Scam band + our checklist, point by point.
   scamK: 'Bon à savoir', scamH: `Comment reconnaître une arnaque au débouchage`,
@@ -186,7 +192,10 @@ module.exports = {
       `Une équipe sérieuse, efficace et honnête que je recommande sans hésiter.`],
     meta: `Premier avis client, reçu en août 2026.`,
     note: ``},
-  featG: `Notre page Google arrive${nb}: les prochains avis y seront publics et vérifiables.`,
+  // Under the card: why there is one, and how the next one gets here. Short on purpose.
+  revT: `Un seul avis, parce qu'on ne publie que les vrais.`,
+  revP: `Notre page Google arrive, les prochains y seront publics. On est passés chez vous${nb}? Envoyez deux lignes, on les publie ici, telles quelles.`,
+  revB: `Envoyer mon avis`,
   askLine: `Vous avez fait appel à nous${nb}? Un avis honnête nous aide plus qu'un compliment.`,
   honestT: `Pas encore d'avis en ligne, et on n'en inventera pas.`,
   honestP: `Pro Débouchage est une jeune entreprise, enregistrée depuis septembre 2025. Nos premiers clients sont venus par le bouche à oreille. Notre page Google arrive, et les premiers avis seront les leurs.`,

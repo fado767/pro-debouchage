@@ -7,13 +7,24 @@ or a note elsewhere still speaks of "v2" or "v3" as something current, this READ
 Files: `template.js` (markup, all three languages), `copy-fr.js` / `copy-nl.js` / `copy-en.js`
 (the copy, native per language, never literal translations), `styles.css` (the design system,
 inlined into every page), `cgv.js` (general terms pages), `legal.js` (privacy pages),
-`build.js` (assembly), two `archivo-var-*.woff2` fonts. Images come from
+`build.js` (assembly), the two `archivo-var-*.woff2` fonts and `caveat-note.woff2`. Images come from
 `assets/prepared/web/img/` (the build fails loudly if one is missing).
 
 **Never let `styles.css` start with a byte order mark.** It is inlined into `<style>`, where a
 leading BOM swallows the first rule, which is the main Archivo `@font-face`; the site then falls
 back to Arial and every weight above 600 looks the same. `build.js` strips it and asserts, but do
 not rely on that: save the file without BOM.
+
+**Two more ways this stylesheet dies quietly, both now caught by `build.js`.** (1) A stray
+`*/`, an unclosed `/*` or one unbalanced brace: CSS does not error on those, the parser gives up and
+drops EVERY RULE AFTER THAT POINT. On 2026-08-27 a rewritten comment left one line of prose outside
+its comment and the FAQ, the sticky call bar, the guarantee badge, the final call and the footer all
+shipped unstyled to the live site while the build printed "site-v1 built". (2) `caveat-note.woff2` is
+Caveat (SIL OFL) SUBSET to the 15 glyphs the handwritten note needs, 8KB instead of 75, so changing
+`baNote` in the copy files to a word with a new letter would fall back to a system script face in
+silence. The build refuses both now. To widen the glyph set, re-subset at
+`fonts.googleapis.com/css2?family=Caveat:wght@600&text=...` and update BOTH lists: `NOTE_GLYPHS` in
+`build.js` and the `unicode-range` in `styles.css`.
 
 ## The round, in order
 
@@ -28,15 +39,26 @@ node design/site-source/build.js
    featured card; the invented cards are deleted). The remaining build warning is the Afrem
    avatar monogram, cleared when his photo lands at the depot visit.
 
-   One flag on the same command, for the Ads session once the account exists:
-   - `ADS_TAG_ID=AW-XXXXXXXXXX` builds the consent + Google-tag layer: Consent Mode v2
+   TAGS ARE THE DEFAULT since the G5 tag round (2026-08-27): the four real ids (public, visible in
+   the page source, never secrets) are baked into `build.js` as defaults, so the plain command above
+   ships the live tagged site and a forgotten flag can no longer silently drop the tags. Env vars
+   still override the defaults one by one. To build the clean zero-Google output (checks, archives,
+   never the live deploy):
+
+```bash
+TAGS_OFF=1 node design/site-source/build.js
+```
+
+   - `ADS_TAG_ID` (default AW-18413234511) builds the consent + Google-tag layer: Consent Mode v2
      default-denied stub, the trilingual banner (equal Refuse/Accept, localStorage, 182 days),
      `assets/js/consent.js`, the tag-day footer credit and privacy section, the reopen link and the
-     Google CSP in `_headers`. Optional on the same build: `ADS_CALL_LABEL` and `ADS_WA_LABEL`, the
-     two conversion labels from the Ads account; with them every `data-cta` call or WhatsApp click
-     also fires a `send_to` conversion. WITHOUT `ADS_TAG_ID` none of this exists in the output and
-     every "no cookies" line stays true. Prove the tag on the wire before any spend
-     (research/13 section 8.3, ads-program.md).
+     Google CSP in `_headers`. On the same build: `ADS_CALL_LABEL` and `ADS_WA_LABEL` (defaults set,
+     the two conversion labels from the Ads account); with them every `data-cta` call or WhatsApp
+     click also fires a `send_to` conversion.
+   - `GA4_ID` (default G-S3SQ25WZMK) adds the GA4 property to the SAME consent gate and the SAME
+     single gtag.js loader: nothing GA4 loads or configures before Accept either. Either id alone
+     turns the whole layer on. With `TAGS_OFF=1` none of this exists in the output and every
+     "no cookies" line stays true. The tag was proven on the wire 2026-08-27 (research/25 step 10).
 
 3. Deploy. Two rules from the taxi lessons: `unset CLOUDFLARE_API_TOKEN` first (else wrangler hits
    the wrong account, error code 10000), and run from a folder OUTSIDE the project with
@@ -51,9 +73,12 @@ cd "$TMPDIR" && unset CLOUDFLARE_API_TOKEN && export WRANGLER_CACHE_DIR="$PWD/.w
    `_headers` placeholders. `pd-review` and the frozen `pro-debouchage-v3` are retired, deletion
    is a NOW line.)
 
-4. Verify on the deployed preview, the ONLY review surface:
-   https://pd-review.pages.dev/fr/ (and /nl/, /en/). Check the changed strings are live and
-   the layout holds. A round is done only when deployed AND verified there (AGENTS.md section 10).
+4. Verify ON THE LIVE SITE, https://prodebouchage24.be/fr/ (and /nl/, /en/), which has been the
+   review surface since the go-live of 2026-08-27: a deploy is public within seconds, so the
+   deployed page IS the page. The retired `pd-review` host this step used to name is dead; never
+   verify against it. Check the changed strings are live and the layout holds. A round is done only
+   when deployed AND verified there (AGENTS.md section 10). The browser holds the HTML, so force a
+   cache-bypassing reload before measuring, or you will measure the PREVIOUS round (2026-08-27).
    The preview pane cannot see motion (hidden documents freeze animations and starve
    IntersectionObserver), so verify geometry by DOM measurement and leave motion to Fady's eyes.
    For visual widgets, assert on what is VISIBLE (hit-test the pixels), not on whether a control
