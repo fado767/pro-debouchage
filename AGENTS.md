@@ -76,6 +76,7 @@ Pro Débouchage is a 24/7 drain-unblocking, sewer cleaning, camera inspection, s
 - No customer personal data in the files beyond what the page itself shows.
 - **After any edit to the page source, rebuild and check the result** (styles included) before calling the work done; a broken build or stale CSS ships silently otherwise. (Added 2026-08-24 on Fady's yes.)
 - **Image picks are made from VIEWED images, never from filenames.** Crops of the same photo hide under different names; two duplicates shipped on 2026-08-24 because files were judged by name. Open and look before choosing, deduplicating or deleting. (Added 2026-08-25 on Fady's yes.)
+- **A CHANGED IMAGE ALWAYS SHIPS UNDER A NEW FILENAME.** Replacing an image in place leaves the old bytes on the Cloudflare edge for up to 24 hours (`cf-cache-status: HIT`, max-age 86400), so the deploy succeeds, the new file is on the host, and the live page still shows the old picture. Bump the name instead (`van-2.jpg`, `afrim-avatar-2-*`), point the build at it, and move the replaced set to `to-delete/`. This bit twice on 2026-08-28, the og-banner and Afrim's avatar. (Added 2026-08-28 on Fady's yes.)
 
 ## 8. Logging (every session)
 
