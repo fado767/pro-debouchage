@@ -1,36 +1,39 @@
 # HANDOFF.md
 *Written by the last session for the next one. Overwritten at every close. Max 40 lines.*
 
-**Written 2026-08-27 evening after the Roro walkthrough call. Next session: `/pro-orch-mid`
-on Friday 2026-08-28. The design session gets ONE final prompt (in Fady's chat), makes the two
-copy changes, runs the full close check, then CLOSES FOR GOOD. This orchestrator line owns the
-state files.**
+**Written 2026-08-28, rewritten late evening. Next session: `/pro-orch-mid`. This line owns state.**
 
 ## Where things stand
-Site LIVE at prodebouchage24.be, NOT YET APPROVED. Walkthrough done with the EN+AR call script.
-Roro's verdict: good, but WC 129 is too cheap. Agreed: all listed prices become "From" minimums
-until he brings HIS price list at the Friday meetup; phone quote stays exact and binding.
-Name correction: AFRIM, not Afrem (business-brief and NOW fixed; site rename is in the design
-prompt). Braine-le-Chateau: on the site (3 town lists + schema) and in the ads locations, he
-missed it, no change needed. Accountant: VAT office actively working the case (via Roro).
+LAUNCH EVE. Site LIVE at prodebouchage24.be, NOT YET APPROVED (approval planned tonight).
+Everything that could block Saturday's ads enable is green: cookie layer verified live (only
+B10, Fady's two GA4 clicks), ads review statuses cleared, Tobacco appeal won, GA4 flowing.
+Today: real sunrise van images (no printed number anywhere), Fady's Figma banner as og:image,
+Afrim's portrait as the bubble avatar, site-companion.md, retired Pages projects deleted.
 
-## The plan to launch (agreed with Fady 2026-08-27 evening)
-1. Fri morning [Fady]: van images lose the phone number (real van has none), HE does it himself,
-   then alt texts + photoNote in the three copy files, rebuild, redeploy. Also the depot visit
-   (GBP video + imagery) and save-to-cloud.
-2. Fri [design session]: final prompt (From prices + Afrim), deploy, close check, LOG, close.
-3. Fri daytime: Roro feedback lands throughout the day, meetup brings his price list.
-4. Fri night: Roro/Fady APPROVE, then the FULL READINESS AUDIT (parallel read-only Opus agents:
+LATE ROUND, shipped and verified live (four fixes Fady spotted). Afrim's avatar is the FULL raw
+frame, squared and nothing else, under a fresh name `afrim-avatar-2-*` because the edge kept
+serving the old picture from the old filenames; the ring is back, drawn OUTSIDE the photo (a
+::before at inset:-3px, never padding again, which is what shrank it and read as a crop). On
+mobile the van sits 40px under the chat bubble now, the same gap the bubble has under the sub
+text, not 58px. The three "notre façon de travailler" card headings moved up one step. Old crop
+parked in to-delete/2026-08-28-avatar-recrop/. VIES still INVALID.
+
+## The rest of the day (agreed plan, unchanged)
+1. [Fady] Plan the depot visit: one trip does everything, the GBP verification video (sign info@
+   into Roro's phone, shot order research/01 A4) plus assets/prepared/evidence/README.md imagery.
+2. Daytime: Roro feedback lands; the meetup brings HIS price list (replaces the "From" floors,
+   rebuild rides along).
+3. Night: Roro/Fady APPROVE, then the FULL READINESS AUDIT (parallel read-only Opus agents:
    design/05 section C + legal cosmetics, ads vs research/25, accounts and gates vs NOW), fixes.
-5. Sat 2026-08-29 morning: enable ads on Fady's word. Before enable: the WhatsApp line to Roro
-   about frequent small card charges (NOW), check ads/sitelinks left "Under review", check the
-   two website conversions dropped "Misconfigured", Tobacco-appeal verdict.
+4. Sat 2026-08-29 morning: enable ads on Fady's word. Before enable: WhatsApp line to Roro about
+   frequent small card charges, glance at the two Misconfigured GOAL GROUPS (likely cosmetic) and
+   the FR RSA "Ad strength Poor" oddity.
 
 ## Watch items
-- Real prices from Roro replace the "From" floors when they land (rebuild ride-along).
-- VIES still INVALID at last poll; poll each session.
-- GA4 should show first data about a day after the tag round.
+- [Fady] save-to-cloud double-click: NOT yet done for today (van round, banner, avatar, late round).
+- [Fady, maybe] bigger-image concept for Afrim's portrait than the bubble avatar. Not a blocker.
+- Fresh-eyes phone check list is in NOW (photo story, avatar, van crop, share card in WhatsApp).
 
 ## Still waiting elsewhere
-Roro: Afrim face photo (parked), more real reviews (parked, do not chase). .com takedown parked
-until after ads day 1 (clock 2026-10-07). Efficiency rule stands: execution on Opus agents.
+Roro: more real reviews (parked, do not chase). Accountant rate answers (invoice README).
+.com takedown parked until after ads day 1 (clock 2026-10-07). Execution on Opus agents.

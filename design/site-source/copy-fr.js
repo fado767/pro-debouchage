@@ -20,7 +20,7 @@ module.exports = {
     ogd: 'Déboucheur autour de Bruxelles, 24h/24. Le prix annoncé au téléphone est le prix sur la facture.',
     locale: 'fr_BE',
     ogTitle: 'Pro Débouchage · Débouchage 24h/24 autour de Bruxelles',
-    ogAlt: 'Logo Pro Débouchage',
+    ogAlt: 'La camionnette Pro Débouchage et le logo de la société.',
   },
 
   // Hero. The pain in the customer's words, stacked huge, then the answer.
@@ -36,7 +36,7 @@ module.exports = {
 
   // Image ticker (desktop) and swipe carousel (mobile): our own photos, one per distinct scene.
   ticker: [
-    ['tick-van.webp', 'La camionnette Pro Débouchage au lever du jour, le numéro 0480 649 649 sur le flanc.', 1200, 892],
+    ['tick-van.webp', 'La camionnette Pro Débouchage au lever du jour, prête à partir en intervention.', 1200, 675],
     ['job-wc.webp', 'Technicien qui débouche un WC avec un furet Rioned, veste Pro Débouchage.', 1200, 1500],
     ['camera.webp', `Écran de la caméra d'inspection au-dessus d'un regard ouvert, l'intérieur du tuyau à l'écran.`, 1200, 1500],
     ['allee.webp', 'Allée pavée en cours de nettoyage haute pression, la bande claire est la partie nettoyée.', 1200, 1200],
@@ -158,7 +158,7 @@ module.exports = {
   bubbleWho: `Afrim, technicien`,
   bubbleAlt: `Afrim, le technicien de Pro Débouchage.`,
   whoT: `Vous appelez, vous parlez à la personne qui organise l'intervention. C'est Afrim qui vient, dans la camionnette que vous voyez ici, avec la caméra d'inspection, la machine haute pression et la pompe. Une équipe de deux, 30 ans de métier à eux deux${nb}: immobilier, rénovation et plomberie. L'entreprise est assurée en RC professionnelle chez AG Insurance.`,
-  vanAlt: 'La camionnette Pro Débouchage, une Mercedes Vito grise, garée dans une rue résidentielle belge.',
+  vanAlt: 'La camionnette Pro Débouchage, une Mercedes Vito grise, au petit matin avant la première intervention.',
   vanCap: `La camionnette, telle qu'elle arrive chez vous.`,
   whoBlocks: [
     ['La caméra passe avant le marteau.', `On regarde d'abord avec la caméra. Casser est le dernier recours, et jamais sans votre accord. C'est pour cela qu'elle est comprise.`],
@@ -243,7 +243,7 @@ module.exports = {
 
   // Footer.
   footD: `Débouchage, curage, inspection caméra, fosse septique et pompage de cave. Autour de Bruxelles, en Brabant flamand et en Brabant wallon, 24h/24.`,
-  photoNote: `Toutes les photos viennent de nos propres interventions. La photo « avant » de la section preuve et l'image de la camionnette ont été reconstituées d'après nos photos d'origine.`,
+  photoNote: `Toutes les photos viennent de nos propres interventions, la camionnette y comprise. Seule la photo « avant » de la section preuve a été reconstituée d'après notre photo d'origine, et le portrait d'Afrim a été préparé à partir de sa propre photo.`,
   legalT: 'Mentions légales',
   legal: ['PRO DEBOUCHAGE SRL', 'Guldenschaapstraat 6, 1800 Vilvoorde, Belgique', `Numéro d'entreprise 1027.454.187`, `E-mail${nb}: info@prodebouchage24.be`, `Téléphone${nb}: 0480 649 649`],
   vat: `Les prix affichés sont TVA 6${nb}% comprise (habitation privée de plus de 10 ans).`,

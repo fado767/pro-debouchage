@@ -505,15 +505,26 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 }
 @media (prefers-reduced-motion:reduce){.ba-pic,.ba-edge{rotate:none}}
 
-/* WHO COMES: two columns from 56rem (Fady 2026-08-27). The van is a 3:2 photo at full wrap width,
-   and under a short paragraph plus Afrim's bubble it read as a slab with the words stranded on top
-   of it. The words take the narrower track because they are already a measured column, the photo
-   takes the wider one because that is what it is for. Below 56rem nothing changes: the DOM order
-   is paragraph, Afrim, van, and it stacks in exactly that order. */
-.who-grid{display:grid;gap:28px}
+/* WHO COMES: two columns from 56rem (Fady 2026-08-27). The words take the narrower track because
+   they are already a measured column, the photo takes the wider one because that is what it is for.
+   Below 56rem nothing changes: the DOM order is paragraph, Afrim, van, and it stacks in that order.
+
+   THE TWO COLUMNS ARE THE SAME HEIGHT (Fady 2026-08-28). Not by a fixed ratio, which only ever
+   matches at one viewport width, but by letting the photo panel take whatever height the words end
+   up with: the row STRETCHES, the figure is a flex column, and the panel is the flexible part with
+   the image absolutely filling it under object-fit:cover. The panel therefore has NO intrinsic
+   height of its own, so it can never push the row taller than the words. The source is a tall 4:5
+   frame with the van sitting across the middle, so every crop this produces, from a squat 2:1 panel
+   to a portrait one, still holds the whole van. min-height is the floor for a very short paragraph.
+   On phones the panel is simply a 16:9 window on the same file. */
+.who-grid{display:grid;gap:40px}
+.van-ph{position:relative;aspect-ratio:16/9;border-radius:var(--r-img);overflow:hidden}
+.van-ph picture{display:block}
+.van-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 51%;border-radius:0}
 @media (min-width:56rem){
-  .who-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(28px,4vw,52px);align-items:center}
-  .who-grid .van{margin-top:0}
+  .who-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(28px,4vw,52px);align-items:stretch}
+  .who-grid .van{display:flex;flex-direction:column;min-height:0}
+  .who-grid .van .van-ph{flex:1 1 auto;aspect-ratio:auto;min-height:340px}
 }
 
 /* ---------- scam band: signs vs us ---------- */
@@ -569,19 +580,28 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 .split .blocks h3:not(:first-child){margin-top:26px}
 
 /* Afrim's line. A chat bubble, because that is the one shape everybody reads as a person talking.
-   The avatar ring is the brand gradient (ink to teal, with the yellow at the far stop) and the
-   monogram inside is a PLACEHOLDER until Roro sends a face photo: never an invented face. */
+   The avatar is Afrim's own square portrait, shown AS IT IS (the full raw frame, no crop of our own)
+   and simply rounded. THE RING IS DRAWN OUTSIDE IT (Fady, 2026-08-28): it used to be padding on a
+   border-box element, which pulls the stroke inward and shrinks the photo, and that inset ring plus
+   the circular mask is what read as a crop. It is a pseudo-element at inset:-3px now, so the photo
+   keeps its full box and the ring grows outward. Never make it padding again. The navy background
+   under the image is kept on purpose: it is what shows for the instant before a lazy image paints,
+   and it matches the studio backdrop. */
 .bub-row{display:flex;align-items:flex-start;gap:clamp(12px,2.2vw,18px);margin:30px 0 0;max-width:660px}
-.bub-av{position:relative;flex:0 0 auto;width:clamp(58px,11vw,76px);height:clamp(58px,11vw,76px);border-radius:50%;padding:3px;background:linear-gradient(145deg,var(--ink) 0%,var(--teal) 62%,var(--mark) 100%);box-shadow:0 6px 18px rgba(16,42,74,.18)}
-.bub-av img,.bub-mono{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;object-fit:cover;background:var(--ink);color:#fff;font-weight:900;font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:0}
+.bub-av{position:relative;flex:0 0 auto;width:clamp(58px,11vw,76px);height:clamp(58px,11vw,76px);border-radius:50%}
+.bub-av::before{content:"";position:absolute;inset:-3px;border-radius:50%;background:linear-gradient(145deg,var(--ink) 0%,var(--teal) 62%,var(--mark) 100%);box-shadow:0 6px 18px rgba(16,42,74,.18)}
+.bub-av img{position:relative;display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;background:var(--ink)}
 .bub{position:relative;background:linear-gradient(160deg,var(--teal-soft) 0%,var(--card) 68%);border:1px solid var(--line);border-radius:var(--r-card);border-top-left-radius:6px;padding:clamp(14px,2.4vw,20px) clamp(16px,2.8vw,24px);box-shadow:0 8px 22px rgba(16,42,74,.08)}
 /* the tail, drawn as a rotated square so the bubble's own border carries through it */
 .bub::before{content:"";position:absolute;left:-7px;top:16px;width:12px;height:12px;background:var(--teal-soft);border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg);border-radius:2px}
 .bub-txt{margin:0;font-size:clamp(1.0625rem,1rem + .45vw,1.3rem);font-weight:600;color:var(--ink);line-height:1.4;text-wrap:pretty}
 .bub-who{margin:8px 0 0;font-size:.8125rem;font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--teal)}
-.van{margin:30px 0 0}
-.van img{border-radius:var(--r-img);width:100%;height:auto}
-.van figcaption{font-size:.875rem;color:var(--muted);margin-top:10px;max-width:62ch}
+.van{margin:0}
+/* The radius lives on .van-ph now (it is the thing that clips), and the image fills it. Never give
+   this img height:auto again: it would restore the photo's own 4:5 shape and the panel would stop
+   matching the words column beside it. */
+.van img{width:100%;height:100%;object-fit:cover;border-radius:0}
+.van figcaption{font-size:.875rem;color:var(--muted);margin-top:10px;max-width:62ch;flex:0 0 auto}
 
 /* ---------- the three rules, as cards ----------
    One colour per card, matching the trio already used on the before/during/after frames, so the
@@ -593,7 +613,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 .inc-card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--acc)}
 .inc-ic{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:var(--acc-soft);color:var(--acc);margin-bottom:16px}
 .inc-ic svg{width:27px;height:27px}
-.inc-card h3{margin:0 0 8px;font-size:clamp(1.15rem,1.05rem + .5vw,1.35rem);color:var(--ink);text-wrap:balance}
+.inc-card h3{margin:0 0 8px;font-size:clamp(1.25rem,1.1rem + .75vw,1.5rem);color:var(--ink);text-wrap:balance}
 .inc-card p{margin:0;color:var(--muted);font-size:1rem}
 .inc-1{--acc:var(--teal);--acc-soft:var(--teal-soft)}
 .inc-2{--acc:var(--ink);--acc-soft:#E7EDF5}

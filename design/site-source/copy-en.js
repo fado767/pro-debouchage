@@ -17,7 +17,7 @@ module.exports = {
     ogd: 'Drain unblocking around Brussels, 24/7. The price you hear on the phone is the price on the invoice.',
     locale: 'en_BE',
     ogTitle: 'Pro Débouchage · Drain unblocking 24/7 around Brussels',
-    ogAlt: 'Pro Débouchage logo',
+    ogAlt: 'The Pro Débouchage van and the company logo.',
   },
 
   eyebrow: 'Drain unblocking 24/7',
@@ -40,7 +40,7 @@ module.exports = {
   waNote: 'A photo helps us help you faster.',
 
   ticker: [
-    ['tick-van.webp', 'The Pro Débouchage van at sunrise, the number 0480 649 649 on the side.', 1200, 892],
+    ['tick-van.webp', 'The Pro Débouchage van at sunrise, ready to head out on a job.', 1200, 675],
     ['job-wc.webp', 'Technician unblocking a toilet with a Rioned drain rod, Pro Débouchage jacket.', 1200, 1500],
     ['camera.webp', 'Inspection camera tablet above an open access pit, the inside of the pipe on screen.', 1200, 1500],
     ['allee.webp', 'Paved driveway during high-pressure cleaning, the light strip is the part already cleaned.', 1200, 1200],
@@ -154,7 +154,7 @@ module.exports = {
   bubbleAlt: 'Afrim, the Pro Débouchage technician.',
   incK: 'How we work', incH: "Three things we don't bend on.",
   whoT: "You call, you talk to the person who organises the job. Afrim comes out, in the van you see here, with the inspection camera, the high-pressure machine and the pump. A team of two with 30 years in the trade between them: property, renovation and plumbing. The company carries professional liability insurance with AG Insurance.",
-  vanAlt: 'The Pro Débouchage van, a grey Mercedes Vito, parked on a Belgian residential street.',
+  vanAlt: 'The Pro Débouchage van, a grey Mercedes Vito, early in the morning before the first job.',
   vanCap: "The van, exactly as it arrives at your place.",
   whoBlocks: [
     ['The camera comes before the hammer.', "We look with the camera first. Breaking anything is the last resort, and never without your say-so. That's why the camera is included."],
@@ -227,7 +227,7 @@ module.exports = {
   finalL: 'Reachable 24/7, weekends and holidays included. A normal number, no premium rate.',
 
   footD: 'Drain unblocking, high-pressure cleaning, camera inspection, septic tanks and cellar pumping. Around Brussels, in Flemish and Walloon Brabant, 24/7.',
-  photoNote: "All photos come from our own jobs. The 'before' photo in the proof section and the image of the van were recreated from our own photos.",
+  photoNote: "All photos come from our own jobs, the van included. Only the 'before' photo in the proof section was recreated from our own photo, and Afrim's portrait was prepared from a photo of himself.",
   legalT: 'Legal information',
   legal: ['PRO DEBOUCHAGE SRL', 'Guldenschaapstraat 6, 1800 Vilvoorde, Belgium', 'Company number 1027.454.187', 'E-mail: info@prodebouchage24.be', 'Phone: 0480 649 649'],
   vat: 'Displayed prices include 6% VAT (private homes over 10 years old).',

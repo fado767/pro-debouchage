@@ -17,7 +17,7 @@ module.exports = {
     ogd: 'Ontstoppingsdienst rond Brussel, 24/7. De prijs die u aan de telefoon hoort, staat op de factuur.',
     locale: 'nl_BE',
     ogTitle: 'Pro Débouchage · Ontstopping 24/7 rond Brussel',
-    ogAlt: 'Logo Pro Débouchage',
+    ogAlt: 'De bestelwagen van Pro Débouchage en het logo van het bedrijf.',
   },
 
   eyebrow: 'Ontstopping 24/7',
@@ -31,7 +31,7 @@ module.exports = {
   waNote: 'Met een foto helpen we u sneller.',
 
   ticker: [
-    ['tick-van.webp', 'De bestelwagen van Pro Débouchage bij zonsopgang, met het nummer 0480 649 649 op de zijkant.', 1200, 892],
+    ['tick-van.webp', 'De bestelwagen van Pro Débouchage bij zonsopgang, klaar om te vertrekken.', 1200, 675],
     ['job-wc.webp', 'Technieker die een wc ontstopt met een Rioned veer, in Pro Débouchage kledij.', 1200, 1500],
     ['camera.webp', 'Tablet van de inspectiecamera boven een open put, de binnenkant van de buis op het scherm.', 1200, 1500],
     ['allee.webp', 'Oprit in klinkers tijdens de hogedrukreiniging, de lichte strook is al gereinigd.', 1200, 1200],
@@ -144,7 +144,7 @@ module.exports = {
   bubbleAlt: 'Afrim, de technieker van Pro Débouchage.',
   incK: 'Zo werken wij', incH: 'Drie dingen waar wij niet van afwijken.',
   whoT: 'U belt, u spreekt met de persoon die het werk inplant. Afrim komt langs, in de bestelwagen die u hier ziet, met de inspectiecamera, de hogedrukmachine en de pomp. Een team van twee, samen 30 jaar in het vak: vastgoed, renovatie en sanitair. Het bedrijf is verzekerd voor beroepsaansprakelijkheid bij AG Insurance.',
-  vanAlt: 'De bestelwagen van Pro Débouchage, een grijze Mercedes Vito, geparkeerd in een Belgische woonstraat.',
+  vanAlt: 'De bestelwagen van Pro Débouchage, een grijze Mercedes Vito, vroeg in de ochtend voor de eerste opdracht.',
   vanCap: 'De bestelwagen, zoals hij bij u aankomt.',
   whoBlocks: [
     ['De camera gaat voor de hamer.', 'Wij kijken eerst met de camera. Breken is het laatste middel, en nooit zonder uw akkoord. Daarom zit ze inbegrepen.'],
@@ -218,7 +218,7 @@ module.exports = {
   finalL: 'Bereikbaar 24 uur op 24 en 7 dagen op 7, ook in het weekend en op feestdagen. Gewoon nummer, geen betaalnummer.',
 
   footD: 'Ontstoppen, rioolreiniging, camera-inspectie, septische put en kelder leegpompen. Rond Brussel, in Vlaams-Brabant en Waals-Brabant, 24/7.',
-  photoNote: `Alle foto's komen van onze eigen interventies. De 'voor'-foto in de bewijssectie en het beeld van de bestelwagen zijn nagemaakt naar onze eigen foto's.`,
+  photoNote: `Alle foto's komen van onze eigen interventies, de bestelwagen inbegrepen. Alleen de 'voor'-foto in de bewijssectie is nagemaakt naar onze eigen foto, en het portret van Afrim is gemaakt op basis van zijn eigen foto.`,
   legalT: 'Wettelijke vermeldingen',
   legal: ['PRO DEBOUCHAGE BV', 'Guldenschaapstraat 6, 1800 Vilvoorde, België', 'Ondernemingsnummer 1027.454.187', 'E-mail: info@prodebouchage24.be', 'Telefoon: 0480 649 649'],
   vat: 'De getoonde prijzen zijn inclusief 6% btw (privéwoning ouder dan 10 jaar).',

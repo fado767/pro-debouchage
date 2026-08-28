@@ -21,10 +21,10 @@
 <meta property="og:site_name" content="Pro Débouchage">
 <meta property="og:title" content="Pro Débouchage · Drain unblocking 24/7 around Brussels">
 <meta property="og:description" content="Terms and conditions of PRO DEBOUCHAGE SRL: price confirmed before we start, published surcharges, 30-day guarantee, your rights.">
-<meta property="og:image" content="https://prodebouchage24.be/assets/img/og-banner.jpg">
+<meta property="og:image" content="https://prodebouchage24.be/assets/img/og-banner-van-2.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Pro Débouchage logo">
+<meta property="og:image:alt" content="The Pro Débouchage van and the company logo.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/apple-touch-icon.png" type="image/png" sizes="180x180">
@@ -389,10 +389,14 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 @media (prefers-reduced-motion:reduce){.ba-pic,.ba-edge{rotate:none}}
 
 
-.who-grid{display:grid;gap:28px}
+.who-grid{display:grid;gap:40px}
+.van-ph{position:relative;aspect-ratio:16/9;border-radius:var(--r-img);overflow:hidden}
+.van-ph picture{display:block}
+.van-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 51%;border-radius:0}
 @media (min-width:56rem){
-  .who-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(28px,4vw,52px);align-items:center}
-  .who-grid .van{margin-top:0}
+  .who-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(28px,4vw,52px);align-items:stretch}
+  .who-grid .van{display:flex;flex-direction:column;min-height:0}
+  .who-grid .van .van-ph{flex:1 1 auto;aspect-ratio:auto;min-height:340px}
 }
 
 
@@ -435,16 +439,18 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 
 
 .bub-row{display:flex;align-items:flex-start;gap:clamp(12px,2.2vw,18px);margin:30px 0 0;max-width:660px}
-.bub-av{position:relative;flex:0 0 auto;width:clamp(58px,11vw,76px);height:clamp(58px,11vw,76px);border-radius:50%;padding:3px;background:linear-gradient(145deg,var(--ink) 0%,var(--teal) 62%,var(--mark) 100%);box-shadow:0 6px 18px rgba(16,42,74,.18)}
-.bub-av img,.bub-mono{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;object-fit:cover;background:var(--ink);color:#fff;font-weight:900;font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:0}
+.bub-av{position:relative;flex:0 0 auto;width:clamp(58px,11vw,76px);height:clamp(58px,11vw,76px);border-radius:50%}
+.bub-av::before{content:"";position:absolute;inset:-3px;border-radius:50%;background:linear-gradient(145deg,var(--ink) 0%,var(--teal) 62%,var(--mark) 100%);box-shadow:0 6px 18px rgba(16,42,74,.18)}
+.bub-av img{position:relative;display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;background:var(--ink)}
 .bub{position:relative;background:linear-gradient(160deg,var(--teal-soft) 0%,var(--card) 68%);border:1px solid var(--line);border-radius:var(--r-card);border-top-left-radius:6px;padding:clamp(14px,2.4vw,20px) clamp(16px,2.8vw,24px);box-shadow:0 8px 22px rgba(16,42,74,.08)}
 
 .bub::before{content:"";position:absolute;left:-7px;top:16px;width:12px;height:12px;background:var(--teal-soft);border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg);border-radius:2px}
 .bub-txt{margin:0;font-size:clamp(1.0625rem,1rem + .45vw,1.3rem);font-weight:600;color:var(--ink);line-height:1.4;text-wrap:pretty}
 .bub-who{margin:8px 0 0;font-size:.8125rem;font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--teal)}
-.van{margin:30px 0 0}
-.van img{border-radius:var(--r-img);width:100%;height:auto}
-.van figcaption{font-size:.875rem;color:var(--muted);margin-top:10px;max-width:62ch}
+.van{margin:0}
+
+.van img{width:100%;height:100%;object-fit:cover;border-radius:0}
+.van figcaption{font-size:.875rem;color:var(--muted);margin-top:10px;max-width:62ch;flex:0 0 auto}
 
 
 .inc-cards{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:18px}
@@ -453,7 +459,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 .inc-card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--acc)}
 .inc-ic{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:var(--acc-soft);color:var(--acc);margin-bottom:16px}
 .inc-ic svg{width:27px;height:27px}
-.inc-card h3{margin:0 0 8px;font-size:clamp(1.15rem,1.05rem + .5vw,1.35rem);color:var(--ink);text-wrap:balance}
+.inc-card h3{margin:0 0 8px;font-size:clamp(1.25rem,1.1rem + .75vw,1.5rem);color:var(--ink);text-wrap:balance}
 .inc-card p{margin:0;color:var(--muted);font-size:1rem}
 .inc-1{--acc:var(--teal);--acc-soft:var(--teal-soft)}
 .inc-2{--acc:var(--ink);--acc-soft:#E7EDF5}
@@ -736,7 +742,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
   </div>
 </section>
 </main>
-<footer class="site-footer"><div class="wrap"><div class="cols"><div><span class="foot-logo"><img src="/assets/img/logo-icon.svg" width="816" height="499" alt="Pro Débouchage" loading="lazy"></span><p>Drain unblocking, high-pressure cleaning, camera inspection, septic tanks and cellar pumping. Around Brussels, in Flemish and Walloon Brabant, 24/7.</p><p><a class="foot-tel" href="tel:+32480649649" data-cta="footer-call">0480 649 649</a><br><a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a></p></div><div class="legal"><h2>Legal information</h2><p>PRO DEBOUCHAGE SRL<br>Guldenschaapstraat 6, 1800 Vilvoorde, Belgium<br>Company number 1027.454.187<br>E-mail: info@prodebouchage24.be<br>Phone: 0480 649 649</p><p>Displayed prices include 6% VAT (private homes over 10 years old).</p><p class="foot-note">All photos come from our own jobs. The 'before' photo in the proof section and the image of the van were recreated from our own photos.</p><div class="foot-links"><a href="/en/privacy">Privacy policy</a><a href="/en/terms">Terms and conditions</a><a href="/fr/" lang="fr" hreflang="fr-BE">Français</a><a href="/nl/" lang="nl" hreflang="nl-BE">Nederlands</a><button type="button" class="linklike" data-consent-open>Cookies and measurement</button></div></div></div><p class="credit">&copy; <span id="y">2026</span> PRO DEBOUCHAGE SRL. This site uses one call-measurement tool, and only if you accept it.</p></div></footer>
+<footer class="site-footer"><div class="wrap"><div class="cols"><div><span class="foot-logo"><img src="/assets/img/logo-icon.svg" width="816" height="499" alt="Pro Débouchage" loading="lazy"></span><p>Drain unblocking, high-pressure cleaning, camera inspection, septic tanks and cellar pumping. Around Brussels, in Flemish and Walloon Brabant, 24/7.</p><p><a class="foot-tel" href="tel:+32480649649" data-cta="footer-call">0480 649 649</a><br><a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a></p></div><div class="legal"><h2>Legal information</h2><p>PRO DEBOUCHAGE SRL<br>Guldenschaapstraat 6, 1800 Vilvoorde, Belgium<br>Company number 1027.454.187<br>E-mail: info@prodebouchage24.be<br>Phone: 0480 649 649</p><p>Displayed prices include 6% VAT (private homes over 10 years old).</p><p class="foot-note">All photos come from our own jobs, the van included. Only the 'before' photo in the proof section was recreated from our own photo, and Afrim's portrait was prepared from a photo of himself.</p><div class="foot-links"><a href="/en/privacy">Privacy policy</a><a href="/en/terms">Terms and conditions</a><a href="/fr/" lang="fr" hreflang="fr-BE">Français</a><a href="/nl/" lang="nl" hreflang="nl-BE">Nederlands</a><button type="button" class="linklike" data-consent-open>Cookies and measurement</button></div></div></div><p class="credit">&copy; <span id="y">2026</span> PRO DEBOUCHAGE SRL. This site uses one call-measurement tool, and only if you accept it.</p></div></footer>
 <div class="callbar" role="region" aria-label="Call us"><a class="cb-call" href="tel:+32480649649" data-cta="sticky-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>Call 0480 649 649</a><a class="cb-wa" href="https://wa.me/32480649649?text=Hello%2C%20I%20have%20a%20blocked%20drain.%20Here's%20a%20photo%20and%20my%20town%3A%20" rel="noopener" data-cta="sticky-whatsapp" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3c.2-.6.2-1.1.2-1.2s-.3-.3-.5-.4z"></path></svg></a></div>
 <script>(function(){
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;

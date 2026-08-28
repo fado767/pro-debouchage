@@ -342,10 +342,19 @@ const IMGS = {
   'allee.webp':      { base: 'allee-haute-pression', widths: [480, 800, 1200], w: 1200, h: 1200, sizes: '(min-width: 1000px) 360px, (min-width: 700px) 33vw, 78vw' },
   'moniteur.webp':   { base: 'camera-moniteur-tenue', widths: [480, 800], w: 800, h: 1000, sizes: '(min-width: 1000px) 360px, (min-width: 700px) 33vw, 78vw' },
   'tick-drain.webp': { base: 'hero-job-drain', widths: [480, 800], w: 800, h: 1066, sizes: '190px' },
-  'tick-van.webp':   { base: 'van-photo', widths: [800, 1200], w: 1200, h: 892, sizes: '340px' },
+  // The real van, shot at sunrise in the depot car park (Roro, 2026-08-28). It replaces the
+  // generated street scene, which carried a printed phone number the van does not have.
+  'tick-van.webp':   { base: 'van-sunrise', widths: [480, 800, 1200], w: 1200, h: 675, sizes: '444px' },
   'car-van.webp':    { base: 'van-garden-45', widths: [480, 800], w: 800, h: 1000, sizes: '78vw' },
-  // v3 additions (generated 2026-08-26 from our own reference photos, plates blurred):
-  'van-street.webp': { base: 'van-street', widths: [480, 800, 1200, 1600], w: 1600, h: 1067, sizes: '(min-width: 1000px) 620px, 100vw' },
+  // The who-comes photo. A TALL 4:5 frame ON PURPOSE (2026-08-28): the panel is cropped by
+  // object-fit from the middle of it, so the column can take whatever height the words beside it
+  // end up with and the van still sits whole in the frame at every viewport. Never swap this for a
+  // landscape crop, or a tall panel would cut the van's nose and roof.
+  'van-sunrise-tall.webp': { base: 'van-sunrise-tall', widths: [480, 800, 1200], w: 1200, h: 1500, sizes: '(min-width: 56rem) 620px, 100vw' },
+  // Afrim's portrait in the who-comes chat bubble (2026-08-28). It renders round at 52 to 70 CSS px,
+  // so the widths are the 1x, 2x and 3x of that and nothing bigger; the square crop is centred on
+  // his face because a circular mask keeps only the middle.
+  'afrim-avatar-2.webp': { base: 'afrim-avatar-2', widths: [96, 192, 384], w: 384, h: 384, sizes: '70px' },
   'ba-before.webp':  { base: 'ba-before', widths: [480, 800], w: 800, h: 1000, sizes: '(min-width: 56rem) 340px, 92vw' },
   'ba-after.webp':   { base: 'ba-after', widths: [480, 800], w: 800, h: 1000, sizes: '(min-width: 56rem) 340px, 92vw' },
   // Fady's brush arrows, drawn in Figma and exported 2026-08-26. alpha:true swaps the JPEG
@@ -361,7 +370,7 @@ for (const k in IMGS) {
   const fb = m.alpha ? 'png' : 'jpg';
   cp(path.join(WEB, 'img', `${m.base}-${last}.${fb}`), path.join(OUT, 'assets', 'img', `${m.base}-${last}.${fb}`));
 }
-for (const f of ['logo-icon.svg', 'og-banner.jpg', 'icon-512.png', 'icon-512-maskable.png']) cp(path.join(WEB, 'img', f), path.join(OUT, 'assets', 'img', f));
+for (const f of ['logo-icon.svg', 'og-banner-van-2.jpg', 'icon-512.png', 'icon-512-maskable.png']) cp(path.join(WEB, 'img', f), path.join(OUT, 'assets', 'img', f));
 cp(path.join(WEB, 'img', 'favicon.svg'), path.join(OUT, 'favicon.svg'));
 cp(path.join(WEB, 'img', 'apple-touch-icon-180.png'), path.join(OUT, 'apple-touch-icon.png'));
 
@@ -398,7 +407,7 @@ ${alts}
 <meta property="og:site_name" content="Pro Débouchage">
 <meta property="og:title" content="${m.ogt}">
 <meta property="og:description" content="${m.ogd}">
-<meta property="og:image" content="${HOST}/assets/img/og-banner.jpg">
+<meta property="og:image" content="${HOST}/assets/img/og-banner-van-2.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="${m.ogAlt}">
@@ -428,7 +437,7 @@ function jsonld(c, lang) {
   const faq = c.faq.map(q => ({ '@type': 'Question', name: strip(q[0]), acceptedAnswer: { '@type': 'Answer', text: strip(q[1]) } }));
   const data = { '@context': 'https://schema.org', '@graph': [
     { '@type': ['Plumber', 'EmergencyService'], '@id': HOST + '/#business', name: 'Pro Débouchage', legalName: 'PRO DEBOUCHAGE SRL', url: HOST + '/' + lang + '/', telephone: '+32480649649', email: 'info@prodebouchage24.be',
-      image: HOST + '/assets/img/og-banner.jpg', identifier: '1027.454.187', priceRange: '€€', currenciesAccepted: 'EUR',
+      image: HOST + '/assets/img/og-banner-van-2.jpg', identifier: '1027.454.187', priceRange: '€€', currenciesAccepted: 'EUR',
       address: { '@type': 'PostalAddress', streetAddress: 'Guldenschaapstraat 6', postalCode: '1800', addressLocality: 'Vilvoorde', addressCountry: 'BE' },
       openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' }],
       areaServed: towns,
@@ -618,6 +627,9 @@ ${TAG_ON ? `/assets/js/consent.js
 // The placeholder-review tripwire retired 2026-08-27: the invented cards are deleted from the copy
 // files and Paolo's real review ships as `featured` (DECISIONS). `reviews` is the parked grid and
 // may only ever be refilled with real customers' words, so a non-empty array is no longer a fault.
-const avatarPh = Object.keys(COPY).filter(l => fs.readFileSync(path.join(OUT, l, 'index.html'), 'utf8').includes('data-placeholder'));
-if (avatarPh.length) console.warn('WARNING: the Afrim avatar is still the monogram placeholder in /' + avatarPh.join('/, /') + '/. Roro was asked for a face photo (Fady, 2026-08-26); until it lands the bubble must NOT carry an invented face for a real person (rule 5). Swap the span for IMG() in template.js and drop data-placeholder.');
+// The Afrim-avatar tripwire retired 2026-08-28: his real portrait ships in the bubble, so the
+// monogram and the warning about it are both gone. The generic check stays, because it costs
+// nothing and any data-placeholder that ever reappears must still be answered for.
+const ph = Object.keys(COPY).filter(l => fs.readFileSync(path.join(OUT, l, 'index.html'), 'utf8').includes('data-placeholder'));
+if (ph.length) console.warn('WARNING: a data-placeholder survived into /' + ph.join('/, /') + '/. Nothing on a live page may stand in for a real person or a real fact (rule 5).');
 console.log('site-v1 built');

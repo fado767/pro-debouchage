@@ -21,10 +21,10 @@
 <meta property="og:site_name" content="Pro Débouchage">
 <meta property="og:title" content="Pro Débouchage">
 <meta property="og:description" content="Débouchage 24h/24 autour de Bruxelles.">
-<meta property="og:image" content="https://prodebouchage24.be/assets/img/og-banner.jpg">
+<meta property="og:image" content="https://prodebouchage24.be/assets/img/og-banner-van-2.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Logo Pro Débouchage">
+<meta property="og:image:alt" content="La camionnette Pro Débouchage et le logo de la société.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/apple-touch-icon.png" type="image/png" sizes="180x180">
@@ -389,10 +389,14 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 @media (prefers-reduced-motion:reduce){.ba-pic,.ba-edge{rotate:none}}
 
 
-.who-grid{display:grid;gap:28px}
+.who-grid{display:grid;gap:40px}
+.van-ph{position:relative;aspect-ratio:16/9;border-radius:var(--r-img);overflow:hidden}
+.van-ph picture{display:block}
+.van-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 51%;border-radius:0}
 @media (min-width:56rem){
-  .who-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(28px,4vw,52px);align-items:center}
-  .who-grid .van{margin-top:0}
+  .who-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(28px,4vw,52px);align-items:stretch}
+  .who-grid .van{display:flex;flex-direction:column;min-height:0}
+  .who-grid .van .van-ph{flex:1 1 auto;aspect-ratio:auto;min-height:340px}
 }
 
 
@@ -435,16 +439,18 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 
 
 .bub-row{display:flex;align-items:flex-start;gap:clamp(12px,2.2vw,18px);margin:30px 0 0;max-width:660px}
-.bub-av{position:relative;flex:0 0 auto;width:clamp(58px,11vw,76px);height:clamp(58px,11vw,76px);border-radius:50%;padding:3px;background:linear-gradient(145deg,var(--ink) 0%,var(--teal) 62%,var(--mark) 100%);box-shadow:0 6px 18px rgba(16,42,74,.18)}
-.bub-av img,.bub-mono{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;object-fit:cover;background:var(--ink);color:#fff;font-weight:900;font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:0}
+.bub-av{position:relative;flex:0 0 auto;width:clamp(58px,11vw,76px);height:clamp(58px,11vw,76px);border-radius:50%}
+.bub-av::before{content:"";position:absolute;inset:-3px;border-radius:50%;background:linear-gradient(145deg,var(--ink) 0%,var(--teal) 62%,var(--mark) 100%);box-shadow:0 6px 18px rgba(16,42,74,.18)}
+.bub-av img{position:relative;display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;background:var(--ink)}
 .bub{position:relative;background:linear-gradient(160deg,var(--teal-soft) 0%,var(--card) 68%);border:1px solid var(--line);border-radius:var(--r-card);border-top-left-radius:6px;padding:clamp(14px,2.4vw,20px) clamp(16px,2.8vw,24px);box-shadow:0 8px 22px rgba(16,42,74,.08)}
 
 .bub::before{content:"";position:absolute;left:-7px;top:16px;width:12px;height:12px;background:var(--teal-soft);border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg);border-radius:2px}
 .bub-txt{margin:0;font-size:clamp(1.0625rem,1rem + .45vw,1.3rem);font-weight:600;color:var(--ink);line-height:1.4;text-wrap:pretty}
 .bub-who{margin:8px 0 0;font-size:.8125rem;font-weight:600;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--teal)}
-.van{margin:30px 0 0}
-.van img{border-radius:var(--r-img);width:100%;height:auto}
-.van figcaption{font-size:.875rem;color:var(--muted);margin-top:10px;max-width:62ch}
+.van{margin:0}
+
+.van img{width:100%;height:100%;object-fit:cover;border-radius:0}
+.van figcaption{font-size:.875rem;color:var(--muted);margin-top:10px;max-width:62ch;flex:0 0 auto}
 
 
 .inc-cards{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:18px}
@@ -453,7 +459,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 .inc-card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--acc)}
 .inc-ic{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:var(--acc-soft);color:var(--acc);margin-bottom:16px}
 .inc-ic svg{width:27px;height:27px}
-.inc-card h3{margin:0 0 8px;font-size:clamp(1.15rem,1.05rem + .5vw,1.35rem);color:var(--ink);text-wrap:balance}
+.inc-card h3{margin:0 0 8px;font-size:clamp(1.25rem,1.1rem + .75vw,1.5rem);color:var(--ink);text-wrap:balance}
 .inc-card p{margin:0;color:var(--muted);font-size:1rem}
 .inc-1{--acc:var(--teal);--acc-soft:var(--teal-soft)}
 .inc-2{--acc:var(--ink);--acc-soft:#E7EDF5}

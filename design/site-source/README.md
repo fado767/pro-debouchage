@@ -36,8 +36,8 @@ node design/site-source/build.js
 ```
 
    The placeholder-review tripwire was cleared 2026-08-27 (Paolo's real review ships as the
-   featured card; the invented cards are deleted). The remaining build warning is the Afrim
-   avatar monogram, cleared when his photo lands at the depot visit.
+   featured card; the invented cards are deleted). The Afrim avatar monogram was cleared
+   2026-08-28: his portrait ships in the bubble, so a clean build now prints no warning at all.
 
    TAGS ARE THE DEFAULT since the G5 tag round (2026-08-27): the four real ids (public, visible in
    the page source, never secrets) are baked into `build.js` as defaults, so the plain command above
