@@ -624,10 +624,9 @@ ${TAG_ON ? `/assets/js/consent.js
   Cache-Control: public, max-age=3600
 ` : ''}`);
 
-// www serves its own 200 copy of the site without this (found at the 2026-08-28 foundation audit);
-// canonicals point at the apex, but consent state and _gcl cookies are per-host, so one host only.
-w('_redirects', `https://www.prodebouchage24.be/* https://prodebouchage24.be/:splat 301!
-`);
+// www-to-apex lives as a zone Redirect Rule "www to apex" in the Cloudflare dashboard (2026-08-28):
+// a `_redirects` host rule was tried first and Pages ignored it, so no `_redirects` ships at all.
+// The rule fires at the edge before Pages, 301, path and query preserved; apex requests never match.
 
 // The placeholder-review tripwire retired 2026-08-27: the invented cards are deleted from the copy
 // files and Paolo's real review ships as `featured` (DECISIONS). `reviews` is the parked grid and

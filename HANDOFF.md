@@ -1,39 +1,39 @@
 # HANDOFF.md
 *Written by the last session for the next one. Overwritten at every close. Max 40 lines.*
 
-**Written 2026-08-28, rewritten late evening. Next session: `/pro-orch-mid`. This line owns state.**
+**Written 2026-08-28 ~17:30 at day close. Next session: the INVOICE session tonight if Fady fires
+his prompt (`/pro-orch-mid` start), otherwise Saturday morning `/pro-orch`: ENABLE DAY. This line
+owns state.**
 
 ## Where things stand
-LAUNCH EVE. Site LIVE at prodebouchage24.be, NOT YET APPROVED (approval planned tonight).
-Everything that could block Saturday's ads enable is green: cookie layer verified live (only
-B10, Fady's two GA4 clicks), ads review statuses cleared, Tobacco appeal won, GA4 flowing.
-Today: real sunrise van images (no printed number anywhere), Fady's Figma banner as og:image,
-Afrim's portrait as the bubble avatar, site-companion.md, retired Pages projects deleted.
+V1 FULLY APPROVED and the foundation audit done with every finding fixed. Site live and clean,
+www redirects at the edge, hooks now ENFORCE the hard rules (no git at all for Claude, no
+site-v1/ or taxi-business/ edits, em-dash check). The desktop app crashed and was reinstalled
+mid-afternoon; nothing was lost; wrangler OAuth re-granted. Late block closed nearly everything:
+Ads manager link LINKED and verified, GA4 retention + DPA confirmed (B10 closed), GA4 admins
+(hi@ account-level, backup4fady) and Search Console owner granted, Gmail signature live for
+info@, stale worktree folder deleted, accountant VAT message drafted, visit checklist handed.
+Tonight ~19:00 Fady is at Roro's: GBP verification video (shot order in the checklist and
+research/01 A4), 2SV for info@ right after it (Fady's number, passkeys both phones), Ads card
+swap to Roro's card, Gmail app on Roro's phone, KBO commercial-name ask, prices talk.
 
-LATE ROUND, shipped and verified live (four fixes Fady spotted). Afrim's avatar is the FULL raw
-frame, squared and nothing else, under a fresh name `afrim-avatar-2-*` because the edge kept
-serving the old picture from the old filenames; the ring is back, drawn OUTSIDE the photo (a
-::before at inset:-3px, never padding again, which is what shrank it and read as a crop). On
-mobile the van sits 40px under the chat bubble now, the same gap the bubble has under the sub
-text, not 58px. The three "notre façon de travailler" card headings moved up one step. Old crop
-parked in to-delete/2026-08-28-avatar-recrop/. VIES still INVALID.
-
-## The rest of the day (agreed plan, unchanged)
-1. [Fady] Plan the depot visit: one trip does everything, the GBP verification video (sign info@
-   into Roro's phone, shot order research/01 A4) plus assets/prepared/evidence/README.md imagery.
-2. Daytime: Roro feedback lands; the meetup brings HIS price list (replaces the "From" floors,
-   rebuild rides along).
-3. Night: Roro/Fady APPROVE, then the FULL READINESS AUDIT (parallel read-only Opus agents:
-   design/05 section C + legal cosmetics, ads vs research/25, accounts and gates vs NOW), fixes.
-4. Sat 2026-08-29 morning: enable ads on Fady's word. Before enable: WhatsApp line to Roro about
-   frequent small card charges, glance at the two Misconfigured GOAL GROUPS (likely cosmetic) and
-   the FR RSA "Ad strength Poor" oddity.
+## Saturday morning, the enable session (/pro-orch)
+1. FIRST STEP: Claude ENABLES campaign 24185896982 on Fady's word in the session, then one
+   glance at Location options = Presence-only, then writes the launch date into ads-program.md 5.
+2. No site redeploys Sat 11:00 to 13:00 Brussels (Cloudflare maintenance window).
+3. After enable: daily 10-minute glance (first two weeks), weekly Monday check + one-page Roro
+   report (ads-program.md 6), settings changes only at week 2/4/6/8 checkpoints.
+4. Still open on Fady: the ~5 min Ads "Confirm your affiliation" sub-task; send the accountant
+   message; the Tally form to Steph when ads go live.
 
 ## Watch items
-- [Fady] save-to-cloud double-click: NOT yet done for today (van round, banner, avatar, late round).
-- [Fady, maybe] bigger-image concept for Afrim's portrait than the bubble avatar. Not a blocker.
-- Fresh-eyes phone check list is in NOW (photo story, avatar, van crop, share card in WhatsApp).
+- VIES still INVALID at the 2026-08-28 ~14:00 poll; poll each session until VALID.
+- GBP verdict in ~5 days after tonight's video: THEN hi@fady.be as Manager, location asset,
+  citations sweep (NOW line exists).
+- Quit the Claude app from the system tray, never just the window (today's crash lesson).
+- Proposed rule improvement 2026-08-28, NOT yet applied (needs Fady's yes): add the tray-quit
+  line above to AGENTS.md section 7 as a standing rule.
 
 ## Still waiting elsewhere
-Roro: more real reviews (parked, do not chase). Accountant rate answers (invoice README).
-.com takedown parked until after ads day 1 (clock 2026-10-07). Execution on Opus agents.
+Roro: price list, more reviews (parked). Accountant: the five VAT answers (drafted, Fady sends).
+.com takedown parked until after ads day 1 (clock 2026-10-07). Executions on Opus agents.
