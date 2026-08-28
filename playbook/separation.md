@@ -24,7 +24,7 @@ fady.be (the agency)
 ```
 
 ## 2. Naming, so a screenshot is never ambiguous
-Ads client account `fady.be | Drain | Pro Debouchage`, label `DRAIN` · Cloudflare Pages project `pd-review` (one working Pages project per client; the dead `pro-debouchage-v3` awaits deletion, and the real go-live name is Fady's open call) · Infomaniak Organisation `Pro Débouchage` · GA4 account = the client's legal entity name · Chrome profile `Pro Debouchage` · folder `pro-debouchage/`. (Taxi keeps its own existing names; the pattern applies from this client on.)
+Ads client account `fady.be | Drain | Pro Debouchage`, label `DRAIN` · Cloudflare Pages project `prodebouchage24` (one working Pages project per client, decided 2026-08-27; `pd-review` and the dead `pro-debouchage-v3` deleted 2026-08-28) · Infomaniak Organisation `Pro Débouchage` · GA4 account = the client's legal entity name · Chrome profile `Pro Debouchage` · folder `pro-debouchage/`. (Taxi keeps its own existing names; the pattern applies from this client on.)
 
 ## 3. What must NEVER be shared between clients
 1. A payment method (one card across unrelated Ads accounts is a relatedness signal and a related-accounts suspension is close to unappealable). Roro pays his Ads, his Workspace and his domain renewal himself, from day one; the agency card is at most a build instrument with a removal date, and for Ads not even that.
@@ -33,7 +33,7 @@ Ads client account `fady.be | Drain | Pro Debouchage`, label `DRAIN` · Cloudfla
 ## 4. The deltas from the taxi setup (recorded, not proposed for change)
 Fady's personal card on Henok's Ads account (flagged temporary there) · GA4 properties in the agency account for Mulu, in Henok's own for Henok · everything under the single identity hi@fady.be (the backup-Gmail decision of 2026-08-18 addresses it) · two managers named "Fady Agency". Only the card matters urgently, and Pro Débouchage simply does not repeat it.
 
-## 5. The one open call for this client: Cloudflare shape
+## 5. The Cloudflare shape (DECIDED 2026-08-23: the agency account)
 (a) Agency account, as taxi does: fast, one login, apex works because zone and project share the account; cost: correlated blast radius and a remove-and-re-add with certificate reissue at exit. (b) Client-owned account with Fady as member: nothing to migrate ever, handover is "remove Fady"; cost: one more account and Roro must receive its verification mail. DECIDED 2026-08-23 by Fady: (a), the agency account. Recorded in `DECISIONS.md` and `accounts.md`.
 
 ## 6. The grant pattern

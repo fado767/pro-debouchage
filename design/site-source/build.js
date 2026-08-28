@@ -624,6 +624,11 @@ ${TAG_ON ? `/assets/js/consent.js
   Cache-Control: public, max-age=3600
 ` : ''}`);
 
+// www serves its own 200 copy of the site without this (found at the 2026-08-28 foundation audit);
+// canonicals point at the apex, but consent state and _gcl cookies are per-host, so one host only.
+w('_redirects', `https://www.prodebouchage24.be/* https://prodebouchage24.be/:splat 301!
+`);
+
 // The placeholder-review tripwire retired 2026-08-27: the invented cards are deleted from the copy
 // files and Paolo's real review ships as `featured` (DECISIONS). `reviews` is the parked grid and
 // may only ever be refilled with real customers' words, so a non-empty array is no longer a fault.
