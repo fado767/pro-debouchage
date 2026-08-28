@@ -30,9 +30,10 @@ swap to Roro's card, Gmail app on Roro's phone, KBO commercial-name ask, prices 
 - VIES still INVALID at the 2026-08-28 ~14:00 poll; poll each session until VALID.
 - GBP verdict in ~5 days after tonight's video: THEN hi@fady.be as Manager, location asset,
   citations sweep (NOW line exists).
-- Quit the Claude app from the system tray, never just the window (today's crash lesson).
-- Proposed rule improvement 2026-08-28, NOT yet applied (needs Fady's yes): add the tray-quit
-  line above to AGENTS.md section 7 as a standing rule.
+- Tray-quit rule proposal DECLINED by Fady 2026-08-28 (he does not quit the app; he watches
+  the crash issue outside this project). Do not re-propose.
+- The Gmail PHONE app needs its own Mobile signature per device (web signature proven live,
+  phone test came out bare); it is in the visit line in NOW.
 
 ## Still waiting elsewhere
 Roro: price list, more reviews (parked). Accountant: the five VAT answers (drafted, Fady sends).
