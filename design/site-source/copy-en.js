@@ -23,7 +23,7 @@ module.exports = {
   eyebrow: 'Drain unblocking 24/7',
   h1: ['Backing up,', 'overflowing,', 'smells awful?'],
   h1b: "Call. We'll sort it.",
-  sub: "You describe the problem, <strong>we quote the price on the phone, and that's the price you pay.</strong> Confirmed at your door, before the first minute of work.",
+  sub: "You describe the problem, <strong>we quote the price on the phone, and that's the price you pay.</strong> Confirmed at your door, before any work starts.",
   callMain: 'Call 0480 649 649',
   waBtn: 'Send a photo',
   // A tip, not a second promise (Fady 2026-08-26). The "call in English" line was living here and
@@ -64,36 +64,36 @@ module.exports = {
     ['allee.webp', 'Paved driveway during high-pressure cleaning, the light strip is the part already cleaned.', 1200, 1200]],
 
   trust: [
-    '24/7, even on holidays',
+    '24/7, public holidays included',
     'Price quoted on the phone',
     'Camera inspection included',
     'Registered company 1027.454.187',
     'Insured with AG Insurance',
     '30-day guarantee on unblocking',
-    'You can call in English'],
+    'We answer in English'],
 
   servK: 'What we do', servH: "Your problem's on this list.",
   services: [
-    ['Emergency unblocking', "Toilet, sink, shower, drain. We come with the jetting machine and the camera."],
+    ['Emergency unblocking', "Toilet, sink, shower, drain. We come out with the jetting machine and the camera."],
     ['Sewer and street trap', 'The courtyard trap overflowing after rain, the sewer backing up into the cellar. High pressure.'],
     ['High-pressure cleaning', "We clean the whole pipe, not just the blockage."],
     ['Camera inspection', "We film the inside of the pipe and you watch the screen with us. Included with the job."],
-    ['Septic tank emptying', 'Emptying and check-up. By appointment.'],
+    ['Septic tank emptying', 'We empty it and check it over. By appointment.'],
     ['Flooded cellar pumping', "Pumping, cleaning, and a report for your insurer if you ask for one."]],
   servLink: 'Call us',
 
   stepK: 'How it works', stepH: 'Four steps, no surprises',
   steps: [
     ['You call and describe the problem.', 'We ask two or three questions. A WhatsApp photo helps.'],
-    ['We quote the price.', "On the phone, before we move. Evenings and weekends, the surcharge is already in the price you hear."],
-    ['We arrive with the camera and the jetting machine.', "You get an arrival time, and we call if it slips."],
-    ['We confirm the price at your door, then we unblock.', "If things differ from what you described, you'll know before we start, not on the invoice."]],
+    ['We quote the price.', "On the phone, before we set off. Evenings and weekends, the surcharge is already in the price you hear."],
+    ['We turn up with the camera and the jetting machine.', "We give you an arrival time, and we call if it slips."],
+    ['We confirm the price at your door, then we clear it.', "If it's not what you described, you'll hear it before we start, not on the invoice."]],
 
   priceK: 'Prices', priceH: 'What does it really cost?',
   // "From" since Roro's walkthrough (2026-08-27): starting prices until his own price list lands.
   // The phone quote stays exact and binding, which is what `promise` says.
   priceFrom: 'From',
-  priceIntro: "The most common jobs are on this list, with their starting price. Your exact price comes on the phone, before we hit the road, and that's the one you pay.",
+  priceIntro: "The most common jobs are on this list, with their starting price. Your exact price comes on the phone, before we set off, and that's the one you pay.",
   prices: [
     ['Blocked toilet', '€ 129'],
     ['Sink, basin or shower', '€ 119'],
@@ -102,12 +102,12 @@ module.exports = {
     ['Flooded cellar, first hour', '€ 229']],
   included: ['VAT included', 'Call-out included', 'First hour included'],
   terms: 'These starting prices apply on weekdays, 7 am to 6 pm. Evenings (6 pm to 10 pm) and Saturdays: +50%. Nights, Sundays and public holidays: +75%. You hear the surcharge on the phone, with the price, before we set off.',
-  p4t: "Your case isn't on the list?",
-  p4: "Septic tank, buried pipe, bigger works: tell us the problem and you'll have an honest price right away, on the phone.",
+  p4t: "Your job's not on the list?",
+  p4: "Septic tank, buried pipe, a bigger job: tell us the problem and you'll get an honest price right away, on the phone.",
   p4b: 'Call 0480 649 649',
   priceBtn: 'Call',
   // The title must say what the "1" in the seal means (Fady 2026-08-26).
-  guarH: '1 month guarantee on every unblocking',
+  guarH: '1 month guarantee on every unblocking job',
   guarP: 'If the same pipe blocks again within 30 days, we come back for free.',
   guarLegal: "This guarantee is on top of your legal rights, it doesn't replace them.",
   guarRing: 'GUARANTEE',
@@ -126,7 +126,7 @@ module.exports = {
   baNote: 'Perfect!',
 
   scamK: 'Worth knowing', scamH: 'How to spot a drain-unblocking scam',
-  scamI1: 'The Halle-Vilvoorde area is sadly known for this: ',
+  scamI1: 'The Halle-Vilvoorde area has a bad name for this: ',
   scamICite: 'over 265 victims between 2020 and 2025, and a court case in 2025',
   scamI2: '. Four signs that should make you hang up:',
   citeHint: 'See the source',
@@ -143,9 +143,9 @@ module.exports = {
   usH: 'We do the exact opposite, point by point:',
   us: [
     'The price is quoted on the phone and confirmed at your door, before we start.',
-    'No per-metre pricing, no hourly meter, no surcharge invented at the door.',
+    'No per-metre pricing, no hourly meter, no extra made up at the door.',
     'An invoice, every time. Bank transfer, payment link, or cash with a receipt.',
-    'Our address and company number are at the bottom of this page, checkable in the public register.'],
+    'Our address and company number are at the bottom of this page. You can check them in the public register.'],
   scamB: 'Call 0480 649 649',
 
   whoK: 'Who comes to your door', whoH: 'Afrim, the van and the gear. Not an anonymous number.',
@@ -159,10 +159,10 @@ module.exports = {
   whoBlocks: [
     ['The camera comes before the hammer.', "We look with the camera first. Breaking anything is the last resort, and never without your say-so. That's why the camera is included."],
     ['An insurance report, on request.', "Ask for it, and after the camera inspection we'll write a report you can hand to your insurer, for example after water damage."],
-    ['An invoice, every time.', 'Bank transfer, payment link, or cash with a receipt on the spot. Never a number invented at the door.']],
+    ['An invoice, every time.', 'Bank transfer, payment link, or cash with a receipt on the spot. Never a figure made up at the door.']],
 
   matK: 'The gear', matH: "We're proud of our machines.",
-  matT: "No supermarket drain snake. The van is fitted with a Rioned high-pressure unit, from the Dutch manufacturer that's equipped the trade since 1956, and professional inspection cameras. You can see them here, on our own jobs.",
+  matT: "No DIY drain snake. The van is fitted with a Rioned high-pressure unit, from the Dutch manufacturer that's equipped the trade since 1956, and professional inspection cameras. You can see them here, on our own jobs.",
   mat: [
     ['machine.webp', 'Rioned UrbanJet high-pressure machine built into the back of the van.', 'The jetting machine', "A Rioned UrbanJet built into the van. It's what pushes the blockage out and cleans the pipe."],
     ['camera.webp', 'Inspection camera tablet above an open pit, the inside of the pipe on screen.', 'The sewer camera', 'You see the inside of your pipe on the tablet, with the distance counter. Included with the job.'],
@@ -174,11 +174,12 @@ module.exports = {
     ['chambre.webp', 'Opening a buried inspection chamber in a garden.', 'Blocked street trap, inspection chamber open. Real job, 2026.'],
     ['job-wc.webp', 'Technician unblocking a toilet with a Rioned drain rod, Pro Débouchage jacket.', "Blocked toilet, cleared with the Rioned rod. Real job, 2026. This is the original photo behind the before/after above."],
     ['allee.webp', 'Paved driveway during high-pressure cleaning, the light strip is the part already cleaned.', 'Paved driveway, high-pressure cleaning in progress. The light strip is the part already done.']],
-  // ONE REAL review (Paolo, 2026-08-27, original in French), faithfully translated and marked as
-  // such. `reviews` = the parked grid, refilled when more real reviews land.
+  // ONE REAL review (Paolo, 2026-08-27, original in French), published under the first name
+  // François by agreement with him (Fady and Paolo, 2026-08-29), faithfully translated and marked
+  // as such. `reviews` = the parked grid, refilled when more real reviews land.
   reviews: [],
   featured: {
-    name: 'Paolo',
+    name: 'François',
     text: [
       'Very happy with Pro Débouchage. At first I thought my sink was simply blocked. They came out the same day and, with a camera inspection, quickly found the problem actually came from the sewer pipes.',
       'The work was done quickly, cleanly and very professionally. Everything was clearly explained, and the price was very reasonable for the quality of the service.',
@@ -189,11 +190,11 @@ module.exports = {
   revT: 'One review, because we only publish the real ones.',
   revP: "Our Google page is on its way, and the next ones will be public there. Had us round? Send two lines and we'll put them here, exactly as you wrote them.",
   revB: 'Send my review',
-  askLine: 'Used our services? An honest review helps us more than a compliment.',
-  honestT: "No reviews online yet, and we won't invent any.",
-  honestP: "Pro Débouchage is a young company, registered since September 2025. Our first customers came by word of mouth. Our Google page is coming, and the first reviews will be theirs.",
+  askLine: 'Had us out? An honest review helps us more than a compliment.',
+  honestT: "No reviews online yet, and we won't make any up.",
+  honestP: "Pro Débouchage is a young company, registered in September 2025. Our first customers came by word of mouth. Our Google page is coming, and the first reviews will be theirs.",
   honestL: [
-    'Our company number, 1027.454.187, checkable in the public register.',
+    'Our company number, 1027.454.187. You can check it in the public register.',
     'The price, quoted on the phone before we set off, and confirmed at your door.',
     'The photos above: our own jobs, not bought images.'],
 
@@ -201,10 +202,10 @@ module.exports = {
   segs: [
     ['Tenant', "You can call us out right now. You get the invoice and, on request, a job report: what you need to claim the cost back from your landlord if the cause is theirs."],
     ['Owner or syndic', "We tell you whether the problem is private or communal, with the camera footage to back it up, and the invoice goes to the right party."],
-    ['Shops and horeca', "A kitchen at a standstill costs more than an unblocking. We come fast, and we'll suggest maintenance so it doesn't come back."]],
+    ['Shops and horeca', "A closed kitchen costs you more than the job does. We come fast, and we'll suggest maintenance so it doesn't come back."]],
 
   zoneK: 'The area', zoneH: 'Where we work',
-  zoneT: "We work around Brussels, in Flemish and Walloon Brabant, roughly 40 km around Wemmel. Brussels city itself isn't in our area.",
+  zoneT: "We work around Brussels, in Flemish and Walloon Brabant, within roughly 40 km of Wemmel. Brussels city itself isn't in our area.",
   towns: 'Vilvoorde · Machelen · Wemmel · Meise · Grimbergen · Merchtem · Asse · Dilbeek · Ternat · Zaventem · Zemst · Sint-Pieters-Leeuw · Halle · Beersel · Tervuren · Overijse · Sint-Genesius-Rode · Kraainem · Wezembeek-Oppem · Waterloo · La Hulpe · Braine-l\'Alleud · Braine-le-Château · Tubize · Wavre · Nivelles'.split(' · '),
   zoneC: "Your town's not on the list? Call, and you'll get a yes or no straight away.",
   zoneL: 'Call 0480 649 649',
@@ -220,11 +221,11 @@ module.exports = {
     ['How fast can you be here?', "We give you an arrival time on the phone, and we call if it slips. We'd rather name a time we can keep than a number that just sounds good."],
     ['Will you need to break anything?', "We look with the camera first. Breaking anything is the last resort, and never without your agreement. That's why the camera is included with the job."],
     ['Do you write reports for insurance?', "Yes, if you ask. After the camera inspection we write a report you can hand to your insurer, for example after water damage or a flooded cellar. Easiest is to mention it on the phone."],
-    ['Which towns do you cover?', "The ring around Brussels, in Flemish and Walloon Brabant: Vilvoorde, Wemmel, Grimbergen, Dilbeek, Halle, Zaventem, Waterloo, Braine-l'Alleud, Wavre, Nivelles and the other towns within roughly 40 km of Wemmel. Brussels city isn't in our area. Town not listed? Call, the answer is immediate."],
+    ['Which towns do you cover?', "The ring around Brussels, in Flemish and Walloon Brabant: Vilvoorde, Wemmel, Grimbergen, Dilbeek, Halle, Zaventem, Waterloo, Braine-l'Alleud, Wavre, Nivelles and the other towns within roughly 40 km of Wemmel. Brussels city isn't in our area. Town not listed? Call, you'll get a yes or no straight away."],
     ['How can I pay?', 'Bank transfer, payment link, or cash with a receipt on the spot. You always get an invoice.']],
 
   finalH: "A blockage doesn't wait.", finalB: 'Call now', finalWa: 'Send a photo',
-  finalL: 'Reachable 24/7, weekends and holidays included. A normal number, no premium rate.',
+  finalL: 'Someone answers 24/7, weekends and holidays included. A normal number, no premium rate.',
 
   footD: 'Drain unblocking, high-pressure cleaning, camera inspection, septic tanks and cellar pumping. Around Brussels, in Flemish and Walloon Brabant, 24/7.',
   photoNote: "All photos come from our own jobs, the van included. Only the 'before' photo in the proof section was recreated from our own photo, and Afrim's portrait was prepared from a photo of himself.",

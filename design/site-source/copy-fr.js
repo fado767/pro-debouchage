@@ -27,7 +27,7 @@ module.exports = {
   eyebrow: `Débouchage 24h/24`,
   h1: ['Ça remonte,', 'ça déborde,', `ça pue${nb}?`],
   h1b: `Appelez. On s'en occupe.`,
-  sub: `Vous décrivez le problème, <strong>on vous dit le prix au téléphone, et c'est ce prix-là que vous payez.</strong> Confirmé à votre porte, avant la première minute de travail.`,
+  sub: `Vous décrivez le problème, <strong>on vous dit le prix au téléphone, et c'est ce prix-là que vous payez.</strong> Confirmé à votre porte, avant qu'on commence.`,
   callMain: 'Appeler 0480 649 649',
   waBtn: 'Envoyer une photo',
   // A tip, not a second promise: one marked word, one short line (Fady 2026-08-26).
@@ -69,7 +69,7 @@ module.exports = {
     'Débouchage garanti 30 jours'],
 
   // Services: six numbered editorial rows, one call link each. No random photos in cards.
-  servK: `Ce qu'on fait`, servH: `Votre problème est dans cette liste.`,
+  servK: `Ce qu'on fait`, servH: `Votre problème est probablement là-dedans.`,
   services: [
     ['Débouchage urgent', 'WC, évier, douche, canalisation. On vient avec la haute pression et la caméra.'],
     ['Égout et sterput', `Le sterput qui déborde après la pluie, l'égout qui refoule dans la cave. Haute pression.`],
@@ -80,11 +80,11 @@ module.exports = {
   servLink: 'Appeler',
 
   // Steps.
-  stepK: 'Comment ça se passe', stepH: 'Quatre étapes, pas de surprise',
+  stepK: 'Comment ça se passe', stepH: 'Quatre étapes, pas de mauvaise surprise',
   steps: [
-    ['Vous appelez et vous décrivez le problème.', 'On pose deux ou trois questions. Une photo par WhatsApp aide.'],
+    ['Vous appelez et vous décrivez le problème.', `On pose deux ou trois questions. Une photo par WhatsApp, ça aide déjà beaucoup.`],
     ['On vous dit le prix.', `Au téléphone, avant de bouger. Le soir et le week-end, la majoration est déjà dans le prix qu'on vous annonce.`],
-    ['On vient avec la caméra et la haute pression.', `Vous recevez une heure d'arrivée, et on vous prévient si elle bouge.`],
+    ['On vient avec la caméra et la haute pression.', `On vous donne une heure d'arrivée, et on vous prévient si ça bouge.`],
     ['On confirme le prix à votre porte, puis on débouche.', `Si la situation est différente de ce que vous avez décrit, vous le savez avant, pas sur la facture.`]],
 
   // Prices: editorial rows, the surcharge grid published in full.
@@ -93,7 +93,7 @@ module.exports = {
   // until his own price list lands. What does NOT change is the phone quote, which stays exact and
   // binding: see `promise` below, which is the sentence the whole page is built on.
   priceFrom: `À partir de`,
-  priceIntro: `Les interventions les plus fréquentes sont dans cette liste, avec leur prix de départ. Votre prix exact, vous l'avez au téléphone, avant qu'on prenne la route, et c'est celui-là que vous payez.`,
+  priceIntro: `Voici ce qu'on fait le plus souvent, avec le prix de départ. Votre prix exact, vous l'avez au téléphone, avant qu'on prenne la route, et c'est celui-là que vous payez.`,
   prices: [
     ['WC bouché', `129${nb}€`],
     ['Évier, lavabo ou douche', `119${nb}€`],
@@ -101,20 +101,20 @@ module.exports = {
     [`Curage haute pression, jusqu'à 25${nb}m`, `249${nb}€`],
     ['Pompage de cave inondée, première heure', `229${nb}€`]],
   included: ['TVA comprise', 'Déplacement compris', 'Première heure comprise'],
-  terms: `Ces prix de départ valent en semaine, de 7h à 18h. Soir (18h à 22h) et samedi${nb}: +50${nb}%. Nuit, dimanche et jours fériés${nb}: +75${nb}%. Le supplément vous est dit au téléphone, avec le prix, avant qu'on prenne la route.`,
+  terms: `Ces prix de départ valent en semaine, de 7h à 18h. Soir (18h à 22h) et samedi${nb}: +50${nb}%. Nuit, dimanche et jours fériés${nb}: +75${nb}%. On vous annonce le supplément au téléphone, avec le prix, avant de prendre la route.`,
   p4t: `Votre cas n'est pas dans la liste${nb}?`,
   p4: `Fosse septique, canalisation enterrée, gros chantiers${nb}: dites-nous le problème, vous avez le prix tout de suite, au téléphone.`,
   p4b: 'Appeler 0480 649 649',
   priceBtn: 'Appeler',
   // The title must say what the "1" in the seal means (Fady 2026-08-26); v2's wording did, v3's did not.
   guarH: 'Garantie 1 mois sur le débouchage',
-  guarP: `Si la même canalisation se rebouche dans les 30 jours, on revient gratuitement.`,
+  guarP: `Si la même canalisation se rebouche dans les 30 jours, on repasse, et c'est gratuit.`,
   guarLegal: `Cette garantie s'ajoute à vos droits légaux, elle ne les remplace pas.`,
   guarRing: 'GARANTIE',
   promise: 'Le prix annoncé au téléphone est le prix sur la facture.',
 
   // Before / during / after: one real job in three photos.
-  baK: 'Avant, pendant, après', baH: `Le bouchon part. La preuve reste.`,
+  baK: 'Avant, pendant, après', baH: `Le bouchon part. Les photos restent.`,
   baSteps: [
     ['Avant', `La cuvette pleine. L'eau ne descend plus.`,
       'WC bouché, la cuvette pleine d’eau sale, avant l’intervention.'],
@@ -130,7 +130,7 @@ module.exports = {
   scamK: 'Bon à savoir', scamH: `Comment reconnaître une arnaque au débouchage`,
   // The victim figure is a CITED fact, not a slogan: the phrase between scamI1 and scamI2 becomes a
   // button that opens the source panel, so the claim can be checked without leaving the page.
-  scamI1: `La région de Hal-Vilvorde est tristement connue pour ça${nb}: `,
+  scamI1: `Dans la région de Hal-Vilvorde, on connaît le problème${nb}: `,
   scamICite: `plus de 265 victimes entre 2020 et 2025, et un procès en 2025`,
   scamI2: `. Quatre signes qui doivent vous faire raccrocher${nb}:`,
   citeHint: `Voir la source`,
@@ -157,12 +157,12 @@ module.exports = {
   bubble: `Bonjour, je suis Afrim. C'est moi qui viens chez vous, et c'est moi qui débouche.`,
   bubbleWho: `Afrim, technicien`,
   bubbleAlt: `Afrim, le technicien de Pro Débouchage.`,
-  whoT: `Vous appelez, vous parlez à la personne qui organise l'intervention. C'est Afrim qui vient, dans la camionnette que vous voyez ici, avec la caméra d'inspection, la machine haute pression et la pompe. Une équipe de deux, 30 ans de métier à eux deux${nb}: immobilier, rénovation et plomberie. L'entreprise est assurée en RC professionnelle chez AG Insurance.`,
+  whoT: `Vous appelez, vous tombez directement sur la personne qui organise l'intervention. C'est Afrim qui vient, dans la camionnette que vous voyez ici, avec la caméra d'inspection, la machine haute pression et la pompe. Une équipe de deux, 30 ans de métier à eux deux${nb}: immobilier, rénovation et plomberie. L'entreprise est assurée en RC professionnelle chez AG Insurance.`,
   vanAlt: 'La camionnette Pro Débouchage, une Mercedes Vito grise, au petit matin avant la première intervention.',
   vanCap: `La camionnette, telle qu'elle arrive chez vous.`,
   whoBlocks: [
     ['La caméra passe avant le marteau.', `On regarde d'abord avec la caméra. Casser est le dernier recours, et jamais sans votre accord. C'est pour cela qu'elle est comprise.`],
-    [`Un rapport pour l'assurance, sur demande.`, `Demandez-le, et après l'inspection caméra on rédige un rapport que vous pouvez remettre à votre assurance, par exemple après un dégât des eaux.`],
+    [`Un rapport pour l'assurance, sur demande.`, `Demandez-le, et après l'inspection caméra on vous fait un rapport à donner à votre assurance, par exemple après un dégât des eaux.`],
     ['Une facture, chaque fois.', 'Virement, lien de paiement, ou liquide avec un reçu remis sur place. Jamais de montant inventé à la porte.']],
 
   // The three rules, as cards.
@@ -170,7 +170,7 @@ module.exports = {
 
   // Equipment.
   matK: 'Le matériel', matH: 'On est fiers de nos machines.',
-  matT: `Pas de furet de grande surface. La camionnette est équipée d'une machine haute pression Rioned, le fabricant néerlandais qui équipe le métier depuis 1956, et de caméras d'inspection professionnelles. Vous les voyez ici, sur nos propres chantiers.`,
+  matT: `Pas un furet de magasin de bricolage. La camionnette est équipée d'une machine haute pression Rioned, le fabricant néerlandais qui équipe les déboucheurs depuis 1956, et de caméras d'inspection professionnelles. Vous les voyez ici, sur nos propres chantiers.`,
   mat: [
     ['machine.webp', `Machine de curage haute pression Rioned UrbanJet installée à l'arrière de la camionnette.`, 'La haute pression', `Une Rioned UrbanJet montée dans la camionnette. C'est elle qui pousse le bouchon dehors et nettoie la canalisation.`],
     ['camera.webp', `Tablette de la caméra d'inspection au-dessus d'un regard ouvert, l'intérieur du tuyau à l'écran.`, `La caméra d'égout`, `Vous voyez l'intérieur de votre canalisation sur la tablette, avec le compteur de mètres. Comprise avec l'intervention.`],
@@ -183,13 +183,14 @@ module.exports = {
     ['chambre.webp', `Ouverture d'une chambre de visite enterrée dans un jardin.`, 'Sterput bouché, chambre de visite ouverte. Intervention réelle, 2026.'],
     ['job-wc.webp', 'Technicien qui débouche un WC avec un furet Rioned, veste Pro Débouchage.', `WC bouché, débouché au furet Rioned. Intervention réelle, 2026. C'est la photo d'origine de l'avant/après plus haut.`],
     ['allee.webp', 'Allée pavée en cours de nettoyage haute pression, la bande claire est la partie nettoyée.', 'Allée pavée, nettoyage haute pression en cours. La bande claire est la partie déjà nettoyée.']],
-  // ONE REAL review (Paolo, received 2026-08-27, Fady confirmed publication with first name; the
-  // invented placeholder cards died here, git keeps them). His exact words, apostrophes normalised
+  // ONE REAL review (Paolo, received 2026-08-27), published under the first name François by
+  // agreement with him (Fady and Paolo, 2026-08-29); the invented placeholder cards died here, git
+  // keeps them. His exact words, apostrophes normalised
   // only. `reviews` stays EMPTY on purpose: it is the PARKED 3-card grid, refilled with real
   // customers' words when two more land (Fady 2026-08-27); while `featured` exists it renders alone.
   reviews: [],
   featured: {
-    name: 'Paolo',
+    name: 'François',
     text: [
       `Très satisfait de l'intervention de Pro Débouchage. Je pensais au départ que mon évier était simplement bouché. Ils sont intervenus le jour même et, grâce à une inspection par caméra, ont rapidement détecté que le problème venait en réalité des canalisations d'égout.`,
       `Le travail a été réalisé rapidement, proprement et avec beaucoup de professionnalisme. Tout m'a été clairement expliqué et le prix était très raisonnable pour la qualité du service.`,
@@ -211,8 +212,8 @@ module.exports = {
   // Situations.
   segK: 'Selon votre situation', segH: 'Locataire, propriétaire, syndic ou commerçant',
   segs: [
-    ['Locataire', `Vous pouvez nous faire venir maintenant. Vous recevez la facture et, sur demande, un rapport d'intervention${nb}: de quoi vous faire rembourser par le propriétaire si la cause lui revient.`],
-    ['Propriétaire ou syndic', `On vous dit si le problème vient du privé ou du commun, caméra à l'appui, et la facture est établie au nom de la bonne partie.`],
+    ['Locataire', `Vous pouvez nous faire venir maintenant. Vous recevez la facture et, sur demande, un rapport d'intervention${nb}: de quoi vous faire rembourser par le propriétaire si c'est à lui de payer.`],
+    ['Propriétaire ou syndic', `On vous dit si le problème vient du privé ou du commun, caméra à l'appui, et on fait la facture au nom de celui qui doit payer.`],
     ['Commerce et horeca', `Une cuisine à l'arrêt coûte plus cher qu'un débouchage. On vient vite, et on vous propose un entretien pour que ça ne revienne pas.`]],
 
   // Zone.
@@ -227,18 +228,18 @@ module.exports = {
   faq: [
     [`Combien ça coûte${nb}?`, `Un WC bouché démarre à 129${nb}€, un évier, un lavabo ou une douche à 119${nb}€, un égout ou un sterput à la haute pression à 199${nb}€, un curage haute pression à 249${nb}€ jusqu'à 25${nb}m, le pompage d'une cave inondée à 229${nb}€ pour la première heure. TVA comprise, déplacement et première heure compris, en semaine de 7h à 18h. Ce sont des prix de départ${nb}: votre prix exact vous est dit au téléphone, avant qu'on prenne la route, et c'est celui-là qui est sur la facture.`],
     [`Y a-t-il un supplément le soir, la nuit ou le week-end${nb}?`, `Oui, et il est écrit ici. Soir (18h à 22h) et samedi${nb}: +50${nb}%. Nuit, dimanche et jours fériés${nb}: +75${nb}%. Vous l'entendez au téléphone, avant l'intervention.`],
-    [`Le déplacement est-il payant${nb}?`, `Non, le déplacement et la première heure sont compris dans les prix ci-dessus. Si on vient et que rien ne peut être débouché, vous payez seulement le déplacement, 60${nb}€.`],
+    [`Le déplacement est-il payant${nb}?`, `Non, le déplacement et la première heure sont compris dans les prix ci-dessus. Si on vient et qu'on n'arrive pas à déboucher, vous payez seulement le déplacement, 60${nb}€.`],
     [`Combien coûte l'inspection caméra seule${nb}?`, `Quand on fait l'intervention, elle est comprise, vous ne payez rien en plus. Seule, avec un rapport écrit que vous pouvez remettre à votre assurance ou à votre syndic, elle démarre à 149${nb}€, TVA comprise.`],
     [`Quel taux de TVA s'applique chez moi${nb}?`, `6${nb}% si votre habitation a plus de 10 ans, le cas le plus courant. Sinon 21${nb}%, comme pour les entreprises. Les prix de cette page sont TVA 6${nb}% comprise${nb}; si le taux de 21${nb}% s'applique chez vous, on vous le dit au téléphone, avant qu'on prenne la route.`],
     [`Je suis locataire${nb}: qui paie${nb}?`, `Vous pouvez nous faire venir sans attendre l'accord du propriétaire, et c'est vous qui recevez la facture. Si la cause revient au propriétaire, par exemple une canalisation vétuste ou cassée, notre facture et le rapport d'intervention vous servent à demander le remboursement. On vous dit honnêtement ce qu'on a trouvé.`],
     [`En combien de temps êtes-vous là${nb}?`, `On vous donne une heure d'arrivée au téléphone, et on vous prévient si elle bouge. On préfère annoncer une heure qu'on tient plutôt qu'un chiffre qui fait plaisir.`],
     [`Faut-il casser quelque chose${nb}?`, `On regarde d'abord avec la caméra. Casser est le dernier recours, et jamais sans votre accord. C'est pour cela que la caméra est comprise avec l'intervention.`],
     [`Faites-vous un rapport pour l'assurance${nb}?`, `Oui, si vous le demandez. Après l'inspection caméra, on rédige alors un rapport que vous pouvez remettre à votre assurance, par exemple après un dégât des eaux ou une cave inondée. Le plus simple est de le dire au téléphone.`],
-    [`Quelles communes couvrez-vous${nb}?`, `Le ring autour de Bruxelles, en Brabant flamand et en Brabant wallon${nb}: Vilvorde, Wemmel, Grimbergen, Dilbeek, Hal, Zaventem, Waterloo, Braine-l'Alleud, Wavre, Nivelles et les autres communes à environ 40${nb}km autour de Wemmel. Bruxelles-ville n'est pas dans notre zone. Votre commune n'est pas citée${nb}? Appelez, la réponse est immédiate.`],
+    [`Quelles communes couvrez-vous${nb}?`, `Le ring autour de Bruxelles, en Brabant flamand et en Brabant wallon${nb}: Vilvorde, Wemmel, Grimbergen, Dilbeek, Hal, Zaventem, Waterloo, Braine-l'Alleud, Wavre, Nivelles et les autres communes à environ 40${nb}km autour de Wemmel. Bruxelles-ville n'est pas dans notre zone. Votre commune n'est pas citée${nb}? Appelez, on vous répond tout de suite.`],
     [`Comment puis-je payer${nb}?`, `Par virement, par lien de paiement, ou en liquide avec un reçu remis sur place. Vous recevez toujours une facture.`]],
 
   // Final call.
-  finalH: `Un bouchon n'attend pas.`, finalB: 'Appeler maintenant', finalWa: 'Envoyer une photo',
+  finalH: `Un bouchon, ça n'attend pas.`, finalB: 'Appeler maintenant', finalWa: 'Envoyer une photo',
   finalL: 'Joignable 24h/24 et 7j/7, week-end et jours fériés compris. Numéro normal, pas de surtaxe.',
 
   // Footer.

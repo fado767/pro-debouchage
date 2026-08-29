@@ -115,3 +115,10 @@
 - **2026-08-28 · A changed image always ships under a new filename.** Fady's yes, same evening it bit twice. Replacing an image in place leaves the old bytes on the Cloudflare edge for up to 24 hours, so the deploy reports success and the live page still shows the old picture; the og-banner dodged it by luck and Afrim's avatar did not. The rule is now AGENTS.md section 7: bump the name, point the build at it, move the replaced set to `to-delete/`.
 
 - **2026-08-28** From research/30 Fady adopted ONE upgrade: the never-bend rules become enforced hooks (PreToolUse deny on ALL git and the backup scripts for sandboxed tools, deny Write/Edit on site-v1/ and ../taxi-business/, PostToolUse em-dash check on written files). Declined for now: read-only git allowance, path-scoped rules, rebuild exit-code script, scheduled VIES poll. The invoice work gets a dedicated session once everything is green (his call, this widget).
+
+## 2026-08-29 Launch morning decisions (Fady)
+- The five VAT rate questions to the accountant are SCRAPPED for now: he already answered that rates depend on customer type (private/business), building age and situation. No blanket answers to chase.
+- The featured review ships under the name François (agreed with Paolo himself; last name was never shown). Applied in FR, NL, EN.
+- Pre-launch copy polish round approved: 3 Opus voice agents (FR-BE, NL-BE, EN), subtle phrase-level changes only, from-to table approved by Fady before edits. Ads enable AFTER the polished copy is live and verified.
+- **2026-08-29** The daily "clients du jour" Tally form to Steph is DROPPED: Roro prefers calling Fady with updates, so the weekly report feeds on those calls instead. The form stays parked at tally.so/r/PdJkkB, unused.
+- **2026-08-29** 2SV for info@ will be done REMOTELY with Roro on a call (access already in hand); no new visit needed. The Ads "Confirm your affiliation" sub-task is delegated to an Opus agent on Fady's word.
