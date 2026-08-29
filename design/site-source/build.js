@@ -351,10 +351,12 @@ const IMGS = {
   // end up with and the van still sits whole in the frame at every viewport. Never swap this for a
   // landscape crop, or a tall panel would cut the van's nose and roof.
   'van-sunrise-tall.webp': { base: 'van-sunrise-tall', widths: [480, 800, 1200], w: 1200, h: 1500, sizes: '(min-width: 56rem) 620px, 100vw' },
-  // Afrim's portrait in the who-comes chat bubble (2026-08-28). It renders round at 52 to 70 CSS px,
-  // so the widths are the 1x, 2x and 3x of that and nothing bigger; the square crop is centred on
-  // his face because a circular mask keeps only the middle.
-  'afrim-avatar-2.webp': { base: 'afrim-avatar-2', widths: [96, 192, 384], w: 384, h: 384, sizes: '70px' },
+  // Afrim's portrait in the who-comes chat bubble. Since 2026-08-29 it is his own unretouched
+  // photo (`assets/raw/afrim-portrait-real.jpg`), squared and nothing else, under the -3 name
+  // because the -2 URLs were already warm on the Cloudflare edge. It renders round at 52 to 70
+  // CSS px, so the widths are the 1x, 2x and 3x of that and nothing bigger; the square is centred
+  // on his face because a circular mask keeps only the middle.
+  'afrim-avatar-3.webp': { base: 'afrim-avatar-3', widths: [96, 192, 384], w: 384, h: 384, sizes: '70px' },
   'ba-before.webp':  { base: 'ba-before', widths: [480, 800], w: 800, h: 1000, sizes: '(min-width: 56rem) 340px, 92vw' },
   'ba-after.webp':   { base: 'ba-after', widths: [480, 800], w: 800, h: 1000, sizes: '(min-width: 56rem) 340px, 92vw' },
   // Fady's brush arrows, drawn in Figma and exported 2026-08-26. alpha:true swaps the JPEG

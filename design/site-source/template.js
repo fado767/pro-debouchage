@@ -132,7 +132,7 @@ function pageHtml(c, opts = {}) {
   // photo, with his yes. It replaced the monogram placeholder that stood here while there was no
   // face photo, and with it the build warning. Never put an invented face on a real, named person
   // (rule 5): if this ever has to come out, the monogram comes back, not a stock head.
-  const bubble = `<div class="bub-row rv"><div class="bub-av">${IMG('afrim-avatar-2.webp', c.bubbleAlt, 384, 384, 'loading="lazy" decoding="async"')}</div><div class="bub"><p class="bub-txt">${c.bubble}</p><p class="bub-who">${c.bubbleWho}</p></div></div>`;
+  const bubble = `<div class="bub-row rv"><div class="bub-av">${IMG('afrim-avatar-3.webp', c.bubbleAlt, 384, 384, 'loading="lazy" decoding="async"')}</div><div class="bub"><p class="bub-txt">${c.bubble}</p><p class="bub-who">${c.bubbleWho}</p></div></div>`;
   // TWO COLUMNS ON A WIDE SCREEN (Fady 2026-08-27): the van photo is 1600px of picture and it was
   // sitting under the paragraph and the bubble, which left the words stranded above a slab. Words
   // left, van right. The DOM order is unchanged, so a phone still reads paragraph, Afrim, van.

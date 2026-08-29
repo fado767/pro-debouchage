@@ -228,7 +228,7 @@ module.exports = {
   finalL: 'Someone answers 24/7, weekends and holidays included. A normal number, no premium rate.',
 
   footD: 'Drain unblocking, high-pressure cleaning, camera inspection, septic tanks and cellar pumping. Around Brussels, in Flemish and Walloon Brabant, 24/7.',
-  photoNote: "All photos come from our own jobs, the van included. Only the 'before' photo in the proof section was recreated from our own photo, and Afrim's portrait was prepared from a photo of himself.",
+  photoNote: "All photos come from our own jobs, the van included. Only the 'before' photo in the proof section was recreated from our own photo.",
   legalT: 'Legal information',
   legal: ['PRO DEBOUCHAGE SRL', 'Guldenschaapstraat 6, 1800 Vilvoorde, Belgium', 'Company number 1027.454.187', 'E-mail: info@prodebouchage24.be', 'Phone: 0480 649 649'],
   vat: 'Displayed prices include 6% VAT (private homes over 10 years old).',

@@ -244,7 +244,7 @@ module.exports = {
 
   // Footer.
   footD: `Débouchage, curage, inspection caméra, fosse septique et pompage de cave. Autour de Bruxelles, en Brabant flamand et en Brabant wallon, 24h/24.`,
-  photoNote: `Toutes les photos viennent de nos propres interventions, la camionnette y comprise. Seule la photo « avant » de la section preuve a été reconstituée d'après notre photo d'origine, et le portrait d'Afrim a été préparé à partir de sa propre photo.`,
+  photoNote: `Toutes les photos viennent de nos propres interventions, la camionnette y comprise. Seule la photo « avant » de la section preuve a été reconstituée d'après notre photo d'origine.`,
   legalT: 'Mentions légales',
   legal: ['PRO DEBOUCHAGE SRL', 'Guldenschaapstraat 6, 1800 Vilvoorde, Belgique', `Numéro d'entreprise 1027.454.187`, `E-mail${nb}: info@prodebouchage24.be`, `Téléphone${nb}: 0480 649 649`],
   vat: `Les prix affichés sont TVA 6${nb}% comprise (habitation privée de plus de 10 ans).`,

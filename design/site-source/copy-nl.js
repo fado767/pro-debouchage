@@ -219,7 +219,7 @@ module.exports = {
   finalL: 'Bereikbaar 24 uur op 24 en 7 dagen op 7, ook in het weekend en op feestdagen. Gewoon nummer, geen betaalnummer.',
 
   footD: 'Ontstoppen, rioolreiniging, camera-inspectie, septische put en kelder leegpompen. Rond Brussel, in Vlaams-Brabant en Waals-Brabant, 24/7.',
-  photoNote: `Alle foto's komen van onze eigen interventies, de bestelwagen inbegrepen. Alleen de 'voor'-foto in de bewijssectie is nagemaakt naar onze eigen foto, en het portret van Afrim is gemaakt op basis van zijn eigen foto.`,
+  photoNote: `Alle foto's komen van onze eigen interventies, de bestelwagen inbegrepen. Alleen de 'voor'-foto in de bewijssectie is nagemaakt naar onze eigen foto.`,
   legalT: 'Wettelijke vermeldingen',
   legal: ['PRO DEBOUCHAGE BV', 'Guldenschaapstraat 6, 1800 Vilvoorde, België', 'Ondernemingsnummer 1027.454.187', 'E-mail: info@prodebouchage24.be', 'Telefoon: 0480 649 649'],
   vat: 'De getoonde prijzen zijn inclusief 6% btw (privéwoning ouder dan 10 jaar).',
