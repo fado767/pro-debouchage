@@ -143,9 +143,9 @@ One thing to say at the start of the call: **every price printed on the page is 
 
 ## 14. Proof and the review
 
-**What it says.** Three job photos with captions, then Paolo's review in full, in his own words, then a short block saying there is one review because we only publish real ones, with a WhatsApp button to send the next one.
+**What it says.** Three job photos with captions, then François's review in full, in his own words, then a short block saying there is one review because we only publish real ones, with a WhatsApp button to send the next one.
 
-**Why.** Paolo is real, received 2026-08-27, published with his first name on Fady's confirmation. There are no stars because he wrote words, not a rating. The three-card grid is built and empty: it comes back automatically when two more real reviews land. No invented reviews, ever (rule 1).
+**Why.** François is real, the review was received 2026-08-27, and it is published under his first name only, with his agreement. There are no stars because he wrote words, not a rating. The three-card grid is built and empty: it comes back automatically when two more real reviews land. No invented reviews, ever (rule 1).
 
 **Roro will ask**
 - *Everyone else has 200 reviews. Can we not add a few?* No. Fake reviews get a business removed from Google, and this page's whole argument is that we are the ones who do not lie.

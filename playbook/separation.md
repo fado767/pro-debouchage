@@ -1,6 +1,20 @@
 # playbook/separation.md, how fady.be keeps clients and lines of business apart
 
-*The one owner of the agency-wide account structure as it applies to this project. Rewritten in place. Distilled 2026-08-22 from `research/05` (Google, Cloudflare and agency practice, plus the current taxi inventory read read-only). The taxi setup is NOT changed from here; where it differs from the ideal, the difference is only recorded so Pro Débouchage does not inherit it.*
+*The one owner of the agency-wide account structure as it applies to this project, and (since 2026-08-30) of the CONTROL MODEL below. Rewritten in place. Distilled 2026-08-22 from `research/05` (Google, Cloudflare and agency practice, plus the current taxi inventory read read-only). The taxi setup is NOT changed from here; where it differs from the ideal, the difference is only recorded so Pro Débouchage does not inherit it.*
+
+## 0. THE CONTROL MODEL (settled 2026-08-30, this file is its one owner, every other file points here)
+
+Fady settled it on 2026-08-30 (DECISIONS.md, the 2SV close-out block): **the AGENCY manages everything end-to-end, and RORO is the owner ON RECORD.** Roro asked for it that way. He does not want to hold keys and he does not want to be the person a login prompt has to wait for.
+
+- **What is ours: custody, not ownership.** The second factors for the shared Google identity `info@prodebouchage24.be` live on the AGENCY side, and Fady signs into that account himself: the passkey (Fady's Windows), the authenticator app (Fady's iPhone), the Google prompt devices and the 10 backup codes (Fady's Bitwarden). A passkey on Roro's phone and a copy of the recovery codes on his side were considered and are deliberately NOT wanted; they are dropped, not pending.
+- **What is his: everything that matters and everything that transfers.** The domain holder, the Business Profile Primary Owner, the Ads login and its billing payer, the GA4 account, his reviews and his customers. None of that is agency property at any moment.
+- **This does NOT weaken gate G2, and a future reader must not read it that way.** G2 says Roro owns every account, and ownership is exactly the part that is unchanged: holder, Primary Owner, payer and login all stay in his name. Only CUSTODY of the second factors sits with the agency. Ownership and custody are two different things; finding the agency holding the codes is not evidence that the gate was quietly broken.
+- **Handover is one pass.** If the relationship ever ends, all of it moves to him at once: 2SV re-enrolled on his own devices, fresh backup codes issued to him, the agency removed as manager or admin everywhere, and the Cloudflare zone and Pages project remove-and-re-added on his side (the known exit cost, section 5).
+- **Why it is written here and nowhere else.** The same paragraph had been restated in full in several files by 2026-08-30 and had started to drift. Other files now carry a one-line pointer to this section and no second copy of the reasoning.
+
+## 0b. How the work runs (Fady, 2026-08-30, standing instruction)
+
+Claude operates this business end-to-end. Fady supervises and makes the decisions that are genuinely his: money, credentials, account-level agreements, and anything that touches a live client surface. The goal is a business that eventually runs itself, with Claude catching and correcting the mistakes of other sessions, and with Roro's own setup kept dead simple.
 
 ## 1. The shape
 

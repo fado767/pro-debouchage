@@ -6,29 +6,38 @@ description: Close the day on the Pro Débouchage project. Use when Fady says "p
 # pro-eof
 
 **Procedure only. This skill owns HOW, never WHAT.** `AGENTS.md` binds over this file, especially
-sections 7 (size caps, rewrite in place), 8 (logging) and 9 (close it or file it).
+sections 7 (byte budgets, rewrite in place), 8 (logging) and 9 (close it or file it).
 
 ## Run it, in this order
 
 1. **The plain-English day summary** to Fady: what changed today, what it means for him, where things
    stand. Short, scannable. This is the session's job to give, never his to ask for.
 2. **File everything.** Walk the day's chat for anything loggable that is not yet in a file: done work
-   to `LOG.md` (one entry for the session, max 5 lines), open work to `NOW.md` (owner-tagged, closed
-   lines removed and summarised in the LOG entry), decisions to `DECISIONS.md`, changed truths to
-   `STATE.md`, account changes to `playbook/accounts.md`. Nothing stays only in chat.
-3. **Size check.** Report the line count of `STATE.md` (cap 120), `NOW.md` (cap 60), `HANDOFF.md`
-   (cap 40) and the byte size of `LOG.md` and `DECISIONS.md`. If a cap is hit, trim in this session
-   before writing anything else, and say what moved where.
-4. **Stop the background agents.** Check the session's background agents and tasks; stop any still
+   to `LOG.md` (one entry for the session, max 5 lines and under about 2,500 bytes), open work to
+   `NOW.md` (owner-tagged, closed lines removed and summarised in the LOG entry), decisions to
+   `DECISIONS.md`, changed truths to `STATE.md`, account changes to `playbook/accounts.md`. Nothing
+   stays only in chat.
+3. **Size check, in bytes.** Run `wc -c STATE.md NOW.md HANDOFF.md LOG.md DECISIONS.md` and report the
+   result against the budgets in `AGENTS.md` section 3: `STATE.md` 14 KB, `NOW.md` 8 KB, `HANDOFF.md`
+   4 KB. `LOG.md` and `DECISIONS.md` have no file budget, report their size anyway so the growth stays
+   visible. If a budget is passed, trim in this session before writing anything else, and say what
+   moved where. Lines are not the measure: one line here can be 350 characters.
+4. **Fact-sync if today touched a fact.** If the session changed an account, a price, a name or
+   anything on a live surface, do not wait for Monday: fan out the READ-ONLY FACT-SYNC agent now
+   (`AGENTS.md` section 7) to cross-check every `playbook/` file against `STATE.md`, `NOW.md`,
+   `DECISIONS.md` and the live site source. Fix what it reports in this session or file it in
+   `NOW.md`, never leave it in chat. If nothing of that kind changed, say so in one line and move on.
+   (Added 2026-08-30 on Fady's yes.)
+5. **Stop the background agents.** Check the session's background agents and tasks; stop any still
    running and confirm all are closed BEFORE the handoff is written, so nothing lingers as a running
    session in Fady's panel after the close. (Added 2026-08-24 on Fady's yes.)
-5. **Rewrite `HANDOFF.md`** for the next session: what today did, what is next, what is waiting on
+6. **Rewrite `HANDOFF.md`** for the next session: what today did, what is next, what is waiting on
    whom, and whether the next session should start with `/pro-orch` (a new day) or `/pro-orch-mid`
-   (same day, Fady is coming back). Max 40 lines. Any rule improvement proposed today goes into the
+   (same day, Fady is coming back). Budget 4 KB. Any rule improvement proposed today goes into the
    handoff the moment it is proposed, so it survives a fresh session.
-6. **Propose improvements** to the rules or the skills as ONE dated line each, apply only on Fady's
+7. **Propose improvements** to the rules or the skills as ONE dated line each, apply only on Fady's
    explicit yes, and file the applied ones in `LOG.md`. A skill that misfired today is fixed today.
-7. **The closing block**, always the last thing said: one line "what was logged and where" (or
+8. **The closing block**, always the last thing said: one line "what was logged and where" (or
    "Nothing to log this session"), and the reminder that Fady double-clicks `save-to-cloud.cmd`
    himself if anything on disk changed. Closing reminders are never open items.
 

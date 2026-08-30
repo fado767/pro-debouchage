@@ -8,6 +8,8 @@
 !/.claude/
 /.claude/*
 !/.claude/skills/
+!/.claude/hooks/
+!/.claude/settings.json
 !/AGENTS.md
 !/CLAUDE.md
 !/STATE.md

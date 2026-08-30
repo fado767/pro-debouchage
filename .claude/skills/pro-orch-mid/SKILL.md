@@ -10,7 +10,10 @@ description: Resume the Pro Débouchage day in CONTINUATION mode. Use when the d
 
 ## Run it
 
-1. Read `HANDOFF.md` whole, then `NOW.md` and `STATE.md` whole (they are capped by rule).
+1. Read `HANDOFF.md` whole, then `NOW.md` and `STATE.md` whole (byte budgets by rule, 4 KB, 8 KB and
+   14 KB, so reading them whole is cheap). Re-read all three again immediately before the session's
+   first write, per `AGENTS.md` section 7: a day resumed here may have been driven from another
+   device in between.
 2. **Confirm out loud in two lines** what the handoff says the day already did and what is next. If
    `HANDOFF.md` is from an earlier day, or missing, say so plainly and run `/pro-orch` instead:
    continuation without a same-day handoff is guessing.

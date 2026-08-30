@@ -12,11 +12,20 @@ this file.
 ## Run it, in this order
 
 1. **Read, in full, the four small files:** `STATE.md`, `NOW.md`, `HANDOFF.md`, and the last entry of
-   `LOG.md`. They are capped by rule, so reading them whole is cheap. Open a playbook file only when
-   an open item points into it. Never open `research/` unless the day's work needs a source.
+   `LOG.md`. They are held to byte budgets by rule (`STATE.md` 14 KB, `NOW.md` 8 KB, `HANDOFF.md`
+   4 KB), so reading them whole is cheap. Open a playbook file only when an open item points into it.
+   Never open `research/` unless the day's work needs a source.
 2. **One-line sweep.** Do the four files agree with each other (dates, what is open, what the handoff
    says was done)? Clean: say "Sweep clean." and nothing more. Not clean: stop, put the contradiction
    to Fady before anything else, and fix the file on his answer.
+   - **On Monday, and after any session that changed an account, a price, a name or a live surface,
+     fan out the FACT-SYNC audit alongside this sweep**, in the same batch as the weekly ads check.
+     One READ-ONLY agent cross-checks every `playbook/` file against `STATE.md`, `NOW.md`,
+     `DECISIONS.md` and the live site source and reports contradictions with file and line
+     (`AGENTS.md` section 7). It reports, it never fixes: fold its findings into the day's plan at
+     step 5, then fix them in the session or file them in `NOW.md`. It is read-only and cheap, so it
+     never holds up the overview. The sweep covers the live state files, this covers the playbook,
+     which nothing else forces anyone to re-read.
 3. **If the handoff says the day already started, stop here and run `/pro-orch-mid` instead.**
 4. **The overview.** ONE numbered list, 1..N continuous, grouped under three bold headers:
    **MINE** (a session or agent can act on it now) · **RORO'S** (waiting on Roro or Fady's visit) ·
