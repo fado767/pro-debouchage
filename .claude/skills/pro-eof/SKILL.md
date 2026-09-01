@@ -11,7 +11,9 @@ sections 7 (byte budgets, rewrite in place), 8 (logging) and 9 (close it or file
 ## Run it, in this order
 
 1. **The plain-English day summary** to Fady: what changed today, what it means for him, where things
-   stand. Short, scannable. This is the session's job to give, never his to ask for.
+   stand. Short, scannable, IN BULLET POINTS (Fady 2026-09-01). This is the session's job to give,
+   never his to ask for. An eof can happen at any hour, morning included: never write "evening" or
+   "tonight" from habit, use the actual time of day.
 2. **File everything.** Walk the day's chat for anything loggable that is not yet in a file: done work
    to `LOG.md` (one entry for the session, max 5 lines and under about 2,500 bytes), open work to
    `NOW.md` (owner-tagged, closed lines removed and summarised in the LOG entry), decisions to
@@ -35,8 +37,10 @@ sections 7 (byte budgets, rewrite in place), 8 (logging) and 9 (close it or file
    whom, and whether the next session should start with `/pro-orch` (a new day) or `/pro-orch-mid`
    (same day, Fady is coming back). Budget 4 KB. Any rule improvement proposed today goes into the
    handoff the moment it is proposed, so it survives a fresh session.
-7. **Propose improvements** to the rules or the skills as ONE dated line each, apply only on Fady's
-   explicit yes, and file the applied ones in `LOG.md`. A skill that misfired today is fixed today.
+7. **Improvements** to the rules or the skills: APPLY them directly, dated, and file them in `LOG.md`,
+   when they only change how Claude and the files work internally. Put an improvement to Fady ONLY
+   when it changes what HE does, sees or decides (rule changed 2026-09-01 on Fady's word; before that
+   every improvement waited for his yes). A skill that misfired today is fixed today.
 8. **The closing block**, always the last thing said: one line "what was logged and where" (or
    "Nothing to log this session"), and the reminder that Fady double-clicks `save-to-cloud.cmd`
    himself if anything on disk changed. Closing reminders are never open items.

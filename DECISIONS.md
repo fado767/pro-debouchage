@@ -158,3 +158,11 @@
 - **Depot photos are OPTIONAL, not open (Fady).** The photos we have are enough. New photos and videos may come when there is visible progress, at a v2 upgrade. Not a rule and not an open item; the profile ships with what exists.
 - **The first tracked conversion is UNVERIFIED and stays out of Roro reports.** Sunday's call_click may have been Fady testing the button; Roro reports carry only conversions confirmed real (a call that actually happened). Ads data keeps counting them; the filter is on what we tell the client.
 - **Weekly Roro update style (Fady's own draft, 2026-08-31): a few highlights, never a list of every open item.** Same details go to Roro; Fady asks him whether he wants these by e-mail.
+
+## 2026-09-01 (Tuesday)
+
+- **No backup card in Ads billing (Roro, via Fady).** Roro is fine with the single Mastercard 2616. The ask is closed, not postponed; the known risk (ads stop if a charge fails) is accepted. Revisit only if a payment actually fails.
+- **Branding polish is PARKED until after the .com and the important things (Fady).** The e-mail signature Fady wants is a proper branded close (logo, company info), not a plain text line; it waits, together with Roro's WhatsApp presence and brand consistency everywhere. The plain mobile-signature ask is dropped with it.
+- **Roro asks go by PHONE (Fady).** Roro's preferred method; Fady calls and sends the supporting draft during the call, editing it himself. Applied today to the .com and KBO asks.
+- **First job since launch (Roro, 2026-09-01): WC unblock, 129 euro accepted, ~280 follow-up quoted and accepted in principle, ~60 km out.** Call source unconfirmed, so it is NOT claimed as an ads result (the 2026-08-31 unverified-conversion rule applies). Client wanted no bill; Roro follows up himself. A business card for handing to clients was promised by Fady and is now Claude's design task.
+- **Improvements are applied, not proposed (Fady, same day, later).** Internal improvements to rules, skills and files are applied directly by the session, dated, and logged; only changes that affect what Fady does, sees or decides go to him first. Asking yes on internal details wastes his messages. Applied at once: the one-browsing-agent Chrome-profile rule went into AGENTS 7. Also: day summaries in bullet points, and eof happens at any hour, morning included.
