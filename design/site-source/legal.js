@@ -46,7 +46,7 @@ const fr = `<main>
     <p>Notre technicien, pour venir chez vous. Notre comptable et l'administration fiscale, pour les factures. Notre hébergeur, pour faire fonctionner le site. Le fournisseur de messagerie de notre boîte e-mail. WhatsApp (Meta) si c'est vous qui choisissez ce canal.<!--recip--> Nous ne vendons aucune donnée et nous n'envoyons pas de publicité.</p>
 
     <h2>Combien de temps</h2>
-    <p>Les factures et pièces comptables&nbsp;: sept ans, comme la loi belge l'impose. Les messages et photos liés à une intervention&nbsp;: deux ans après l'intervention, sauf litige en cours. Les demandes sans suite&nbsp;: six mois.</p>
+    <p>Les factures et pièces comptables&nbsp;: dix ans, comme la loi belge l'impose. Les messages et photos liés à une intervention&nbsp;: deux ans après l'intervention, sauf litige en cours. Les demandes sans suite&nbsp;: six mois.</p>
 
     <h2>Vos droits</h2>
     <p>Vous pouvez demander l'accès à vos données, leur correction, leur effacement, la limitation du traitement, la portabilité, et vous opposer à un traitement. Écrivez à <a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a> ou appelez le <a href="tel:+32480649649">0480 649 649</a>. Nous répondons dans le mois.</p>
@@ -98,7 +98,7 @@ const nl = `<main>
     <p>Onze technieker, om bij u langs te komen. Onze boekhouder en de belastingadministratie, voor de facturen. Onze hostingpartij, om de site te laten werken. De leverancier van onze e-mailbox. WhatsApp (Meta) als u dat kanaal zelf kiest.<!--recip--> Wij verkopen geen gegevens en wij sturen geen reclame.</p>
 
     <h2>Hoe lang</h2>
-    <p>Facturen en boekhoudkundige stukken&nbsp;: zeven jaar, zoals de Belgische wet vraagt. Berichten en foto's bij een interventie&nbsp;: twee jaar na de interventie, behalve bij een lopend geschil. Vragen zonder gevolg&nbsp;: zes maanden.</p>
+    <p>Facturen en boekhoudkundige stukken&nbsp;: tien jaar, zoals de Belgische wet vraagt. Berichten en foto's bij een interventie&nbsp;: twee jaar na de interventie, behalve bij een lopend geschil. Vragen zonder gevolg&nbsp;: zes maanden.</p>
 
     <h2>Uw rechten</h2>
     <p>U kan inzage vragen in uw gegevens, verbetering, wissing, beperking van de verwerking, overdraagbaarheid, en u kan zich verzetten tegen een verwerking. Schrijf naar <a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a> of bel <a href="tel:+32480649649">0480 649 649</a>. Wij antwoorden binnen de maand.</p>
@@ -150,7 +150,7 @@ const en = `<main>
     <p>Our technician, to come to your door. Our accountant and the tax administration, for the invoices. Our host, to keep the site running. The provider of our e-mail box. WhatsApp (Meta) if you choose that channel yourself.<!--recip--> We sell no data and we send no advertising.</p>
 
     <h2>How long</h2>
-    <p>Invoices and accounting documents: seven years, as Belgian law requires. Messages and photos linked to a job: two years after the job, unless a dispute is running. Enquiries with no follow-up: six months.</p>
+    <p>Invoices and accounting documents: ten years, as Belgian law requires. Messages and photos linked to a job: two years after the job, unless a dispute is running. Enquiries with no follow-up: six months.</p>
 
     <h2>Your rights</h2>
     <p>You can ask for access to your data, for it to be corrected or erased, for the processing to be limited, for portability, and you can object to a processing. Write to <a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a> or call <a href="tel:+32480649649">0480 649 649</a>. We answer within the month.</p>

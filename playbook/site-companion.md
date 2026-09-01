@@ -77,13 +77,13 @@ One thing to say at the start of the call: **every price printed on the page is 
 
 **What it says.** Five rows, each marked "À partir de": WC 129 €, sink or shower 119 €, sewer or sterput 199 €, high pressure curage up to 25 m 249 €, flooded cellar first hour 229 €. Three chips: VAT included, travel included, first hour included. Then the surcharge grid in full: evening (18h to 22h) and Saturday +50 %, night, Sunday and holidays +75 %. Then a block for cases not in the list, telling the customer to call for an immediate price.
 
-**Why the "From".** On the 2026-08-27 walkthrough Roro said WC at 129 is too cheap. Rather than guess a new number, every listed amount became a floor in all three languages (FR "À partir de", NL "Vanaf", EN "From") until his own price list lands. The phone quote did not change: it stays exact and binding. Same logic keeps the camera-alone price in the FAQ as a floor (DECISIONS 2026-08-28).
+**Why the "From".** On the 2026-08-27 walkthrough Roro said WC at 129 is too cheap. Rather than guess a new number, every listed amount became a floor in all three languages (FR "À partir de", NL "Vanaf", EN "From"). The price list task is CLOSED (DECISIONS 2026-08-31): Roro is happy with the prices, the "From" stays by design, and the numbers change only on his word. The phone quote did not change: it stays exact and binding. Same logic keeps the camera-alone price in the FAQ as a floor (DECISIONS 2026-08-28).
 
 **Why these numbers at all.** They come from research/07 (17 competitors with published prices: market medians around WC 105, sink 95, sewer 180, camera alone 145) and research/16 for curage and cellar pumping. The surcharge pattern (+50 % evening and Saturday, +75 % night and Sunday) is the market pattern, published in full because nobody else publishes it.
 
 **Roro will ask**
 - *Why publish prices at all?* Because a caller who already saw a price calls to book, not to ask. Belgium hides prices, the Netherlands publishes them, and the Dutch pages convert better (research/20).
-- *129 is too low for a WC.* Agreed, and that is exactly why every price now says "from". Bring your list and we replace the numbers the same day.
+- *129 is too low for a WC.* That is exactly why every price says "from": the printed number is only the floor, what binds you is the phone quote. You told us you are happy with these prices (2026-08-31); the day you want different numbers, say the word and we change them the same day.
 - *Am I stuck with the printed price?* No. The printed number is the floor. What binds you is what you say on the phone.
 - *What about the septic tank price?* Not published. Its VAT rate is not settled (21 % by default, 6 % only in narrow cases, research/16 and research/26). It stays a phone price.
 - *What if I come and nothing can be unblocked?* The FAQ says the customer pays the travel only, 60 €.
