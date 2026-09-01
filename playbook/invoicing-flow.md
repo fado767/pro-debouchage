@@ -119,6 +119,6 @@ Nothing changes while the volume is a few jobs a week. Steph's Word plus Peppol 
 - **[Fady, ask the accountant in writing]** Cellar pumping alone: 6 or 21 percent?
 - **[Fady, ask the accountant in writing]** Is a syndic (ACP / VME) a "final consumer" for the 6 percent on common parts?
 - **[Fady]** Confirm RPM Bruxelles / RPR Brussel once against the KBO extract (open since the invoice build).
-- **[Claude, weekly]** VIES still INVALID at the last poll while the invoices already print BE 1027.454.187. The accountant confirms the number is active and the register display lags, so the poll dropped from every session to WEEKLY (2026-08-30) and continues until VALID.
+- **[Claude, weekly]** Current VAT/VIES status lives in `STATE.md` (accountant says active, register display lags, weekly poll). Consequence here: the invoices already print BE 1027.454.187 and keep charging 6 percent as-is until that changes.
 - **[CLOSED 2026-08-30]** Where the number series starts. Answered: they use only the one bill document, so no quote series eats numbers from that pot and Steph continues her own numbering. The "devis" label on the old paper was a leftover, not a second series.
 - **[Fady]** Whether Steph gets a written one-page version of this flow in French, or Roro just tells her on WhatsApp. Not decided.

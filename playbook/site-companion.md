@@ -73,6 +73,8 @@ One thing to say at the start of the call: **every price printed on the page is 
 
 ## 7. Prices
 
+**Where the figures live.** The numbers below are a copy kept here for reading aloud to Roro. The owner is the site source (`design/site-source/copy-fr.js` and nl/en, AGENTS section 4); if they ever differ, the page wins.
+
 **What it says.** Five rows, each marked "À partir de": WC 129 €, sink or shower 119 €, sewer or sterput 199 €, high pressure curage up to 25 m 249 €, flooded cellar first hour 229 €. Three chips: VAT included, travel included, first hour included. Then the surcharge grid in full: evening (18h to 22h) and Saturday +50 %, night, Sunday and holidays +75 %. Then a block for cases not in the list, telling the customer to call for an immediate price.
 
 **Why the "From".** On the 2026-08-27 walkthrough Roro said WC at 129 is too cheap. Rather than guess a new number, every listed amount became a floor in all three languages (FR "À partir de", NL "Vanaf", EN "From") until his own price list lands. The phone quote did not change: it stays exact and binding. Same logic keeps the camera-alone price in the FAQ as a floor (DECISIONS 2026-08-28).
@@ -120,7 +122,7 @@ One thing to say at the start of the call: **every price printed on the page is 
 **Why.** People let a stranger into their house at 2 a.m. Naming him removes the anonymity that scam operations depend on (research/18). Roro's own name never appears on the site (DECISIONS 2026-08-23). The spelling is AFRIM, corrected on the 2026-08-27 call.
 
 **Roro will ask**
-- *Where is Afrim's photo?* Waiting on you. Until you send a real face photo the bubble shows a letter. We will never put an invented face on a real person.
+- *Where is Afrim's photo?* Live. Your real photo of him is the bubble avatar since 2026-08-29, unretouched. We will never put an invented face on a real person.
 - *Why is my name not on the site?* Your call, from the start. The company answers, not you personally.
 
 ## 12. Three rules
@@ -182,7 +184,7 @@ One thing to say at the start of the call: **every price printed on the page is 
 
 **What it says.** "Un bouchon n'attend pas", the number in huge type, two buttons, and the hours line. The footer carries the company name, Guldenschaapstraat 6 in Vilvoorde, the company number, e-mail, phone, the VAT note, the photo note, and links to the privacy policy and the general conditions.
 
-**Why.** Address plus company number in the footer is what the scam section promised the visitor he could check. The photo note says plainly which two images were reconstructed from your own originals.
+**Why.** Address plus company number in the footer is what the scam section promised the visitor he could check. The photo note says plainly which image was reconstructed from your own original: the "before" photo, one image, nothing else.
 
 **Roro will ask**
 - *Why the Vilvoorde address if the van has no base?* Legal seat only. The customer-facing copy is zone-first and never says "based in Vilvoorde" (DECISIONS 2026-08-26).

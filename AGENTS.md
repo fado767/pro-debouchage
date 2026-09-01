@@ -49,7 +49,10 @@ Pro Débouchage is a 24/7 drain-unblocking, sewer cleaning, camera inspection, s
 | What was decided | `DECISIONS.md` |
 | What happened | `LOG.md` |
 | Prices the agency charges Roro | `DECISIONS.md` (no separate offer file until there is an offer) |
+| Prices the customer sees (the From price grid) | the site source copy files (`design/site-source/copy-fr.js` and nl/en); the built page is what the customer sees |
 | The working rules for any tool | this file |
+
+*A row was added on 2026-09-01: prices the customer sees got an owner because the grid was restated in full in three files, so the next price change had three places to miss.*
 
 *Two rows were added on 2026-08-30. `playbook/invoicing-flow.md` already existed and other files already pointed at it, while it appeared in neither section 3 nor this table, which is exactly how `assets/prepared/invoice/README.md` drifted into stating a numbering rule the decisions had already replaced. Custody and control got an owner because that decision was one day old and was already restated in full in five files, so the next change had five places to miss; `playbook/separation.md` owns it now and everything else points there.*
 

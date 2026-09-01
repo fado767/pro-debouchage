@@ -41,7 +41,7 @@ fady.be (the agency)
 Ads client account `fady.be | Drain | Pro Debouchage`, label `DRAIN` · Cloudflare Pages project `prodebouchage24` (one working Pages project per client, decided 2026-08-27; `pd-review` and the dead `pro-debouchage-v3` deleted 2026-08-28) · Infomaniak Organisation `Pro Débouchage` · GA4 account = the client's legal entity name · Chrome profile `Pro Debouchage` · folder `pro-debouchage/`. (Taxi keeps its own existing names; the pattern applies from this client on.)
 
 ## 3. What must NEVER be shared between clients
-1. A payment method (one card across unrelated Ads accounts is a relatedness signal and a related-accounts suspension is close to unappealable). Roro pays his Ads, his Workspace and his domain renewal himself, from day one; the agency card is at most a build instrument with a removal date, and for Ads not even that.
+1. A payment method (one card across unrelated Ads accounts is a relatedness signal and a related-accounts suspension is close to unappealable). Roro pays his Ads on his own business card since the swap of 2026-08-28; the Workspace card and the domain invoices are still fronted by Fady and move to Roro at handover; the agency card is at most a build instrument with a removal date, and for Ads not even that.
 2. A phone number used for verification. 3. Conversion tags and actions (per account, per `AW-` tag). 4. A GA4 account (one per legal entity). 5. A Google login (no client identity in the fady.be tenant, no alias pretending to be one). 6. DNS write access to the agency Cloudflare (refuse Entri one-click flows). 7. A WhatsApp inbox (the agency never links a device). 8. A Mollie organisation.
 
 ## 4. The deltas from the taxi setup (recorded, not proposed for change)
