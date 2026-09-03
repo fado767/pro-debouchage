@@ -53,7 +53,7 @@ The full routine, who sends what to whom and in what order, lives in `playbook/i
 ## Two small checks for Fady
 
 - RPM Bruxelles (FR) / RPR Brussel (NL) is printed, correct for a Vilvoorde seat under the Dutch-language Brussels enterprise court. Confirm once against the KBO extract.
-- The invoices print the VAT number "BE 1027.454.187". The accountant confirms the VAT is active and the register display simply lags; VIES still showed INVALID at the last poll (2026-08-30). Steph already invoices with this number, so nothing new, and the VIES poll runs WEEKLY until VALID.
+- The invoices print the VAT number "BE 1027.454.187". The accountant confirms the VAT is active and the register display simply lags; VIES last poll 2026-09-02 10:09 UTC, still INVALID. Steph already invoices with this number, so nothing new, and the VIES poll runs WEEKLY until VALID.
 
 ## Housekeeping
 

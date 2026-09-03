@@ -24,7 +24,7 @@ Address and name settled → domain in Roro's name → Workspace (info@ mailbox 
 - **Recommendation (Claude, 2026-08-23): `prodebouchage24.be`.** It is the brand exactly as his own site header already says it ("Pro Débouchage 24/7"); the 24 carries the 24/7 promise in FR and NL without translation; no hyphen to dictate on the phone ("prodebouchage vingt-quatre point be"); .be says Belgian. Short inventions (prodebou.be, prodeb.be) are easy to type but mean nothing to a customer with water on the floor, and in an emergency trade clarity beats cleverness. The line for Roro: "the exact name was taken by someone else, so we kept your brand and added the 24, which is your promise; the .com you printed keeps working and sends people to the new site."
 - Whatever the name: holder RORO (Individual, his personal e-mail, language French), Infomaniak Organisation "Pro Débouchage" (Company type), VAT field blank, the three upsells unticked, Renewal Warranty opt-in, and Roro reachable for the 6-digit code AND the separate DNS Belgium holder-validation mail, or the domain stays dead. Verify delegation the same day and two days later.
 
-## 3. Day by day (the kickoff-week target, written 2026-08-22; that week is PAST, kept as history; live status lives in STATE.md and NOW.md. Nothing is open from it: the depot visit with the verification video happened 2026-08-28, and the campaign was enabled 2026-08-29)
+## 3. Day by day (the kickoff-week target, written 2026-08-22; that week is PAST, kept as history; live status lives in STATE.md and NOW.md. The depot visit with the verification video happened 2026-08-28 and the campaign was enabled 2026-08-29; that video FAILED on 2026-09-01 and the re-verification is an open item in NOW.md)
 
 **Tonight, Sat 2026-08-22**
 - [Fady] WhatsApp Roro the section 1 questions plus: his personal e-mail and mobile for the domain codes, whether printpress registered the .be, whether he has any login for the .com or the old mailbox, his enterprise number if he knows it, and the visit day.
@@ -48,7 +48,7 @@ Address and name settled → domain in Roro's name → Workspace (info@ mailbox 
 - WhatsApp Business on 0480 649 649 if not already (Roro's phone), reply templates FR and NL.
 
 **Thu 27 to Fri 28, accounts that need the live page**
-- Ads account created INSIDE Roro's login with Fady beside him (screen share or visit), linked to the agency manager `Fady Agency` 724-595-2027 (read the customer ID, never the name, a same-named empty manager exists), billing payer Roro with HIS card (never the agency card), auto-apply recommendations OFF, conversion actions created (all three Active; website call click primary from the start, calls from ads and whatsapp_click promoted to PRIMARY on 2026-08-30, `ads-program.md` section 4), tag proven on the wire on the live domain.
+- Ads account created INSIDE Roro's login with Fady beside him (screen share or visit), linked to the agency manager `Fady Agency` 724-595-2027 (read the customer ID, never the name, a same-named empty manager exists), billing payer Roro with HIS card (never the agency card) (one dated exception, Fady's card as temporary payer 2026-08-27 to 2026-08-28, see DECISIONS 2026-08-26), auto-apply recommendations OFF, conversion actions created (all three Active; website call click primary from the start, calls from ads and whatsapp_click promoted to PRIMARY on 2026-08-30, `ads-program.md` section 4), tag proven on the wire on the live domain.
 - Google Ads credit claimed here, not earlier.
 
 **Verdict day (about Fri 28 to Mon 31)**

@@ -162,7 +162,7 @@ module.exports = {
   honest: 'Onze Google-pagina komt eraan. Na elke klus vragen wij u een eerlijke beoordeling, goed of slecht, en die komt er ongewijzigd te staan. Intussen tonen wij ons werk.',
   tiles: [
     ['chambre.webp', 'Het openleggen van een ingegraven controleput in een tuin.', 'Verstopte sterfput, controleput open. Eigen werk, 2026.'],
-    ['job-wc.webp', 'Technieker die een wc ontstopt met een Rioned veer, in Pro Débouchage kledij.', 'Verstopte wc, ontstopt met de Rioned veer. Eigen werk, 2026. Dit is de originele foto van de voor/na hierboven.'],
+    ['job-wc.webp', 'Technieker die een wc ontstopt met een Rioned veer, in Pro Débouchage kledij.', 'Verstopte wc, ontstopt met de Rioned veer. Eigen werk, 2026. Dit is onze originele foto, dezelfde als in de reeks voor, tijdens, na hierboven.'],
     ['allee.webp', 'Oprit in klinkers tijdens de hogedrukreiniging, de lichte strook is al gereinigd.', 'Oprit in klinkers, hogedrukreiniging bezig. De lichte strook is al gereinigd.']],
   // ONE REAL review (Paolo, 2026-08-27, original in French), published under the first name
   // François by agreement with him (Fady and Paolo, 2026-08-29). A review is a QUOTE: faithfully

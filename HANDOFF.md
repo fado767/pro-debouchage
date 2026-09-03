@@ -1,45 +1,34 @@
 # HANDOFF.md
 *Written by the last session for the next one. Overwritten at every close. Budget 4 KB (`wc -c`).*
 
-**Written 2026-09-01 late morning (~11:20), closing the Tuesday session. Next session is a NEW day:
-start with `/pro-orch`. This line owns state.**
+**Written 2026-09-03 afternoon, closing Thursday. Next session is a NEW day: start with `/pro-orch`.
+Friday is quiet by design; Monday 2026-09-07 is the weekly ads check. This line owns state.**
 
-## What Tuesday did
-**GBP: STILL PENDING**, dashboard read from the right place: "Processing, up to five days", points at
-2026-09-02. The profile lives in Chrome profile "Profile 4" (info@); the full profile map is in
-Claude memory (chrome-profile-map): open the needed profile by command, never ask Fady which browser,
-and run only ONE browsing agent at a time (two collided today). **Ads glance CALM**: 150 impressions,
-14 clicks, 43.08 EUR since launch (Google restated Monday's 16.50), second unverified call_click Mon,
-billing clean, both ads Eligible. Ads security tasks done by Fady.
-
-**Roro news (all filed):** FIRST job since launch, 129 EUR WC unblock accepted, ~280 follow-up quoted
-and accepted in principle, ~60 km out, no bill wanted (Roro follows up), call source UNCONFIRMED so
-not claimed for ads. Backup card DECLINED for good (one card, Roro's choice). Branding polish PARKED
-until after the .com (branded e-mail signature, WhatsApp, consistency; the plain signature ask died).
-Asks go by PHONE. Business card promised to Roro = Claude design task (design on the site's brand
-now, printing only once the .com is in hand). Email-preference solved: it means "does Roro want the
-weekly updates by e-mail" (DECISIONS 2026-08-31). Fady's standing note saved to memory: Claude
-decides operational details itself, only real decisions reach him.
+## What Thursday did
+- **Ads glance** (Profile 6, read-only): 294 impr, 20 clicks, 72.46 EUR, "limited by search volume",
+  4 competitor-brand terms with 5 clicks (Maigret, Bob Service, Maxi Cleaning, Vidange Nette) for
+  Monday's negatives decision. Payments-centre "1 alert" chip is NOT reachable from hi@: read it
+  from info@ (Profile 4) at the next GBP session. Payer profile: tax info and phone blank.
+- **Roro call (Fady):** the .com is LET DIE, nobody contacts printpress, offline 2026-10-07, van
+  sticker removed, no print spend now, budget goes to ads. KBO commercial name via the accountant.
+  Weekly update = WhatsApp draft PLUS a call, ask calls received by phone, no e-mail. Woman client
+  closed. All in DECISIONS 2026-09-03; the .com lines left NOW, STATE, accounts, business-brief.
+- **Business card in Figma** (URL in design/business-card/README.md): four full frames built; the
+  bilingual simple version is half done, NL back still a French clone, Figma MCP quota ran out.
+  Fady designs it himself from here; an agent may finish the NL back if he asks and quota is back.
+- Conversions question answered: volume-limited, not page-limited; no promise made.
 
 ## Next session, in order
-1. **GBP verdict check FIRST** (due ~today): open Chrome Profile 4 by command, one agent, read the
-   dashboard. If VERIFIED: hi@fady.be as Profile Manager (Fady's click), hours/description/photos/
-   services fill, Ads LOCATION asset, citations sweep (research/01 A4), reviews push becomes the next
-   Roro ask. Also read the info@ "Important account alert" badge, read-only.
-2. Ask Fady: combined WhatsApp sent, and Roro's answers? (.com, KBO, e-mail preference, where the
-   woman found him). The .com answer drives the next move before the 2026-10-07 expiry.
-3. Steph's invoice print feedback? Then the credit note template unblocks.
-4. Daily 10-minute ads glance (week 1 of 2); weekly check Monday 2026-09-07. Weekly VIES poll due.
-5. Business card design can start any day as a Claude task.
-
-## Rule changes applied at close (Fady's word, 2026-09-01)
-Internal improvements are now APPLIED directly, dated; only changes to what Fady does, sees or
-decides go to him (AGENTS 10, pro-eof 7). Applied under it: the browser rule (one browsing agent at
-a time, agent opens the right Chrome profile itself, AGENTS 7). Day summaries in bullet points; an
-eof can happen at any hour.
+1. Daily ads glance in Profile 6 (10 minutes, read-only). Monday: the weekly check, the negatives
+   decision (competitor brands, Gembloux stays) and the Roro WhatsApp draft plus call.
+2. GBP: the video brief is still with Fady to forward. Once Roro submits, daily Profile 4 read for
+   the verdict; in the same session read the payments-centre alert from info@.
+3. Roro items for the next call: KBO name done? VAT start date from the accountant? Steph's print
+   feedback? Then the credit note template.
+4. Week-2 checkpoint next week: landing variants generator, LSA eligibility (Fady's click).
 
 ## Waiting on whom
-Fady: send the WhatsApp, relay answers, print feedback. Roro: .com ask to printpress, KBO via
-accountant, invoice follow-up on the first client. Clocks: GBP verdict ~09-02, .com expiry 10-07,
-promo credit 400 EUR by 10-26, week-2 checkpoints next week. Backup: files changed today, one
-save-to-cloud double-click covers it.
+Fady: forward the video brief, approve the sign-in prompt, finish the card in Figma.
+Roro: the video, KBO via accountant, invoice follow-up, Steph's print test.
+Clocks: promo credit 400 EUR by 2026-10-26 (pace misses it), VIES weekly poll, week-2 checkpoints.
+Backup: files changed today, one save-to-cloud double-click covers it.

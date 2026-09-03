@@ -166,3 +166,14 @@
 - **Roro asks go by PHONE (Fady).** Roro's preferred method; Fady calls and sends the supporting draft during the call, editing it himself. Applied today to the .com and KBO asks.
 - **First job since launch (Roro, 2026-09-01): WC unblock, 129 euro accepted, ~280 follow-up quoted and accepted in principle, ~60 km out.** Call source unconfirmed, so it is NOT claimed as an ads result (the 2026-08-31 unverified-conversion rule applies). Client wanted no bill; Roro follows up himself. A business card for handing to clients was promised by Fady and is now Claude's design task.
 - **Improvements are applied, not proposed (Fady, same day, later).** Internal improvements to rules, skills and files are applied directly by the session, dated, and logged; only changes that affect what Fady does, sees or decides go to him first. Asking yes on internal details wastes his messages. Applied at once: the one-browsing-agent Chrome-profile rule went into AGENTS 7. Also: day summaries in bullet points, and eof happens at any hour, morning included.
+
+## 2026-09-02
+- **GBP re-verification route: a new video by Afrim or Roro, no second drive for Fady (Fady).** Google failed the 2026-08-28 video for "No view of surrounding area". The profile gets the DEPOT address (hidden) plus website and 24/7 hours before the retry, entered by Fady because the classifier refuses agents those clicks; the mailbox address never goes on the profile (G1). Shot list lives in assets/prepared/gbp-video-brief.md.
+- **Ads reads run in Chrome Profile 6 (hi@fady.be, Admin on the account); GBP reads in Profile 4 (info@) (Claude, internal).** Profile 6 was created by Fady 2026-09-02; the extension in Profile 4 was installed the same day.
+
+## 2026-09-03
+- **pro-debouchage.com is LET DIE (Fady and Roro by phone).** Roro paid printpress for one year only; nobody contacts the printpress guy, no auth code, no transfer, no redirect. The domain goes offline at expiry 2026-10-07. Roro removed the QR sticker from the van; new cards and posters come later with prodebouchage24.be. No money is spent on print now, the budget goes to ads. The acquisition decisions of 2026-08-31 and 2026-09-01 are superseded.
+- **KBO commercial name (Fady's advice to Roro):** Roro asks the accountant to add "Pro Débouchage" as commercial name of PRO DEBOUCHAGE SRL; it protects the name and costs no purchase (Roro had confused it with buying the domain).
+- **Roro updates: WhatsApp draft PLUS a phone call, weekly (Roro's preference).** No e-mail. Calls received are asked by phone each week. The 2026-08-31 e-mail question is closed.
+- **The woman client (first job since launch) is closed:** source stays unknown, not chased.
+- **Business card: Fady designs it himself in Figma** from the agent build; the simple bilingual version (FR one side, NL the other, "Canalisation bouchée ? Appelez-nous." / "Verstopte afvoer? Bel ons.") is the preferred direction.

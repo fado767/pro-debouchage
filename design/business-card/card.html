@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Pro Débouchage, business card draft (FR + NL)</title>
+<!-- EXPORT TO PDF: open this file in Chrome, Ctrl+P, Destination "Save as PDF", Margins "None",
+     Scale 100%, tick "Background graphics". Each artboard prints on its own page at exact size,
+     91 x 61 mm including the 3 mm bleed. Trim at the dashed line down to 85 x 55 mm. -->
+<style>
+/* ---- fonts, borrowed from the site source by relative path, nothing copied ---- */
+@font-face{
+  font-family:'Archivo';
+  src:url('../site-source/archivo-var-latin.woff2') format('woff2');
+  font-weight:100 900;font-stretch:62% 125%;font-style:normal;font-display:block;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;
+}
+@font-face{
+  font-family:'Archivo';
+  src:url('../site-source/archivo-var-latin-ext.woff2') format('woff2');
+  font-weight:100 900;font-stretch:62% 125%;font-style:normal;font-display:block;
+  unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+/* Caveat is deliberately NOT used here. The site ships it subset to ten glyphs, so any other word
+   would silently fall back to a system script face. */
+
+/* ---- tokens, copied verbatim from design/site-source/styles.css ---- */
+:root{
+  --ink:#102A4A;--ink-2:#1B3D66;--cta:#D63A17;--teal:#0B7A70;--teal-soft:#E6F2F0;
+  --mark:#FFD635;--paper:#F6F3EE;--card:#FFFCF7;--line:#E2DCD3;--on-ink-muted:#C8D6E6;
+  --font:'Archivo',Arial,Helvetica,sans-serif;
+  --r-btn:10px;--r-card:14px;
+  /* print geometry */
+  --trim-w:85mm;--trim-h:55mm;--bleed:3mm;--safe:4mm;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#8B8F94;font-family:var(--font);-webkit-font-smoothing:antialiased}
+
+.sheet{display:flex;flex-wrap:wrap;gap:6mm;padding:6mm;align-items:flex-start;width:205mm}
+.holder .cap{font-size:3mm;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#fff;margin:0 0 2mm}
+
+/* one artboard = trim + 3 mm bleed on every side */
+.card{
+  position:relative;width:calc(var(--trim-w) + 2*var(--bleed));height:calc(var(--trim-h) + 2*var(--bleed));
+  overflow:hidden;color:var(--ink);
+}
+/* the trim line, a hairline dashed guide. Screen only, it never prints. */
+.card::after{
+  content:"";position:absolute;left:var(--bleed);top:var(--bleed);width:var(--trim-w);height:var(--trim-h);
+  border:.2mm dashed rgba(255,255,255,.6);mix-blend-mode:difference;pointer-events:none;z-index:9;
+}
+/* everything readable lives inside the safe box */
+.safe{
+  position:absolute;left:calc(var(--bleed) + var(--safe));top:calc(var(--bleed) + var(--safe));
+  width:calc(var(--trim-w) - 2*var(--safe));height:calc(var(--trim-h) - 2*var(--safe));
+  display:flex;flex-direction:column;
+}
+
+/* ============ FRONT ============ */
+.front{background:var(--paper)}
+.brandrow{display:flex;align-items:center;gap:2.4mm}
+.brandrow img{width:13mm;height:auto;display:block}
+.wordmark{line-height:.94}
+.wordmark span{display:block;font-size:9pt;font-weight:900;font-stretch:88%;letter-spacing:.02em}
+.wordmark .w1{color:var(--ink)}
+.wordmark .w2{color:var(--cta)}
+.eyebrow{margin:4.5mm 0 0;font-size:7.5pt;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--teal)}
+.promise{margin:1.6mm 0 0;font-size:16pt;font-weight:900;font-stretch:84%;letter-spacing:-.02em;line-height:1.02;color:var(--ink);max-width:60mm}
+/* the red band bleeds off the bottom edge: the one idea on this side */
+.callband{
+  position:absolute;left:0;right:0;bottom:0;height:21mm;background:var(--cta);color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:var(--bleed);
+}
+.callband .num{font-size:21pt;font-weight:900;font-stretch:92%;letter-spacing:-.01em;line-height:1;font-variant-numeric:tabular-nums}
+.callband .sub{margin-top:1.2mm;font-size:7.5pt;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#FFE2D8}
+
+/* ============ BACK ============ */
+.back{background:var(--ink);color:#fff}
+.back .safe{justify-content:space-between}
+.back .top{display:flex;justify-content:space-between;align-items:center;gap:3mm}
+.backmark{display:flex;align-items:center;gap:2mm}
+.backmark img{width:9mm;height:auto;display:block;background:#fff;border-radius:1.6mm;padding:.8mm}
+.backmark span{font-size:8pt;font-weight:900;font-stretch:88%;letter-spacing:.02em;color:#fff;line-height:1.05}
+.hours{font-size:7.5pt;font-weight:900;letter-spacing:.1em;color:var(--mark);text-transform:uppercase;white-space:nowrap}
+.rule{height:.25mm;background:rgba(255,255,255,.22);margin:1.7mm 0}
+.svc{margin:0;padding:0;list-style:none;columns:2;column-gap:4mm}
+.svc li{font-size:7.5pt;font-weight:600;line-height:1.4;color:#fff;break-inside:avoid;padding-left:3mm;position:relative}
+.svc li::before{content:"";position:absolute;left:0;top:1.5mm;width:1.4mm;height:1.4mm;border-radius:50%;background:var(--teal-soft)}
+.chip{display:inline-block;background:var(--mark);color:var(--ink);border-radius:var(--r-btn);padding:1mm 2.4mm;font-size:7.5pt;font-weight:800}
+.zone{margin:1.5mm 0 0;font-size:7.5pt;font-weight:600;color:var(--on-ink-muted);line-height:1.35}
+.contact{display:flex;flex-wrap:wrap;gap:0 4mm;font-size:7.5pt;font-weight:800;color:#fff;line-height:1.5}
+.contact .k{color:var(--on-ink-muted);font-weight:600}
+.fine{margin:1.4mm 0 0;font-size:7pt;font-weight:600;color:var(--on-ink-muted)}
+
+/* screen only: blow the artboards up so they can be judged */
+@media screen{ .sheet{zoom:2.4} }
+@media print{
+  html,body{background:#fff}
+  .sheet{display:block;padding:0;gap:0;zoom:1}
+  .holder .cap{display:none}
+  .card::after{display:none}
+  .card{page-break-after:always;break-after:page}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- ================= RECTO FR ================= -->
+  <div class="holder">
+    <p class="cap">Recto FR</p>
+    <div class="card front">
+      <div class="safe">
+        <div class="brandrow">
+          <img src="../../assets/prepared/web/img/logo-icon.svg" alt="Pro Débouchage">
+          <span class="wordmark"><span class="w1">PRO</span><span class="w2">DÉBOUCHAGE</span></span>
+        </div>
+        <p class="eyebrow">Débouchage 24h/24</p>
+        <p class="promise">Appelez.<br>On s&rsquo;en occupe.</p>
+      </div>
+      <div class="callband">
+        <div class="num">0480 649 649</div>
+        <div class="sub">Appel ou WhatsApp</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= VERSO FR ================= -->
+  <div class="holder">
+    <p class="cap">Verso FR</p>
+    <div class="card back">
+      <div class="safe">
+        <div>
+          <div class="top">
+            <div class="backmark">
+              <img src="../../assets/prepared/web/img/logo-icon.svg" alt="">
+              <span>PRO<br>DÉBOUCHAGE</span>
+            </div>
+            <div class="hours">24h/24 &middot; 7j/7</div>
+          </div>
+          <div class="rule"></div>
+          <ul class="svc">
+            <li>Débouchage urgent</li>
+            <li>Curage haute pression</li>
+            <li>Égout et sterput</li>
+            <li>Inspection caméra</li>
+            <li>Vidange de fosse septique</li>
+            <li>Pompage de cave inondée</li>
+          </ul>
+        </div>
+        <div>
+          <span class="chip">Débouchage garanti 30 jours</span>
+          <p class="zone">Prix dit au téléphone. Autour de Bruxelles, Brabant flamand et wallon.</p>
+        </div>
+        <div>
+          <div class="rule"></div>
+          <div class="contact">
+            <span><span class="k">Tél &amp; WhatsApp</span> 0480 649 649</span>
+            <span><span class="k">Web</span> prodebouchage24.be</span>
+            <span><span class="k">E-mail</span> info@prodebouchage24.be</span>
+          </div>
+          <p class="fine">PRO DEBOUCHAGE SRL &middot; N&deg; d&rsquo;entreprise 1027.454.187</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= VOORKANT NL ================= -->
+  <div class="holder">
+    <p class="cap">Voorkant NL</p>
+    <div class="card front" lang="nl">
+      <div class="safe">
+        <div class="brandrow">
+          <img src="../../assets/prepared/web/img/logo-icon.svg" alt="Pro Débouchage">
+          <span class="wordmark"><span class="w1">PRO</span><span class="w2">DÉBOUCHAGE</span></span>
+        </div>
+        <p class="eyebrow">Ontstopping 24/7</p>
+        <p class="promise">Bel.<br>Wij lossen het op.</p>
+      </div>
+      <div class="callband">
+        <div class="num">0480 649 649</div>
+        <div class="sub">Bellen of WhatsApp</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ACHTERKANT NL ================= -->
+  <div class="holder">
+    <p class="cap">Achterkant NL</p>
+    <div class="card back" lang="nl">
+      <div class="safe">
+        <div>
+          <div class="top">
+            <div class="backmark">
+              <img src="../../assets/prepared/web/img/logo-icon.svg" alt="">
+              <span>PRO<br>DÉBOUCHAGE</span>
+            </div>
+            <div class="hours">24/7</div>
+          </div>
+          <div class="rule"></div>
+          <ul class="svc">
+            <li>Dringende ontstopping</li>
+            <li>Hogedrukreiniging</li>
+            <li>Riool en sterfput</li>
+            <li>Camera-inspectie</li>
+            <li>Septische put ruimen</li>
+            <li>Kelder leegpompen</li>
+          </ul>
+        </div>
+        <div>
+          <span class="chip">30 dagen garantie op de ontstopping</span>
+          <p class="zone">Prijs aan de telefoon. Rond Brussel, Vlaams-Brabant en Waals-Brabant.</p>
+        </div>
+        <div>
+          <div class="rule"></div>
+          <div class="contact">
+            <span><span class="k">Tel &amp; WhatsApp</span> 0480 649 649</span>
+            <span><span class="k">Web</span> prodebouchage24.be</span>
+            <span><span class="k">E-mail</span> info@prodebouchage24.be</span>
+          </div>
+          <p class="fine">PRO DEBOUCHAGE BV &middot; Ondernemingsnr. 1027.454.187</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
