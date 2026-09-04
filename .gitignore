@@ -4,7 +4,6 @@
 /*
 !/.gitignore
 !/save-to-cloud.cmd
-!/first-time-setup.cmd
 !/.claude/
 /.claude/*
 !/.claude/skills/
