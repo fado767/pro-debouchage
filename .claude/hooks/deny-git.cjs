@@ -1,9 +1,12 @@
-// PreToolUse hook for shell tools (Bash, PowerShell).
-// AGENTS.md section 7: sandboxed tools never run git and never run the backup scripts.
-// Reads the tool input as JSON on stdin, denies matching commands.
+// deny-git.cjs, PreToolUse hook for the shell tools (Bash, PowerShell).
+// THE RULE (every venture AGENTS.md, "Backup and git"): sandboxed tools never run git and never run
+// the backup scripts. Fady double-clicks save-to-cloud.cmd himself. This hook makes the rule
+// deterministic instead of trusting a session to remember it.
+// Shared kit file, identical in every venture folder. Owner of the kit: ../fady.be/kit/README.md.
+// Proven in pro-debouchage since 2026-08-28 (as deny-git.js); kit version 2026-09-04.
 
 const REASON =
-  "AGENTS.md section 7: sandboxed tools never run git or the backup scripts. Only Fady does.";
+  "AGENTS.md (Backup and git): sandboxed tools never run git or the backup scripts, not even read-only. Only Fady does, by double-clicking save-to-cloud.cmd.";
 
 // git as a command word: start of line, or after a separator (; & | && || ( ) { } newline, or $( ).
 // An optional path prefix is allowed (C:/Program Files/Git/bin/git, ./git, git.exe).

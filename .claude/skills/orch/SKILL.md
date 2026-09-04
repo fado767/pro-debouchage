@@ -1,13 +1,14 @@
 ---
-name: pro-orch
-description: Start the day on the Pro Débouchage project (Roro's drain-unblocking business). Use when Fady opens a session on this folder and says "pro-orch", "run today", "where are we", asks for the morning overview or the day's plan. It reads the small state files, checks them against each other, gives the MINE / RORO'S / A CLOCK'S overview and proposes the day, then waits. Use pro-orch-mid to resume a day already started, and pro-eof to close it.
+name: orch
+description: Start the day on the Pro Débouchage project (Roro's drain-unblocking business). Use when Fady opens a session on this folder and says "orch", "pro-orch", "run today", "where are we", asks for the morning overview or the day's plan. It reads the small state files, checks them against each other, gives the MINE / RORO'S / A CLOCK'S overview and proposes the day, then waits. Use orch-mid to resume a day already started, and eof to close it.
 ---
 
-# pro-orch
+# /orch (until 2026-09-04: /pro-orch)
 
 **Procedure only. This skill owns HOW, never WHAT.** Facts, dates, gates and client state live in the
 owner files named in `AGENTS.md` section 4. Read them fresh, never recall them. `AGENTS.md` binds over
-this file.
+this file. Renamed from `pro-orch` on 2026-09-04 (the HQ consistency pass) so every venture folder
+answers to the same three words; the procedure is unchanged.
 
 ## Run it, in this order
 
@@ -26,7 +27,7 @@ this file.
      step 5, then fix them in the session or file them in `NOW.md`. It is read-only and cheap, so it
      never holds up the overview. The sweep covers the live state files, this covers the playbook,
      which nothing else forces anyone to re-read.
-3. **If the handoff says the day already started, stop here and run `/pro-orch-mid` instead.**
+3. **If the handoff says the day already started, stop here and run `/orch-mid` instead.**
 4. **The overview.** ONE numbered list, 1..N continuous, grouped under three bold headers:
    **MINE** (a session or agent can act on it now) · **RORO'S** (waiting on Roro or Fady's visit) ·
    **A CLOCK'S** (deliberately waiting on a date or a verdict, for example Google's verification). One
@@ -45,10 +46,14 @@ this file.
 - Do the work by default: anything without payment, credentials or a decision that is truly Fady's is
   done, browser included. Access grants and anything touching money or a live surface are planned as
   Fady's own clicks (agent inventories, Fady clicks, agent verifies read-only).
+- Browser work follows `AGENTS.md` section 14: open the right Chrome profile by command
+  (`node .claude/scripts/chrome.cjs open "Pro Debouchage"` for info@, `"fady.be"` for hi@), confirm
+  the account from the page, ONE browser agent at a time, close your own tabs, verify the result and
+  never the submission.
 - Same-session logging (`AGENTS.md` section 8). Close it or file it (section 9).
 - When the context grows long, say so unprompted, rewrite `HANDOFF.md`, and hand over to a fresh
-  session that starts with `/pro-orch-mid`.
-- Close the day with `/pro-eof`.
+  session that starts with `/orch-mid`.
+- Close the day with `/eof`.
 
 ## Never
 - No em dashes in anything new. No git, no `save-to-cloud.cmd`. Nothing edited in `../taxi-business/`.

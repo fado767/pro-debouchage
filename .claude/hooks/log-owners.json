@@ -1,0 +1,5 @@
+{
+  "owners": ["^log\\.md$", "^now\\.md$", "^decisions\\.md$", "^state\\.md$", "^handoff\\.md$", "^playbook/accounts\\.md$"],
+  "skipDirs": [".git", "node_modules", ".claude", ".wrangler", "research", "_archive", "to-delete"],
+  "hint": "What happened to LOG.md (one entry per session, under about 2,500 bytes), what is open to NOW.md, decisions to DECISIONS.md, changed truths to STATE.md, account changes to playbook/accounts.md (AGENTS.md section 8)."
+}

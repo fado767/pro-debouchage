@@ -1,8 +1,14 @@
 # HANDOFF.md
 *Written by the last session for the next one. Overwritten at every close. Budget 4 KB (`wc -c`).*
 
-**Written 2026-09-03 afternoon, closing Thursday. Next session is a NEW day: start with `/pro-orch`.
-Friday is quiet by design; Monday 2026-09-07 is the weekly ads check. This line owns state.**
+**Written 2026-09-03 afternoon, closing Thursday. Next session is a NEW day: start with `/orch`
+(the skills were renamed on 2026-09-04 by the HQ consistency pass: `/orch`, `/orch-mid`, `/eof`,
+same as every other venture; `/pro-orch` no longer exists). Friday is quiet by design; Monday
+2026-09-07 is the weekly ads check. This line owns state.**
+
+*Added 2026-09-04 from the HQ pass (no orch session ran here): the shared kit is installed (logging
+guard, kit hooks, `.claude/scripts/chrome.cjs`, `AGENTS.md` sections 13 and 14). Nothing about the
+client, the ads or the site changed. Files changed on disk, so one save-to-cloud double-click.*
 
 ## What Thursday did
 - **Ads glance** (Profile 6, read-only): 294 impr, 20 clicks, 72.46 EUR, "limited by search volume",

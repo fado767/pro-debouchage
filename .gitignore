@@ -9,6 +9,7 @@
 /.claude/*
 !/.claude/skills/
 !/.claude/hooks/
+!/.claude/scripts/
 !/.claude/settings.json
 !/AGENTS.md
 !/CLAUDE.md
@@ -23,6 +24,9 @@
 !/site-v1/
 !/design/
 !/_archive/
+
+# generated per-session scratch state of the logging guard (added 2026-09-04, shared kit), never history
+/.claude/hooks/state/
 
 # never track these, anywhere
 node_modules/

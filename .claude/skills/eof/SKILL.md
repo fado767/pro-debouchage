@@ -1,12 +1,13 @@
 ---
-name: pro-eof
-description: Close the day on the Pro Débouchage project. Use when Fady says "pro-eof", "eof", "close the day", "we are done for today", or leaves mid-day and wants a clean close. It gives the plain-English day summary, files everything that is not filed, rewrites HANDOFF.md, reports file sizes and proposes rule improvements as one dated line. Use pro-orch to start a day and pro-orch-mid to resume one.
+name: eof
+description: Close the day on the Pro Débouchage project. Use when Fady says "eof", "pro-eof", "close the day", "we are done for today", or leaves mid-day and wants a clean close. It gives the plain-English day summary, files everything that is not filed, rewrites HANDOFF.md, reports file sizes and applies rule improvements. Use orch to start a day and orch-mid to resume one.
 ---
 
-# pro-eof
+# /eof (until 2026-09-04: /pro-eof)
 
 **Procedure only. This skill owns HOW, never WHAT.** `AGENTS.md` binds over this file, especially
-sections 7 (byte budgets, rewrite in place), 8 (logging) and 9 (close it or file it).
+sections 7 (byte budgets, rewrite in place), 8 (logging) and 9 (close it or file it). Renamed from
+`pro-eof` on 2026-09-04 (the HQ consistency pass); the procedure is unchanged.
 
 ## Run it, in this order
 
@@ -34,13 +35,15 @@ sections 7 (byte budgets, rewrite in place), 8 (logging) and 9 (close it or file
    running and confirm all are closed BEFORE the handoff is written, so nothing lingers as a running
    session in Fady's panel after the close. (Added 2026-08-24 on Fady's yes.)
 6. **Rewrite `HANDOFF.md`** for the next session: what today did, what is next, what is waiting on
-   whom, and whether the next session should start with `/pro-orch` (a new day) or `/pro-orch-mid`
+   whom, and whether the next session should start with `/orch` (a new day) or `/orch-mid`
    (same day, Fady is coming back). Budget 4 KB. Any rule improvement proposed today goes into the
    handoff the moment it is proposed, so it survives a fresh session.
 7. **Improvements** to the rules or the skills: APPLY them directly, dated, and file them in `LOG.md`,
    when they only change how Claude and the files work internally. Put an improvement to Fady ONLY
    when it changes what HE does, sees or decides (rule changed 2026-09-01 on Fady's word; before that
-   every improvement waited for his yes). A skill that misfired today is fixed today.
+   every improvement waited for his yes). A skill that misfired today is fixed today. An improvement
+   that would help every venture is noted as one line for the HQ (`../fady.be/IDEAS.md` is where Fady
+   collects them; this session does not edit the HQ files itself).
 8. **The closing block**, always the last thing said: one line "what was logged and where" (or
    "Nothing to log this session"), and the reminder that Fady double-clicks `save-to-cloud.cmd`
    himself if anything on disk changed. Closing reminders are never open items.

@@ -1,14 +1,26 @@
 {
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/session-stamp.cjs\"",
+            "timeout": 10,
+            "statusMessage": "Stamping session start (logging guard)"
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Bash|PowerShell",
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/deny-git.js\"",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/deny-git.cjs\"",
             "timeout": 10,
-            "statusMessage": "Checking AGENTS.md section 7"
+            "statusMessage": "Checking AGENTS.md section 7 (no git from a session)"
           }
         ]
       },
@@ -17,7 +29,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/protect-paths.js\"",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/protect-paths.cjs\"",
             "timeout": 10,
             "statusMessage": "Checking AGENTS.md rules 5 and 6"
           }
@@ -30,9 +42,21 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/no-emdash.js\"",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/no-emdash.cjs\"",
             "timeout": 10,
-            "statusMessage": "Checking AGENTS.md section 6"
+            "statusMessage": "Checking AGENTS.md section 6 (no em dashes)"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/log-guard.cjs\"",
+            "timeout": 15,
+            "statusMessage": "Logging guard (AGENTS.md section 8)"
           }
         ]
       }

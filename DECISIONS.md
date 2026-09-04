@@ -177,3 +177,6 @@
 - **Roro updates: WhatsApp draft PLUS a phone call, weekly (Roro's preference).** No e-mail. Calls received are asked by phone each week. The 2026-08-31 e-mail question is closed.
 - **The woman client (first job since launch) is closed:** source stays unknown, not chased.
 - **Business card: Fady designs it himself in Figma** from the agent build; the simple bilingual version (FR one side, NL the other, "Canalisation bouchée ? Appelez-nous." / "Verstopte afvoer? Bel ons.") is the preferred direction.
+
+## 2026-09-04
+- **One identical way of working across all venture folders (Fady, via the HQ):** the three routines are `/orch`, `/orch-mid`, `/eof` everywhere (the `pro-` names retired), the hooks and scripts are the shared kit (`../fady.be/kit/`), and `AGENTS.md` carries the shared Backup and git and Browser work wording (sections 13 and 14). This folder's own rules stay; where the two differ, the stricter holds. Reason: Fady opens several folders a day and wants the same thing going on in each, with every folder learning from the best of the others.
