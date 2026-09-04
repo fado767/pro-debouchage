@@ -11,10 +11,11 @@
  *   node .claude/scripts/chrome.cjs open "Profile 4" https://business.google.com/
  *
  * Verified 2026-09-04 in the HQ: "open" starts the right profile every time. What it does NOT do is
- * connect the Claude extension: a freshly opened window appears in list_connected_browsers only
- * after the Claude side panel in that window has been opened once (Fady's one click per Chrome
- * launch). So: open by command, check list_connected_browsers, and if it is empty ask Fady for that
- * ONE click in that window. Never ask which browser. One browser-driving agent at a time, ever.
+ * connect the Claude extension instantly: a fresh window can take 30 to 60 seconds to show up in
+ * list_connected_browsers (a pro-debouchage agent saw it connect by itself after about thirty
+ * seconds the same day). So: open by command, wait, check again after a minute, and only if still
+ * empty ask Fady for ONE click (the Claude side panel in that window). Never ask which browser.
+ * One browser-driving agent at a time, ever, guarded by browser-lock.cjs.
  */
 const fs = require('fs');
 const path = require('path');
@@ -58,7 +59,7 @@ if (cmd === 'open') {
   if (url) args.push(url);
   const child = spawn(CHROME, args, { detached: true, stdio: 'ignore' });
   child.unref();
-  console.log(`Opened Chrome profile "${p.name}" (${p.dir}, ${p.account})${url ? ' at ' + url : ''}. Now check list_connected_browsers; if empty, ask Fady to open the Claude side panel in that window once.`);
+  console.log(`Opened Chrome profile "${p.name}" (${p.dir}, ${p.account})${url ? ' at ' + url : ''}. Now wait 30 to 60 seconds and check list_connected_browsers; only if still empty, ask Fady to open the Claude side panel in that window once.`);
   process.exit(0);
 }
 

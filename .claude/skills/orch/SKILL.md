@@ -12,6 +12,10 @@ answers to the same three words; the procedure is unchanged.
 
 ## Run it, in this order
 
+0. **Name the session first:** call `set_session_title` (session "self") with
+   `Pro Débouchage | orch | <today>` before anything else, so the sidebar entry and every Chrome tab
+   group this session creates carry the project's name and never a bare "Orchestration" (Fady,
+   2026-09-04). Rename again if the scope changes.
 1. **Read, in full, the four small files:** `STATE.md`, `NOW.md`, `HANDOFF.md`, and the last entry of
    `LOG.md`. They are held to byte budgets by rule (`STATE.md` 14 KB, `NOW.md` 8 KB, `HANDOFF.md`
    4 KB), so reading them whole is cheap. Open a playbook file only when an open item points into it.
@@ -46,10 +50,12 @@ answers to the same three words; the procedure is unchanged.
 - Do the work by default: anything without payment, credentials or a decision that is truly Fady's is
   done, browser included. Access grants and anything touching money or a live surface are planned as
   Fady's own clicks (agent inventories, Fady clicks, agent verifies read-only).
-- Browser work follows `AGENTS.md` section 14: open the right Chrome profile by command
+- Browser work follows `AGENTS.md` section 14: take the machine-wide lock first
+  (`node .claude/scripts/browser-lock.cjs acquire "Pro Débouchage"`, and stop if it says HELD: another
+  project is driving Chrome), open the right Chrome profile by command
   (`node .claude/scripts/chrome.cjs open "Pro Debouchage"` for info@, `"fady.be"` for hi@), confirm
-  the account from the page, ONE browser agent at a time, close your own tabs, verify the result and
-  never the submission.
+  the account from the page, close your own tabs, release the lock, verify the result and never the
+  submission. A sub-agent that drives Chrome gets the acquire and release lines in its brief.
 - Same-session logging (`AGENTS.md` section 8). Close it or file it (section 9).
 - When the context grows long, say so unprompted, rewrite `HANDOFF.md`, and hand over to a fresh
   session that starts with `/orch-mid`.

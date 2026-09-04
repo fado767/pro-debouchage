@@ -46,7 +46,10 @@ sections 7 (byte budgets, rewrite in place), 8 (logging) and 9 (close it or file
    collects them; this session does not edit the HQ files itself).
 8. **The closing block**, always the last thing said: one line "what was logged and where" (or
    "Nothing to log this session"), and the reminder that Fady double-clicks `save-to-cloud.cmd`
-   himself if anything on disk changed. Closing reminders are never open items.
+   himself if anything on disk changed. Closing reminders are never open items. Then rename the
+   session to `Pro Débouchage | closed | <today>` (`set_session_title`, session "self") and check the
+   browser lock is released (`node .claude/scripts/browser-lock.cjs status`), so a closed session
+   reads as closed in the sidebar and never blocks another project's Chrome work.
 
 ## Never
 - No em dashes in anything new. No git, no `save-to-cloud.cmd`. Nothing edited in `../taxi-business/`.

@@ -11,6 +11,9 @@ description: Resume the Pro Débouchage day in CONTINUATION mode. Use when the d
 
 ## Run it
 
+0. **Name the session first:** `set_session_title` (session "self") with
+   `Pro Débouchage | orch-mid | <today>`, so the sidebar and every Chrome tab group carry the
+   project's name (Fady, 2026-09-04).
 1. Read `HANDOFF.md` whole, then `NOW.md` and `STATE.md` whole (byte budgets by rule, 4 KB, 8 KB and
    14 KB, so reading them whole is cheap). Re-read all three again immediately before the session's
    first write, per `AGENTS.md` section 7: a day resumed here may have been driven from another
