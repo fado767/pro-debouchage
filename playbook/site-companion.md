@@ -19,6 +19,7 @@ One thing to say at the start of the call: **every price printed on the page is 
 **Roro will ask**
 - *Why three languages?* Your customers around Brussels are French, Dutch and expats. Same prices, same promises, three real pages.
 - *Does the phone number cost the caller anything?* No. It is your normal mobile number, no premium line.
+- *Why does the page sometimes show a phone number that is not mine?* Since 12 September 2026 Google measures the calls your ads bring. Only a visitor who accepted the cookies AND arrived by clicking one of your ads sees a Google forwarding number in place of yours. He dials it, it rings straight on 0480 649 649, and it costs him nothing extra. Everybody else sees 0480 649 649 exactly as before. That number is how we know which calls the ads paid for.
 
 ## 2. Hero
 
@@ -164,7 +165,7 @@ One thing to say at the start of the call: **every price printed on the page is 
 
 ## 16. Zone
 
-**What it says.** We work around Brussels, in Flemish and Walloon Brabant, about 40 km around Wemmel. Brussels city is not in the zone. Then the town list, then: your town not listed? Call, you get a yes or no immediately.
+**What it says.** We work all around Brussels, on both sides of the language border, from Alost to Louvain and from Malines to Nivelles, about 40 km around Wemmel. Brussels city is not in the zone. Then 36 town chips, then: the list stops here, our area does not, your town not listed? Call, you get a yes or no immediately. (Widened 2026-09-10 from the old "Flemish and Walloon Brabant" wording and from 26 chips, because the ads had always run in four provinces and a Kontich caller landed on a page that implied we skipped her.)
 
 **Why.** Your own rule, decided 2026-08-23: about 40 km around Wemmel, no Brussels city, so Afrim can park and stay out of the traffic. Widening later is open, ads results decide.
 
@@ -191,7 +192,7 @@ One thing to say at the start of the call: **every price printed on the page is 
 
 ## 19. Cookie banner
 
-**What it says.** The consent layer is LIVE since 2026-08-27, because the site now carries Google's call measurement for the ads. On the first visit a card asks: measure calls, with your agreement. Two equal buttons, refuse everything and accept everything, and a second layer with separate switches (audience measurement and ads measurement), both off by default. Nothing from Google loads before the visitor accepts, and refusing keeps the visit completely tag-free. A footer link reopens the choice at any time.
+**What it says.** The consent layer is LIVE since 2026-08-27, because the site now carries Google's call measurement for the ads. On the first visit a card asks: measure calls, with your agreement. Two equal buttons, refuse everything and accept everything, and a second layer with separate switches (audience measurement and ads measurement), both off by default. Nothing from Google loads before the visitor accepts, and refusing keeps the visit completely tag-free. A footer link reopens the choice at any time. Since 2026-09-12 the same consent layer also carries Google's website call measurement: it changes one thing and only for a consenting visitor who arrived from an ad click, the phone number shown becomes a Google forwarding number that rings straight on 0480 649 649 (section 1). Everyone else sees the page exactly as before, and nothing from Google still loads before Accept.
 
 **Why.** Belgian law (art. 129 of the 2005 law) and the APD checklist want equal buttons, no cookie wall, and purposes separable in a second layer. Our build is stricter than the minimum: before Accept the page makes zero requests to Google, proven on the wire (research/25 step 10, research/29).
 

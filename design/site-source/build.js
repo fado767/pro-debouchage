@@ -28,6 +28,24 @@ const TAGS_OFF = process.env.TAGS_OFF === '1';
 const ADS_TAG_ID = TAGS_OFF ? '' : (process.env.ADS_TAG_ID || 'AW-18413234511');
 const ADS_CALL_LABEL = TAGS_OFF ? '' : (process.env.ADS_CALL_LABEL || '_diMCKD12OgcEM_SjsxE');
 const ADS_WA_LABEL = TAGS_OFF ? '' : (process.env.ADS_WA_LABEL || 'XldOCKP12OgcEM_SjsxE');
+// CALLS FROM WEBSITE VISITS (added 2026-09-12). Google's own call tracking: when the visitor came
+// from an ad click AND accepted cookies, Google's script swaps the displayed number for a Google
+// forwarding number and counts a conversion when the call lasts 60 SECONDS OR MORE. That threshold
+// is set on the conversion action in the Ads account, not here.
+// LABEL BAKED IN 2026-09-12: the conversion action "Calls from website" exists in the Ads account
+// and its label is the default below; ADS_PHONE_LABEL=... still overrides it for one build, and
+// ADS_PHONE_LABEL= (empty) or TAGS_OFF=1 removes the feature from the output byte for byte.
+// TWO THINGS THAT ARE ACCOUNT STEPS, NOT BUILD STEPS: (1) once this conversion action counts real
+// calls, call_click must be set to SECONDARY in the Ads UI, or the same phone call is counted
+// twice, once as a tap and once as a call; (2) the number swap only ever happens for visitors who
+// arrived from an ad click and accepted cookies, so most visitors keep seeing the real number.
+// The string below must match the number AS WRITTEN IN THE PAGE TEXT, character for character.
+// Every visible occurrence on this site is "0480 649 649" (66 of them). The tel: hrefs
+// (tel:+32480649649), the wa.me links and the JSON-LD telephone are a different format and are NOT
+// swapped, which is correct: Google only rewrites the displayed text and the href of links whose
+// text it replaced.
+const ADS_PHONE_LABEL = TAGS_OFF ? '' : (process.env.ADS_PHONE_LABEL || 'u0RxCNu5nPUcEM_SjsxE');
+const ADS_PHONE_NUMBER = '0480 649 649';
 // GA4_ID rides the SAME consent gate as ADS_TAG_ID (added 2026-08-27, tag round G5).
 const GA4_ID = TAGS_OFF ? '' : (process.env.GA4_ID || 'G-S3SQ25WZMK');
 // One switch for the whole tag layer: consent stub, banner, consent.js, footer credit, privacy
@@ -252,6 +270,12 @@ const LEGAL_PATH = { fr: '/fr/confidentialite', nl: '/nl/privacy', en: '/en/priv
 // ad_storage and ad_user_data ride `ads`, analytics_storage rides `analytics`, ad_personalization
 // is granted in NO branch, ever, which is what keeps "no profiling, no retargeting" true.
 if (TAG_ON) {
+  // The call-tracking config line, emitted only when the label exists (see ADS_PHONE_LABEL above).
+  // It sits inside the consent-granted branch, right after the Ads tag's own config, so nothing
+  // about it runs before Accept.
+  const PHONE_CFG = (ADS_TAG_ID && ADS_PHONE_LABEL)
+    ? `\nif(ID&&addAds)gtag('config',ID+'/'+${JSON.stringify(ADS_PHONE_LABEL)},{'phone_conversion_number':${JSON.stringify(ADS_PHONE_NUMBER)}});`
+    : '';
   const STR = {};
   for (const [l] of T.LANGS) STR[l] = {
     t: COPY[l].consentT, p: COPY[l].consentP, refuse: COPY[l].consentRefuse, accept: COPY[l].consentAccept,
@@ -283,7 +307,7 @@ var lid=state.ads&&ID?ID:(state.analytics&&GA?GA:null);if(!lid)return;
 if(!loaded){loaded=true;
 var sc=document.createElement('script');sc.async=true;sc.src='https://www.googletagmanager.com/gtag/js?id='+lid;document.head.appendChild(sc);
 gtag('js',new Date());}
-if(ID&&addAds)gtag('config',ID);
+if(ID&&addAds)gtag('config',ID);${PHONE_CFG}
 if(GA&&addAn)gtag('config',GA);}
 function wipe(c){document.cookie.split(';').forEach(function(k){var n=k.split('=')[0].trim();
 if(!((/^_gcl/.test(n)&&!c.ads)||(/^_ga/.test(n)&&!c.analytics)))return;

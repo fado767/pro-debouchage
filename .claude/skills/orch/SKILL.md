@@ -16,6 +16,7 @@ answers to the same three words; the procedure is unchanged.
    `Pro Débouchage | orch | <today>` before anything else, so the sidebar entry and every Chrome tab
    group this session creates carry the project's name and never a bare "Orchestration" (Fady,
    2026-09-04). Rename again if the scope changes.
+   Then one line on effort: which level this mode expects from the app's menu, per `../fady.be/kit/model-and-effort-guide.md` (a check-up: low or medium; a build day: high; max only when Fady asks), because a session cannot change its own effort (kit, 2026-09-15).
 1. **Read, in full, the four small files:** `STATE.md`, `NOW.md`, `HANDOFF.md`, and the last entry of
    `LOG.md`. They are held to byte budgets by rule (`STATE.md` 14 KB, `NOW.md` 8 KB, `HANDOFF.md`
    4 KB), so reading them whole is cheap. Open a playbook file only when an open item points into it.
@@ -44,7 +45,8 @@ answers to the same three words; the procedure is unchanged.
    options, recommended option first. He sees the widget, not the prose.
 
 ## While the day runs
-- Fan out to subagents on Opus 5 by default. Read-only agents may run in parallel; agents that edit
+- **Models (Fady, 2026-09-15; the table is `../fady.be/kit/model-and-effort-guide.md`):** every subagent gets the cheapest model that can do its job, named in the Agent call's `model` field: Haiku 4.5 for mechanical work (file scans, listings, byte checks, page reads, extraction), Sonnet 5 for the middle (research with sources, first drafts, code, browser reading, most verifiers), Opus 5 only where judgment carries money or the brand (legal text, the judge of an image against a photo, a review of a live surface, a long build), Fable never as a worker except to rescue a stuck Opus job. Every brief names its acceptance criteria; a verifier runs one rung above the writer; a worker that says it is unsure is retried one rung up. Workers run at low effort unless the brief says otherwise.
+- Fan out to subagents on the model the rule above names. Read-only agents may run in parallel; agents that edit
   files run ONE at a time. Before a file agent runs, note which files it will touch; after it closes,
   open those files and confirm the claim matches the disk.
 - Do the work by default: anything without payment, credentials or a decision that is truly Fady's is

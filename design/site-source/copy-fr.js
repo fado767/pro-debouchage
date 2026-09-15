@@ -15,7 +15,7 @@ module.exports = {
 
   meta: {
     title: 'Débouchage 24h/24 autour de Bruxelles | Prix dit au téléphone',
-    desc: 'Canalisation, WC ou égout bouché ? Déboucheur autour de Bruxelles, en Brabant flamand et wallon, 24h/24. Prix dit au téléphone, confirmé à votre porte. Garantie 30 jours. 0480 649 649.',
+    desc: "Canalisation, WC ou égout bouché ? Déboucheur autour de Bruxelles, d'Alost à Louvain et de Malines à Nivelles, 24h/24. Prix dit au téléphone, confirmé à votre porte. Garantie 30 jours. 0480 649 649.",
     ogt: 'Ça remonte, ça déborde, ça pue ? Appelez, on s’en occupe.',
     ogd: 'Déboucheur autour de Bruxelles, 24h/24. Le prix annoncé au téléphone est le prix sur la facture.',
     locale: 'fr_BE',
@@ -218,9 +218,9 @@ module.exports = {
 
   // Zone.
   zoneK: 'La zone', zoneH: 'Où on travaille',
-  zoneT: `On travaille autour de Bruxelles, en Brabant flamand et en Brabant wallon, à environ 40${nb}km autour de Wemmel. Bruxelles-ville n'est pas dans notre zone.`,
-  towns: `Vilvorde · Machelen · Wemmel · Meise · Grimbergen · Merchtem · Asse · Dilbeek · Ternat · Zaventem · Zemst · Leeuw-Saint-Pierre · Hal · Beersel · Tervuren · Overijse · Rhode-Saint-Genèse · Kraainem · Wezembeek-Oppem · Waterloo · La Hulpe · Braine-l'Alleud · Braine-le-Château · Tubize · Wavre · Nivelles`.split(' · '),
-  zoneC: `Votre commune n'est pas dans la liste${nb}? Appelez, on vous dit oui ou non tout de suite.`,
+  zoneT: `On travaille tout autour de Bruxelles, côté flamand comme côté wallon${nb}: d'Alost à Louvain et de Malines à Nivelles, jusqu'à environ 40${nb}km de Wemmel. Bruxelles-ville n'est pas dans notre zone.`,
+  towns: `Vilvorde · Machelen · Wemmel · Meise · Grimbergen · Merchtem · Londerzeel · Asse · Dilbeek · Ternat · Zaventem · Leeuw-Saint-Pierre · Hal · Beersel · Rhode-Saint-Genèse · Kraainem · Tervuren · Overijse · Louvain · Aarschot · Malines · Willebroek · Boom · Kontich · Alost · Ninove · Termonde · Temse · Waterloo · La Hulpe · Braine-l'Alleud · Tubize · Wavre · Nivelles · Louvain-la-Neuve · Enghien`.split(' · '),
+  zoneC: `La liste s'arrête ici, pas notre zone. Votre commune n'y est pas${nb}? Appelez, on vous dit oui ou non tout de suite.`,
   zoneL: 'Appeler 0480 649 649',
 
   // FAQ.
@@ -235,7 +235,7 @@ module.exports = {
     [`En combien de temps êtes-vous là${nb}?`, `On vous donne une heure d'arrivée au téléphone, et on vous prévient si elle bouge. On préfère annoncer une heure qu'on tient plutôt qu'un chiffre qui fait plaisir.`],
     [`Faut-il casser quelque chose${nb}?`, `On regarde d'abord avec la caméra. Casser est le dernier recours, et jamais sans votre accord. C'est pour cela que la caméra est comprise avec l'intervention.`],
     [`Faites-vous un rapport pour l'assurance${nb}?`, `Oui, si vous le demandez. Après l'inspection caméra, on rédige alors un rapport que vous pouvez remettre à votre assurance, par exemple après un dégât des eaux ou une cave inondée. Le plus simple est de le dire au téléphone.`],
-    [`Quelles communes couvrez-vous${nb}?`, `Le ring autour de Bruxelles, en Brabant flamand et en Brabant wallon${nb}: Vilvorde, Wemmel, Grimbergen, Dilbeek, Hal, Zaventem, Waterloo, Braine-l'Alleud, Wavre, Nivelles et les autres communes à environ 40${nb}km autour de Wemmel. Bruxelles-ville n'est pas dans notre zone. Votre commune n'est pas citée${nb}? Appelez, on vous répond tout de suite.`],
+    [`Quelles communes couvrez-vous${nb}?`, `Tout autour de Bruxelles, côté flamand comme côté wallon, à environ 40${nb}km autour de Wemmel. Au nord jusqu'à Malines, Boom et Kontich, à l'ouest jusqu'à Alost, Termonde et Ninove, à l'est jusqu'à Louvain et Aarschot, au sud jusqu'à Enghien, Nivelles et Louvain-la-Neuve. Et bien sûr toute la périphérie proche${nb}: Vilvorde, Dilbeek, Zaventem, Hal, Tervuren, Waterloo, Wavre et les autres. Bruxelles-ville n'est pas dans notre zone. Votre commune n'est pas citée${nb}? Appelez, on vous dit oui ou non tout de suite.`],
     [`Comment puis-je payer${nb}?`, `Par virement, par lien de paiement, ou en liquide avec un reçu remis sur place. Vous recevez toujours une facture.`]],
 
   // Final call.
@@ -243,7 +243,7 @@ module.exports = {
   finalL: 'Joignable 24h/24 et 7j/7, week-end et jours fériés compris. Numéro normal, pas de surtaxe.',
 
   // Footer.
-  footD: `Débouchage, curage, inspection caméra, fosse septique et pompage de cave. Autour de Bruxelles, en Brabant flamand et en Brabant wallon, 24h/24.`,
+  footD: `Débouchage, curage, inspection caméra, fosse septique et pompage de cave. Tout autour de Bruxelles, côté flamand comme côté wallon, 24h/24.`,
   photoNote: `Toutes les photos viennent de nos propres interventions, la camionnette y comprise. Seule la photo « avant » de la section preuve a été reconstituée d'après notre photo d'origine.`,
   legalT: 'Mentions légales',
   legal: ['PRO DEBOUCHAGE SRL', 'Guldenschaapstraat 6, 1800 Vilvoorde, Belgique', `Numéro d'entreprise 1027.454.187`, `E-mail${nb}: info@prodebouchage24.be`, `Téléphone${nb}: 0480 649 649`],

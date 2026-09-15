@@ -180,3 +180,33 @@
 
 ## 2026-09-04
 - **One identical way of working across all venture folders (Fady, via the HQ):** the three routines are `/orch`, `/orch-mid`, `/eof` everywhere (the `pro-` names retired), the hooks and scripts are the shared kit (`../fady.be/kit/`), and `AGENTS.md` carries the shared Backup and git and Browser work wording (sections 13 and 14). This folder's own rules stay; where the two differ, the stricter holds. Reason: Fady opens several folders a day and wants the same thing going on in each, with every folder learning from the best of the others.
+
+## 2026-09-07 (Monday, week-1 check)
+- **Negatives, first batch APPLIED (Fady):** the competitor and brand names only, as CAMPAIGN PHRASE negatives (dhm service, dhm, maigret, maxi cleaning, vidange nette, lazeroms, bob service, de vleminck, brutout, curnet). They took 11 of 20 clicks and 41.92 EUR, 59 percent of clicked spend. Applied 2026-09-07 by a browser agent, VERIFICATION PENDING (Fady confirms later).
+- **Septic phrase ("vidange fosse septique") and the price-shopping terms are HELD to the week-2 checkpoint (Fady).** Gembloux stays as a targeted town (2026-08-31 unchanged). Nothing else in ads-program section 8 is applied.
+- **Budget HOLDS at 20 EUR/day until the week-2 checkpoint, about 12 September (Fady),** even though "Limited by budget" is now the only Limited reason ("Limited by search volume" is gone). The checkpoint rule in ads-program.md section 6 is respected: settings change at weeks 2, 4, 6, 8, not in a weekly check.
+- **CORRECTION to the 2026-09-05 filing: there is no conversion action called "Submit lead form".** "Submit lead forms" is a GOAL GROUP; the action inside it is whatsapp_click (Website, Needs attention, Primary, 0 conversions). whatsapp_click CAN fire, the site has a WhatsApp button, it simply has not yet. It stays PRIMARY, nothing is removed. The "never fires, no form" reasoning was wrong.
+- **Roro report: the draft is filled with today's numbers, Fady sends it and calls today** (no conversions mentioned, all four unverified).
+- **Negatives VERIFIED 2026-09-07 (addendum to the first bullet above).** A browser agent re-read the campaign's Negative keywords tab after a full reload: all ten brand terms present, campaign level, phrase match; nothing else touched. Item 11 in the list is a pre-existing shared list "PD | Negatives | shared" already attached to the campaign, contents not opened, checked at the week-2 checkpoint for duplicates or contradictions.
+
+## 2026-09-07 (Monday, midday), after Fady's call with Roro
+- **GBP video: DECISION CHANGED.** Fady goes to Roro this weekend (Saturday 12 or Sunday 13 September) and shoots the re-verification video WITH him, as on 2026-08-28, instead of Roro shooting alone from the brief (the 2026-09-02 call). Reason: it is simply better, and it doubles as a family visit. The brief in `assets/prepared/gbp-video-brief.md` stays as the shot list; Fady approves the info@ sign-in prompt on the spot.
+- **Invoice print test CLOSED, the pack is in real use.** Roro and Steph printed the pack and used it for the first client since launch (the lady of 2026-09-01); Steph had no issue filling it and both rate it very good. So the invoice pack is in real use since early September, and the credit note template is unblocked, owner [Claude, next session].
+- **KBO commercial name and VAT start date stay open with Roro:** he will call the accountant again, the answers come on the next call.
+
+## 2026-09-08 (Tuesday), quick check
+- **GBP video day NOT FIXED (Fady).** Saturday 12 or Sunday 13 September, not planned yet, and worst case it moves to the following weekend. Roro is given no day until Fady fixes one. The decision to shoot it WITH Roro (2026-09-07) is unchanged.
+- **Cadence for the rest of the week: QUIET UNTIL SATURDAY (Fady).** He is busy on other projects. The daily read-only ads glance and the weekly VIES/KBO poll keep running, Claude keeps doing its own background work, and Fady is contacted ONLY if something breaks or a real decision appears. The next real session is the Saturday 12 September week-2 checkpoint, plus the video whenever the day is fixed.
+- **NO SCHEDULED TASKS ON THIS FOLDER (Fady, 2026-09-08).** Fady asked whether he must open a session every day to keep up. A daily scheduled glance was built and installed, and Fady removed it: he prefers opening a new session and running `/orch` when he wants to work. So nothing runs on a timer here, a chat cannot wake itself, and there are no automatic pings between sessions. Do not propose a scheduled task again without a new reason from Fady.
+
+## 2026-09-10 (Thursday), the expert call on ads goes to a Fable agent
+- **Fady, in session:** he is not a Google Ads expert and will not guess at negatives or budget. From now on, when a decision needs paid-search expertise, a **Fable 5.1 agent looks, advises, and Claude executes the advice**. Fady's own words: the goal is to eventually make the ads convert and bring Roro clients, and he knows this phase is testing.
+- Same call for the site zone copy: Fable advises on the wording, Claude applies it right away and reports back in **short plain English, saying only what changed**.
+- What this does NOT change: money, credentials, access grants and anything touching a live client surface still come to Fady. This delegates the JUDGMENT on ads and copy, not the authority to spend.
+- Applied the same day: two read-only Fable agents briefed (negatives, spend pattern, the zero-conversion problem, the NL ad rated Poor; and the FR/NL/EN zone strings), with execution to follow on their memos.
+
+## 2026-09-12 Week-2 checkpoint verdicts (Fady delegated "decide and do", session on Fable 5.1)
+- Bidding STAYS on Maximize Conversions: avg CPC 8 to 12 Sep is 5.58 EUR, under the 6 EUR fallback trigger of ads-program 10. Budget held at 20 EUR/day to week 4 (2026-09-26).
+- The live ads carry no Vilvoorde base; the two-Brabant zone wording in both ads is narrow, not false, so no ad is paused. The NL fix is the second NL RSA (added, Good); a second FR RSA with the widened zone is a week-4 item, never an edit.
+- "Calls from website" is the measurement of record for calls from ads (60 seconds, cookie accepters only). call_click stays PRIMARY until the new action counts its first call, then goes SECONDARY.
+- The credit-note pack goes to Roro in person at the Sunday 13 Sep video visit, not by e-mail.

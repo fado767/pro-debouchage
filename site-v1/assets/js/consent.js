@@ -23,6 +23,7 @@ if(!loaded){loaded=true;
 var sc=document.createElement('script');sc.async=true;sc.src='https://www.googletagmanager.com/gtag/js?id='+lid;document.head.appendChild(sc);
 gtag('js',new Date());}
 if(ID&&addAds)gtag('config',ID);
+if(ID&&addAds)gtag('config',ID+'/'+"u0RxCNu5nPUcEM_SjsxE",{'phone_conversion_number':"0480 649 649"});
 if(GA&&addAn)gtag('config',GA);}
 function wipe(c){document.cookie.split(';').forEach(function(k){var n=k.split('=')[0].trim();
 if(!((/^_gcl/.test(n)&&!c.ads)||(/^_ga/.test(n)&&!c.analytics)))return;

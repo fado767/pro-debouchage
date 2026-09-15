@@ -34,9 +34,7 @@
             "statusMessage": "Checking AGENTS.md rules 5 and 6"
           }
         ]
-      }
-    ],
-    "PostToolUse": [
+      },
       {
         "matcher": "Write|Edit",
         "hooks": [

@@ -2,7 +2,11 @@
 // Run: node assets/prepared/invoice/build-invoice.js            builds every output of the current round
 //      node assets/prepared/invoice/build-invoice.js A fr        builds one file only
 //
-// Each document has three parts: page 1 FACTURE, page 2 BON D'INTERVENTION, pages 3+ CONDITIONS GENERALES.
+// The invoice has three parts: page 1 FACTURE, page 2 BON D'INTERVENTION, pages 3+ CONDITIONS GENERALES.
+// The credit note (added 2026-09-08) is its own one-page document, NOTE DE CREDIT / CREDITNOTA, with
+// its own series NC-2026-xxx, the reference to the invoice it corrects, and the verbatim credit-note
+// mention from research/26 section 10. Same fill mechanics, same look, same field order as the
+// invoice, on purpose: the invoice has been in real use since early September and the habit stands.
 // Two layouts, same legal content, different look:
 //   A  stacked letterhead, the first draft's face
 //   B  small logo left, big title right, one grey identity line, the 2026-08-27 redesign
@@ -54,6 +58,12 @@ const REVERSE_CHARGE_FR = "Autoliquidation : En l'absence de contestation par é
 // is "Autoliquidation :" with a spaced colon. They are deliberately not symmetrical. Do not "fix" it.
 const REVERSE_CHARGE_NL = "Verlegging van heffing. Bij gebrek aan schriftelijke betwisting binnen een termijn van één maand na de ontvangst van de factuur, wordt de afnemer geacht te erkennen dat hij een belastingplichtige is gehouden tot de indiening van periodieke aangiften. Als die voorwaarde niet vervuld is, is de afnemer ten aanzien van die voorwaarde aansprakelijk voor de betaling van de verschuldigde belasting, interesten en geldboeten.";
 
+// research/26 section 10, the CREDIT NOTE mention. Verbatim, exactly as researched: the sentence
+// carries no closing full stop in the source and none is added here. It is printed on every credit
+// note that reverses an invoice which bore VAT, which is every invoice this pack produces.
+const CREDIT_NOTE_VAT_FR = "TVA à reverser à l'État dans la mesure où elle a été initialement déduite";
+const CREDIT_NOTE_VAT_NL = "Btw terug te storten aan de Staat in de mate waarin ze oorspronkelijk in aftrek werd gebracht";
+
 // research/22 section 2, the work-order waiver wordings. FR verbatim, NL verbatim.
 const DECL_URGENT_FR = "Je demande expressément à PRO DEBOUCHAGE SRL de se déplacer chez moi pour effectuer des travaux urgents d'entretien ou de réparation. Je reconnais avoir été informé que, pour ces travaux urgents et pour les pièces de rechange indispensables, je ne dispose pas du droit de rétractation de quatorze jours (article VI.53, 8° du Code de droit économique).";
 const DECL_URGENT_NL = "Ik verzoek PRO DEBOUCHAGE BV uitdrukkelijk om bij mij langs te komen voor dringende herstellings- of onderhoudswerken. Ik erken dat mij werd meegedeeld dat ik voor die dringende werken en voor de onmisbare vervangingsonderdelen niet beschik over het herroepingsrecht van veertien dagen (artikel VI.53, 8° van het Wetboek van economisch recht).";
@@ -94,6 +104,11 @@ const PH_BLANK = ' ';
 // and must never say "devis": the invoice they send today is titled FACTURE but labels its number
 // "N° DE DEVIS", and that is exactly the defect this pack removes.
 const INVOICE_NUMBER_PLACEHOLDER = { fr: 'Numéro', nl: 'Nummer' };
+// THE CREDIT-NOTE NUMBER. Opposite case from the invoice: the credit-note series does NOT exist yet,
+// so the file teaches its shape. NC-2026-xxx is the form research/26 section 10, the pack README and
+// playbook/invoicing-flow.md already use, and the three x are self-evidently not a number, so a
+// forgotten field still reads as a forgotten field and never as a plausible wrong one.
+const CREDIT_NUMBER_PLACEHOLDER = { fr: 'NC-2026-xxx', nl: 'NC-2026-xxx' };
 
 const PH_FR = {
   invoiceNumber: INVOICE_NUMBER_PLACEHOLDER.fr,
@@ -109,6 +124,10 @@ const PH_FR = {
   payMode: 'Virement / Bancontact / Espèces',
   works: 'Décrire le problème et le travail demandé',
   basis: 'Ex. : tarif horaire, forfait, ou prix après constat',
+  creditNumber: CREDIT_NUMBER_PLACEHOLDER.fr,
+  creditReason: 'Ex. : facture annulée, montant trop élevé, erreur sur le client',
+  settleMode: 'Remboursement / Déduction sur une facture',
+  iban: 'BE00 0000 0000 0000',
 };
 const PH_NL = {
   invoiceNumber: INVOICE_NUMBER_PLACEHOLDER.nl,
@@ -124,6 +143,10 @@ const PH_NL = {
   payMode: 'Overschrijving / Bancontact / Contant',
   works: 'Beschrijf het probleem en het gevraagde werk',
   basis: 'Bv.: uurtarief, forfait, of prijs na vaststelling',
+  creditNumber: CREDIT_NUMBER_PLACEHOLDER.nl,
+  creditReason: 'Bv.: factuur geannuleerd, bedrag te hoog, fout in de klantgegevens',
+  settleMode: 'Terugbetaling / Aftrek op een factuur',
+  iban: 'BE00 0000 0000 0000',
 };
 
 // ---------------------------------------------------------------------------
@@ -179,6 +202,12 @@ const GUIDE_FR = [
 
   ['h', '8. À garder'],
   ['p', "Les paiements en espèces sont plafonnés à 3.000 euros par chantier. Pour le reste, votre dossier de factures est déjà l'archive des dix ans."],
+
+  ['h', '9. La note de crédit'],
+  ['p', "Une note de crédit corrige une facture déjà envoyée. La facture, elle, ne se supprime jamais et ne se réécrit jamais."],
+  ['p', "On en fait une quand le montant est trop élevé, quand le client a été facturé deux fois, quand le travail n'a pas été fait, ou quand une erreur sur le client rend la facture inutilisable. Pas de note de crédit si la facture n'est pas encore partie : là vous corrigez la facture. Pas de note de crédit non plus si le client ne paie pas : là c'est un rappel."],
+  ['p', "Le fichier est PRO-DEBOUCHAGE-note-de-credit-FR.docx, et PRO-DEBOUCHAGE-creditnota-NL.docx en néerlandais. Il se remplit comme la facture."],
+  ['p', "Sa numérotation est à part : NC-2026-001, NC-2026-002, dans l'ordre, jamais un numéro de facture. Elle reprend toujours le numéro et la date de la facture corrigée, et le même taux de TVA que cette facture."],
 ];
 
 // ---------------------------------------------------------------------------
@@ -257,6 +286,30 @@ const LABELS_FR = {
   sigName: 'Nom en majuscules',
   sigDate: 'Date',
   sigLine: '« Bon pour accord », date et signature',
+
+  // The credit note. Same words as the invoice wherever the invoice already has a word for it:
+  // CLIENT for the party block, the same VAT table headings, the same six service columns.
+  titleCredit: 'NOTE DE CRÉDIT',
+  creditNo: 'N° de note de crédit',
+  creditDate: 'Date de la note de crédit',
+  creditSeriesNote: "Série propre aux notes de crédit : NC-2026-001, NC-2026-002, dans l'ordre, sans trou. Jamais un numéro de facture.",
+  creditPayLabel: 'Paiement',
+  creditPayValue: 'Ce document ne se paie pas',
+  correctedNo: 'N° de la facture corrigée',
+  correctedDate: 'Date de la facture corrigée',
+  creditReason: 'Motif de la note de crédit',
+  correctedNote: "La facture corrigée garde son numéro. Elle n'est jamais supprimée ni réécrite : c'est cette note de crédit qui la corrige.",
+  colDescCredit: 'Description de la ligne créditée (reprendre le texte de la facture)',
+  totalCredit: 'TOTAL À CRÉDITER (TVAC)',
+  creditSignNote: 'Les montants sont écrits en positif. La note de crédit les retire de la facture corrigée.',
+  settleHead: 'RÈGLEMENT',
+  settleMode: 'Mode de règlement',
+  settleIban: 'IBAN du client (seulement en cas de remboursement par virement)',
+  settleLine: "Cette note de crédit annule ou diminue la facture reprise ci-dessus. Le montant est remboursé au client ou déduit d'une facture. Rien n'est à payer sur ce document.",
+  creditVat: CREDIT_NOTE_VAT_FR,
+  creditVatNote: "Mention obligatoire sur toute note de crédit qui reprend de la TVA. Elle ne se modifie pas et ne se supprime pas.",
+  vat6CreditNote: "Paragraphe repris de la facture corrigée. À garder si cette facture était au taux de 6 %. À supprimer si elle était au taux de 21 %.",
+  cgvRefCredit: 'Conditions générales : celles de la facture corrigée, publiées sur prodebouchage24.be/fr/conditions-generales.',
 
   guideTitle: GUIDE_TITLE_FR,
   guideSubtitle: GUIDE_SUBTITLE_FR,
@@ -339,6 +392,28 @@ const LABELS_NL = {
   sigDate: 'Datum',
   sigLine: '"Gelezen en goedgekeurd", datum en handtekening',
 
+  titleCredit: 'CREDITNOTA',
+  creditNo: 'Nummer creditnota',
+  creditDate: 'Datum creditnota',
+  creditSeriesNote: "Eigen reeks voor creditnota's: NC-2026-001, NC-2026-002, op volgorde, zonder gaten. Nooit een factuurnummer.",
+  creditPayLabel: 'Betaling',
+  creditPayValue: 'Dit document wordt niet betaald',
+  correctedNo: 'Nummer van de gecorrigeerde factuur',
+  correctedDate: 'Datum van de gecorrigeerde factuur',
+  creditReason: 'Reden van de creditnota',
+  correctedNote: 'De gecorrigeerde factuur behoudt haar nummer. Zij wordt nooit geschrapt of herschreven: deze creditnota zet ze recht.',
+  colDescCredit: 'Omschrijving van de gecrediteerde lijn (neem de tekst van de factuur over)',
+  totalCredit: 'TOTAAL TE CREDITEREN (incl. btw)',
+  creditSignNote: 'De bedragen staan positief. De creditnota haalt ze van de gecorrigeerde factuur af.',
+  settleHead: 'AFHANDELING',
+  settleMode: 'Wijze van afhandeling',
+  settleIban: 'IBAN van de klant (enkel bij terugbetaling via overschrijving)',
+  settleLine: 'Deze creditnota annuleert of vermindert de factuur hierboven. Het bedrag wordt aan de klant terugbetaald of van een factuur afgetrokken. Op dit document is niets te betalen.',
+  creditVat: CREDIT_NOTE_VAT_NL,
+  creditVatNote: 'Verplichte vermelding op elke creditnota die btw terugneemt. Zij wordt niet gewijzigd en niet geschrapt.',
+  vat6CreditNote: 'Alinea overgenomen van de gecorrigeerde factuur. Behoud ze als die factuur aan 6 % was. Schrap ze als die aan 21 % was.',
+  cgvRefCredit: 'Algemene voorwaarden: die van de gecorrigeerde factuur, gepubliceerd op prodebouchage24.be/nl/algemene-voorwaarden.',
+
   cgvIntro: COMPANY_NL + ' · Versie van 26 augustus 2026. Zij gelden voor elke opdracht die vanaf die datum wordt gegeven.',
 };
 
@@ -366,6 +441,7 @@ const CHECK_FONT = 'MS Gothic';
 const PAGE_W = 11906, PAGE_H = 16838, MARGIN = 907;
 const CONTENT_W = 10080;
 const SERVICE_ROWS = 6;
+const CREDIT_SERVICE_ROWS = 4;
 
 // ---------------------------------------------------------------------------
 // 8. XML PRIMITIVES
@@ -794,6 +870,182 @@ function pageWorkOrder(doc, layout, L, PH, identity) {
 }
 
 // ---------------------------------------------------------------------------
+// 12b. THE CREDIT NOTE, one page, its own document
+// ---------------------------------------------------------------------------
+// research/26 section 10: a credit note is a SEPARATE document with its OWN series (NC-2026-001),
+// it references the invoice it corrects, and when that invoice bore VAT it carries the verbatim
+// mention in CREDIT_NOTE_VAT_FR / _NL. An issued invoice is never deleted and never overwritten.
+//
+// The page is deliberately the invoice's twin, because Stephanie has been filling the invoice since
+// early September and the habit is worth more than any improvement: same header, same grey meta
+// grid at the top, same two party blocks, same six service rows in the same five columns, same
+// totals block anchored bottom right, same legal band at the foot. What differs is only what must:
+//   the number series and its rule, printed where the invoice prints the invoice number;
+//   the corrected invoice, number and date, on the one teal row of the top grid, plus the reason;
+//   a settlement block where the invoice has its payment block, because nothing is owed here;
+//   the credit-note mention above the 6 percent declaration.
+// It is ONE page and carries no conditions pages: the customer received those with the invoice
+// being corrected, and the closing line points back at them.
+function pageCreditNote(doc, L, PH, identity) {
+  const meta = tbl([2520, 2520, 2520, 2520], [
+    tr([
+      tc(2520, textPara(L.creditNo, LABEL, { after: 25 })
+        + para(field(doc, { alias: L.creditNo, tag: 'credit_number', placeholder: PH.creditNumber }), { after: 0 }),
+        { fill: GREY_FILL, bordered: true }),
+      tc(2520, textPara(L.creditDate, LABEL, { after: 25 })
+        + para(field(doc, { alias: L.creditDate, tag: 'credit_date', placeholder: PH.date }), { after: 0 }),
+        { fill: GREY_FILL, bordered: true }),
+      tc(2520, textPara(L.workDate, LABEL, { after: 25 })
+        + para(field(doc, { alias: L.workDate, tag: 'work_date', placeholder: PH.date }), { after: 0 }),
+        { fill: GREY_FILL, bordered: true }),
+      tc(2520, textPara(L.creditPayLabel, LABEL, { after: 25 })
+        + textPara(L.creditPayValue, { bold: true, size: 19, color: INK }, { after: 0 }),
+        { fill: GREY_FILL, bordered: true }),
+    ], { height: 500 }),
+    // The numbering rule sits under the number, not in a note somewhere else: this series does not
+    // exist yet, so the document itself is where it gets taught.
+    tr([
+      tc(CONTENT_W, textPara(L.creditSeriesNote, TINY, { after: 0 }), { fill: GREY_FILL, bordered: true, span: 4 }),
+    ]),
+    // THE REFERENCE TO THE CORRECTED INVOICE. Teal soft is the pack's accent for the row that
+    // matters, so the eye lands on it without spending one extra line of page height.
+    tr([
+      tc(5040, textPara(L.correctedNo, LABEL, { after: 25 })
+        + para(field(doc, { alias: L.correctedNo, tag: 'corrected_invoice_number', placeholder: PH.invoiceNumber }), { after: 0 }),
+        { fill: TEAL_SOFT, bordered: true, span: 2 }),
+      tc(5040, textPara(L.correctedDate, LABEL, { after: 25 })
+        + para(field(doc, { alias: L.correctedDate, tag: 'corrected_invoice_date', placeholder: PH.date }), { after: 0 }),
+        { fill: TEAL_SOFT, bordered: true, span: 2 }),
+    ], { height: 500 }),
+    tr([
+      tc(CONTENT_W, textPara(L.creditReason, LABEL, { after: 20 })
+        + para(field(doc, { alias: L.creditReason, tag: 'credit_reason', placeholder: PH.creditReason, bold: false }), { border: WRITE_RULE, before: 90, after: 20 }),
+        { fill: GREY_FILL, bordered: true, span: 4 }),
+    ]),
+  ], { bordered: true });
+
+  // Same two blocks as the invoice, in the same order. The left one is CLIENT and not "billed to":
+  // nothing is billed on a credit note. The intervention address stays, because it is what justifies
+  // the VAT rate being taken back.
+  const left = textPara(L.client, BLOCK_TITLE, { after: 50 })
+    + fillRow(doc, L.fName, { alias: L.titleCredit + " / " + L.fName, tag: 'cn_client_name', placeholder: PH.name })
+    + fillRow(doc, L.fAddress, { alias: L.titleCredit + " / " + L.fAddress, tag: 'cn_client_address', placeholder: PH.street })
+    + fillRow(doc, L.fPostCity, { alias: L.titleCredit + " / " + L.fPostCity, tag: 'cn_client_postcity', placeholder: PH.postCity })
+    + fillRow(doc, L.fPhone, { alias: L.titleCredit + " / " + L.fPhone, tag: 'cn_client_phone', placeholder: PH.phone })
+    + fillRow(doc, L.fVat, { alias: L.titleCredit + " / " + L.fVat, tag: 'cn_client_vat', placeholder: PH.vat });
+
+  const right = textPara(L.place, BLOCK_TITLE, { after: 50 })
+    + para(checkbox(doc, { alias: L.sameAddress, tag: 'cn_place_same' }) + run('  ' + L.sameAddress + '     ', SMALL)
+      + checkbox(doc, { alias: L.otherAddress, tag: 'cn_place_other' }) + run('  ' + L.otherAddress, SMALL), { after: 60 })
+    + fillRow(doc, L.fAddress, { alias: L.place + ' / ' + L.fAddress, tag: 'cn_place_address', placeholder: PH.street })
+    + fillRow(doc, L.fPostCity, { alias: L.place + ' / ' + L.fPostCity, tag: 'cn_place_postcity', placeholder: PH.postCity })
+    + textPara(L.correctedNote, TINY, { before: 40, after: 0 });
+
+  const parties = tbl([4980, 120, 4980], [tr([
+    tc(4980, left, { fill: GREY_FILL, bordered: true, pad: [80, 150, 80, 150] }),
+    tc(120, null),
+    tc(4980, right, { bordered: true, pad: [80, 150, 80, 150] }),
+  ])]);
+
+  // The service table, the invoice's table with one heading changed: the lines are copied off the
+  // corrected invoice, so the column asks for exactly that. No rate is hard-coded on a line: it is
+  // the rate the corrected invoice actually carried.
+  const head = tr([
+    tc(5140, textPara(L.colDescCredit, { size: 14, bold: true, color: INK }, { after: 0 }), { fill: GREY_FILL, bordered: true }),
+    tc(900, textPara(L.colQty, { size: 14, bold: true, color: INK }, { align: 'center', after: 0 }), { fill: GREY_FILL, bordered: true }),
+    tc(1560, textPara(L.colUnit, { size: 14, bold: true, color: INK }, { align: 'right', after: 0 }), { fill: GREY_FILL, bordered: true }),
+    tc(900, textPara(L.colVat, { size: 14, bold: true, color: INK }, { align: 'center', after: 0 }), { fill: GREY_FILL, bordered: true }),
+    tc(1580, textPara(L.colLine, { size: 14, bold: true, color: INK }, { align: 'right', after: 0 }), { fill: GREY_FILL, bordered: true }),
+  ]);
+  const lines = [];
+  for (let i = 1; i <= CREDIT_SERVICE_ROWS; i++) {
+    lines.push(tr([
+      tc(5140, para(field(doc, { alias: L.colDescCredit + ' ' + i, tag: 'cn_line' + i + '_desc', placeholder: PH_BLANK, bold: false }), { after: 0 }), { bordered: true }),
+      tc(900, para(field(doc, { alias: L.colQty + ' ' + i, tag: 'cn_line' + i + '_qty', placeholder: PH_BLANK, bold: false, align: 'center' }), { align: 'center', after: 0 }), { bordered: true }),
+      tc(1560, para(field(doc, { alias: L.colUnit + ' ' + i, tag: 'cn_line' + i + '_unit', placeholder: PH_BLANK, bold: false }), { align: 'right', after: 0 }), { bordered: true }),
+      tc(900, para(field(doc, { alias: L.colVat + ' ' + i, tag: 'cn_line' + i + '_vat', placeholder: PH_BLANK, bold: false }), { align: 'center', after: 0 }), { bordered: true }),
+      tc(1580, para(field(doc, { alias: L.colLine + ' ' + i, tag: 'cn_line' + i + '_total', placeholder: PH_BLANK, bold: false }), { align: 'right', after: 0 }), { bordered: true }),
+    ], { height: 255 }));
+  }
+  const services = tbl([5140, 900, 1560, 900, 1580], [head, ...lines], { bordered: true });
+
+  // Same totals block as the invoice, per rate, never averaged. Only the last row is renamed: this
+  // total is credited, not paid.
+  const money = (alias, tag) => para(field(doc, { alias, tag, placeholder: PH_BLANK, bold: false }) + run(' €', { size: 19, color: INK }), { align: 'right', after: 0 });
+  const totals = tbl([2600, 1000, 1740], [
+    tr([
+      tc(2600, textPara(L.base, { size: 14, bold: true, color: INK }, { after: 0 }), { fill: GREY_FILL, bordered: true }),
+      tc(1000, textPara(L.rate, { size: 14, bold: true, color: INK }, { align: 'center', after: 0 }), { fill: GREY_FILL, bordered: true }),
+      tc(1740, textPara(L.vatAmount, { size: 14, bold: true, color: INK }, { align: 'right', after: 0 }), { fill: GREY_FILL, bordered: true }),
+    ]),
+    tr([
+      tc(2600, money(L.base + ' 6 %', 'cn_base_6'), { bordered: true }),
+      tc(1000, textPara('6 %', { size: 19, color: INK }, { align: 'center', after: 0 }), { bordered: true }),
+      tc(1740, money(L.vatAmount + ' 6 %', 'cn_vat_6'), { bordered: true }),
+    ], { height: 265 }),
+    tr([
+      tc(2600, money(L.base + ' 21 %', 'cn_base_21'), { bordered: true }),
+      tc(1000, textPara('21 %', { size: 19, color: INK }, { align: 'center', after: 0 }), { bordered: true }),
+      tc(1740, money(L.vatAmount + ' 21 %', 'cn_vat_21'), { bordered: true }),
+    ], { height: 265 }),
+    tr([
+      tc(3600, textPara(L.totalNet, { size: 15, color: INK }, { align: 'right', after: 0 }), { bordered: true, span: 2 }),
+      tc(1740, money(L.totalNet, 'cn_total_net'), { bordered: true }),
+    ], { height: 265 }),
+    tr([
+      tc(3600, textPara(L.totalVat, { size: 15, color: INK }, { align: 'right', after: 0 }), { bordered: true, span: 2 }),
+      tc(1740, money(L.totalVat, 'cn_total_vat'), { bordered: true }),
+    ], { height: 265 }),
+    tr([
+      tc(3600, textPara(L.totalCredit, { size: 17, bold: true, color: INK }, { align: 'right', after: 0 }), { bordered: true, span: 2, fill: TEAL_SOFT }),
+      tc(1740, para(field(doc, { alias: L.totalCredit, tag: 'cn_total_credit', placeholder: PH_BLANK }) + run(' €', { bold: true, size: 19, color: INK }), { align: 'right', after: 0 }), { bordered: true, fill: TEAL_SOFT }),
+    ], { height: 300 }),
+  ], { bordered: true });
+
+  // Where the invoice has its payment block, the credit note has how the money goes back. No
+  // late-payment paragraph: nothing is owed on this document, so that paragraph would be a lie.
+  const settleBox = tbl([4740], [tr([
+    tc(4740, textPara(L.settleMode, LABEL, { after: 20 })
+      + para(field(doc, { alias: L.settleMode, tag: 'cn_settle_mode', placeholder: PH.settleMode, bold: false }), { border: WRITE_RULE, before: 110, after: 60 })
+      + textPara(L.settleIban, LABEL, { after: 20 })
+      + para(field(doc, { alias: L.settleIban, tag: 'cn_settle_iban', placeholder: PH.iban, bold: false }), { border: WRITE_RULE, before: 110, after: 20 }),
+      { fill: GREY_FILL, bordered: true, pad: [90, 140, 90, 140] }),
+  ])]);
+  const settleBlock = settleBox
+    + textPara(L.settleHead, BLOCK_TITLE, { before: 140, after: 40 })
+    + textPara(L.settleLine, { size: 13, color: BODY }, { after: 40, line: 195 })
+    + textPara(L.creditSignNote, { size: 13, color: BODY }, { after: 0, line: 195 });
+
+  const bottom = tbl([4740, 5340], [tr([
+    tc(4740, settleBlock, { pad: [0, 0, 0, 160], vAlign: 'top' }),
+    tc(5340, totals, { pad: [0, 0, 0, 0] }),
+  ])]);
+
+  // The legal band. The credit-note mention first, because it is this document's own mandatory
+  // sentence, then the 6 percent declaration carried over from the corrected invoice. Both are
+  // contentLocked, so the words cannot be edited. The second block can still be DELETED whole,
+  // which is what the grey line above it tells the user to do when the invoice was at 21 percent.
+  const legal = textPara(L.legalHead, BLOCK_TITLE, { before: 120, after: 50 })
+    + lockedBlock(doc, 'Mention note de credit',
+      textPara(L.creditVatNote, { size: 12, italic: true, color: MUTED }, { after: 30, line: 200 })
+      + textPara(L.creditVat, { size: 15, bold: true, color: INK }, { after: 70, line: 200 }))
+    + lockedBlock(doc, 'Declaration TVA 6 %',
+      textPara(L.vat6CreditNote, { size: 12, italic: true, color: MUTED }, { after: 30, line: 200 })
+      + textPara(L.vat6, { size: 13, color: BODY }, { align: 'both', after: 70, line: 190 }));
+
+  return header('B', L.titleCredit, identity)
+    + meta
+    + para('', { after: 110 })
+    + parties
+    + para('', { after: 90 })
+    + services
+    + para('', { after: 90 })
+    + bottom
+    + legal
+    + textPara(L.cgvRefCredit, TINY, { after: 0, line: 200 });
+}
+
+// ---------------------------------------------------------------------------
 // 13. PAGES 3+, THE CONDITIONS
 // ---------------------------------------------------------------------------
 function pageConditions(doc, L, cgv) {
@@ -1018,12 +1270,14 @@ const CONFIG = {
 };
 
 function build(layout, lang) {
-  if (!['A', 'B', 'GUIDE'].includes(layout)) throw new Error(`layout must be A, B or GUIDE, got ${layout}`);
+  if (!['A', 'B', 'GUIDE', 'CREDIT'].includes(layout)) throw new Error(`layout must be A, B, GUIDE or CREDIT, got ${layout}`);
   const c = CONFIG[lang];
   if (!c) throw new Error(`lang must be fr or nl, got ${lang}`);
   const isGuide = layout === 'GUIDE';
+  const isCredit = layout === 'CREDIT';
   if (isGuide && !c.labels.guide) throw new Error(`no fill guide is written for ${lang}`);
-  if (!isGuide && !c.labels.reverse) throw new Error(`the ${lang.toUpperCase()} reverse-charge sentence is missing. It is a legally verbatim string: get the official wording, do not translate it. Refusing to emit ${lang}.`);
+  if (!isGuide && !isCredit && !c.labels.reverse) throw new Error(`the ${lang.toUpperCase()} reverse-charge sentence is missing. It is a legally verbatim string: get the official wording, do not translate it. Refusing to emit ${lang}.`);
+  if (isCredit && !c.labels.creditVat) throw new Error(`the ${lang.toUpperCase()} credit-note mention is missing. It is a legally verbatim string from research/26 section 10: get the official wording, do not translate it. Refusing to emit ${lang}.`);
 
   const doc = newDoc();
   // logoSeq is module level, so it must be reset per document. Left running, a file's bytes would
@@ -1032,9 +1286,11 @@ function build(layout, lang) {
   logoSeq = 0;
   const body = (isGuide
     ? pageGuide(doc, c.labels)
-    : pageInvoice(doc, layout, c.labels, c.ph, c.identity)
-      + pageWorkOrder(doc, layout, c.labels, c.ph, c.identity)
-      + pageConditions(doc, c.labels, c.cgv))
+    : isCredit
+      ? pageCreditNote(doc, c.labels, c.ph, c.identity)
+      : pageInvoice(doc, layout, c.labels, c.ph, c.identity)
+        + pageWorkOrder(doc, layout, c.labels, c.ph, c.identity)
+        + pageConditions(doc, c.labels, c.cgv))
     + sectPr();
   const documentXml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
     + `<w:document ${NS}><w:body>${body}</w:body></w:document>`;
@@ -1047,6 +1303,7 @@ function build(layout, lang) {
   if (documentXml.includes('<w:temporary/>')) throw new Error('<w:temporary/> would delete the control on the first keystroke');
   if (documentXml.includes('documentProtection')) throw new Error('document protection would make the file read-only in Word for the web');
   if (!isGuide && !documentXml.includes(esc(c.labels.vat6))) throw new Error('the VAT 6 % declaration did not survive the build');
+  if (isCredit && !documentXml.includes(esc(c.labels.creditVat))) throw new Error('the credit-note VAT mention did not survive the build');
   // No em dashes, ever, in anything this project writes.
   // U+2014 is the em dash. It is written here as a unicode ESCAPE, never as the literal character:
   // the repo hook rejects the literal even inside the rule that forbids it. Behaviour is identical.
@@ -1055,7 +1312,9 @@ function build(layout, lang) {
   const files = [
     ['[Content_Types].xml', CONTENT_TYPES],
     ['_rels/.rels', ROOT_RELS],
-    ['docProps/core.xml', coreXml(isGuide ? `PRO DEBOUCHAGE ${c.labels.guideTitle}` : `PRO DEBOUCHAGE ${c.labels.titleInvoice} ${layout}`)],
+    ['docProps/core.xml', coreXml(isGuide ? `PRO DEBOUCHAGE ${c.labels.guideTitle}`
+      : isCredit ? `PRO DEBOUCHAGE ${c.labels.titleCredit}`
+        : `PRO DEBOUCHAGE ${c.labels.titleInvoice} ${layout}`)],
     ['docProps/app.xml', APP_XML],
     ['word/document.xml', documentXml],
     ['word/_rels/document.xml.rels', DOC_RELS],
@@ -1075,10 +1334,12 @@ function build(layout, lang) {
 const TARGETS = {
   'facture-fr': ['B', 'fr', 'PRO-DEBOUCHAGE-facture-FR.docx'],
   'factuur-nl': ['B', 'nl', 'PRO-DEBOUCHAGE-factuur-NL.docx'],
+  'note-credit-fr': ['CREDIT', 'fr', 'PRO-DEBOUCHAGE-note-de-credit-FR.docx'],
+  'creditnota-nl': ['CREDIT', 'nl', 'PRO-DEBOUCHAGE-creditnota-NL.docx'],
   'guide-fr': ['GUIDE', 'fr', 'PRO-DEBOUCHAGE-guide-facture-FR.docx'],
   'A-fr': ['A', 'fr', 'PRO-DEBOUCHAGE-facture-A-FR.docx'],
 };
-const DEFAULT_TARGETS = ['facture-fr', 'factuur-nl', 'guide-fr'];
+const DEFAULT_TARGETS = ['facture-fr', 'factuur-nl', 'note-credit-fr', 'creditnota-nl', 'guide-fr'];
 const OUTPUTS = DEFAULT_TARGETS.map(k => TARGETS[k]);
 
 function main() {
@@ -1095,4 +1356,4 @@ function main() {
 }
 
 if (require.main === module) main();
-module.exports = { build, IDENTITY_FR, IDENTITY_NL, VAT_6_DECLARATION_FR, VAT_6_DECLARATION_NL, REVERSE_CHARGE_FR, DECL_URGENT_FR, DECL_IMMEDIATE_FR, DECL_CGV_FR, INVOICE_NUMBER_PLACEHOLDER };
+module.exports = { build, IDENTITY_FR, IDENTITY_NL, VAT_6_DECLARATION_FR, VAT_6_DECLARATION_NL, REVERSE_CHARGE_FR, DECL_URGENT_FR, DECL_IMMEDIATE_FR, DECL_CGV_FR, INVOICE_NUMBER_PLACEHOLDER, CREDIT_NOTE_VAT_FR, CREDIT_NOTE_VAT_NL, CREDIT_NUMBER_PLACEHOLDER };

@@ -111,6 +111,17 @@ Nothing changes while the volume is a few jobs a week. Steph's Word plus Peppol 
 - **B2B becomes a real share of the work.** Then keeping the two instruments in sync by hand becomes the risk, and one tool that does B2C PDFs and B2B Peppol from the same numbering is worth paying for.
 - **Before any move, three things must be true:** the numbering series carries over without a gap, the full 6 percent legal sentence prints verbatim (short forms circulating in tools do not count, research/26 section 3), and the 10 years of history stays exportable and readable. No tool is recommended here; that is a decision for Fady with real numbers on the table.
 
+## 4b. The credit note, the rules (added 2026-09-08)
+
+The credit note is its own document, French "note de crédit" and Dutch "creditnota", built and verified 2026-09-08 out of the same script as the invoices. **This file owns the RULES; the Word files themselves and their layout are owned by `assets/prepared/invoice/README.md`.**
+
+- **Its own series, NC-2026-001, NC-2026-002, in order, no gaps** (research/26 section 10), separate from Steph's invoice numbering and never eating a number from it.
+- **It names the invoice it corrects**, its number and its date, plus the reason. That reference is what makes a credit note a credit note.
+- **The VAT sentence is verbatim from `research/26` section 10** when the corrected invoice bore VAT: FR "TVA à reverser à l'État dans la mesure où elle a été initialement déduite", NL "Btw terug te storten aan de Staat in de mate waarin ze oorspronkelijk in aftrek werd gebracht". Never shortened, never reworded.
+- **A settlement block instead of a payment block.** Nothing is owed on a credit note, so the document says how the money goes back (refund or deduction from a later invoice) and carries the customer IBAN when it is refunded by transfer.
+- **The amounts are written POSITIVE.** The document says on its face that the credit note takes them off the corrected invoice.
+- **An issued invoice is never deleted and never overwritten.** A mistake on a sent invoice is corrected by a credit note, never by editing the invoice. A credit note against a B2B Peppol invoice goes out through Peppol, like the invoice it corrects (section 4).
+
 ## 5. What is still open
 
 - **[Roro]** The work-order question in section 2: does Afrim carry pre-printed work orders and write only the date and the price, with the customer signing? Claude's proposal, not decided.
@@ -118,6 +129,9 @@ Nothing changes while the volume is a few jobs a week. Steph's Word plus Peppol 
 - **[Fady, ask the accountant in writing]** Camera inspection alone (the 149 euro one): 6 or 21 percent?
 - **[Fady, ask the accountant in writing]** Cellar pumping alone: 6 or 21 percent?
 - **[Fady, ask the accountant in writing]** Is a syndic (ACP / VME) a "final consumer" for the 6 percent on common parts?
+- **[Fady, ask the accountant in writing]** Credit note (2026-09-08): must a legal article reference sit beside the credit-note VAT sentence, or does the sentence alone satisfy the law?
+- **[Fady, ask the accountant in writing]** Credit note (2026-09-08): does the repeated 6 percent declaration stay on the credit note, or is naming the corrected invoice enough?
+- **[Fady, ask the accountant or Steph in writing]** Credit note (2026-09-08): can Steph's Peppol tool ISSUE credit notes? A B2B reverse-charge credit note goes out through Peppol and carries the autoliquidation sentence (research/26 section 4) instead of the credit-note VAT sentence, so the Word file is not the instrument there.
 - **[Fady]** Confirm RPM Bruxelles / RPR Brussel once against the KBO extract (open since the invoice build).
 - **[Claude, weekly]** Current VAT/VIES status lives in `STATE.md` (accountant says active, register display lags, weekly poll). Consequence here: the invoices already print BE 1027.454.187 and keep charging 6 percent as-is until that changes.
 - **[CLOSED 2026-08-30]** Where the number series starts. Answered: they use only the one bill document, so no quote series eats numbers from that pot and Steph continues her own numbering. The "devis" label on the old paper was a leftover, not a second series.

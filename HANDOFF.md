@@ -1,40 +1,27 @@
 # HANDOFF.md
 *Written by the last session for the next one. Overwritten at every close. Budget 4 KB (`wc -c`).*
 
-**Written Sat 2026-09-05, 18:50, closing Saturday. Next session is a NEW day: start with `/orch`.
-Monday 2026-09-07 is the weekly ads check, the negatives decision and the Roro report (draft file
-PLUS Fady's call). This line owns state.**
+**Written Monday 2026-09-14, afternoon, by the /orch session. The day is DONE unless Fady comes back;
+then start with `/orch-mid`. The next full day starts with `/orch`. LOG 2026-09-14 is the record.**
 
-## What Saturday did (read-only on Ads, files only, 0 EUR by us)
-- **Ads glance** (Profile 6, agent): 413 impr, 34 clicks, 151.89 EUR since launch, 4 unverified
-  conversions. Spend now at or above 20/day for three days (3 Sep 36.42, 4 Sep 22.53, 5 Sep 20.48 by
-  early afternoon). Status "Eligible (Limited)" now shows TWO reasons: search volume AND budget.
-- **The "inactive" conversion tag is IDENTIFIED**: Submit lead form (Needs attention). The site has no
-  form, so it can never fire. Phone call lead and Contact are Active. Monday: make it secondary or
-  remove it (Fady's yes).
-- **Negatives candidates** written up in `playbook/ads-program.md` section 8: competitor brands took
-  10 of 19 clicks (about 46.62 of 69 EUR), plus the "vidange fosse septique" phrase (Gembloux stays as
-  a town) and price-shopping terms flagged DEBATABLE. Nothing applied.
-- **Roro WhatsApp draft** ready at `assets/prepared/roro-report-2026-09-07.md`, blanks marked
-  [Monday number]; it carries the three Roro questions (KBO name, VAT start date, Steph's print test).
-- Billing: 62.83 owed, 50 EUR charged 3 Sep, next charge 1 Oct or at 100 EUR. Promo 248 EUR to go,
-  on pace. Bell: "Payment threshold updated" (automatic), verification thanks, one redundant keyword.
-- STATE.md trimmed 13,963 to 11,778 bytes, no fact dropped. HQ chrome note: date picker and Segment
-  menu on the Search terms page did not open in a half-width window; maximise the window first.
-
-## Next session, in order
-1. Monday weekly check (Profile 6, read-only agent, maximised window): full numbers, search terms
-   split by day, then ONE widget for Fady: negatives (brands, septic phrase, price terms), Submit
-   lead form secondary or removed, and whether the 20 EUR/day cap is now the brake (raise or hold).
-   Apply only on his yes, one agent, verify the result.
-2. Roro report: fill the draft file, Fady sends and calls, asks calls received plus the three items.
-   Then the credit note template once print feedback is in.
-3. GBP: once Fady sends the video brief and Roro submits, daily Profile 4 read for the verdict.
-4. Week-2 checkpoints: landing variants generator, LSA eligibility (Fady's click).
+## What Monday did
+- Video visit POSTPONED to the week of 21 Sep (Fady). The Saturday call settled nothing else: the two
+  Roro asks (card by the phone, Dutch hand-off) and the KBO name / VAT date are still unasked.
+- Kontich lead CLOSED as lost. VIES/KBO poll unchanged (INVALID, no VAT quality, no commercial name).
+- Fact-sync audit: 12 contradictions fixed in playbook/, invoice README and business-card README,
+  verified on disk. Nothing on the live page was wrong.
+- Second FR RSA drafted, paste-ready, no price numbers (gate: VIES VALID). Fady reviews the text
+  before week 4: assets/prepared/fr-rsa-2-draft-2026-09-14.md.
+- Credit-note talking points for the Roro call: assets/prepared/credit-note-talking-points-2026-09-14.md.
+- Weekly ads read skipped on purpose (checkpoint was Saturday). No Chrome used today, no agent died.
 
 ## Waiting on whom
-Fady: confirm the Infomaniak org address as-is (NOW), send the video brief, approve Roro's sign-in
-prompt, finish the card in Figma, Monday call.
-Roro: the video, KBO via accountant, VAT start date, Steph's print test.
-Clocks: promo 400 EUR by 2026-10-26 (248 to go), VIES weekly poll, .com dies 2026-10-07.
-Backup: files changed today, one save-to-cloud double-click when no session is writing.
+**Fady:** the Roro call (credit notes explained, card by the phone, Dutch hand-off, KBO name and VAT
+date, the 200 EUR charge warning, set the video day in the week of 21 Sep); read the FR ad draft;
+Infomaniak org address; business card in Figma; accountant questions in writing.
+**Roro:** the two asks, the video day.
+**Clocks:** VIES/KBO poll Mon 21 Sep; week 4 Fri 26 Sep (search terms of "société de débouchage",
+paste the FR RSA, old NL ad pause decision, LSA after the GBP verdict, first "Calls from website"
+conversion then call_click to SECONDARY); next charge 1 Oct or at 200 EUR; promo to 26 Oct; .com dies 7 Oct.
+**Backup:** playbook, two READMEs, state files, LOG and two new assets changed today. One double-click
+of the cloud backup by Fady when no session is writing.

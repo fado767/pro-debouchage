@@ -12,7 +12,7 @@ module.exports = {
 
   meta: {
     title: 'Drain unblocking 24/7 around Brussels | Price quoted on the phone',
-    desc: "Blocked drain, toilet or sewer? Drain company serving the towns around Brussels, in Flemish and Walloon Brabant, 24/7. Price quoted on the phone, confirmed at your door. 30-day guarantee. Call 0480 649 649.",
+    desc: "Blocked drain, toilet or sewer? Drain company around Brussels, from Aalst to Leuven and Mechelen to Nivelles, 24/7. Price quoted on the phone, confirmed at your door. 30-day guarantee. Call 0480 649 649.",
     ogt: "Backing up, overflowing, smells awful? Call us, we'll sort it.",
     ogd: 'Drain unblocking around Brussels, 24/7. The price you hear on the phone is the price on the invoice.',
     locale: 'en_BE',
@@ -205,9 +205,9 @@ module.exports = {
     ['Shops and horeca', "A closed kitchen costs you more than the job does. We come fast, and we'll suggest maintenance so it doesn't come back."]],
 
   zoneK: 'The area', zoneH: 'Where we work',
-  zoneT: "We work around Brussels, in Flemish and Walloon Brabant, within roughly 40 km of Wemmel. Brussels city itself isn't in our area.",
-  towns: 'Vilvoorde · Machelen · Wemmel · Meise · Grimbergen · Merchtem · Asse · Dilbeek · Ternat · Zaventem · Zemst · Sint-Pieters-Leeuw · Halle · Beersel · Tervuren · Overijse · Sint-Genesius-Rode · Kraainem · Wezembeek-Oppem · Waterloo · La Hulpe · Braine-l\'Alleud · Braine-le-Château · Tubize · Wavre · Nivelles'.split(' · '),
-  zoneC: "Your town's not on the list? Call, and you'll get a yes or no straight away.",
+  zoneT: "We work all around Brussels, on both sides of the language border: from Aalst to Leuven and from Mechelen to Nivelles, within roughly 40 km of Wemmel. Brussels city itself isn't in our area.",
+  towns: 'Vilvoorde · Machelen · Wemmel · Meise · Grimbergen · Merchtem · Londerzeel · Asse · Dilbeek · Ternat · Zaventem · Sint-Pieters-Leeuw · Halle · Beersel · Sint-Genesius-Rode · Kraainem · Tervuren · Overijse · Leuven · Aarschot · Mechelen · Willebroek · Boom · Kontich · Aalst · Ninove · Dendermonde · Temse · Waterloo · La Hulpe · Braine-l\'Alleud · Tubize · Wavre · Nivelles · Louvain-la-Neuve · Enghien'.split(' · '),
+  zoneC: "The list ends here, our area doesn't. Your town's not on it? Call, and you'll get a yes or no straight away.",
   zoneL: 'Call 0480 649 649',
 
   faqK: 'Your questions', faqH: 'Frequently asked questions',
@@ -221,13 +221,13 @@ module.exports = {
     ['How fast can you be here?', "We give you an arrival time on the phone, and we call if it slips. We'd rather name a time we can keep than a number that just sounds good."],
     ['Will you need to break anything?', "We look with the camera first. Breaking anything is the last resort, and never without your agreement. That's why the camera is included with the job."],
     ['Do you write reports for insurance?', "Yes, if you ask. After the camera inspection we write a report you can hand to your insurer, for example after water damage or a flooded cellar. Easiest is to mention it on the phone."],
-    ['Which towns do you cover?', "The ring around Brussels, in Flemish and Walloon Brabant: Vilvoorde, Wemmel, Grimbergen, Dilbeek, Halle, Zaventem, Waterloo, Braine-l'Alleud, Wavre, Nivelles and the other towns within roughly 40 km of Wemmel. Brussels city isn't in our area. Town not listed? Call, you'll get a yes or no straight away."],
+    ['Which towns do you cover?', "All around Brussels, on both sides of the language border, within roughly 40 km of Wemmel. North as far as Mechelen, Boom and Kontich, west as far as Aalst, Dendermonde and Ninove, east as far as Leuven and Aarschot, south as far as Enghien, Nivelles and Louvain-la-Neuve. And of course everything closer in: Vilvoorde, Dilbeek, Zaventem, Halle, Tervuren, Waterloo, Wavre and the rest. Brussels city itself isn't in our area. Town not listed? Call, and you'll get a yes or no straight away."],
     ['How can I pay?', 'Bank transfer, payment link, or cash with a receipt on the spot. You always get an invoice.']],
 
   finalH: "A blockage doesn't wait.", finalB: 'Call now', finalWa: 'Send a photo',
   finalL: 'Someone answers 24/7, weekends and holidays included. A normal number, no premium rate.',
 
-  footD: 'Drain unblocking, high-pressure cleaning, camera inspection, septic tanks and cellar pumping. Around Brussels, in Flemish and Walloon Brabant, 24/7.',
+  footD: 'Drain unblocking, high-pressure cleaning, camera inspection, septic tanks and cellar pumping. All around Brussels, on both sides of the language border, 24/7.',
   photoNote: "All photos come from our own jobs, the van included. Only the 'before' photo in the proof section was recreated from our own photo.",
   legalT: 'Legal information',
   legal: ['PRO DEBOUCHAGE SRL', 'Guldenschaapstraat 6, 1800 Vilvoorde, Belgium', 'Company number 1027.454.187', 'E-mail: info@prodebouchage24.be', 'Phone: 0480 649 649'],

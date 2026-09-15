@@ -55,6 +55,15 @@ TAGS_OFF=1 node design/site-source/build.js
      Google CSP in `_headers`. On the same build: `ADS_CALL_LABEL` and `ADS_WA_LABEL` (defaults set,
      the two conversion labels from the Ads account); with them every `data-cta` call or WhatsApp
      click also fires a `send_to` conversion.
+   - `ADS_PHONE_LABEL` (default u0RxCNu5nPUcEM_SjsxE, baked 2026-09-12) turns on Google's "Calls from website
+     visits" number swap: Google replaces the displayed `0480 649 649` with a forwarding number for
+     visitors who came from an ad click AND accepted cookies, and counts calls of 60 seconds or
+     more. The conversion action "Calls from website" was created in the Ads account on
+     2026-09-12 and its label is baked in as the default. An empty ADS_PHONE_LABEL, or
+     `TAGS_OFF=1`, removes the feature from the output byte for byte. Two account-side steps go with
+     it: the 60-second threshold and setting `call_click` to SECONDARY so one call is not counted
+     twice. The displayed number string must stay exactly `0480 649 649`; `tel:+32480649649`,
+     `wa.me/32480649649` and the JSON-LD `telephone` are other formats and are not swapped.
    - `GA4_ID` (default G-S3SQ25WZMK) adds the GA4 property to the SAME consent gate and the SAME
      single gtag.js loader: nothing GA4 loads or configures before Accept either. Either id alone
      turns the whole layer on. With `TAGS_OFF=1` none of this exists in the output and every

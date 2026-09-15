@@ -2,7 +2,8 @@
 
 Roro's card for Pro Débouchage, two sides, two language versions. `card.html` is the source and the
 only file to edit. `preview.png` is a render of the four artboards. Nothing here touches
-`design/site-source/` or `site-v1/`.
+`design/site-source/` or `site-v1/`. Nothing is printed from `card.html` today, and it is not
+print-ready as it stands: it still carries the zone wording that left the site on 2026-09-10.
 
 ## What is on the card
 
@@ -16,7 +17,10 @@ then phone and WhatsApp, website, e-mail, and the company name plus enterprise n
 
 The exact strings, per side and per language, are in the HTML and were taken from
 `design/site-source/copy-fr.js` and `copy-nl.js`. The NL side is the site's own Flemish copy, not a
-translation of the French.
+translation of the French. Two of them are now stale, the zone lines "Prix dit au téléphone. Autour
+de Bruxelles, Brabant flamand et wallon." (line 153) and "Prijs aan de telefoon. Rond Brussel,
+Vlaams-Brabant en Waals-Brabant." (line 212), whose wording left the site on 2026-09-10, and both
+must be replaced from the current `copy-fr.js` and `copy-nl.js` before any export or print.
 
 No address, no stars, no review count, no "since" claim, no price figure.
 
