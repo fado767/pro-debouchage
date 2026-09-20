@@ -163,7 +163,11 @@ section{padding-block:clamp(44px,6.4vw,84px)}
 .btn-sm svg{width:18px;height:18px}
 .btn-ghost{border-color:var(--ink);color:var(--ink)}
 .btn-ghost:hover{background:var(--ink);color:#fff}
-.link-call{color:var(--cta);font-weight:800;text-decoration-thickness:2px;text-underline-offset:4px}
+/* 44px OF HEIGHT, NOT 25 (2026-09-16, research/35). The six service-row "Appeler" links and the zone
+   link were 25px tall text links, which is half of Google's own 48px guidance and under Apple's 44,
+   on the six rows that exist precisely to catch someone the moment she recognises her problem. The
+   look is unchanged, the hit area is not: inline-flex and a floor, nothing else. */
+.link-call{display:inline-flex;align-items:center;min-height:44px;color:var(--cta);font-weight:800;text-decoration-thickness:2px;text-underline-offset:4px}
 .link-call:hover{color:var(--cta-press)}
 
 /* ---------- header ---------- */
@@ -177,10 +181,46 @@ section{padding-block:clamp(44px,6.4vw,84px)}
 .langswitch a{display:grid;place-items:center;min-width:44px;min-height:36px;border-radius:8px;text-decoration:none;font-weight:800;font-size:.875rem;color:var(--teal)}
 .langswitch a[aria-current]{background:var(--teal);color:#fff}
 .langswitch a:not([aria-current]):hover{background:rgba(255,255,255,.7)}
-.header-call{display:none}
+/* THE HEADER CALL BUTTON IS VISIBLE ON PHONES SINCE 2026-09-16 (research/35). It was display:none
+   under 1000px, the sticky bar only arrives after ~650px of scroll, and the consent card sat on the
+   hero CTA, so the first screen of an ad click had NOTHING tappable that calls. On a phone it is the
+   same red button in a smaller size: 44px tall (the tap-target floor), a 18px icon, a tight gap and
+   the one word "Appeler" / "Bellen" / "Call us", which fits on one 375px header row beside the logo
+   and the language switch. The header gap drops from 14px to 8px on phones to buy it the room, and
+   nothing here shrinks: the three items are flex:none so the switch can never be squeezed into the
+   button. The desktop header is untouched. */
+.header-call{display:inline-flex;min-height:44px;padding:6px 12px;font-size:.9375rem;gap:8px;box-shadow:0 2px 0 var(--cta-press);width:auto;flex:none;white-space:nowrap}
+.header-call svg{width:18px;height:18px}
+/* THE LANGUAGE SWITCH BECOMES A DROPDOWN ON PHONES (Fady, 2026-09-16, after the preview on his own
+   phone). The container style is the one he likes and it stays: what goes is the WIDTH. Three pills
+   are 140px and nearly touched the logo once the red call button joined the row; one pill plus a
+   chevron is 72px, so the row reads logo, switch, call button with real air between them.
+   It is a <details>, so opening, closing, the keyboard and the focus ring are the browser's. The
+   summary is today's active pill inside today's container, the menu under it is the same container
+   with the other two languages as the same hreflang anchors, each 44px tall.
+   The desktop three-pill switch is untouched, and both structures ship because a CLOSED <details>
+   hides its content in the UA layer, where no stylesheet of ours can show those pills again. */
+.langpick{display:none}
+@media (max-width:999.98px){
+  .site-header .wrap{gap:8px}
+  .site-header .logo{flex:none}
+  .langswitch{display:none}
+  .langpick{display:block;position:relative;flex:none;margin-left:auto}
+  .langpick summary{display:flex;align-items:center;gap:4px;padding:4px;background:var(--teal-soft);border-radius:12px;cursor:pointer;list-style:none}
+  .langpick summary::-webkit-details-marker{display:none}
+  .langpick summary::marker{content:""}
+  .lp-code{display:grid;place-items:center;min-width:44px;min-height:36px;border-radius:8px;background:var(--teal);color:#fff;font-weight:800;font-size:.875rem}
+  .lp-chev{width:16px;height:16px;margin-right:2px;fill:var(--teal);flex:none;transition:transform .18s ease}
+  .langpick[open] .lp-chev{transform:rotate(180deg)}
+  .lp-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:160;display:grid;gap:2px;min-width:100%;padding:4px;background:var(--teal-soft);border-radius:12px;box-shadow:0 10px 26px rgba(16,42,74,.22)}
+  .lp-menu a{display:grid;place-items:center;min-height:44px;border-radius:8px;background:#fff;text-decoration:none;font-weight:800;font-size:.875rem;color:var(--teal)}
+  .lp-menu a:hover,.lp-menu a:focus-visible{background:var(--teal);color:#fff}
+}
+@media (max-width:999.98px) and (prefers-reduced-motion:reduce){.lp-chev{transition:none}}
 @media (min-width:1000px){
   .langswitch{margin-left:auto}
-  .header-call{display:inline-flex;min-height:48px;padding:6px 20px;font-size:1rem;box-shadow:0 2px 0 var(--cta-press);margin-left:14px;width:auto}
+  .header-call{min-height:48px;padding:6px 20px;font-size:1rem;gap:10px;margin-left:14px}
+  .header-call svg{width:20px;height:20px}
 }
 main{padding-top:0}
 
@@ -747,13 +787,23 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 .site-footer a{color:var(--ink);text-decoration-thickness:1px;text-underline-offset:3px}
 .site-footer a:hover{color:var(--cta)}
 .site-footer .cols p{font-size:.9375rem;max-width:44ch}
-.foot-tel{display:inline-block;font-size:1.5rem;font-weight:900;letter-spacing:var(--track-title);color:var(--ink);text-decoration:none;border-bottom:4px solid var(--mark);padding-bottom:4px;margin:6px 0 10px}
+/* inline-flex and a 44px floor for the same reason as .link-call (2026-09-16): the number in the
+   footer is a phone link and it was 17px tall. The yellow underline stays where it was. */
+.foot-tel{display:inline-flex;align-items:center;min-height:44px;font-size:1.5rem;font-weight:900;letter-spacing:var(--track-title);color:var(--ink);text-decoration:none;border-bottom:4px solid var(--mark);padding-bottom:4px;margin:6px 0 10px}
 .foot-tel:hover{color:var(--cta)}
-.site-footer .legal h2{font-size:.8125rem;color:var(--teal);text-transform:uppercase;letter-spacing:var(--track-label);font-weight:600;font-stretch:100%;padding-top:0;margin-bottom:12px}
+.site-footer .legal h2,.site-footer .foot-probs h2{font-size:.8125rem;color:var(--teal);text-transform:uppercase;letter-spacing:var(--track-label);font-weight:600;font-stretch:100%;padding-top:0;margin-bottom:12px}
 .site-footer .legal p{font-size:.9375rem;line-height:1.7}
 .foot-links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
 .foot-links a{font-size:.9375rem}
 .foot-note{font-size:.8125rem;color:var(--muted);margin-top:10px;max-width:52ch}
+/* THE PER-PROBLEM FOOTER ROW (2026-09-18). Same column, same tokens as the legal links right above
+   it: the label reuses the "Legal" heading's own rule (added to its selector, no new declaration),
+   and the links reuse .foot-links verbatim, so size, colour, spacing, hover and focus ring are
+   identical by construction. The one addition is .foot-probs-links, which only grows the tap target
+   to 44px on phones without changing how the link looks (inline-flex centres the same text in a
+   taller invisible box). Nothing above the footer, and nothing else in it, is touched. */
+.foot-probs{margin-top:16px}
+.foot-probs-links a{display:inline-flex;align-items:center;min-height:44px}
 .credit{margin:44px 0 0;padding-top:18px;border-top:1px solid var(--line);font-size:.8125rem;color:var(--muted)}
 
 /* ---------- sticky call bar ----------

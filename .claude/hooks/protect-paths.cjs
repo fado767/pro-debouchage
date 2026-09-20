@@ -45,7 +45,9 @@ process.stdin.on("end", () => {
 
   const abs = norm(path.resolve(ROOT, given));
 
-  if (abs.includes("taxi-business")) deny(TAXI_REASON);
+  // The substring test used to catch this folder's own research/01-taxi-business-lessons.md too. Fixed 2026-09-20.
+  const taxi = norm(path.resolve(ROOT, "..", "taxi-business")).replace(/\/+$/, "");
+  if (abs === taxi || abs.startsWith(taxi + "/")) deny(TAXI_REASON);
 
   const root = norm(ROOT).replace(/\/+$/, "");
   if (abs.startsWith(root + "/site-v1/")) deny(SITE_V1_REASON);

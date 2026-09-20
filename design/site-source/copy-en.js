@@ -6,6 +6,8 @@ module.exports = {
   // Its own opener: a review dropped into the job thread reads like a complaint.
   waReview: 'https://wa.me/32480649649?text=' + encodeURIComponent("Hello, here's my review of your job: "),
   skip: 'Skip to content', langNav: 'Choose language',
+  // aria-label of the phone language button (2026-09-16)
+  langPick: 'Language: EN, change language',
   callHeader: 'Call us', callBar: 'Call 0480 649 649', waBar: 'WhatsApp',
   waAria: 'Send a photo on WhatsApp',
   carAria: 'Photos of our jobs, swipe to browse',
@@ -238,8 +240,10 @@ module.exports = {
   creditTag: 'PRO DEBOUCHAGE SRL. This site uses one call-measurement tool, and only if you accept it.',
 
   // The consent card, two layers (research/29 B1 and B2, 2026-08-27).
+  // consentP was cut to one sentence on 2026-09-16 (research/35): on a phone the card covered the
+  // hero call button. The controller is still named in the sentence; the rest moved to layer two.
   consentT: 'Measuring calls, with your consent',
-  consentP: "We use Google's measurement (Google Ireland Ltd) to know whether our ads bring in calls, and which pages get read. Nothing loads before you choose, and refusing changes nothing about your visit.",
+  consentP: "PRO DEBOUCHAGE SRL measures its ads with Google. Nothing loads before you choose.",
   consentRefuse: 'Refuse all', consentAccept: 'Accept all', consentLink: 'Cookies and measurement',
   consentChoose: 'Choose',
   consentFine: 'Controller: PRO DEBOUCHAGE SRL. You can change your mind whenever you want, with the "Cookies and measurement" link at the bottom of the page.',

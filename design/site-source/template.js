@@ -6,18 +6,40 @@ const LANGS = [['fr', 'FR', 'Français'], ['nl', 'NL', 'Nederlands'], ['en', 'EN
 const PHONE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"></path></svg>';
 const WA = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3c.2-.6.2-1.1.2-1.2s-.3-.3-.5-.4z"></path></svg>';
 const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"></path></svg>';
+// the chevron on the phone language pill; it rotates when the menu is open (styles.css)
+const CHEV = '<svg class="lp-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9.5l5 5 5-5z"></path></svg>';
 const stars = n => '<div class="stars" aria-label="' + n + '/5">' + STAR.repeat(n) + '</div>';
 
 function pageHtml(c, opts = {}) {
   const IMG = opts.img || ((name, alt, w, h, extra) => `<img src="${name}" width="${w}" height="${h}" alt="${alt}"${extra ? ' ' + extra : ''}>`);
   const others = LANGS.filter(l => l[0] !== c.dir);
+  // WHERE THE LANGUAGE SWITCH POINTS (2026-09-17). On the three landing pages it is /fr/, /nl/ and
+  // /en/, and nothing below changes that. On a per-problem page it has to be the SAME problem in the
+  // other language, or a Dutch speaker who lands on the French flooded-cellar page and taps NL is
+  // dropped on the generic Dutch page and has to find his problem all over again, phone in hand.
+  // build.js passes opts.langHref (the twin pair) for those pages; a language with no twin, which
+  // today means English, falls through to its landing page. With nothing passed the markup is byte
+  // for byte what it was, which is what keeps the three landing pages identical.
+  const lhref = d => (opts.langHref && opts.langHref[d]) || ('/' + d + '/');
   const langswitch = `<nav class="langswitch" aria-label="${c.langNav}">${LANGS.map(([d, short, full]) =>
-    `<a href="/${d}/" lang="${d}" hreflang="${d}-BE"${c.dir === d ? ' aria-current="page"' : ''}><span aria-hidden="true">${short}</span><span class="visually-hidden">${full}</span></a>`).join('')}</nav>`;
+    `<a href="${lhref(d)}" lang="${d}" hreflang="${d}-BE"${c.dir === d ? ' aria-current="page"' : ''}><span aria-hidden="true">${short}</span><span class="visually-hidden">${full}</span></a>`).join('')}</nav>`;
   const callBtn = (label, cta, cls = '') => `<a class="btn btn-call${cls}" href="${TEL}" data-cta="${cta}">${PHONE}${label}</a>`;
   const waBtn = (label, cta) => `<a class="btn btn-wa" href="${c.wa}" rel="noopener" data-cta="${cta}" aria-label="${c.waAria}">${WA}${label}</a>`;
   const sec = (cls, k, h, body, extraAttr = '') => `<section class="${cls}"${extraAttr}><div class="wrap"><p class="kicker">${k}</p><h2>${h}</h2><hr class="rule">${body}</div></section>`;
 
-  const header = `<header class="site-header"><div class="wrap"><a class="logo" href="/${c.dir}/" aria-label="Pro Débouchage">${IMG('logo-icon.svg', 'Pro Débouchage', 320, 200, '')}</a>${langswitch}<a class="btn btn-call header-call" href="${TEL}" data-cta="header-call">${PHONE}${c.callHeader}</a></div></header>`;
+  // THE PHONE LANGUAGE SWITCH IS A DROPDOWN (Fady, 2026-09-16, after the preview on his phone). The
+  // three pills are 140px wide and crowded the logo once the red call button joined the header row,
+  // so under 1000px they are replaced by ONE pill carrying the current code and a chevron, and the
+  // other two languages live in a menu under it. It is a <details>, so the open and close, the
+  // keyboard and the focus are the browser's, not ours: PAGE_JS only closes it on an outside tap or
+  // Escape. Both structures ship, each hidden at the other breakpoint, because a closed <details>
+  // hides its own content in the UA layer and no CSS can show those three pills again on desktop.
+  // That costs two extra anchors in the markup and nothing else: the crawler signal is the
+  // <link rel="alternate" hreflang> set in the head, and the footer already links both languages.
+  const langpick = `<details class="langpick"><summary aria-label="${c.langPick}"><span class="lp-code" aria-hidden="true">${c.dir.toUpperCase()}</span>${CHEV}</summary><div class="lp-menu">${others.map(([d, short, full]) =>
+    `<a href="${lhref(d)}" lang="${d}" hreflang="${d}-BE"><span aria-hidden="true">${short}</span><span class="visually-hidden">${full}</span></a>`).join('')}</div></details>`;
+
+  const header = `<header class="site-header"><div class="wrap"><a class="logo" href="/${c.dir}/" aria-label="Pro Débouchage">${IMG('logo-icon.svg', 'Pro Débouchage', 320, 200, '')}</a>${langswitch}${langpick}<a class="btn btn-call header-call" href="${TEL}" data-cta="header-call">${PHONE}${c.callHeader}</a></div></header>`;
 
   // Hero: stacked pain lines, the answer on a marker stroke, sub with the price promise.
   const h1 = `<h1>${c.h1.map(l => `${l}<br>`).join('')}<span class="h1b">${c.h1b}</span></h1>`;
@@ -181,7 +203,19 @@ function pageHtml(c, opts = {}) {
   // hours, and they were all competing. Consistency loses to hierarchy here.
   const finalcall = `<section class="s-ink finalcall"><div class="wrap"><h2>${c.finalH}</h2><a class="bignum tnum" href="${TEL}" data-cta="final-call">0480 649 649</a><div class="actions">${callBtn(c.finalB, 'final-call-btn')}${waBtn(c.finalWa, 'final-whatsapp')}</div><p class="hours">${c.finalL}</p></div></section>`;
 
-  const footer = `<footer class="site-footer"><div class="wrap"><div class="cols"><div><span class="foot-logo">${IMG('logo-icon.svg', 'Pro Débouchage', 320, 200, 'loading="lazy"')}</span><p>${c.footD}</p><p><a class="foot-tel" href="${TEL}" data-cta="footer-call">0480 649 649</a><br><a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a></p></div><div class="legal"><h2>${c.legalT}</h2><p>${c.legal.join('<br>')}</p><p>${c.vat}</p><p class="foot-note">${c.photoNote}</p><div class="foot-links"><a href="${opts.privacyHref || '#'}">${c.privacy}</a><a href="${opts.cgvHref || '#'}">${c.cgvLabel}</a>${others.map(([d, , full]) => `<a href="/${d}/" lang="${d}" hreflang="${d}-BE">${full}</a>`).join('')}${opts.adsTag ? `<button type="button" class="linklike" data-consent-open>${c.consentLink}</button>` : ''}</div></div></div><p class="credit">&copy; <span id="y">2026</span> ${opts.adsTag ? c.creditTag : c.credit}</p></div></footer>`;
+  // THE PER-PROBLEM FOOTER ROW (2026-09-18, fixes the six variant pages being orphans: nothing on
+  // the site linked to them, only the sitemap and the ads, so Google had indexed none of them). Only
+  // a language that HAS variant pages gets the row (French and Dutch today; opts.footProblems is
+  // simply not passed for English, which has no variants, and every non-landing page). The hrefs and
+  // labels come from opts.footProblems, built in build.js FROM the copy files' own `variants` list,
+  // so a future variant appears here by itself, with no template change. Reuses `.foot-links`
+  // verbatim (same size, colour, spacing, hover, focus ring as the legal links right above it) plus
+  // one modifier, `.foot-probs-links`, that only widens the tap target to 44px on phones; nothing
+  // else about the footer's design changes.
+  const footProbs = (opts.footProblems && opts.footProblems.links.length)
+    ? `<div class="foot-probs"><h2>${opts.footProblems.label}</h2><div class="foot-links foot-probs-links">${opts.footProblems.links.map(x => `<a href="${x.href}"${x.current ? ' aria-current="page"' : ''}>${x.label}</a>`).join('')}</div></div>`
+    : '';
+  const footer = `<footer class="site-footer"><div class="wrap"><div class="cols"><div><span class="foot-logo">${IMG('logo-icon.svg', 'Pro Débouchage', 320, 200, 'loading="lazy"')}</span><p>${c.footD}</p><p><a class="foot-tel" href="${TEL}" data-cta="footer-call">0480 649 649</a><br><a href="mailto:info@prodebouchage24.be">info@prodebouchage24.be</a></p></div><div class="legal"><h2>${c.legalT}</h2><p>${c.legal.join('<br>')}</p><p>${c.vat}</p><p class="foot-note">${c.photoNote}</p><div class="foot-links"><a href="${opts.privacyHref || '#'}">${c.privacy}</a><a href="${opts.cgvHref || '#'}">${c.cgvLabel}</a>${others.map(([d, , full]) => `<a href="${lhref(d)}" lang="${d}" hreflang="${d}-BE">${full}</a>`).join('')}${opts.adsTag ? `<button type="button" class="linklike" data-consent-open>${c.consentLink}</button>` : ''}</div>${footProbs}</div></div><p class="credit">&copy; <span id="y">2026</span> ${opts.adsTag ? c.creditTag : c.credit}</p></div></footer>`;
 
   const bar = `<div class="callbar" role="region" aria-label="${c.callHeader}"><a class="cb-call" href="${TEL}" data-cta="sticky-call">${PHONE}${c.callBar}</a><a class="cb-wa" href="${c.wa}" rel="noopener" data-cta="sticky-whatsapp" aria-label="${c.waBar}">${WA}</a></div>`;
 
@@ -226,6 +260,12 @@ ${citePop}`;
 const PAGE_JS = `(function(){
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('y').textContent=new Date().getFullYear();
+/* phone language dropdown: the open, the close, the keyboard and the focus are <details>'s own.
+   These four lines only add what a details cannot do for itself, close on an outside tap and on
+   Escape. Without JS it still opens, still closes on a second tap, and the two links still work. */
+(function(){var d=document.querySelector('.langpick');if(!d)return;
+document.addEventListener('click',function(e){if(d.open&&!d.contains(e.target))d.open=false});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.open){d.open=false;var s=d.querySelector('summary');if(s)s.focus()}})})();
 /* reveals */
 if('IntersectionObserver' in window&&!reduce){
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px 18% 0px',threshold:0.01});

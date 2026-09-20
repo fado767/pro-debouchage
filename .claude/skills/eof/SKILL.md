@@ -27,7 +27,8 @@ sections 7 (byte budgets, rewrite in place), 8 (logging) and 9 (close it or file
    moved where. Lines are not the measure: one line here can be 350 characters.
 4. **Fact-sync if today touched a fact.** If the session changed an account, a price, a name or
    anything on a live surface, do not wait for Monday: fan out the READ-ONLY FACT-SYNC agent now
-   (`AGENTS.md` section 7) to cross-check every `playbook/` file against `STATE.md`, `NOW.md`,
+   (`AGENTS.md` section 7) to cross-check every `playbook/` file and the three READMEs that carry
+   facts (site source, invoice, business card; added 2026-09-20) against `STATE.md`, `NOW.md`,
    `DECISIONS.md` and the live site source. Fix what it reports in this session or file it in
    `NOW.md`, never leave it in chat. If nothing of that kind changed, say so in one line and move on.
    (Added 2026-08-30 on Fady's yes.)
@@ -54,3 +55,5 @@ sections 7 (byte budgets, rewrite in place), 8 (logging) and 9 (close it or file
 ## Never
 - No em dashes in anything new. No git, no `save-to-cloud.cmd`. Nothing edited in `../taxi-business/`.
 - Never rewrite `LOG.md` or `DECISIONS.md` history; append only.
+- No money moves, no ad changes, no supplier orders, no customer mails from a close. (Kit line, added
+  2026-09-20.)

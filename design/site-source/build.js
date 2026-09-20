@@ -30,15 +30,16 @@ const ADS_CALL_LABEL = TAGS_OFF ? '' : (process.env.ADS_CALL_LABEL || '_diMCKD12
 const ADS_WA_LABEL = TAGS_OFF ? '' : (process.env.ADS_WA_LABEL || 'XldOCKP12OgcEM_SjsxE');
 // CALLS FROM WEBSITE VISITS (added 2026-09-12). Google's own call tracking: when the visitor came
 // from an ad click AND accepted cookies, Google's script swaps the displayed number for a Google
-// forwarding number and counts a conversion when the call lasts 60 SECONDS OR MORE. That threshold
-// is set on the conversion action in the Ads account, not here.
+// forwarding number and counts a conversion when the call lasts long enough. The call-length
+// threshold is set on the conversion action in the Ads account, not here: playbook/ads-program.md
+// section 4 owns the current number.
 // LABEL BAKED IN 2026-09-12: the conversion action "Calls from website" exists in the Ads account
 // and its label is the default below; ADS_PHONE_LABEL=... still overrides it for one build, and
 // ADS_PHONE_LABEL= (empty) or TAGS_OFF=1 removes the feature from the output byte for byte.
-// TWO THINGS THAT ARE ACCOUNT STEPS, NOT BUILD STEPS: (1) once this conversion action counts real
-// calls, call_click must be set to SECONDARY in the Ads UI, or the same phone call is counted
-// twice, once as a tap and once as a call; (2) the number swap only ever happens for visitors who
-// arrived from an ad click and accepted cookies, so most visitors keep seeing the real number.
+// TWO THINGS THAT ARE ACCOUNT STEPS, NOT BUILD STEPS: (1) which conversion action is PRIMARY is an
+// account setting owned by playbook/ads-program.md section 4, not by this file; (2) the number swap
+// only ever happens for visitors who arrived from an ad click and accepted cookies, so most
+// visitors keep seeing the real number.
 // The string below must match the number AS WRITTEN IN THE PAGE TEXT, character for character.
 // Every visible occurrence on this site is "0480 649 649" (66 of them). The tel: hrefs
 // (tel:+32480649649), the wa.me links and the JSON-LD telephone are a different format and are NOT
@@ -58,6 +59,25 @@ const rm = p => fs.rmSync(p, { recursive: true, force: true });
 const mk = p => fs.mkdirSync(p, { recursive: true });
 const cp = (a, b) => { mk(path.dirname(b)); fs.copyFileSync(a, b); };
 const w = (rel, s) => { const p = path.join(OUT, rel); mk(path.dirname(p)); fs.writeFileSync(p, s, 'utf8'); };
+
+// SNAPSHOT, BEFORE THE WIPE BELOW ERASES IT (2026-09-18, for the true sitemap lastmod further down).
+// The only honest record of what each page looked like BEFORE this build is whatever site-v1
+// already holds on disk, so it is read here, once, before the next line deletes it. Every later
+// write goes through `w()` above, which never touches this map, so it stays the "before" for the
+// whole run. Keyed by the same relative path `w()` takes (e.g. "fr/index.html").
+const PREV_FILES = {};
+(function snapshotPrev(dir, rel) {
+  let ents; try { ents = fs.readdirSync(dir, { withFileTypes: true }); } catch (e) { return; }
+  for (const e of ents) {
+    const r = rel ? rel + '/' + e.name : e.name;
+    if (e.isDirectory()) snapshotPrev(path.join(dir, e.name), r);
+    else { try { PREV_FILES[r] = fs.readFileSync(path.join(dir, e.name), 'utf8'); } catch (err) {} }
+  }
+})(OUT, '');
+// Filled in as pages are generated below: URL -> the relative file `w()` wrote it to, and URL -> the
+// HTML string itself, so the lastmod step near the sitemap never has to re-read site-v1 from disk.
+const URL_FILE = {};
+const PAGE_HTML = {};
 
 mk(OUT); for (const e of fs.readdirSync(OUT)) rm(path.join(OUT, e));
 
@@ -111,9 +131,17 @@ if (TAG_ON) css += `
    offset. The card clips it, and .c-body sits on top leaving 2px of it showing as the border.
    The scroll had to move from .consent to .c-body for this: overflow:hidden on the frame is what
    clips the spinning square, so the body is what scrolls now. */
-.consent{position:fixed;left:16px;right:16px;bottom:calc(var(--bar-h) + env(safe-area-inset-bottom) + 14px);z-index:290;border-radius:var(--r-card);box-shadow:0 14px 44px rgba(16,42,74,.22);max-width:440px;margin-inline:auto;background:var(--card);overflow:hidden}
+/* WHERE THE CARD SITS ON A PHONE (rewritten 2026-09-16, research/35). It used to be parked above
+   the sticky call bar's height at all times, which is 86px of empty screen while the bar is still
+   hidden, and the card was 502px tall, so it ran from y224 to y726 on a 375x812 screen and covered
+   the hero call button at y535 to y599. An ad click landed on a page with nothing tappable that
+   calls. Now the card is anchored at the BOTTOM of the screen, 12px off the edge, and only rides up
+   over the bar once the bar is actually there (html.cb-on, the same class the bar and the guarantee
+   badge already use). Short card plus bottom anchor is what clears the hero CTA. */
+.consent{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);z-index:290;border-radius:var(--r-card);box-shadow:0 14px 44px rgba(16,42,74,.22);max-width:440px;margin-inline:auto;background:var(--card);overflow:hidden}
+.cb-on .consent{bottom:calc(var(--bar-h) + env(safe-area-inset-bottom,0px) + 14px)}
 .consent:focus{outline:none}
-@media (min-width:1000px){.consent{left:auto;right:24px;bottom:24px;margin:0}}
+@media (min-width:1000px){.consent,.cb-on .consent{left:auto;right:24px;bottom:24px;margin:0}}
 .c-ring{position:absolute;top:50%;left:50%;width:820px;height:820px;pointer-events:none;
   background:conic-gradient(from 0turn,#25FEC0,#22B3A6,#2E6FB1,#0F4A6A,#2E6FB1,#FFDC52,#FE7740,#25FEC0);
   animation:cring 18s linear infinite}
@@ -192,6 +220,40 @@ if (TAG_ON) css += `
    16px below it since the card was built; Fady spotted the missing gap on 2026-08-27 round 3. */
 .consent .c-fine{font-size:.8125rem;line-height:1.45;color:var(--muted);margin:18px 0 0}
 .c-fine a{color:var(--ink);font-weight:600}
+/* LAYER ONE IS A SHORT SHEET NOW (2026-09-16, research/35). The old first layer carried the mark,
+   the title, a four-line paragraph, the two answers, a full-width "Choisir" button and three lines
+   of fine print: 502px on a 375px phone, sitting on top of the one button that makes the phone ring.
+   It carries the same information in a quarter of the height: mark and title on one row, ONE
+   sentence that names the controller, the two equal answers, then one line with "Choisir" and the
+   cookies link. The fine print moved to layer two, where the visitor is reading rather than glancing.
+   THE LAW IS UNTOUCHED. Refuse and Accept are still two children of one selector, side by side, same
+   fill, same border, same height (research/29 A4 and B11, APD v Mediahuis September 2024). "Choisir"
+   is quieter than both, it still ADDS the per-purpose layer and never stands in for the reject
+   button, and it keeps a 36px hit area on a 13px label. */
+.c-head{display:block}
+.consent .c-links{display:flex;flex-wrap:wrap;align-items:center;gap:2px 18px;margin:10px 0 0;font-size:.875rem}
+.c-pick,.c-all{display:inline-flex;align-items:center;min-height:36px;font:inherit;font-weight:700;color:var(--ink);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.c-pick{background:none;border:0;padding:0;cursor:pointer}
+@media (hover:hover){.c-pick:hover,.c-all:hover{color:var(--cta)}}
+/* THE PHONE NUMBERS ARE MEASURED, NOT FELT, AND THE NOTCH IS PART OF THE SUM. On a 375x812 screen
+   the hero call button ends at y599 and the card is anchored 12px off the bottom, so on a flat
+   viewport anything over about 200px starts eating the button. But the page ships
+   viewport-fit=cover, so on an iPhone env(safe-area-inset-bottom) is 34px and the card rises by
+   that much: the real budget is 812 - 34 - 12 - 599 = 167px, and the card is built to 160.
+   That is why every value below is small: the 48px answers, the mark and the two-line sentence are
+   fixed, so the 16px had to come out of the paddings, the gaps and the links row. */
+@media (max-width:999.98px){
+  .c-one .c-body{padding:9px 14px 9px}
+  .c-one .c-head{display:flex;align-items:center;gap:8px}
+  .c-one .c-logo{height:16px;margin:0;flex:none}
+  .c-one h2{font-size:.875rem;line-height:1.15}
+  .c-one .c-rule{display:none}
+  .c-one p{font-size:.8125rem;line-height:1.33;margin:4px 0 0}
+  .c-one .c-btns{margin-top:8px}
+  .c-one .c-btns button{min-height:48px;font-size:.875rem;padding:10px 8px;white-space:nowrap}
+  .c-one .c-links{margin-top:0;font-size:.8125rem;gap:2px 16px}
+  .c-one .c-pick,.c-one .c-all{min-height:26px}
+}
 /* layer two: one row per purpose, both switches OFF on a first visit (no pre-ticked anything,
    Planet49 C-673/17). On a reopen they show what is actually stored, which is a readout of the
    visitor's own decision, not a pre-tick. */
@@ -316,16 +378,16 @@ function stored(){var r=read();return{ads:!!(r&&r.ads),analytics:!!(r&&r.analyti
 var card=null,dim=null,opener=null,layer=1,pend={ads:false,analytics:false};
 function close(){if(dim){dim.remove();dim=null}if(!card)return;card.remove();card=null;layer=1;if(opener&&document.contains(opener)){opener.focus()}opener=null}
 function esc(e){if(e.key==='Escape'&&card&&opener){close()}}
-function fine(full){return '<p class="c-fine">'+(full?s.fine+' ':'')+'<a href="'+s.href+'">'+s.more+'</a></p>'}
+function fine(){return '<p class="c-fine">'+s.fine+' <a href="'+s.href+'">'+s.more+'</a></p>'}
 function paint(){
 card.setAttribute('aria-label',layer===1?s.t:s.t2);
 if(dim)dim.className=layer===2?'c-dim c-dim-2':'c-dim';
-card.className='consent'+(layer===2?' c-mid':'');
+card.className='consent '+(layer===2?'c-mid':'c-one');
 card.innerHTML='<span class="c-ring" aria-hidden="true"></span><div class="c-body">'+(layer===1
-?'<img class="c-logo" src="/assets/img/logo-icon.svg" alt="" width="816" height="499"><h2>'+s.t+'</h2><hr class="c-rule"><p>'+s.p+'</p><div class="c-btns"><button type="button" data-c="no">'+s.refuse+'</button><button type="button" data-c="yes">'+s.accept+'</button></div><button type="button" class="c-more" data-c="more">'+s.choose+'</button>'+fine(1)
+?'<div class="c-head"><img class="c-logo" src="/assets/img/logo-icon.svg" alt="" width="816" height="499"><h2>'+s.t+'</h2></div><hr class="c-rule"><p>'+s.p+'</p><div class="c-btns"><button type="button" data-c="no">'+s.refuse+'</button><button type="button" data-c="yes">'+s.accept+'</button></div><div class="c-links"><button type="button" class="c-pick" data-c="more">'+s.choose+'</button><a class="c-all" href="'+s.href+'">'+s.more+'</a></div>'
 :'<h2>'+s.t2+'</h2><hr class="c-rule"><p>'+s.p2+'</p><ul class="c-sw">'+s.sw.map(function(x,i){var k=i===0?'analytics':'ads';
 return '<li><label class="c-lab"><span class="c-lt">'+x[0]+'</span><input type="checkbox" class="c-tog" data-p="'+k+'"'+(pend[k]?' checked':'')+'></label><p>'+x[1]+'</p></li>'}).join('')
-+'</ul><div class="c-btns"><button type="button" data-c="save">'+s.save+'</button></div><button type="button" class="c-more" data-c="back">'+s.back+'</button>'+fine(0))+'</div>'}
++'</ul><div class="c-btns"><button type="button" data-c="save">'+s.save+'</button></div><button type="button" class="c-more" data-c="back">'+s.back+'</button>'+fine())+'</div>'}
 function apply(c){save(c);close();wipe(c);enable(c)}
 function show(focus){if(card)return;
 dim=document.createElement('div');dim.className='c-dim';document.body.appendChild(dim);
@@ -458,11 +520,15 @@ const TAIL = (extra = '') => `
 
 // ---------- JSON-LD ----------
 const strip = s => s.replace(/ /g, ' ').replace(/&#8239;/g, ' ').replace(/<[^>]+>/g, '');
-function jsonld(c, lang) {
+// `v` is a per-problem variant (see VARIANTS below) or nothing at all for the three main pages. It
+// only ever moves the page's own address and adds the page's own description; the business it
+// describes is the same business, so `name` stays the company's name and never becomes a page title.
+function jsonld(c, lang, v) {
+  const self = v ? v.paths[lang] : '/' + lang + '/';
   const towns = c.towns.map(t => ({ '@type': 'City', name: t }));
   const faq = c.faq.map(q => ({ '@type': 'Question', name: strip(q[0]), acceptedAnswer: { '@type': 'Answer', text: strip(q[1]) } }));
   const data = { '@context': 'https://schema.org', '@graph': [
-    { '@type': ['Plumber', 'EmergencyService'], '@id': HOST + '/#business', name: 'Pro Débouchage', legalName: 'PRO DEBOUCHAGE SRL', url: HOST + '/' + lang + '/', telephone: '+32480649649', email: 'info@prodebouchage24.be',
+    { '@type': ['Plumber', 'EmergencyService'], '@id': HOST + '/#business', name: 'Pro Débouchage', legalName: 'PRO DEBOUCHAGE SRL', url: HOST + self, ...(v ? { description: strip(c.meta.desc) } : {}), telephone: '+32480649649', email: 'info@prodebouchage24.be',
       image: HOST + '/assets/img/og-banner-van-2.jpg', identifier: '1027.454.187', priceRange: '€€', currenciesAccepted: 'EUR',
       address: { '@type': 'PostalAddress', streetAddress: 'Guldenschaapstraat 6', postalCode: '1800', addressLocality: 'Vilvoorde', addressCountry: 'BE' },
       openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' }],
@@ -475,7 +541,7 @@ function jsonld(c, lang) {
       // Parsed from the same copy the rows render, so the two can never drift apart.
       makesOffer: c.prices.map(p => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: strip(p[0]) },
         priceSpecification: { '@type': 'PriceSpecification', minPrice: Number(String(p[1]).replace(/[^0-9]/g, '')), priceCurrency: 'EUR', valueAddedTaxIncluded: true } })) },
-    { '@type': 'FAQPage', '@id': HOST + '/' + lang + '/#faq', inLanguage: lang + '-BE', mainEntity: faq },
+    { '@type': 'FAQPage', '@id': HOST + self + '#faq', inLanguage: lang + '-BE', mainEntity: faq },
   ] };
   return `<script type="application/ld+json">\n${JSON.stringify(data, null, 1)}\n</script>`;
 }
@@ -483,17 +549,69 @@ function jsonld(c, lang) {
 // ---------- pages ----------
 const LANDING = {}; for (const [l] of T.LANGS) LANDING[l] = '/' + l + '/';
 const CGV_PATH = { fr: '/fr/conditions-generales', nl: '/nl/algemene-voorwaarden', en: '/en/terms' };
-const shell = (c, lang) => T.pageHtml(c, { img: IMG, privacyHref: LEGAL_PATH[lang], cgvHref: CGV_PATH[lang], adsTag: TAG_ON });
-function landing(c, lang) {
-  const { body } = shell(c, lang);
+// langHref is only ever passed for a per-problem page, where the language switch and the footer's
+// language links point at the SAME problem in the other language instead of at the generic landing
+// page. English has no variant (DECISIONS 2026-08-26), so it falls through to /en/ inside the
+// template. Passing nothing, which is what every other page does, leaves the markup untouched.
+const shell = (c, lang, langHref, footProblems) => T.pageHtml(c, { img: IMG, privacyHref: LEGAL_PATH[lang], cgvHref: CGV_PATH[lang], adsTag: TAG_ON, ...(langHref ? { langHref } : {}), ...(footProblems ? { footProblems } : {}) });
+// THE FOOTER'S PER-PROBLEM ROW (2026-09-18, fixes the six per-problem pages being orphans: nothing
+// on the site linked to them, only the sitemap and the ads, and Google had indexed zero pages).
+// Built straight off the LANGUAGE'S OWN `variants` list in the copy file, never off VARIANT_PAGES
+// below (which only exists once every main page has already been built), so a language with no
+// variants (English) gets nothing back, and a variant added to a copy file appears in the row with
+// no change here. `c` is post-variantCopy when called for a per-problem page, but variantCopy never
+// touches `variants` or `footProbH`, so both are always the language's real, complete list.
+function footProblemsFor(c, lang, currentSlug) {
+  const list = c.variants || [];
+  if (!list.length) return null;
+  return { label: c.footProbH, links: list.map(x => ({ href: '/' + lang + '/' + x.slug + '/', label: x.footLabel, current: x.slug === currentSlug })) };
+}
+// PER PROBLEM PAGES (2026-09-17, DECISIONS 2026-09-16). Google was scoring the one landing page
+// "below average" for landing page experience on most keywords, because one generic page had to
+// answer every search. So the SAME page is generated once per problem with six strings swapped and
+// its own service row lifted to the top of the list; nothing else about it changes, which is the
+// whole point: the consent card, the prices, the scam band, the FAQ, the footer and the call bar are
+// the landing page byte for byte, and one edit to the page still reaches all nine pages at once.
+// The three main pages must come out of this IDENTICAL to what they were, so every variant branch
+// below is guarded by `v` and the main call passes nothing.
+function variantCopy(c, v) {
+  const i = c.services.findIndex(s => s[0] === v.serv);
+  if (i < 0) throw new Error(`copy-${c.dir}.js: the variant "${v.slug}" points at a service "${v.serv}" that is not in the services list. It has to repeat the row's title character for character.`);
+  return { ...c,
+    eyebrow: v.eyebrow, h1: v.h1, h1b: v.h1b || c.h1b, sub: v.sub,
+    // the matching row first, everybody else in the order they were already in
+    services: [c.services[i], ...c.services.filter((_, n) => n !== i)],
+    meta: { ...c.meta, title: v.title, desc: v.desc } };
+}
+function landing(c, lang, v) {
+  if (v) c = variantCopy(c, v);
+  const { body } = shell(c, lang, v ? v.paths : undefined, footProblemsFor(c, lang, v ? v.slug : null));
   // THE SHARE CARD LEADS ON THE NAME, the <title> tag does not (Fady 2026-08-27). A page title is
   // written for a search result, where the brand can come last; a WhatsApp card is written for
   // someone a person they know just sent a link to, and it has to say WHOSE link it is first. So
   // og:title is meta.ogTitle (name, then service, then zone) and <title> is untouched. meta.ogt,
   // the pain headline, is no longer used as a share title: it reads as a complaint out of context.
-  return head(lang, LANDING, { ...c.meta, ogt: c.meta.ogTitle || c.meta.title }) + body + '\n' + jsonld(c, lang) + TAIL();
+  return head(lang, v ? v.paths : LANDING, { ...c.meta, ogt: c.meta.ogTitle || c.meta.title }) + body + '\n' + jsonld(c, lang, v) + TAIL();
 }
-for (const [l] of T.LANGS) w(l + '/index.html', landing(COPY[l], l));
+for (const [l] of T.LANGS) { const file = l + '/index.html', html = landing(COPY[l], l); w(file, html); URL_FILE[LANDING[l]] = file; PAGE_HTML[LANDING[l]] = html; }
+
+// THE VARIANT TABLE. The strings live in copy-fr.js and copy-nl.js, next to the hero strings they
+// replace (AGENTS.md section 4: the copy the customer reads has one owner and it is the copy file).
+// What lives HERE is the pairing: a French page and its Dutch twin are ONE variant in two languages,
+// joined by `key`, and that pairing is what the canonical, the hreflang set and the sitemap are built
+// from. A variant that loses its twin throws, because FR and NL ship together (AGENTS.md section 6),
+// and an English one throws too: there are no English ads, so there is no English variant
+// (DECISIONS 2026-08-26).
+const VARIANTS = {};
+for (const [l] of T.LANGS) for (const v of (COPY[l].variants || [])) (VARIANTS[v.key] = VARIANTS[v.key] || {})[l] = v;
+const VARIANT_PAGES = [];
+for (const [key, pair] of Object.entries(VARIANTS)) {
+  if (pair.en) throw new Error(`variant "${key}" has an English page. There are no English ads, so there are no English variants (DECISIONS 2026-08-26).`);
+  if (!pair.fr || !pair.nl) throw new Error(`variant "${key}" exists in ${Object.keys(pair).join(' and ')} only. Every variant ships French and Dutch together (AGENTS.md section 6).`);
+  const paths = { fr: '/fr/' + pair.fr.slug + '/', nl: '/nl/' + pair.nl.slug + '/' };
+  for (const l of ['fr', 'nl']) VARIANT_PAGES.push({ lang: l, path: paths[l], v: { ...pair[l], paths } });
+}
+for (const p of VARIANT_PAGES) { const file = p.path.slice(1) + 'index.html', html = landing(COPY[p.lang], p.lang, p.v); w(file, html); URL_FILE[p.path] = file; PAGE_HTML[p.path] = html; }
 
 // legal + cgv pages: the document <main> under the v3 shell (header, footer, call bar).
 function docShell(lang, paths, main, title, desc) {
@@ -546,7 +664,8 @@ for (const [l] of T.LANGS) {
         .replace('<!--recip-->', '').replace('<!--basis-->', ''))
     .replace('<main>', '<main id="contenu">');
   if (main.includes('<!--recip-->') || main.includes('<!--basis-->')) throw new Error('legal.js: a tag-day marker survived the swap in ' + l);
-  w(LEGAL_FILE[l], docShell(l, LEGAL_PATH, main, LEGAL_META[l][0], LEGAL_META[l][1]));
+  const html = docShell(l, LEGAL_PATH, main, LEGAL_META[l][0], LEGAL_META[l][1]);
+  w(LEGAL_FILE[l], html); URL_FILE[LEGAL_PATH[l]] = LEGAL_FILE[l]; PAGE_HTML[LEGAL_PATH[l]] = html;
 }
 // CGV
 const CGV_FILE = { fr: 'fr/conditions-generales.html', nl: 'nl/algemene-voorwaarden.html', en: 'en/terms.html' };
@@ -555,13 +674,13 @@ const CGV_META = {
   nl: ['Algemene voorwaarden | Pro Débouchage', 'De algemene voorwaarden van PRO DEBOUCHAGE BV: prijs bevestigd voor wij beginnen, aangekondigde toeslagen, 30 dagen garantie, uw rechten.'],
   en: ['Terms and conditions | Pro Débouchage', 'Terms and conditions of PRO DEBOUCHAGE SRL: price confirmed before we start, published surcharges, 30-day guarantee, your rights.'],
 };
-for (const [l] of T.LANGS) w(CGV_FILE[l], docShell(l, CGV_PATH, CGV[l], CGV_META[l][0], CGV_META[l][1]));
+for (const [l] of T.LANGS) { const html = docShell(l, CGV_PATH, CGV[l], CGV_META[l][0], CGV_META[l][1]); w(CGV_FILE[l], html); URL_FILE[CGV_PATH[l]] = CGV_FILE[l]; PAGE_HTML[CGV_PATH[l]] = html; }
 
 // root chooser
 const CHOOSE = { fr: ['Français', 'Débouchage 24h/24'], nl: ['Nederlands', 'Ontstopping 24/7'], en: ['English', 'Drain unblocking 24/7'] };
 const chooserBtns = T.LANGS.map(([l]) => `<a class="btn btn-ghost" href="/${l}/" lang="${l}" hreflang="${l}-BE">${CHOOSE[l][0]} &rarr; ${CHOOSE[l][1]}</a>`).join('\n');
 const chooserTitle = T.LANGS.map(([l]) => CHOOSE[l][0]).join(' &middot; ');
-w('index.html', head('fr', LANDING, { title: 'Pro Débouchage | ' + chooserTitle.replace(/&middot;/g, '·'), desc: 'Débouchage 24h/24 autour de Bruxelles. Choisissez votre langue. Ontstopping 24/7 rond Brussel. Kies uw taal. Drain unblocking around Brussels, 24/7. 0480 649 649.', ogt: 'Pro Débouchage · Débouchage 24h/24 autour de Bruxelles', ogd: 'Débouchage 24h/24 autour de Bruxelles. Ontstopping 24/7 rond Brussel. Drain unblocking around Brussels, 24/7. 0480 649 649.', locale: 'fr_BE', ogAlt: COPY.fr.meta.ogAlt }, { noindex: true }) + `
+w('index.html', head('fr', LANDING, { title: 'Pro Débouchage | ' + chooserTitle.replace(/&middot;/g, '·'), desc: 'Débouchage 24h/24 autour de Bruxelles. Choisissez votre langue. Ontstopping 24/7 rond Brussel. Kies uw taal. Drain unblocking around Brussels, 24/7. 0480 649 649.', ogt: 'Pro Débouchage · Débouchage 24h/24 autour de Bruxelles', ogd: 'Débouchage 24h/24 autour de Bruxelles. Ontstopping 24/7 rond Brussel. Drain unblocking around Brussels, 24/7. 0480 649 649.', locale: 'fr_BE', ogAlt: COPY.fr.meta.ogAlt }, { noindex: false }) + `
 <main class="chooser"><div class="box">
 ${IMG('logo-icon.svg', 'Pro Débouchage', 320, 200, '')}
 <h1 style="font-size:1.5rem">${chooserTitle}</h1>
@@ -608,14 +727,68 @@ ${nf}
 
 // static files
 w('robots.txt', `# Pro Débouchage, prodebouchage24.be\nUser-agent: *\nAllow: /\n\nSitemap: ${HOST}/sitemap.xml\n`);
-const today = '2026-08-26';
-const url = (loc, paths) => `  <url>\n    <loc>${HOST}${loc}</loc>\n    <lastmod>${today}</lastmod>\n` +
+// ---------- sitemap lastmod: TRUE per-URL dates (2026-09-18, replacing a hardcoded constant) ----------
+// `lastmod.json`, next to this script, stores for every sitemap URL the sha256 of that URL's last
+// shipped HTML and the date that hash was first seen. A build that leaves a page's bytes unchanged
+// keeps its date; a build that changes even one byte of it sets the date to today and remembers the
+// new hash. That makes two builds in a row with no source change produce the identical sitemap: the
+// second build sees the hash the first one just stored and finds nothing to change.
+const LASTMOD_PATH = path.join(__dirname, 'lastmod.json');
+const pad2 = n => String(n).padStart(2, '0');
+const TODAY = (() => { const d = new Date(); return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`; })();
+// The six per-problem pages went live 2026-09-17 (DECISIONS 2026-09-17, research/40): that is their
+// true first date, used ONLY the first time this mechanism ever runs for a given variant URL, even
+// though today's footer-links change (this same build) legitimately touches their bytes too.
+const VARIANT_SEED_DATE = '2026-09-17';
+const VARIANT_URL_SET = new Set(VARIANT_PAGES.map(p => p.path));
+const sha256 = s => require('crypto').createHash('sha256').update(s).digest('hex');
+// Strips the one build-wide value in a page that is not that page's own content: the cache-busting
+// hash on consent.js's own <script src> (README, "the script URL carries a content hash"). It moves
+// only when the consent banner's text changes, in EVERY language at once, which would otherwise mark
+// every single page on the site as "changed today" no matter which page's own copy actually moved.
+// Nothing else in a page differs between two builds that changed no source.
+const normalizeForHash = html => html.replace(/\/assets\/js\/consent\.js\?v=[0-9a-f]+/g, '/assets/js/consent.js?v=STATIC');
+let prior = {}, bootstrapping = false;
+try {
+  prior = JSON.parse(fs.readFileSync(LASTMOD_PATH, 'utf8'));
+} catch (e) {
+  // BOOTSTRAP, this mechanism's first run only: lastmod.json does not exist, so there is no stored
+  // hash to compare a page against. The best "before" available is whatever site-v1 already held on
+  // disk before this build wiped it (PREV_FILES, snapshotted at the very top of this file), dated
+  // 2026-08-26, the constant this replaces: if a page's hash matches that snapshot it keeps that
+  // date, and if this build actually changed it (the footer row changes every FR and NL page today,
+  // on purpose) it correctly gets today's date. The six variant URLs are seeded directly in
+  // lastmodFor below and skipped here, since 2026-09-17 is a fact, not something to derive from a
+  // hash comparison.
+  bootstrapping = true;
+  for (const [u, file] of Object.entries(URL_FILE)) {
+    if (VARIANT_URL_SET.has(u)) continue;
+    const old = PREV_FILES[file];
+    if (old === undefined) continue;
+    prior[u] = { hash: sha256(normalizeForHash(old)), date: '2026-08-26' };
+  }
+}
+const lastmodStore = {};
+function lastmodFor(u) {
+  const html = PAGE_HTML[u];
+  if (html === undefined) throw new Error(`lastmod: no generated HTML captured for ${u}.`);
+  const hash = sha256(normalizeForHash(html));
+  let date;
+  if (bootstrapping && VARIANT_URL_SET.has(u)) date = VARIANT_SEED_DATE;
+  else { const before = prior[u]; date = (before && before.hash === hash) ? before.date : TODAY; }
+  lastmodStore[u] = { hash, date };
+  return date;
+}
+const url = (loc, paths) => `  <url>\n    <loc>${HOST}${loc}</loc>\n    <lastmod>${lastmodFor(loc)}</lastmod>\n` +
   Object.entries(paths).map(([l, p]) => `    <xhtml:link rel="alternate" hreflang="${l}-BE" href="${HOST}${p}"/>\n`).join('') +
   `    <xhtml:link rel="alternate" hreflang="x-default" href="${HOST}${paths.fr}"/>\n  </url>\n`;
 const urls = Object.values(LANDING).map(p => url(p, LANDING)).join('')
+  // the per-problem pages, each one paired with its twin in the other language and nothing else
+  + VARIANT_PAGES.map(p => url(p.path, p.v.paths)).join('')
   + Object.values(LEGAL_PATH).map(p => url(p, LEGAL_PATH)).join('')
   + Object.values(CGV_PATH).map(p => url(p, CGV_PATH)).join('');
 w('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls}</urlset>\n`);
+fs.writeFileSync(LASTMOD_PATH, JSON.stringify(lastmodStore, null, 2) + '\n', 'utf8');
 w('site.webmanifest', JSON.stringify({ name: 'Pro Débouchage', short_name: 'Pro Débouchage', start_url: '/fr/', display: 'browser', background_color: '#F6F3EE', theme_color: '#102A4A', icons: [{ src: '/assets/img/icon-512.png', sizes: '512x512', type: 'image/png' }, { src: '/assets/img/icon-512-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }] }, null, 2));
 
 const CSP_DAY1 = `Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; frame-src 'none'; media-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests`;

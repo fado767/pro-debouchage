@@ -1,6 +1,11 @@
 // v3 FRENCH copy. The master language. Every string is written to convert, in the page's voice
 // (spoken Belgian French, "on", short sentences, no em dashes, narrow no-break space before ? ! : and €).
 // Facts only: everything here traces to playbook/business-brief.md, DECISIONS.md or a photo we own.
+// nb below is the NARROW no-break space of French punctuation; nbsp is the WIDE one, the one that
+// glues the words of the marker answer line so it breaks where we want it to (h1b types it as a
+// literal character, which is why a variant's answer line names it instead of hiding one in a
+// string).
+const nbsp = ' ';
 const nb = ' ';
 
 module.exports = {
@@ -9,6 +14,8 @@ module.exports = {
   // Its own opener: a review sent on the job's WhatsApp thread reads as a complaint.
   waReview: 'https://wa.me/32480649649?text=' + encodeURIComponent('Bonjour, voici mon avis sur votre intervention : '),
   skip: 'Aller au contenu', langNav: 'Choisir la langue',
+  // the aria-label of the phone language pill, which is a button and not a list (2026-09-16)
+  langPick: 'Langue' + nb + ': FR, changer de langue',
   callHeader: 'Appeler', callBar: 'Appeler 0480 649 649', waBar: 'WhatsApp',
   waAria: 'Envoyer une photo par WhatsApp',
   carAria: 'Photos de nos interventions, faites défiler',
@@ -33,6 +40,50 @@ module.exports = {
   // A tip, not a second promise: one marked word, one short line (Fady 2026-08-26).
   under: `<b>Astuce</b> une photo, et on voit déjà le problème.`,
   waNote: `Avec une photo, on vous aide plus vite.`,
+
+  // PER PROBLEM PAGES (2026-09-17, DECISIONS 2026-09-16). One page per ad group, built by build.js
+  // from THIS page: only the strings below change (label, H1 lines, marker answer, hero sub, title,
+  // description) plus the order of the service rows. Everything else, the prices, the scam band, the
+  // FAQ, the consent card, the call bar, is the landing page byte for byte.
+  // THREE RULES FOR ANYONE EDITING THESE.
+  // 1. `serv` must repeat a service row's title character for character; the build throws otherwise,
+  //    and that row is moved to the top of the list on the variant page.
+  // 2. Every pain line is HARD broken by a <br> and the H1 carries a measured cap per language
+  //    (--h1-cap in styles.css). Measured on the live page at 375px, the column is 335px wide and
+  //    the longest line here is "Cave inondée," at 308px. A longer line does not overflow, it wraps,
+  //    which is worse: re-measure before lengthening one.
+  // 3. A price named here is the SAME "à partir de" figure the grid below publishes, for the SAME
+  //    service the grid names it for. Never attach a floor to a job it does not cover.
+  variants: [
+    {
+      key: 'wc', slug: 'wc-bouche', serv: 'Débouchage urgent',
+      eyebrow: `Débouchage WC 24h/24`,
+      h1: ['WC bouché,', 'ça remonte,', `ça déborde${nb}?`],
+      sub: `Un WC bouché, <strong>c'est à partir de 129${nb}€, TVA et déplacement compris.</strong> Votre prix exact, on vous le dit au téléphone, avant qu'on prenne la route.`,
+      title: `WC bouché${nb}? Déboucheur 24h/24 autour de Bruxelles`,
+      desc: `WC bouché qui déborde${nb}? On vient 24h/24, autour de Bruxelles, d'Alost à Louvain. Le prix est dit au téléphone, à partir de 129${nb}€. 0480 649 649.`,
+      footLabel: 'WC bouché',
+    },
+    {
+      key: 'drain', slug: 'canalisation-bouchee', serv: 'Débouchage urgent',
+      eyebrow: `Débouchage 24h/24`,
+      h1: ['Canalisation', 'bouchée,', `ça remonte${nb}?`],
+      sub: `Évier, lavabo, douche ou canalisation qui refoule. <strong>On vous dit le prix au téléphone, et c'est ce prix-là que vous payez.</strong> À partir de 119${nb}€ pour un évier, un lavabo ou une douche.`,
+      title: `Canalisation bouchée${nb}? Débouchage 24h/24 autour de Bruxelles`,
+      desc: `Canalisation, évier ou douche bouchés, ça remonte${nb}? On vient 24h/24 autour de Bruxelles. Prix dit au téléphone, à partir de 119${nb}€. 0480 649 649.`,
+      footLabel: 'Canalisation bouchée',
+    },
+    {
+      key: 'cellar', slug: 'cave-inondee', serv: 'Pompage de cave inondée',
+      eyebrow: `Pompage de cave 24h/24`,
+      h1: ['Cave inondée,', `l'eau monte${nb}?`],
+      h1b: `Appelez.${nbsp}On pompe.`,
+      sub: `L'eau monte dans la cave, on vient la pomper. <strong>À partir de 229${nb}€ la première heure, TVA et déplacement compris.</strong> Le prix, vous l'avez au téléphone, avant qu'on prenne la route.`,
+      title: `Cave inondée${nb}? Pompage 24h/24 autour de Bruxelles`,
+      desc: `Cave inondée${nb}? On pompe, on nettoie, rapport pour l'assurance si vous le demandez. 24h/24 autour de Bruxelles. À partir de 229${nb}€. 0480 649 649.`,
+      footLabel: 'Cave inondée',
+    },
+  ],
 
   // Image ticker (desktop) and swipe carousel (mobile): our own photos, one per distinct scene.
   ticker: [
@@ -249,6 +300,7 @@ module.exports = {
   legal: ['PRO DEBOUCHAGE SRL', 'Guldenschaapstraat 6, 1800 Vilvoorde, Belgique', `Numéro d'entreprise 1027.454.187`, `E-mail${nb}: info@prodebouchage24.be`, `Téléphone${nb}: 0480 649 649`],
   vat: `Les prix affichés sont TVA 6${nb}% comprise (habitation privée de plus de 10 ans).`,
   privacy: 'Politique de vie privée', cgvLabel: 'Conditions générales',
+  footProbH: 'Problèmes fréquents',
   credit: `PRO DEBOUCHAGE SRL. Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure.`,
 
   // Tag-day strings (used only when the build gets ADS_TAG_ID).
@@ -258,8 +310,12 @@ module.exports = {
   // Layer one asks the simple question. Layer two lets the visitor split it by purpose, which the
   // Belgian APD asks for. Every string here ships in FR, NL and EN in the same build: a banner
   // half translated is worse than a monolingual one (research/29 B11).
+  // consentP WAS CUT TO ONE SENTENCE ON 2026-09-16 (research/35). On a 375px phone the card ran
+  // 502px tall and covered the hero call button, so an ad click landed on a page with nothing
+  // tappable that calls. The sentence still names the controller, which is why the company name is
+  // inside it; the rest of the detail (who may change their mind, and how) moved to layer two.
   consentT: `Mesurer les appels, avec votre accord`,
-  consentP: `On utilise la mesure de Google (Google Ireland Ltd) pour savoir si nos annonces amènent des appels, et quelles pages sont lues. Rien n'est chargé avant votre choix, et refuser ne change rien à votre visite.`,
+  consentP: `PRO DEBOUCHAGE SRL mesure ses annonces avec Google. Rien n'est chargé avant votre choix.`,
   consentRefuse: `Tout refuser`, consentAccept: `Tout accepter`, consentLink: `Cookies et mesure`,
   consentChoose: `Choisir`,
   consentFine: `Responsable&nbsp;: PRO DEBOUCHAGE SRL. Vous pouvez changer d'avis quand vous voulez, via le lien «&nbsp;Cookies et mesure&nbsp;» en bas de page.`,

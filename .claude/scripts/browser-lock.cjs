@@ -9,8 +9,8 @@
  * and releases it the moment its tabs are closed. The lock lives outside every project folder so all
  * of them see the same one.
  *
- *   node .claude/scripts/browser-lock.cjs acquire "Vachtmeesters"   take it (exit 0) or learn who holds it (exit 1)
- *   node .claude/scripts/browser-lock.cjs release "Vachtmeesters"   give it back (only the holder can)
+ *   node .claude/scripts/browser-lock.cjs acquire "<Venture>"   take it (exit 0) or learn who holds it (exit 1)
+ *   node .claude/scripts/browser-lock.cjs release "<Venture>"   give it back (only the holder can)
  *   node .claude/scripts/browser-lock.cjs status                      who holds it, since when
  *   node .claude/scripts/browser-lock.cjs release --force             Fady's emergency reset only
  *

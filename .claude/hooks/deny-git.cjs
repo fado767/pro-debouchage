@@ -13,6 +13,13 @@ const REASON =
 // This does not match substrings such as "digit" or file names such as "foo-git.js".
 const GIT = /(?:^|[;&|(){}\n]|\$\()[ \t]*(?:[A-Za-z_][A-Za-z0-9_]*=[^ \t]*[ \t]+)*(?:[\w.:\\/-]*[\\/])?git(?:\.exe)?(?![\w.-])/i;
 
+// Added 2026-09-20 (the HQ sweep tested ten shapes that slipped past the pattern above: `$x = git status`,
+// `cmd /c git ...`, `bash -c "git ..."`, `Start-Process git ...`, `npx git ...`, a quoted full path to
+// git.exe). git as a standalone word ANYWHERE in the command, when a real git subcommand follows it.
+// Still no match inside other words (digit, legit, github) or file names (.gitignore, foo-git.js).
+const SUB = '(?:status|log|diff|show|add|commit|push|pull|fetch|clone|init|checkout|switch|branch|merge|rebase|reset|restore|stash|tag|remote|rev-parse|rev-list|ls-files|ls-remote|clean|config|gc|rm|mv|describe|blame|worktree|cherry-pick|revert|reflog|fsck|prune|submodule|apply|archive|bisect|grep|update-index|symbolic-ref)';
+const GIT_ANYWHERE = new RegExp('(?:^|[^\\w.\\-/\\\\])(?:[\\w.:\\\\/ -]*[\\\\/])?git(?:\\.exe)?["\']?\\s+(?:-[-\\w]+(?:[= ]\\S+)?\\s+)*' + SUB + '(?![\\w-])', 'i');
+
 const SCRIPTS = /(save-to-cloud|first-time-setup)\.cmd/i;
 
 function deny(reason) {
@@ -41,6 +48,6 @@ process.stdin.on("end", () => {
   const ti = input.tool_input || {};
   const command = String(ti.command || "");
   if (!command) process.exit(0);
-  if (GIT.test(command) || SCRIPTS.test(command)) deny(REASON);
+  if (GIT.test(command) || GIT_ANYWHERE.test(command) || SCRIPTS.test(command)) deny(REASON);
   process.exit(0);
 });

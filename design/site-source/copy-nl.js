@@ -1,11 +1,17 @@
 // v3 DUTCH copy. Native everyday Flemish, written to convert, never a translation.
 // Same promise as FR, its own voice. Facts identical (business-brief.md, DECISIONS.md).
+// nbsp is the no-break space that glues the words of the marker answer line so it breaks where we
+// want it to; h1b types it as a literal character, so a variant's answer line names it instead of
+// hiding one in a string.
+const nbsp = ' ';
 module.exports = {
   lang: 'nl-BE', dir: 'nl',
   wa: 'https://wa.me/32480649649?text=' + encodeURIComponent('Hallo, ik heb een verstopping. Hier is een foto en mijn gemeente: '),
   // Eigen aanhef: een beoordeling in de klusdraad leest als een klacht.
   waReview: 'https://wa.me/32480649649?text=' + encodeURIComponent('Hallo, hier is mijn beoordeling van jullie werk: '),
   skip: 'Naar de inhoud', langNav: 'Taal kiezen',
+  // aria-label van de taalknop op de telefoon (2026-09-16)
+  langPick: 'Taal: NL, taal wijzigen',
   callHeader: 'Bellen', callBar: 'Bel 0480 649 649', waBar: 'WhatsApp',
   waAria: 'Stuur een foto via WhatsApp',
   carAria: `Foto's van onze interventies, veeg om te bladeren`,
@@ -29,6 +35,51 @@ module.exports = {
   // Een tip, geen tweede belofte: één gemarkeerd woord, één korte regel (Fady 2026-08-26).
   under: '<b>Tip</b> stuur een foto, dan zien we het al.',
   waNote: 'Met een foto helpen we u sneller.',
+
+  // PAGINA PER PROBLEEM (2026-09-17, DECISIONS 2026-09-16). Eén pagina per advertentiegroep, door
+  // build.js gemaakt uit DEZE pagina: alleen de strings hieronder verschillen (label, H1-regels,
+  // markeerzin, hero-tekst, title, description) plus de volgorde van de dienstenrijen. De rest, de
+  // prijzen, de oplichtingsband, de FAQ, de cookiekaart, de belbalk, is de landingspagina byte voor
+  // byte.
+  // DRIE REGELS VOOR WIE HIER IETS WIJZIGT.
+  // 1. `serv` moet de titel van een dienstenrij letter voor letter herhalen; anders stopt de build,
+  //    en die rij komt op de variantpagina bovenaan te staan.
+  // 2. Elke pijnregel breekt hard op een <br> en de H1 heeft een gemeten plafond per taal
+  //    (--h1-cap in styles.css). Gemeten op de live pagina bij 375px: de kolom is 335px breed en de
+  //    langste regel hier is "Afvoer verstopt," met 322px. Een langere regel loopt niet over, hij
+  //    breekt af, en dat is erger: meet opnieuw voor u er een verlengt.
+  // 3. Een prijs die hier staat, is hetzelfde vanafbedrag dat de prijslijst hieronder toont, voor
+  //    dezelfde dienst. Hang nooit een vanafprijs aan een klus die ze niet dekt.
+  variants: [
+    {
+      key: 'wc', slug: 'wc-verstopt', serv: 'Dringende ontstopping',
+      eyebrow: 'Wc ontstoppen 24/7',
+      h1: ['Wc verstopt,', 'loopt het over,', 'stinkt het?'],
+      sub: 'Een verstopte wc, <strong>dat is vanaf € 129, btw en verplaatsing inbegrepen.</strong> Uw exacte prijs hoort u aan de telefoon, nog voor we vertrekken.',
+      title: 'Wc verstopt? Ontstoppingsdienst 24/7 rond Brussel',
+      desc: 'Wc verstopt of loopt hij over? Wij komen 24/7, rond Brussel, van Aalst tot Leuven. De prijs hoort u aan de telefoon, vanaf € 129. Bel 0480 649 649.',
+      footLabel: 'Wc verstopt',
+    },
+    {
+      key: 'drain', slug: 'afvoer-verstopt', serv: 'Dringende ontstopping',
+      eyebrow: 'Ontstopping 24/7',
+      h1: ['Afvoer verstopt,', 'loopt het terug,', 'stinkt het?'],
+      sub: 'Gootsteen, lavabo, douche of afvoer die terugloopt. <strong>Wij zeggen de prijs aan de telefoon, en die prijs betaalt u.</strong> Vanaf € 119 voor een gootsteen, een lavabo of een douche.',
+      title: 'Afvoer verstopt? Ontstopping 24/7 rond Brussel',
+      desc: 'Gootsteen, douche of afvoer verstopt? Wij komen 24/7 rond Brussel, van Aalst tot Leuven. De prijs hoort u aan de telefoon, vanaf € 119. Bel 0480 649 649.',
+      footLabel: 'Afvoer verstopt',
+    },
+    {
+      key: 'cellar', slug: 'kelder-leegpompen', serv: 'Kelder leegpompen',
+      eyebrow: 'Kelder leegpompen 24/7',
+      h1: ['Staat de kelder', 'onder water?'],
+      h1b: `Bel.${nbsp}Wij${nbsp}pompen hem${nbsp}leeg.`,
+      sub: 'Wij pompen de kelder leeg en maken schoon. <strong>Vanaf € 229 het eerste uur, btw en verplaatsing inbegrepen.</strong> Uw prijs hoort u aan de telefoon, nog voor we vertrekken.',
+      title: 'Kelder onder water? Leegpompen 24/7 rond Brussel',
+      desc: 'Kelder onder water? Wij pompen leeg, maken schoon en maken een verslag voor uw verzekering. 24/7 rond Brussel. Vanaf € 229. Bel 0480 649 649.',
+      footLabel: 'Kelder onder water',
+    },
+  ],
 
   ticker: [
     ['tick-van.webp', 'De bestelwagen van Pro Débouchage bij zonsopgang, klaar om te vertrekken.', 1200, 675],
@@ -224,13 +275,16 @@ module.exports = {
   legal: ['PRO DEBOUCHAGE BV', 'Guldenschaapstraat 6, 1800 Vilvoorde, België', 'Ondernemingsnummer 1027.454.187', 'E-mail: info@prodebouchage24.be', 'Telefoon: 0480 649 649'],
   vat: 'De getoonde prijzen zijn inclusief 6% btw (privéwoning ouder dan 10 jaar).',
   privacy: 'Privacybeleid', cgvLabel: 'Algemene voorwaarden',
+  footProbH: 'Veelvoorkomende problemen',
   credit: 'PRO DEBOUCHAGE BV. Deze site plaatst geen cookies en gebruikt geen meettools.',
 
   creditTag: 'PRO DEBOUCHAGE BV. Deze site gebruikt één meettool voor oproepen, en alleen als u die aanvaardt.',
 
   // De toestemmingskaart, twee lagen (research/29 B1 en B2, 2026-08-27).
+  // consentP werd op 2026-09-16 tot één zin ingekort (research/35): op een telefoon bedekte de
+  // kaart de belknop. De verantwoordelijke staat nog altijd in de zin; de rest staat op laag twee.
   consentT: 'Oproepen meten, met uw akkoord',
-  consentP: 'We gebruiken de meting van Google (Google Ireland Ltd) om te weten of onze advertenties telefoontjes opleveren, en welke pagina\'s gelezen worden. Er wordt niets geladen voor u kiest, en weigeren verandert niets aan uw bezoek.',
+  consentP: 'PRO DEBOUCHAGE BV meet zijn advertenties met Google. Er wordt niets geladen voor uw keuze.',
   consentRefuse: 'Alles weigeren', consentAccept: 'Alles aanvaarden', consentLink: 'Cookies en meting',
   consentChoose: 'Zelf kiezen',
   consentFine: 'Verantwoordelijke&nbsp;: PRO DEBOUCHAGE BV. U kunt altijd van gedachten veranderen via de link "Cookies en meting" onderaan de pagina.',

@@ -1,5 +1,5 @@
 # Cloud backup covers ONLY the root paths whitelisted below, nothing else.
-# Everything is whitelisted on purpose except machine-local and generated files.
+# Everything is whitelisted on purpose except machine-local, generated and secret files.
 # Keep this list in step with AGENTS.md section 3 (the folder map).
 /*
 !/.gitignore
@@ -24,13 +24,20 @@
 !/design/
 !/_archive/
 
+# the waiting room for spent files is never backed up (only Fady empties it)
+/to-delete/
+
 # generated per-session scratch state of the logging guard (added 2026-09-04, shared kit), never history
 /.claude/hooks/state/
 
-# never track these, anywhere
+# never track these, anywhere (the three secret lines and *.log added 2026-09-20, kit template)
+.env
+.env.*
+secrets/
 node_modules/
 .wrangler/
 *.bak
 *.bak-*
+*.log
 Thumbs.db
 .DS_Store

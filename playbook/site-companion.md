@@ -12,9 +12,9 @@ One thing to say at the start of the call: **every price printed on the page is 
 
 ## 1. Header and sticky call bar
 
-**What it says.** Logo, the language chooser (FR, NL, EN) and a call button, always at the top. On a phone a call bar slides in at the bottom as soon as the visitor scrolls past the first buttons.
+**What it says.** Logo, the language chooser and a call button, always at the top. Since 2026-09-16, on a phone the language chooser is one pill: the active language with an arrow, tap it and the other two drop down. A red call button sits next to it. On desktop nothing changed: the three-pill FR, NL, EN switch and the call button. On a phone a call bar also slides in at the bottom as soon as the visitor scrolls past the first buttons.
 
-**Why.** Emergency callers do not read to the end, they call from wherever they stopped scrolling (research/03, research/19). The bar appears only after the hero buttons leave the screen, so the top of the page is never covered by two call buttons at once.
+**Why.** Emergency callers do not read to the end, they call from wherever they stopped scrolling (research/03, research/19). The bar appears only after the hero buttons leave the screen, so the top of the page is never covered by two call buttons at once. The one-pill phone header buys room for a real call button next to the language switch on a narrow screen. Since 2026-09-16 the header call button, the six service links (section 4) and the footer number are all at least 44 px tall, easy to tap with a thumb.
 
 **Roro will ask**
 - *Why three languages?* Your customers around Brussels are French, Dutch and expats. Same prices, same promises, three real pages.
@@ -44,7 +44,7 @@ One thing to say at the start of the call: **every price printed on the page is 
 
 ## 4. Services
 
-**What it says.** Six numbered rows: urgent unblocking, sewer and sterput, high pressure cleaning, camera inspection, septic tank emptying, flooded cellar pumping. Each has one plain sentence and a call link.
+**What it says.** Six numbered rows: urgent unblocking, sewer and sterput, high pressure cleaning, camera inspection, septic tank emptying, flooded cellar pumping. Each has one plain sentence and a call link, each link at least 44 px tall since 2026-09-16 (it was 25 px before), easy to tap with a thumb.
 
 **Why.** The heading is "Votre problème est dans cette liste", so the visitor recognises his own case in two seconds (DECISIONS 2026-08-26). No photos in the cards: pretty tiles push the call further down the page (research/09, research/19).
 
@@ -148,7 +148,7 @@ One thing to say at the start of the call: **every price printed on the page is 
 
 **What it says.** Three job photos with captions, then François's review in full, in his own words, then a short block saying there is one review because we only publish real ones, with a WhatsApp button to send the next one.
 
-**Why.** François is real, the review was received 2026-08-27, and it is published under his first name only, with his agreement. There are no stars because he wrote words, not a rating. The three-card grid is built and empty: it comes back automatically when two more real reviews land. No invented reviews, ever (rule 1).
+**Why.** The review is real, received 2026-08-27, in the customer's own words. It is published under the first name François, a name agreed with the reviewer himself on 2026-08-29 (DECISIONS.md), and no last name was ever shown. There are no stars because he wrote words, not a rating. The three-card grid is built and empty: it comes back when two more real reviews land, on Fady's word. No invented reviews, ever (rule 1).
 
 **Roro will ask**
 - *Everyone else has 200 reviews. Can we not add a few?* No. Fake reviews get a business removed from Google, and this page's whole argument is that we are the ones who do not lie.
@@ -183,16 +183,17 @@ One thing to say at the start of the call: **every price printed on the page is 
 
 ## 18. Final call and footer
 
-**What it says.** "Un bouchon n'attend pas", the number in huge type, two buttons, and the hours line. The footer carries the company name, Guldenschaapstraat 6 in Vilvoorde, the company number, e-mail, phone, the VAT note, the photo note, and links to the privacy policy and the general conditions.
+**What it says.** "Un bouchon n'attend pas", the number in huge type, two buttons, and the hours line. The footer carries the company name, Guldenschaapstraat 6 in Vilvoorde, the company number, e-mail, phone, the VAT note, the photo note, and links to the privacy policy and the general conditions. Since 2026-09-18 the French and Dutch footers also link the three problem pages (blocked toilet, blocked pipe, flooded cellar) under "Problèmes fréquents" / "Veelvoorkomende problemen".
 
 **Why.** Address plus company number in the footer is what the scam section promised the visitor he could check. The photo note says plainly which image was reconstructed from your own original: the "before" photo, one image, nothing else.
 
 **Roro will ask**
 - *Why the Vilvoorde address if the van has no base?* Legal seat only. The customer-facing copy is zone-first and never says "based in Vilvoorde" (DECISIONS 2026-08-26).
+- *What's the new footer line about?* Since 18 September the footer also links your three problem pages in French and Dutch, so a visitor or Google can reach them from any page, not just from an ad.
 
 ## 19. Cookie banner
 
-**What it says.** The consent layer is LIVE since 2026-08-27, because the site now carries Google's call measurement for the ads. On the first visit a card asks: measure calls, with your agreement. Two equal buttons, refuse everything and accept everything, and a second layer with separate switches (audience measurement and ads measurement), both off by default. Nothing from Google loads before the visitor accepts, and refusing keeps the visit completely tag-free. A footer link reopens the choice at any time. Since 2026-09-12 the same consent layer also carries Google's website call measurement: it changes one thing and only for a consenting visitor who arrived from an ad click, the phone number shown becomes a Google forwarding number that rings straight on 0480 649 649 (section 1). Everyone else sees the page exactly as before, and nothing from Google still loads before Accept.
+**What it says.** The consent layer is LIVE since 2026-08-27, because the site now carries Google's call measurement for the ads. On the first visit a card asks: measure calls, with your agreement. Two equal buttons, refuse everything and accept everything, and a second layer with separate switches (audience measurement and ads measurement), both off by default. Nothing from Google loads before the visitor accepts, and refusing keeps the visit completely tag-free. A footer link reopens the choice at any time. Since 2026-09-12 the same consent layer also carries Google's website call measurement: it changes one thing and only for a consenting visitor who arrived from an ad click, the phone number shown becomes a Google forwarding number that rings straight on 0480 649 649 (section 1). Everyone else sees the page exactly as before, and nothing from Google still loads before Accept. Since 2026-09-16 the first layer on a phone is a compact 160 px strip at the bottom, not a card: a small mark and the title on one row, one sentence naming us as the controller, "Tout refuser" and "Tout accepter" side by side at equal size, then two text links, "Choisir" and "Tout savoir sur les cookies". The fine print with the controller's details moved to the second layer. It never covers the hero call button any more; before this change the card was tall enough to hide it (research/35). Nothing about what is stored or for how long changed, so a visitor's earlier choice still holds. Desktop keeps its corner card.
 
 **Why.** Belgian law (art. 129 of the 2005 law) and the APD checklist want equal buttons, no cookie wall, and purposes separable in a second layer. Our build is stricter than the minimum: before Accept the page makes zero requests to Google, proven on the wire (research/25 step 10, research/29).
 

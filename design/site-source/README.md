@@ -8,7 +8,15 @@ Files: `template.js` (markup, all three languages), `copy-fr.js` / `copy-nl.js` 
 (the copy, native per language, never literal translations), `styles.css` (the design system,
 inlined into every page), `cgv.js` (general terms pages), `legal.js` (privacy pages),
 `build.js` (assembly), the two `archivo-var-*.woff2` fonts and `caveat-note.woff2`. Images come from
-`assets/prepared/web/img/` (the build fails loudly if one is missing).
+`assets/prepared/web/img/` (the build fails loudly if one is missing). The build depends on nothing
+outside this folder plus `assets/prepared/web/img/` (dependency-audited at the 2026-08-26
+lock-in).
+
+`lastmod.json` (added 2026-09-18) is the sitemap's real memory: for every URL it stores the sha256
+of that page's last shipped HTML and the date that hash was first seen, so `sitemap.xml` carries a
+true per-page lastmod instead of one constant. The build reads it, updates it and writes it back on
+every run; it is generated state, not hand-edited, but it does live in git like the rest of this
+folder.
 
 **Never let `styles.css` start with a byte order mark.** It is inlined into `<style>`, where a
 leading BOM swallows the first rule, which is the main Archivo `@font-face`; the site then falls
@@ -35,8 +43,8 @@ silence. The build refuses both now. To widen the glyph set, re-subset at
 node design/site-source/build.js
 ```
 
-   The placeholder-review tripwire was cleared 2026-08-27 (Paolo's real review ships as the
-   featured card; the invented cards are deleted). The Afrim avatar monogram was cleared
+   The placeholder-review tripwire was cleared 2026-08-27 (the one real customer review ships
+   as the featured card under the agreed first name François; the invented cards are deleted). The Afrim avatar monogram was cleared
    2026-08-28: his portrait ships in the bubble, so a clean build now prints no warning at all.
 
    TAGS ARE THE DEFAULT since the G5 tag round (2026-08-27): the four real ids (public, visible in
@@ -55,14 +63,16 @@ TAGS_OFF=1 node design/site-source/build.js
      Google CSP in `_headers`. On the same build: `ADS_CALL_LABEL` and `ADS_WA_LABEL` (defaults set,
      the two conversion labels from the Ads account); with them every `data-cta` call or WhatsApp
      click also fires a `send_to` conversion.
-   - `ADS_PHONE_LABEL` (default u0RxCNu5nPUcEM_SjsxE, baked 2026-09-12) turns on Google's "Calls from website
-     visits" number swap: Google replaces the displayed `0480 649 649` with a forwarding number for
-     visitors who came from an ad click AND accepted cookies, and counts calls of 60 seconds or
-     more. The conversion action "Calls from website" was created in the Ads account on
-     2026-09-12 and its label is baked in as the default. An empty ADS_PHONE_LABEL, or
-     `TAGS_OFF=1`, removes the feature from the output byte for byte. Two account-side steps go with
-     it: the 60-second threshold and setting `call_click` to SECONDARY so one call is not counted
-     twice. The displayed number string must stay exactly `0480 649 649`; `tel:+32480649649`,
+   - `ADS_PHONE_LABEL` (default u0RxCNu5nPUcEM_SjsxE, baked 2026-09-12) turns on Google's "Calls
+     from website visits" number swap: Google replaces the displayed `0480 649 649` with a
+     forwarding number for visitors who came from an ad click AND accepted cookies. The
+     conversion action "Calls from website" was created in the Ads account on 2026-09-12 and its
+     label is baked in as the default. An empty ADS_PHONE_LABEL, or `TAGS_OFF=1`, removes the
+     feature from the output byte for byte. The call-length threshold and whether `call_click` is
+     primary or secondary are account-side settings owned by `playbook/ads-program.md` section 4,
+     not by this file (both call actions count from 10 seconds since 2026-09-18; `call_click`
+     stays PRIMARY while bidding is Maximize Clicks). The displayed number string must stay
+     exactly `0480 649 649`; `tel:+32480649649`,
      `wa.me/32480649649` and the JSON-LD `telephone` are other formats and are not swapped.
    - `GA4_ID` (default G-S3SQ25WZMK) adds the GA4 property to the SAME consent gate and the SAME
      single gtag.js loader: nothing GA4 loads or configures before Accept either. Either id alone
@@ -79,8 +89,8 @@ cd "$TMPDIR" && unset CLOUDFLARE_API_TOKEN && export WRANGLER_CACHE_DIR="$PWD/.w
 
    (THE project is `prodebouchage24` since 2026-08-27, Fady's go-live pick: it carries the live
    domain prodebouchage24.be AND the review surface, its pages.dev host stays noindexed by the
-   `_headers` placeholders. `pd-review` and the frozen `pro-debouchage-v3` are retired, deletion
-   is a NOW line.)
+   `_headers` placeholders. `pd-review` and the frozen `pro-debouchage-v3` were DELETED on
+   2026-08-28; `prodebouchage24` is the only Pages project left.)
 
 4. Verify ON THE LIVE SITE, https://prodebouchage24.be/fr/ (and /nl/, /en/), which has been the
    review surface since the go-live of 2026-08-27: a deploy is public within seconds, so the

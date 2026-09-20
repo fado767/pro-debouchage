@@ -1,6 +1,6 @@
 ---
 name: orch
-description: Start the day on the Pro Débouchage project (Roro's drain-unblocking business). Use when Fady opens a session on this folder and says "orch", "pro-orch", "run today", "where are we", asks for the morning overview or the day's plan. It reads the small state files, checks them against each other, gives the MINE / RORO'S / A CLOCK'S overview and proposes the day, then waits. Use orch-mid to resume a day already started, and eof to close it.
+description: Start the day on the Pro Débouchage project (Roro's drain-unblocking business). Use when Fady opens a session on this folder and says "orch", "pro-orch", "run today", "where are we", asks for the morning overview or the day's plan. It reads the small state files, checks them against each other, checks the live surfaces read-only, gives the CLAUDE'S / A HUMAN'S / A CLOCK'S overview and proposes the day, then waits. Use orch-mid to resume a day already started, and eof to close it.
 ---
 
 # /orch (until 2026-09-04: /pro-orch)
@@ -9,6 +9,9 @@ description: Start the day on the Pro Débouchage project (Roro's drain-unblocki
 owner files named in `AGENTS.md` section 4. Read them fresh, never recall them. `AGENTS.md` binds over
 this file. Renamed from `pro-orch` on 2026-09-04 (the HQ consistency pass) so every venture folder
 answers to the same three words; the procedure is unchanged.
+Kit version 2026-09-20 re-applied on 2026-09-20 (the HQ sweep): the `DECISIONS.md` tail in step 1,
+the live-surface step 4, the overview headers, the Models bullet, the typed go for money, the last
+"Never" line.
 
 ## Run it, in this order
 
@@ -18,40 +21,54 @@ answers to the same three words; the procedure is unchanged.
    2026-09-04). Rename again if the scope changes.
    Then one line on effort: which level this mode expects from the app's menu, per `../fady.be/kit/model-and-effort-guide.md` (a check-up: low or medium; a build day: high; max only when Fady asks), because a session cannot change its own effort (kit, 2026-09-15).
 1. **Read, in full, the four small files:** `STATE.md`, `NOW.md`, `HANDOFF.md`, and the last entry of
-   `LOG.md`. They are held to byte budgets by rule (`STATE.md` 14 KB, `NOW.md` 8 KB, `HANDOFF.md`
-   4 KB), so reading them whole is cheap. Open a playbook file only when an open item points into it.
+   `LOG.md`; `DECISIONS.md` only its last 10 lines. They are held to byte budgets by rule (`STATE.md`
+   14 KB, `NOW.md` 8 KB, `HANDOFF.md` 4 KB), so reading them whole is cheap. Open a playbook file only when an open item points into it.
    Never open `research/` unless the day's work needs a source.
 2. **One-line sweep.** Do the four files agree with each other (dates, what is open, what the handoff
    says was done)? Clean: say "Sweep clean." and nothing more. Not clean: stop, put the contradiction
    to Fady before anything else, and fix the file on his answer.
    - **On Monday, and after any session that changed an account, a price, a name or a live surface,
      fan out the FACT-SYNC audit alongside this sweep**, in the same batch as the weekly ads check.
-     One READ-ONLY agent cross-checks every `playbook/` file against `STATE.md`, `NOW.md`,
-     `DECISIONS.md` and the live site source and reports contradictions with file and line
-     (`AGENTS.md` section 7). It reports, it never fixes: fold its findings into the day's plan at
-     step 5, then fix them in the session or file them in `NOW.md`. It is read-only and cheap, so it
+     One READ-ONLY agent cross-checks every `playbook/` file, plus the three READMEs that carry
+     facts (`design/site-source/`, `assets/prepared/invoice/`, `design/business-card/`; added
+     2026-09-20), against `STATE.md`, `NOW.md`, `DECISIONS.md` and the live site source and reports
+     contradictions with file and line (`AGENTS.md` section 7). It reports, it never fixes: fold its findings into the day's plan at
+     step 6, then fix them in the session or file them in `NOW.md`. It is read-only and cheap, so it
      never holds up the overview. The sweep covers the live state files, this covers the playbook,
      which nothing else forces anyone to re-read.
 3. **If the handoff says the day already started, stop here and run `/orch-mid` instead.**
-4. **The overview.** ONE numbered list, 1..N continuous, grouped under three bold headers:
-   **MINE** (a session or agent can act on it now) · **RORO'S** (waiting on Roro or Fady's visit) ·
-   **A CLOCK'S** (deliberately waiting on a date or a verdict, for example Google's verification). One
-   or two plain sentences per item. Fady answers by number.
-5. **The proposed plan, with reasons.** Which agents, in what order, what is time-sensitive, what
+4. **Check the live surfaces this venture has** (read-only, no approval needed): the live site
+   answers (its address is in `STATE.md`), read from the Browser pane, no login. Google Ads keeps the
+   WEEKLY rhythm of `playbook/ads-program.md` section 6: this step does not add a daily Ads read
+   (Fady removed the daily glance himself on 2026-09-08, `DECISIONS.md`; corrected 2026-09-20, the
+   sweep's apply agent had made it daily). On the day of the weekly read, a spend above the cap, a
+   stopped campaign or a billing problem is the first line of the overview. Nothing is changed on
+   any surface during the check.
+5. **The overview.** ONE numbered list, 1..N continuous, grouped under three bold headers:
+   **CLAUDE'S** (a session or agent can act on it now) · **A HUMAN'S** (waiting on Fady, on Roro or on
+   someone else, Fady's visit to Roro included) · **A CLOCK'S** (deliberately waiting on a date or a
+   verdict, for example Google's verification). One or two plain sentences per item. Fady answers by
+   number.
+6. **The proposed plan, with reasons.** Which agents, in what order, what is time-sensitive, what
    deliberately waits. Describe each proposed agent's job in plain English (what it does, what Fady
-   gets back), placed right after any question that needs his decision, so ONE reply from him gives
+   gets back, and whether it uses Chrome and for about how long: Fady runs other projects' sessions
+   on the same Chrome connection, so "no Chrome" is said in the widget and again in the line that
+   announces each launch; added 2026-09-20 after he had to ask mid-run), placed right after any question that needs his decision, so ONE reply from him gives
    the go. Never a bare menu. Then WAIT for Fady's go.
-6. **Decisions that are Fady's go in an AskUserQuestion widget**, essentials inside the widget, 2 to 4
+7. **Decisions that are Fady's go in an AskUserQuestion widget**, essentials inside the widget, 2 to 4
    options, recommended option first. He sees the widget, not the prose.
 
 ## While the day runs
-- **Models (Fady, 2026-09-15; the table is `../fady.be/kit/model-and-effort-guide.md`):** every subagent gets the cheapest model that can do its job, named in the Agent call's `model` field: Haiku 4.5 for mechanical work (file scans, listings, byte checks, page reads, extraction), Sonnet 5 for the middle (research with sources, first drafts, code, browser reading, most verifiers), Opus 5 only where judgment carries money or the brand (legal text, the judge of an image against a photo, a review of a live surface, a long build), Fable never as a worker except to rescue a stuck Opus job. Every brief names its acceptance criteria; a verifier runs one rung above the writer; a worker that says it is unsure is retried one rung up. Workers run at low effort unless the brief says otherwise.
+- **Models (Fady, 2026-09-15, reworded 2026-09-20 from Anthropic's guidance for the current models; the table is `../fady.be/kit/model-and-effort-guide.md`):** one agent unless the work truly splits. Every subagent gets the cheapest model that can do its job, named in the Agent call's `model` field: Haiku 4.5 for mechanical work (file scans, listings, byte checks, page reads, extraction), Sonnet 5 for the middle (research with sources, first drafts, code, browser reading), Opus 5 only where judgment carries money or the brand (legal text, the judge of an image against a photo, a review of a live surface, a long build), Fable never as a worker except to rescue a stuck job. Every brief names its acceptance criteria and every worker returns the evidence of what it did (paths, lines, the result re-read). A fresh, stronger reader checks only work that ships: money, the brand, a live surface, legal text. A worker that says it is unsure is retried one rung up. In this folder a register read (KBO, VIES) that Roro will be told about goes to Sonnet or is re-read by the session (`AGENTS.md` section 7).
 - Fan out to subagents on the model the rule above names. Read-only agents may run in parallel; agents that edit
   files run ONE at a time. Before a file agent runs, note which files it will touch; after it closes,
   open those files and confirm the claim matches the disk.
 - Do the work by default: anything without payment, credentials or a decision that is truly Fady's is
-  done, browser included. Access grants and anything touching money or a live surface are planned as
-  Fady's own clicks (agent inventories, Fady clicks, agent verifies read-only).
+  done, browser included. Passwords, access grants and payments are planned as Fady's own clicks
+  (agent inventories, Fady clicks, agent verifies read-only). A money move or a mail to a customer
+  follows `AGENTS.md` section 15 "Permissions and money": Fady TYPES the go, naming the action and the
+  amount. Anything else that touches a live client surface still comes to Fady first (`AGENTS.md`
+  section 10).
 - Browser work follows `AGENTS.md` section 14: take the machine-wide lock first
   (`node .claude/scripts/browser-lock.cjs acquire "Pro Débouchage"`, and stop if it says HELD: another
   project is driving Chrome), open the right Chrome profile by command
@@ -67,3 +84,5 @@ answers to the same three words; the procedure is unchanged.
 - No em dashes in anything new. No git, no `save-to-cloud.cmd`. Nothing edited in `../taxi-business/`.
 - Never propose what a file marks as decided against, dropped or gated, without naming the gate.
 - Never repeat a fact from memory that a file owns: open the owner and read it.
+- Never change the session's own permission mode, and never edit a permission rule or a hook to get
+  past a block. A blocked action is parked in `NOW.md` with the reason and told to Fady; it is retried only after he names the action in his own words, never forced through another route.

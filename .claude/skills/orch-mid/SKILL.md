@@ -22,9 +22,15 @@ description: Resume the Pro Débouchage day in CONTINUATION mode. Use when the d
 2. **Confirm out loud in two lines** what the handoff says the day already did and what is next. If
    `HANDOFF.md` is from an earlier day, or missing, say so plainly and run `/orch` instead:
    continuation without a same-day handoff is guessing.
-3. **Skip** the sweep and the overview. They ran today and would cost tokens and tell Fady nothing new.
-   One exception: if Fady says files were edited since the handoff by something you cannot see the
-   closing report of, run the one-line sweep from `/orch` step 2 anyway and say why.
+3. **Skip** the sweep, the live-surface check and the overview. They ran today and would cost tokens
+   and tell Fady nothing new. Two exceptions, each said in one line: if Fady says files were edited
+   since the handoff by something you cannot see the closing report of, run the one-line sweep from
+   `/orch` step 2 anyway and say why; and where money runs daily (ads live, as here), a spend above
+   the cap that `NOW.md` or the handoff reports is the first line whatever mode we are in. The spend
+   comes from the Ads read the files already hold (the weekly Monday read of
+   `playbook/ads-program.md` section 6, or a read Fady asked for): `/orch-mid` never adds an Ads read
+   of its own. (Kit line, added 2026-09-20; aligned the same day with `/orch` step 4, Fady removed
+   the daily glance on 2026-09-08 and again from `/orch` on 2026-09-20, `DECISIONS.md`.)
 4. Resume from the handoff: pick up the open thread, propose the plan for what is left of the day with
    reasons, explain each proposed agent's job in plain English, and WAIT for Fady's go.
 5. Keep the "While the day runs" and "Never" blocks of `/orch` binding for the rest of the day.
