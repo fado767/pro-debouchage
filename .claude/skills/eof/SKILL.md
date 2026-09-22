@@ -12,7 +12,7 @@ sections 7 (byte budgets, rewrite in place), 8 (logging) and 9 (close it or file
 ## Run it, in this order
 
 1. **The plain-English day summary** to Fady: what changed today, what it means for him, where things
-   stand. Short, scannable, IN BULLET POINTS (Fady 2026-09-01). This is the session's job to give,
+   stand. Short, scannable, IN BULLET POINTS (Fady 2026-09-01). Write it in the closing block of step 8, not here: text written before the tool calls of the steps in between may reach Fady only as a short summary. This is the session's job to give,
    never his to ask for. An eof can happen at any hour, morning included: never write "evening" or
    "tonight" from habit, use the actual time of day.
 2. **File everything.** Walk the day's chat for anything loggable that is not yet in a file: done work
@@ -42,13 +42,9 @@ sections 7 (byte budgets, rewrite in place), 8 (logging) and 9 (close it or file
 7. **Improvements** to the rules or the skills: APPLY them directly, dated, and file them in `LOG.md`,
    when they only change how Claude and the files work internally. Put an improvement to Fady ONLY
    when it changes what HE does, sees or decides (rule changed 2026-09-01 on Fady's word; before that
-   every improvement waited for his yes). A skill that misfired today is fixed today. An improvement that would help every venture, a doubt about a shared rule, or a kit gap is APPENDED as one dated line to this folder's `FOR-HQ.md` (kit 2026-09-22, Fady's pick): the HQ reads every `FOR-HQ.md` on "check the projects" and at the pass and answers there. This session never edits the HQ files, and Fady never carries a note by hand.
-8. **The closing block**, always the last thing said: one line "what was logged and where" (or
-   "Nothing to log this session"), and the reminder that Fady double-clicks `save-to-cloud.cmd`
-   himself if anything on disk changed. Closing reminders are never open items. The very last paragraph is for Fady alone (2026-09-22): three lines at most, only what he must do or decide, or "Nothing for you." He skims everything above it. Then rename the
-   session to `Pro Débouchage | closed | <today>` (`set_session_title`, session "self") and check the
-   browser lock is released (`node .claude/scripts/browser-lock.cjs status`), so a closed session
-   reads as closed in the sidebar and never blocks another project's Chrome work.
+   every improvement waited for his yes). A skill that misfired today is fixed today: correct the wording that misled, and add a new rule only if it would have helped most past sessions, not only today's. An improvement that would help every venture, a doubt about a shared rule, or a kit gap is APPENDED as one dated line to this folder's `FOR-HQ.md` (kit 2026-09-22, Fady's pick): the HQ reads every `FOR-HQ.md` on "check the projects" and at the pass and answers there. This session never edits the HQ files, and Fady never carries a note by hand.
+8. **Rename, then the closing block.** First rename the session to `Pro Débouchage | closed | <today>` (`set_session_title`, session "self") and check the browser lock is released (`node .claude/scripts/browser-lock.cjs status`), so a closed session reads as closed in the sidebar and never blocks another project's Chrome work. Then **the closing block**, always the last thing said, with no tool call after it (text written before a tool call may reach Fady only as a short summary): the day summary of step 1; one line "what was logged and where" (or
+   "Nothing to log this session"). The very last paragraph is for Fady alone (2026-09-22): three lines at most, only what he must do or decide, or "Nothing for you." When anything on disk changed today, one of those lines is the double-click on `save-to-cloud.cmd` (a reminder, never an open item). He skims everything above it.
 
 ## Never
 - No em dashes in anything new. No git, no `save-to-cloud.cmd`. Nothing edited in `../taxi-business/`.

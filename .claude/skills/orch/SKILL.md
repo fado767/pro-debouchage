@@ -19,7 +19,7 @@ the live-surface step 4, the overview headers, the Models bullet, the typed go f
    `Pro Débouchage | orch | <today>` before anything else, so the sidebar entry and every Chrome tab
    group this session creates carry the project's name and never a bare "Orchestration" (Fady,
    2026-09-04). Rename again if the scope changes.
-   Then one line on effort: which level this mode expects from the app's menu, per `../fady.be/kit/model-and-effort-guide.md` (a check-up: low or medium; a build day: high; max only when Fady asks), because a session cannot change its own effort (kit, 2026-09-15).
+   Then one line on effort: which level this mode expects from the app's menu, per `../fady.be/kit/model-and-effort-guide.md` (a check-up: low or medium; a build day: high, one level lower on Opus; max only when Fady asks), because a session cannot change its own effort (kit, 2026-09-15).
 1. **Read, in full, the four small files:** `STATE.md`, `NOW.md`, `HANDOFF.md`, and the last entry of
    `LOG.md`; `DECISIONS.md` only its last 10 lines. They are held to byte budgets by rule (`STATE.md`
    14 KB, `NOW.md` 8 KB, `HANDOFF.md` 4 KB), so reading them whole is cheap. Open a playbook file only when an open item points into it.
@@ -59,7 +59,7 @@ the live-surface step 4, the overview headers, the Models bullet, the typed go f
    options, recommended option first. He sees the widget, not the prose.
 
 ## While the day runs
-- **Models (Fady, 2026-09-15, reworded 2026-09-20 from Anthropic's guidance for the current models; the table is `../fady.be/kit/model-and-effort-guide.md`):** one agent unless the work truly splits. Every subagent gets the cheapest model that can do its job, named in the Agent call's `model` field: Haiku 4.5 for mechanical work (file scans, listings, byte checks, page reads, extraction), Sonnet 5 for the middle (research with sources, first drafts, code, browser reading), Opus 5 only where judgment carries money or the brand (legal text, the judge of an image against a photo, a review of a live surface, a long build), Fable never as a worker except to rescue a stuck job. Every brief names its acceptance criteria and every worker returns the evidence of what it did (paths, lines, the result re-read). A fresh, stronger reader checks only work that ships: money, the brand, a live surface, legal text. A worker that says it is unsure is retried one rung up. In this folder a register read (KBO, VIES) that Roro will be told about goes to Sonnet or is re-read by the session (`AGENTS.md` section 7).
+- **Models (Fady, 2026-09-15, reworded 2026-09-20 from Anthropic's guidance for the current models, tiers only since 2026-09-22; the versions, the prices and the table are `../fady.be/kit/model-and-effort-guide.md`):** one agent unless the work truly splits. Every subagent gets the cheapest model that can do its job, named in the Agent call's `model` field by tier, never by version: Haiku for mechanical work (file scans, listings, byte checks, page reads, extraction), Sonnet for the middle (research with sources, first drafts, code, browser reading), Opus only where judgment carries money or the brand (legal text, the judge of an image against a photo, a review of a live surface, a long build, an audit), Fable never as a worker except to rescue a stuck job. Every brief names its acceptance criteria and a time limit, and every worker returns the evidence of what it did (paths, lines, the result re-read). A fresh, stronger reader checks only work that ships: money, the brand, a live surface, legal text. A worker that says it is unsure is retried one rung up. In this folder a register read (KBO, VIES) that Roro will be told about goes to Sonnet or is re-read by the session (`AGENTS.md` section 7).
 - Fan out to subagents on the model the rule above names. Read-only agents may run in parallel; agents that edit
   files run ONE at a time. Before a file agent runs, note which files it will touch; after it closes,
   open those files and confirm the claim matches the disk.
@@ -76,8 +76,9 @@ the live-surface step 4, the overview headers, the Models bullet, the typed go f
   the account from the page, close your own tabs, release the lock, verify the result and never the
   submission. A sub-agent that drives Chrome gets the acquire and release lines in its brief.
 - Same-session logging (`AGENTS.md` section 8). Close it or file it (section 9).
-- When the context grows long, say so unprompted, rewrite `HANDOFF.md`, and hand over to a fresh
-  session that starts with `/orch-mid`.
+- Keep `HANDOFF.md` current at each big step, so a fresh session can always resume with `/orch-mid`.
+  A long context alone is no reason to stop: the app compacts it by itself. A new task that has nothing
+  to do with the day's work starts better in a fresh session (kit, 2026-09-22).
 - **Close the day yourself when it is done (Fady, 2026-09-22).** When everything planned for the day is done and nothing in this session waits on Fady, run the steps of `/eof` without being asked. Otherwise close on his word. Every close ends with ONE paragraph for Fady alone, three lines at most: what only he must do or decide, or "Nothing for you." He skims everything above it.
 
 ## Never
