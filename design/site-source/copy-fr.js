@@ -234,8 +234,8 @@ module.exports = {
     ['chambre.webp', `Ouverture d'une chambre de visite enterrée dans un jardin.`, 'Sterput bouché, chambre de visite ouverte. Intervention réelle, 2026.'],
     ['job-wc.webp', 'Technicien qui débouche un WC avec un furet Rioned, veste Pro Débouchage.', `WC bouché, débouché au furet Rioned. Intervention réelle, 2026. C'est notre photo d'origine, celle de la série avant, pendant, après plus haut.`],
     ['allee.webp', 'Allée pavée en cours de nettoyage haute pression, la bande claire est la partie nettoyée.', 'Allée pavée, nettoyage haute pression en cours. La bande claire est la partie déjà nettoyée.']],
-  // ONE REAL review (Paolo, received 2026-08-27), published under the first name François by
-  // agreement with him (Fady and Paolo, 2026-08-29); the invented placeholder cards died here, git
+  // ONE REAL review (the reviewer, received 2026-08-27), published under the first name François by
+  // agreement with him (Fady and the reviewer, 2026-08-29); the invented placeholder cards died here, git
   // keeps them. His exact words, apostrophes normalised
   // only. `reviews` stays EMPTY on purpose: it is the PARKED 3-card grid, refilled with real
   // customers' words when two more land (Fady 2026-08-27); while `featured` exists it renders alone.

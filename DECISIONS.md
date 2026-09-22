@@ -237,3 +237,8 @@
 - HOOKS (his word, AGENTS.md 15): `protect-paths.cjs` compares against the real sibling folder instead of the word "taxi-business" (it also blocked our own research/01), and `playbook/jobs-ledger.md` becomes a log owner. Both proven by dry run.
 - RULEBOOK: small cleanup of AGENTS.md now (duplicates and stale bits only), the real diet with a byte budget waits for the HQ pass of 2 October, done once with the kit.
 - THE ADS READ STAYS WEEKLY: AGENTS.md 10 and `/orch-mid` are aligned with `/orch`, which the HQ corrected the same day (Fady removed the daily glance on 2026-09-08). The fact-sync audit now also covers the three READMEs that carry facts (site source, invoice, business card).
+
+## 2026-09-22 The Tuesday check-in picks (Fady by widget and in chat, late morning, next to the taxi session)
+- SITE ROUND: the guarantee seal gets NO padding band under the footer (Fady saw the grey gap on his laptop and rejected it): it FADES OUT when the footer enters the view and comes back when it leaves, on every screen (his pick, phone included), and goes live today. The name of the reviewer is out of every source comment, that build byte-identical.
+- THE SIZE HOOK goes to the HQ as a kit candidate (Fady: "note it to HQ"), built once in the kit, never here alone; it lands here with the kit.
+- TODAY'S WORK, his pick "All of it, Chrome included": the overdue weekly Ads and Search Console read runs as ONE read-only Chrome agent under the lock; the register poll and the site round run without Chrome.

@@ -91,7 +91,7 @@ One thing to say at the start of the call: **every price printed on the page is 
 
 ## 8. The guarantee
 
-**What it says.** "Garantie 1 mois sur le débouchage": if the same pipe blocks again within 30 days, we come back free. A small line adds that this is on top of the customer's legal rights. A spinning seal repeats it, and a small floating seal follows the visitor down the page.
+**What it says.** "Garantie 1 mois sur le débouchage": if the same pipe blocks again within 30 days, we come back free. A small line adds that this is on top of the customer's legal rights. A spinning seal repeats it, and a small floating seal follows the visitor down the page and steps aside once the footer comes into view (since 2026-09-22).
 
 **Why.** One month on the unblocking is the honest market standard, taken from 11 real Belgian guarantee examples (research/16). Longer would be a promise you cannot keep, shorter is worthless. The exclusions live on the signed work order and in the CGV, not in a wall of small print on the page.
 

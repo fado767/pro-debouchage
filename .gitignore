@@ -4,6 +4,7 @@
 /*
 !/.gitignore
 !/save-to-cloud.cmd
+!/FOR-HQ.md
 !/.claude/
 /.claude/*
 !/.claude/skills/

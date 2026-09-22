@@ -621,6 +621,8 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 .guar-float{--cb-lift:0px;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:95;transform:translateY(var(--cb-lift));transition:transform var(--cb-dur) var(--cb-ease),opacity .35s ease}
 .guar-float.guar-bye,.guar-float.guar-away{opacity:0;transform:translateY(calc(var(--cb-lift) + 10px));pointer-events:none}
 
+.guar-float.is-past{opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .2s ease,transform .2s ease}
+
 @media (max-width:999.98px){.cb-on .guar-float{--cb-lift:calc(-1 * var(--bar-h))}}
 @media (min-width:1000px){.guar-float{right:24px;bottom:24px}}
 
@@ -1195,6 +1197,16 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&open)bye()}
 var band=document.querySelector('aside.guar');
 if(band&&'IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(en){
 if(en.isIntersecting&&open)return;w.classList.toggle('guar-away',en.isIntersecting)})},{threshold:0.2}).observe(band)}
+/* Fade near the footer, every screen (Fady, 2026-09-22): a fixed padding hole under the footer
+   looked like a mistake on a laptop, so the seal hides itself instead of the page making room for
+   it. threshold 0 so it reacts as soon as any part of the footer enters the viewport; toggles
+   .is-past unconditionally here, at every width, phone included, per Fady's widget pick "Fade on
+   the phone too, then go live"; styles.css carries the same rule unscoped now, matching this. Fine
+   if it hides mid-open: it just comes back open, so this observer skips the open-state guard the
+   band one above needs. */
+var foot=document.querySelector('.site-footer');
+if(foot&&'IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(en){
+w.classList.toggle('is-past',en.isIntersecting)})},{threshold:0}).observe(foot)}
 })();
 /* the before/after drag slider was replaced on 2026-08-26 by the three-photo story, which needs no
    script at all: no handler here on purpose. */

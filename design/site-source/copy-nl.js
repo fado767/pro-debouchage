@@ -215,8 +215,8 @@ module.exports = {
     ['chambre.webp', 'Het openleggen van een ingegraven controleput in een tuin.', 'Verstopte sterfput, controleput open. Eigen werk, 2026.'],
     ['job-wc.webp', 'Technieker die een wc ontstopt met een Rioned veer, in Pro Débouchage kledij.', 'Verstopte wc, ontstopt met de Rioned veer. Eigen werk, 2026. Dit is onze originele foto, dezelfde als in de reeks voor, tijdens, na hierboven.'],
     ['allee.webp', 'Oprit in klinkers tijdens de hogedrukreiniging, de lichte strook is al gereinigd.', 'Oprit in klinkers, hogedrukreiniging bezig. De lichte strook is al gereinigd.']],
-  // ONE REAL review (Paolo, 2026-08-27, original in French), published under the first name
-  // François by agreement with him (Fady and Paolo, 2026-08-29). A review is a QUOTE: faithfully
+  // ONE REAL review (the reviewer, 2026-08-27, original in French), published under the first name
+  // François by agreement with him (Fady and the reviewer, 2026-08-29). A review is a QUOTE: faithfully
   // translated and MARKED as such (note key), never rewritten; the convert-not-translate rule is
   // for our copy, not for a customer's words. `reviews` = the parked grid, refilled when more land.
   reviews: [],

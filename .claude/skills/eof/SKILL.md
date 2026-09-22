@@ -42,12 +42,10 @@ sections 7 (byte budgets, rewrite in place), 8 (logging) and 9 (close it or file
 7. **Improvements** to the rules or the skills: APPLY them directly, dated, and file them in `LOG.md`,
    when they only change how Claude and the files work internally. Put an improvement to Fady ONLY
    when it changes what HE does, sees or decides (rule changed 2026-09-01 on Fady's word; before that
-   every improvement waited for his yes). A skill that misfired today is fixed today. An improvement
-   that would help every venture is noted as one line for the HQ (`../fady.be/IDEAS.md` is where Fady
-   collects them; this session does not edit the HQ files itself).
+   every improvement waited for his yes). A skill that misfired today is fixed today. An improvement that would help every venture, a doubt about a shared rule, or a kit gap is APPENDED as one dated line to this folder's `FOR-HQ.md` (kit 2026-09-22, Fady's pick): the HQ reads every `FOR-HQ.md` on "check the projects" and at the pass and answers there. This session never edits the HQ files, and Fady never carries a note by hand.
 8. **The closing block**, always the last thing said: one line "what was logged and where" (or
    "Nothing to log this session"), and the reminder that Fady double-clicks `save-to-cloud.cmd`
-   himself if anything on disk changed. Closing reminders are never open items. Then rename the
+   himself if anything on disk changed. Closing reminders are never open items. The very last paragraph is for Fady alone (2026-09-22): three lines at most, only what he must do or decide, or "Nothing for you." He skims everything above it. Then rename the
    session to `Pro Débouchage | closed | <today>` (`set_session_title`, session "self") and check the
    browser lock is released (`node .claude/scripts/browser-lock.cjs status`), so a closed session
    reads as closed in the sidebar and never blocks another project's Chrome work.

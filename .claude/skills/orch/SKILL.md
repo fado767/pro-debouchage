@@ -78,7 +78,7 @@ the live-surface step 4, the overview headers, the Models bullet, the typed go f
 - Same-session logging (`AGENTS.md` section 8). Close it or file it (section 9).
 - When the context grows long, say so unprompted, rewrite `HANDOFF.md`, and hand over to a fresh
   session that starts with `/orch-mid`.
-- Close the day with `/eof`.
+- **Close the day yourself when it is done (Fady, 2026-09-22).** When everything planned for the day is done and nothing in this session waits on Fady, run the steps of `/eof` without being asked. Otherwise close on his word. Every close ends with ONE paragraph for Fady alone, three lines at most: what only he must do or decide, or "Nothing for you." He skims everything above it.
 
 ## Never
 - No em dashes in anything new. No git, no `save-to-cloud.cmd`. Nothing edited in `../taxi-business/`.

@@ -708,7 +708,7 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 .feat-who .name{font-weight:900;color:var(--ink)}
 .feat-meta{color:var(--muted);font-size:.875rem}
 .feat-note{opacity:.85}
-/* Under Paolo's card. Two loose muted sentences used to sit here with a gap between them that read
+/* Under the reviewer's card. Two loose muted sentences used to sit here with a gap between them that read
    as a mistake on a wide screen and fine on a phone (Fady 2026-08-27). They are now ONE object with
    a job: it says why there is a single review, and it gives the visitor the way to send the next
    one. The only secondary CTA on the page, deliberately smaller than "Appeler".
@@ -846,6 +846,12 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
    it once at the final width and animates to that pixel value, then releases it to auto. */
 .guar-float{--cb-lift:0px;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:95;transform:translateY(var(--cb-lift));transition:transform var(--cb-dur) var(--cb-ease),opacity .35s ease}
 .guar-float.guar-bye,.guar-float.guar-away{opacity:0;transform:translateY(calc(var(--cb-lift) + 10px));pointer-events:none}
+/* Fade near the footer, every screen (Fady, 2026-09-22): rejects the padding-hole approach entirely.
+   .is-past is toggled by an IntersectionObserver on .site-footer in template.js, next to the badge's
+   existing open/close script. Started desktop-only; after the fade proved itself on the preview,
+   Fady's widget pick was "Fade on the phone too, then go live", so this rule now runs unscoped and
+   applies at every width, phone included. */
+.guar-float.is-past{opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .2s ease,transform .2s ease}
 /* only where the bar exists; from 1000px it is display:none and the badge keeps its own corner */
 @media (max-width:999.98px){.cb-on .guar-float{--cb-lift:calc(-1 * var(--bar-h))}}
 @media (min-width:1000px){.guar-float{right:24px;bottom:24px}}

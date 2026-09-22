@@ -618,7 +618,7 @@ function docShell(lang, paths, main, title, desc) {
   const c = COPY[lang];
   const { body } = shell(c, lang);
   // ANCHOR EVERY ONE OF THESE ON ITS OWN CLASS, AND CHECK WHAT CAME BACK. Taking the FIRST footer
-  // element in the page gives Paolo's review-card footer, not the site one, because the featured
+  // element in the page gives the reviewer's review-card footer, not the site one, because the featured
   // review card ships a <footer class="feat-who"> above it. The six legal and CGV pages went live
   // on 2026-08-27 carrying a stray review credit where the legal mentions, the enterprise number,
   // the privacy and terms links and the credit line belong; and because the credit line is what
@@ -828,7 +828,7 @@ ${TAG_ON ? `/assets/js/consent.js
 // The rule fires at the edge before Pages, 301, path and query preserved; apex requests never match.
 
 // The placeholder-review tripwire retired 2026-08-27: the invented cards are deleted from the copy
-// files and Paolo's real review ships as `featured` (DECISIONS). `reviews` is the parked grid and
+// files and the reviewer's real review ships as `featured` (DECISIONS). `reviews` is the parked grid and
 // may only ever be refilled with real customers' words, so a non-empty array is no longer a fault.
 // The Afrim-avatar tripwire retired 2026-08-28: his real portrait ships in the bubble, so the
 // monogram and the warning about it are both gone. The generic check stays, because it costs

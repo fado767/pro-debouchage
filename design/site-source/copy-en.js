@@ -176,8 +176,8 @@ module.exports = {
     ['chambre.webp', 'Opening a buried inspection chamber in a garden.', 'Blocked street trap, inspection chamber open. Real job, 2026.'],
     ['job-wc.webp', 'Technician unblocking a toilet with a Rioned drain rod, Pro Débouchage jacket.', "Blocked toilet, cleared with the Rioned rod. Real job, 2026. It's our original photo, the same one you see in the before, during, after set above."],
     ['allee.webp', 'Paved driveway during high-pressure cleaning, the light strip is the part already cleaned.', 'Paved driveway, high-pressure cleaning in progress. The light strip is the part already done.']],
-  // ONE REAL review (Paolo, 2026-08-27, original in French), published under the first name
-  // François by agreement with him (Fady and Paolo, 2026-08-29), faithfully translated and marked
+  // ONE REAL review (the reviewer, 2026-08-27, original in French), published under the first name
+  // François by agreement with him (Fady and the reviewer, 2026-08-29), faithfully translated and marked
   // as such. `reviews` = the parked grid, refilled when more real reviews land.
   reviews: [],
   featured: {

@@ -621,6 +621,8 @@ html[lang="nl-BE"]{--h1-fit:.65;--h1-cap:11.4cqw}
 .guar-float{--cb-lift:0px;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:95;transform:translateY(var(--cb-lift));transition:transform var(--cb-dur) var(--cb-ease),opacity .35s ease}
 .guar-float.guar-bye,.guar-float.guar-away{opacity:0;transform:translateY(calc(var(--cb-lift) + 10px));pointer-events:none}
 
+.guar-float.is-past{opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .2s ease,transform .2s ease}
+
 @media (max-width:999.98px){.cb-on .guar-float{--cb-lift:calc(-1 * var(--bar-h))}}
 @media (min-width:1000px){.guar-float{right:24px;bottom:24px}}
 

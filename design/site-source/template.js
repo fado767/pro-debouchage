@@ -170,7 +170,7 @@ function pageHtml(c, opts = {}) {
 
   const mat = sec('s-paper', c.matK, c.matH, `<p class="lead">${c.matT}</p><div class="tiles tiles-3">${c.mat.map((m, i) => `<figure class="tile rv">${IMG(m[0], m[1], 480, 600, 'loading="lazy" decoding="async"')}<span class="tile-t">${m[2]}</span><figcaption>${m[3]}</figcaption></figure>`).join('')}</div>`);
 
-  // One real review, featured (Fady 2026-08-27). No stars: Paolo wrote words, not a rating, and we
+  // One real review, featured (Fady 2026-08-27). No stars: the reviewer wrote words, not a rating, and we
   // never invent one. The 3-card grid below it is PARKED: refill `reviews` and it returns by itself
   // (data-placeholder dropped: whatever refills it must be real). Order of precedence: featured,
   // then grid, then the honest card.
@@ -306,6 +306,16 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&open)bye()}
 var band=document.querySelector('aside.guar');
 if(band&&'IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(en){
 if(en.isIntersecting&&open)return;w.classList.toggle('guar-away',en.isIntersecting)})},{threshold:0.2}).observe(band)}
+/* Fade near the footer, every screen (Fady, 2026-09-22): a fixed padding hole under the footer
+   looked like a mistake on a laptop, so the seal hides itself instead of the page making room for
+   it. threshold 0 so it reacts as soon as any part of the footer enters the viewport; toggles
+   .is-past unconditionally here, at every width, phone included, per Fady's widget pick "Fade on
+   the phone too, then go live"; styles.css carries the same rule unscoped now, matching this. Fine
+   if it hides mid-open: it just comes back open, so this observer skips the open-state guard the
+   band one above needs. */
+var foot=document.querySelector('.site-footer');
+if(foot&&'IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(en){
+w.classList.toggle('is-past',en.isIntersecting)})},{threshold:0}).observe(foot)}
 })();
 /* the before/after drag slider was replaced on 2026-08-26 by the three-photo story, which needs no
    script at all: no handler here on purpose. */
