@@ -8,11 +8,18 @@
 // section 3 (the close step saves through one named door, only when the checks pass; not a SessionEnd hook,
 // not a Stop hook).
 //
-// Who runs it: the closing step of a skill (a venture's /eof, the HQ's /ooo and /idea), from the folder's
-// root, after the session's last write, and only after list_sessions showed no other running session in this
-// folder (that check is the skill's: this script cannot see sessions). The command is exactly
-//     node .claude/scripts/save-at-close.cjs          (or with --check, to see what it would do)
-// and the kit's deny-git.cjs lets exactly that through (kit 2026-09-23).
+// Who runs it: the closing step of a skill (a venture's /eof, the HQ's /ooo and /idea), after the session's
+// last write, and only after list_sessions showed no other running session in this folder (that check is the
+// skill's: this script cannot see sessions). Whoever writes, saves (Fady, 2026-09-23 evening): a session that
+// wrote into ANOTHER folder (the HQ answering a FOR-HQ line, the pass re-pasting kit text) runs that folder's
+// own copy of this script, from wherever it sits. The command is exactly
+//     node .claude/scripts/save-at-close.cjs                   (or with --check, to see what it would do)
+//     node ../<folder>/.claude/scripts/save-at-close.cjs       (the same door of another folder)
+// and the kit's deny-git.cjs lets exactly those through (kit 2026-09-23: any folder prefix, nothing else).
+// An installed copy (one that sits in <folder>\.claude\scripts\) always saves THAT folder, never the folder it
+// is run from: the app resets a session's working directory after every shell call, so "run it from the
+// folder's root" cannot reach another folder. The kit's own copy under kit/scripts/ has no folder of its own
+// and saves the working directory, which is what the test runner uses with a throwaway folder.
 //
 // It refuses with ONE line "NOT SAVED <reason>" and exit code 1, and runs nothing, when:
 //   - the folder has no .git folder, no git remote named origin, or no save-to-cloud.cmd at its root
@@ -51,7 +58,10 @@ const SAVE_LIMIT_MS = 9 * 60 * 1000;
 const TEST_LIMIT_S = Number(process.env.SAVE_AT_CLOSE_TEST_LIMIT_SECONDS) || 0;
 const saveLimitMs = TEST_LIMIT_S > 0 ? Math.min(SAVE_LIMIT_MS, TEST_LIMIT_S * 1000) : SAVE_LIMIT_MS;
 
-const FOLDER = process.cwd();
+// The folder to save: an installed copy lives in <folder>/.claude/scripts/ and saves that folder; the kit's own
+// copy (kit/scripts/) has no such home and saves the working directory (the test runner relies on this).
+const INSTALLED_IN = /[\\/]\.claude[\\/]scripts$/i.test(__dirname) ? path.resolve(__dirname, '..', '..') : null;
+const FOLDER = INSTALLED_IN || process.cwd();
 const GIT_DIR = path.join(FOLDER, '.git');
 const LOCK = path.join(GIT_DIR, 'index.lock');
 const LOCK_TEXT = '.git\\index.lock exists (git is busy, or a stopped git left it behind); it was not touched and nothing was run';
