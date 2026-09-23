@@ -28,7 +28,7 @@ not rely on that: save the file without BOM.
 drops EVERY RULE AFTER THAT POINT. On 2026-08-27 a rewritten comment left one line of prose outside
 its comment and the FAQ, the sticky call bar, the guarantee badge, the final call and the footer all
 shipped unstyled to the live site while the build printed "site-v1 built". (2) `caveat-note.woff2` is
-Caveat (SIL OFL) SUBSET to the 15 glyphs the handwritten note needs, 8KB instead of 75, so changing
+Caveat (SIL OFL) SUBSET to the 10 glyphs of 'Parfait !' / 'Perfect!' (NOTE_GLYPHS in build.js), about 6 KB instead of 75, so changing
 `baNote` in the copy files to a word with a new letter would fall back to a system script face in
 silence. The build refuses both now. To widen the glyph set, re-subset at
 `fonts.googleapis.com/css2?family=Caveat:wght@600&text=...` and update BOTH lists: `NOTE_GLYPHS` in
@@ -79,9 +79,15 @@ TAGS_OFF=1 node design/site-source/build.js
      turns the whole layer on. With `TAGS_OFF=1` none of this exists in the output and every
      "no cookies" line stays true. The tag was proven on the wire 2026-08-27 (research/25 step 10).
 
-3. Deploy. Two rules from the taxi lessons: `unset CLOUDFLARE_API_TOKEN` first (else wrangler hits
+3. Deploy to preview first, then to live. Two rules from the taxi lessons: `unset CLOUDFLARE_API_TOKEN` first (else wrangler hits
    the wrong account, error code 10000), and run from a folder OUTSIDE the project with
-   `WRANGLER_CACHE_DIR` set, so no `.wrangler/` with personal data lands in the site folder:
+   `WRANGLER_CACHE_DIR` set, so no `.wrangler/` with personal data lands in the site folder. Deploy to a preview branch first:
+
+```bash
+cd "$TMPDIR" && unset CLOUDFLARE_API_TOKEN && export WRANGLER_CACHE_DIR="$PWD/.wrangler-cache" && npx wrangler pages deploy "C:\Users\fadya\Desktop\pro-debouchage\site-v1" --project-name prodebouchage24 --branch preview --commit-dirty=true
+```
+
+   Verify on the pages.dev preview (https://preview.prodebouchage24.pages.dev/fr/ and /nl/, /en/) that the changed strings are live and the layout holds. Only on Fady's word, deploy to the live branch:
 
 ```bash
 cd "$TMPDIR" && unset CLOUDFLARE_API_TOKEN && export WRANGLER_CACHE_DIR="$PWD/.wrangler-cache" && npx wrangler pages deploy "C:\Users\fadya\Desktop\pro-debouchage\site-v1" --project-name prodebouchage24 --branch main --commit-dirty=true

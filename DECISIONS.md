@@ -242,3 +242,9 @@
 - SITE ROUND: the guarantee seal gets NO padding band under the footer (Fady saw the grey gap on his laptop and rejected it): it FADES OUT when the footer enters the view and comes back when it leaves, on every screen (his pick, phone included), and goes live today. The name of the reviewer is out of every source comment, that build byte-identical.
 - THE SIZE HOOK goes to the HQ as a kit candidate (Fady: "note it to HQ"), built once in the kit, never here alone; it lands here with the kit.
 - TODAY'S WORK, his pick "All of it, Chrome included": the overdue weekly Ads and Search Console read runs as ONE read-only Chrome agent under the lock; the register poll and the site round run without Chrome.
+
+## 2026-09-23 The Wednesday picks (Fady by widget, mid-afternoon)
+- ADS DECISIONS ARE CLAUDE'S. Asked for his yes on the second FR ad, Fady answered: "Decide for me, you're driving this, I'm not an ad expert and you should always decide yourself based on data and best up-to-date practices and make up your own decision, now and later." So ad copy, ad structure, keywords, sitelinks and negatives are decided by the session on the data, filed here and told to him, never asked. The daily budget, the bid cap and switching a campaign on stay his typed go (AGENTS.md section 15) until he opens that in his own words.
+- The second FR RSA (assets/prepared/fr-rsa-2-draft-2026-09-14.md) goes in on Saturday 26 Sep AS WRITTEN (checked 23 Sep: 15 headlines at or under 30, 4 descriptions at or under 90, no price numbers, nothing pinned, distinct first words), added next to the live FR ad, never an edit.
+- WEEK 4 HAS NO FIXED HOUR: it runs when Fady launches /orch on Saturday, early or late; he stays at the screen for the identity check.
+- The GBP verdict gets a read-only look today and on Friday 25 Sep (his pick). Today's look hit Google's re-authentication screen for Profile 4: his sign-in comes first.

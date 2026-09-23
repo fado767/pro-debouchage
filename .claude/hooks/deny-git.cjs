@@ -4,6 +4,12 @@
 // deterministic instead of trusting a session to remember it.
 // Shared kit file, identical in every venture folder. Owner of the kit: ../fady.be/kit/README.md.
 // Proven in pro-debouchage since 2026-08-28 (as deny-git.js); kit version 2026-09-04.
+// 2026-09-23, the backup at the close (Fady's pick by widget, his own idea: "when the session closes and
+// everything checks out fine, then the eof with the save would run normally"): ONE named door, SAVE_AT_CLOSE
+// below. The closing step of a skill may run `node .claude/scripts/save-at-close.cjs`; that script runs
+// save-to-cloud.cmd itself, only when the folder's checks pass, and never runs git itself. Everything else
+// is judged exactly as before. Installed by Fady's double-click of kit/hooks/install-save-at-close.cmd (a
+// guard changes by his hand only, never by a session).
 
 const REASON =
   "AGENTS.md (Backup and git): sandboxed tools never run git or the backup scripts, not even read-only. Only Fady does, by double-clicking save-to-cloud.cmd.";
@@ -37,7 +43,20 @@ const SCRIPT_LAUNCHED = new RegExp('(?:^|[^\\w.-])(?:call|start|invoke-item|ii|t
 const SCRIPT_NAMED = new RegExp(NAME, 'i');
 const EXEC_CONTEXT = /(?<![\w.-])(?:cmd(?:\.exe)?|powershell(?:\.exe)?|pwsh(?:\.exe)?|bash(?:\.exe)?|sh|wsl(?:\.exe)?|start-process|saps|invoke-expression|iex|explorer(?:\.exe)?|conhost(?:\.exe)?|wscript|cscript|schtasks|register-scheduledtask|child_process|execsync|execfile|spawn|spawnsync|subprocess|os\.system|popen|shellexecute)(?![\w-])/i;
 
+// Added 2026-09-23: THE ONE NAMED DOOR, the backup at the close (kit/scripts/save-at-close.cjs; its tests:
+// kit/hooks/test-save-at-close.cjs; the research: research/2026-09-23-rules-review.md section 3 in the HQ).
+// One exact command shape is let through before the rules above are asked: `node`, then the script's path
+// (any folder prefix, written with / or \, in double or single quotes when it holds a space), then optionally
+// `--check`, and NOTHING else: no second command word, no ; & | ( ) $ % ` < >, no second line. The same text
+// passes in the Bash tool and in the PowerShell tool. Any other spelling (`& node ...`, `node.exe ...`,
+// `Start-Process node ...`, an extra word) is not the door and is judged by the rules above like any other
+// command. The script itself refuses any argument but --check.
+const DOOR_PATH = '(?:[\\w.:\\\\/~-]*[\\\\/])?\\.claude[\\\\/]scripts[\\\\/]save-at-close\\.cjs';
+const DOOR_QUOTED_PATH = '(?:[\\w.:\\\\/ ~-]*[\\\\/])?\\.claude[\\\\/]scripts[\\\\/]save-at-close\\.cjs';
+const SAVE_AT_CLOSE = new RegExp('^[ \\t]*node[ \\t]+(?:' + DOOR_PATH + '|"' + DOOR_QUOTED_PATH + '"|\'' + DOOR_QUOTED_PATH + '\')(?:[ \\t]+--check)?[ \\t]*(?:\\r?\\n)?$', 'i');
+
 function verdict(command) {
+  if (SAVE_AT_CLOSE.test(command)) return null; // the one named door (2026-09-23), see SAVE_AT_CLOSE above
   let m = command.match(GIT) || command.match(GIT_ANYWHERE);
   if (m) return 'git as a command ("' + m[0].trim().slice(-60) + '")';
   m = command.match(SCRIPT_AT_CMD) || command.match(SCRIPT_LAUNCHED);
@@ -82,4 +101,5 @@ if (require.main === module) {
   });
 } else {
   module.exports = { verdict };
+  module.exports.SAVE_AT_CLOSE = SAVE_AT_CLOSE; // for kit/hooks/test-save-at-close.cjs (2026-09-23)
 }

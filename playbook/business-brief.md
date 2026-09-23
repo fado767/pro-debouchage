@@ -26,7 +26,7 @@
 - Prices the customer sees: NOT listed here. They live in the site source copy files (`design/site-source/copy-fr.js` and nl/en), the one owner per AGENTS section 4, and the built page is what the customer sees. The site shows "From" prices (floors, since the 2026-08-27 walkthrough) and they change only on Roro's word. Fosse septique stays deliberately uncarded (VAT 21 percent by default, accountant to confirm).
 
 ## 3. The people
-- **Roro** = Robert Chamhi, gérant (ID name, Tally 2026-08-23), personal e-mail robert_chamhi@live.be (domain holder contact), mobile 0480 649 649. FR and EN fluent, AR native, takes the calls and briefs Afrim. Dutch calls with his wife's help.
+- **Roro** = Robert Chamhi, gérant (ID name, Tally 2026-08-23), personal e-mail robert_chamhi@live.be (domain holder contact), mobile 0480 649 649. FR and EN fluent, AR native, takes the calls and briefs Afrim. Who takes Dutch calls back is still open with Roro (NOW.md; his wife has good Dutch).
 - **Afrim**, technician (spelling corrected by Roro at the walkthrough call 2026-08-27; every earlier file wrote "Afrem"). FR working level, DE better, EN basic. First name and photo on the page: YES (Roro, 2026-08-23); the photo was delivered 2026-08-28 and his real unretouched face has been the bubble avatar since 2026-08-29.
 - **Roro's wife**, administration. FR fluent, NL good. DOES the invoices (Word and Peppol, call 2026-08-25); candidate for review follow-up and calendar.
 - **Fady**, the agency. Roro is his cousin (Fady, 2026-08-23), treated as family: the work is free until real clients come, then a retainer. Talks to Roro in English or Arabic, WhatsApp.
