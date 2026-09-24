@@ -1,6 +1,6 @@
 ---
 name: eof
-description: Close the day on the Pro Débouchage project. Use when Fady says "eof", "pro-eof", "close the day", "we are done for today", or leaves mid-day and wants a clean close. It gives the plain-English day summary, files everything that is not filed, rewrites HANDOFF.md, reports file sizes and applies rule improvements. Use orch to start a day and orch-mid to resume one.
+description: Close the day on the Pro Débouchage project. Use when Fady says "eof", "pro-eof", "close the day", "we are done for today", or leaves mid-day and wants a clean close. It gives the plain-English day summary, files everything that is not filed, rewrites HANDOFF.md, reports file sizes, applies rule improvements and saves the folder to GitHub through save-at-close.cjs when its checks pass. Use orch to start a day and orch-mid to resume one.
 ---
 
 # /eof (until 2026-09-04: /pro-eof)
@@ -43,11 +43,15 @@ sections 7 (byte budgets, rewrite in place), 8 (logging) and 9 (close it or file
    when they only change how Claude and the files work internally. Put an improvement to Fady ONLY
    when it changes what HE does, sees or decides (rule changed 2026-09-01 on Fady's word; before that
    every improvement waited for his yes). A skill that misfired today is fixed today: correct the wording that misled, and add a new rule only if it would have helped most past sessions, not only today's. An improvement that would help every venture, a doubt about a shared rule, or a kit gap is APPENDED as one dated line to this folder's `FOR-HQ.md` (kit 2026-09-22, Fady's pick): the HQ reads every `FOR-HQ.md` on "check the projects" and at the pass and answers there. This session never edits the HQ files, and Fady never carries a note by hand.
-8. **Rename, then the closing block.** First rename the session to `Pro Débouchage | closed | <today>` (`set_session_title`, session "self") and check the browser lock is released (`node .claude/scripts/browser-lock.cjs status`), so a closed session reads as closed in the sidebar and never blocks another project's Chrome work. Then **the closing block**, always the last thing said, with no tool call after it (text written before a tool call may reach Fady only as a short summary): the day summary of step 1; one line "what was logged and where" (or
-   "Nothing to log this session"). The very last paragraph is for Fady alone (2026-09-22): three lines at most, only what he must do or decide, or "Nothing for you." When anything on disk changed today, one of those lines is the double-click on `save-to-cloud.cmd` (a reminder, never an open item). He skims everything above it.
+8. **Rename, save, then the closing block** (the kit's step 8 of 2026-09-23, taken word for word on 2026-09-24 after a close had asked Fady for a double-click the door had already replaced). First rename the session to `Pro Débouchage | closed | <today>` (`set_session_title`, session "self") and make sure the browser lock is released (`node .claude/scripts/browser-lock.cjs status`), so a closed session reads as closed in the sidebar and never blocks another project's Chrome work.
+   Then **the save at the close**, after the last write of this close and never earlier.
+   - Call `list_sessions` (the app's session tool; it never lists this session itself). When any row has this folder as its `cwd` and `isRunning: true`, another session works here: skip the save, and the closing block says "not saved: another session works in this folder".
+   - Otherwise run `node .claude/scripts/save-at-close.cjs` from this folder's root: exactly that command and nothing else in it (the one door the no-git hook names), in the foreground, with the longest shell timeout (600000 ms). It checks the folder itself (`kit/verify.cjs` in the HQ, the git lock, the remote), runs `save-to-cloud.cmd` only when all is clean, and answers in ONE line: `SAVED ...`, `UP TO DATE ...` or `NOT SAVED <reason>`. A missing script, an error or any other answer counts as NOT SAVED. Never run `save-to-cloud.cmd` or git another way, and never retry or work around a NOT SAVED.
+
+   Then **the closing block**, always the last thing said, with no tool call after it (text written before a tool call may reach Fady only as a short summary): the day summary of step 1; the size line of step 3 and the fact-sync line of step 4; one line "what was logged and where" (or "Nothing to log this session"); the save's one line as it came. The very last paragraph is for Fady alone (2026-09-22): three lines at most, only what he must do or decide, or "Nothing for you." It says in a few words that the folder is saved when the line said SAVED or UP TO DATE; when it said NOT SAVED, or the save was skipped, one of those lines asks for his double-click on `save-to-cloud.cmd` and says why in a few words (a reminder, never an open item). He skims everything above it.
 
 ## Never
-- No em dashes in anything new. No git, no `save-to-cloud.cmd`. Nothing edited in `../taxi-business/`.
+- No em dashes in anything new. No git, no `save-to-cloud.cmd` by hand; the backup's one door is step 8. Nothing edited in `../taxi-business/`.
 - Never rewrite `LOG.md` or `DECISIONS.md` history; append only.
 - No money moves, no ad changes, no supplier orders, no customer mails from a close. (Kit line, added
   2026-09-20.)

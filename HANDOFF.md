@@ -1,38 +1,35 @@
 # HANDOFF.md
 *Written by the last session for the next one. Overwritten at every close. Budget 4 KB (`wc -c`).*
 
-**Written Wednesday 2026-09-23, about 16:10, at the close of the `/orch` session (15:00 to 16:10).
-The day is CLOSED: no agent is running, the browser lock is FREE, nothing is half-applied
-anywhere. A new day: `/orch`. LOG and DECISIONS of 2026-09-23 are the record.**
+**Written Thursday 2026-09-24, about 13:55, at the close of a short `/orch` session (13:44 to
+13:55). The day is CLOSED: no agent is running, the browser lock is FREE, nothing is half-applied
+anywhere. A new day: `/orch`. LOG of 2026-09-24 is the record; no decision today.**
 
 ## Where things stand
-- GBP VERDICT: pending. Fady signed in again on Profile 4 himself and read the dashboard at 16:00:
-  "Google is je verificatie aan het verwerken. Dit duurt maximaal 5 dagen." The agent's earlier
-  look had stopped at Google's "Verify that it's you" screen (a human sign-in, correctly not
-  touched). Next read-only look Friday 25 Sep (Chrome, Profile 4, Sonnet, 5 to 10 minutes; if the
-  sign-in screen returns, Fady signs in first). Verdict due by about 27 Sep. A pass: website,
-  hours, description, photos, hi@fady.be as Manager (Fady's click), the location asset on
-  Saturday, then LSA. A fail: the reason word for word before any re-shoot.
-- ADS: Fady handed every ad decision to Claude today (copy, structure, keywords, sitelinks,
-  negatives: decide on the data, file it, tell him; DECISIONS 2026-09-23). The daily budget, the
-  bid cap and switching a campaign on stay his typed go (AGENTS.md 15). The second FR RSA is
-  DECIDED as written (assets/prepared/fr-rsa-2-draft-2026-09-14.md, checked today: 15 headlines,
-  4 descriptions, no prices, nothing pinned); it goes in on Saturday, added, never an edit.
-- FACT-SYNC: 8 drifts found and fixed today (LOG). The playbook and the three READMEs agree with
-  STATE, NOW and DECISIONS as of now. Nothing on a live surface changed after the audit.
+- SATURDAY 26 SEP, WEEK 4: THE BRIEF IS READY at `assets/prepared/week4-brief-2026-09-26.md`
+  (written 24 Sep by a Sonnet agent, checked by the session). Saturday's `/orch` does: the sweep,
+  the site check, then get Fady's "ready" (he stays at the screen for the identity check), then
+  launch ONE Chrome agent on Sonnet with that file as its brief, under the lock, hi@fady.be. The
+  agent reads first (research/49), signals "main", adds the FR RSA, swaps the zone sitelinks,
+  reports with evidence. After the read the SESSION decides the cap (Fady's typed go with the
+  amount, DECISIONS entry), NL's own campaign or not, Cave inondée, candidate negatives; files
+  NOW.md ADS line, LOG, ads-program.md 6. If the GBP verdict is a pass by then, the same sitting
+  adds the location asset (not in the brief: add it as a fresh block or a second agent).
+- GBP VERDICT: pending. Fady read the dashboard himself on 23 Sep at 16:00: "Google is je
+  verificatie aan het verwerken. Dit duurt maximaal 5 dagen." Next read-only look Friday 25 Sep
+  (Chrome, Profile 4, Sonnet, 5 to 10 minutes; if Google's sign-in screen returns, Fady signs in
+  first). Verdict due by about 27 Sep. A pass: website, hours, description, photos, hi@fady.be as
+  Manager (Fady's click), the location asset, then LSA. A fail: the reason word for word before
+  any re-shoot.
+- ADS: unchanged since 22 Sep (30 a day, Maximize Clicks 6.00 cap, eight groups). Ad decisions
+  are Claude's since 23 Sep; budget, cap and switching on are Fady's typed go.
 - SITE: unchanged since the seal fade of 22 Sep, all URLs 200 today.
-- REGISTER: VIES INVALID, KBO unchanged; next poll and next weekly Ads and Search Console read
+- REGISTER: VIES INVALID, KBO unchanged; next poll and the weekly Ads and Search Console read
   Mon 28 Sep. The .com expires 7 Oct.
-- Backup: after today's edits (STATE, NOW, HANDOFF, LOG, DECISIONS, FOR-HQ.md, four playbook
-  files, the site README). One double-click.
-
-## Saturday 26 Sep, week 4 (ONE Chrome agent under the lock, Fady at the screen)
-No fixed hour: it runs when Fady launches `/orch` that day. The agenda is the week-4 line of
-NOW.md, items 1 to 7. The cap decision needs numbers from 18 to 25 Sep and, if it moves, Fady's
-typed go with the amount. The new FR ad fires the identity check: get his "ready" before the
-agent starts. Put the lock acquire line at the START of every block of the brief (a timer let the
-lock go 56 minutes on 22 Sep). If the GBP verdict is a pass by then, the same sitting adds the
-location asset.
+- BACKUP NOW RUNS AT THE CLOSE (2026-09-24, about 14:10): `/eof` step 8 took the kit's
+  save-at-close door, AGENTS.md sections 7 and 13 carry the exception, `/orch` step 1 now reads the
+  new lines of FOR-HQ.md (the HQ's instruction of 23 Sep had gone unread). The closing block says
+  SAVED, UP TO DATE or NOT SAVED; Fady's double-click is the fallback for a NOT SAVED only.
 
 ## Waiting on whom
 **Fady:** with Roro the daily WhatsApp, the back-fill since 29 Aug, who calls Dutch speakers back
@@ -42,5 +39,5 @@ accountant questions; Infomaniak address; business card; PD-12 media picks after
 **Clocks:** Fri 25 Sep the GBP read; Sat 26 Sep week 4; by 27 Sep the GBP verdict; Mon 28 Sep the
 VIES/KBO poll and the weekly read; 2 Oct the HQ pass; 7 Oct the .com expires; around 23 Oct the
 promo grant; 15 Nov the registry watch starts.
-**For the HQ:** FOR-HQ.md carries one new line (two connected Chrome instances while the lock read
-FREE); the HQ answers under each line.
+**For the HQ:** FOR-HQ.md unchanged today (the size-hook candidate and the two-Chrome-instances
+line wait for the pass).

@@ -22,7 +22,7 @@ the live-surface step 4, the overview headers, the Models bullet, the typed go f
    Then one line on effort: which level this mode expects from the app's menu, per `../fady.be/kit/model-and-effort-guide.md` (a check-up: low or medium; a build day: high, one level lower on Opus; max only when Fady asks), because a session cannot change its own effort (kit, 2026-09-15).
 1. **Read, in full, the four small files:** `STATE.md`, `NOW.md`, `HANDOFF.md`, and the last entry of
    `LOG.md`; `DECISIONS.md` only its last 10 lines. They are held to byte budgets by rule (`STATE.md`
-   14 KB, `NOW.md` 8 KB, `HANDOFF.md` 4 KB), so reading them whole is cheap. Open a playbook file only when an open item points into it.
+   14 KB, `NOW.md` 8 KB, `HANDOFF.md` 4 KB), so reading them whole is cheap. Then `FOR-HQ.md`, only the lines dated after the last `LOG.md` entry: the HQ answers there and may leave an instruction for the next session here (added 2026-09-24: an HQ line of 23 Sep asked this folder to take the kit's save-at-close door before anything else; nobody read it and the close asked Fady for a backup the door had replaced). Open a playbook file only when an open item points into it.
    Never open `research/` unless the day's work needs a source.
 2. **One-line sweep.** Do the four files agree with each other (dates, what is open, what the handoff
    says was done)? Clean: say "Sweep clean." and nothing more. Not clean: stop, put the contradiction
@@ -82,7 +82,7 @@ the live-surface step 4, the overview headers, the Models bullet, the typed go f
 - **Close the day yourself when it is done (Fady, 2026-09-22).** When everything planned for the day is done and nothing in this session waits on Fady, run the steps of `/eof` without being asked. Otherwise close on his word. Every close ends with ONE paragraph for Fady alone, three lines at most: what only he must do or decide, or "Nothing for you." He skims everything above it.
 
 ## Never
-- No em dashes in anything new. No git, no `save-to-cloud.cmd`. Nothing edited in `../taxi-business/`.
+- No em dashes in anything new. No git, no `save-to-cloud.cmd` by hand; the backup's one door is `/eof` step 8. Nothing edited in `../taxi-business/`.
 - Never propose what a file marks as decided against, dropped or gated, without naming the gate.
 - Never repeat a fact from memory that a file owns: open the owner and read it.
 - Never change the session's own permission mode, and never edit a permission rule or a hook to get
