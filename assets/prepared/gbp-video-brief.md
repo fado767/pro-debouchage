@@ -1,28 +1,33 @@
-<!-- For Claude, not for Roro: Roro shoots this video himself (Fady call 2026-09-02). Fady sends the
-message below as-is on WhatsApp, now; there is no address prerequisite, Roro enters the address. -->
+# GBP verification video, v3, 2026-09-25
 
-Hi Roro, Google refused the first video because it did not show the area around the business. Here is how to do the new one.
+Two videos failed. Both times Google said the same thing: "No view of surrounding area. Show street signs, neighbouring businesses or recognisable landmarks." The 22 Sep video actually had all of that in it. The fix is not new content. It is order and hold time: show the street first, hold it longer, keep it readable.
 
-1. Tell Fady when you start, so he can approve the login prompt or give you a code.
-2. On your phone, log in as info@prodebouchage24.be.
-3. Open the Google Business Profile app. If it bugs like last time, open business.google.com in Chrome, it works the same.
-4. If Google asks for the postal address, type the depot: Rue Theophile de Baisieux 225, 1020 Bruxelles. It stays hidden from customers. Never the Vilvoorde address.
-5. Choose Video.
-6. Film inside the app, never a file you already have.
-7. One take, no stop, at least 30 seconds.
-8. Start with the street sign and the house number, then turn slowly and show the buildings around you.
-9. Show Pro Debouchage printed on a card, an invoice or the van.
-10. Open the van and show the Rioned machines and the tools.
-11. At the end say out loud: "This is Pro Debouchage."
-12. Send it from the app. No cutting, no editing.
+## Before you press record
 
-If the app offers a live video call instead, that is fine too, same things to show and an agent guides you.
+- Film in daylight.
+- Phone signed in as info@prodebouchage24.be.
+- If asked for the address, type it with an S: Rue Theophile De Baisieux 225, 1020 Bruxelles.
+- Stand outside on the pavement. Van parked in front of the depot door.
+- One take, about 90 seconds, no cuts, no stops.
 
-Thanks!
+## The shots, in order
 
----
+1. Street name sign, held still and close, 5 seconds.
+2. House number 225, held still and close, 5 seconds.
+3. Say the street and number out loud once, in French.
+4. Slow pan to the neighbour's sign and shopfront, readable.
+5. Wide shot of the street, a second house number in frame if you can see one.
+6. Walk to the van, keep the door number 225 in frame as you start walking.
+7. Van wide shot, then close on the branding and phone number, 4 seconds.
+8. Business card held steady, logo and enterprise number readable, 4 seconds.
+9. Open the van, show the machine, switch it on.
+10. Back to the depot door, van still in frame if you can get the angle.
+11. Step inside.
+12. Show one branded item (never an ID or personal paper).
+13. Stop recording.
 
-For Fady (not part of the message):
-- Watch the agency devices for the Google sign-in prompt when Roro logs in as info@; 2SV is agency-held and 10 backup codes exist.
-- Nothing shows on submit, so silence is not a failure.
-- The verdict appears in the Business Profile dashboard in Chrome Profile 4, up to 5 days after he submits.
+## After
+
+- Nothing shows on screen when you submit. That is normal, not a fail.
+- The verdict shows in the dashboard after about 5 working days.
+- If this one fails too, we open a support ticket. No fourth blind video.

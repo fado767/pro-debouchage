@@ -248,3 +248,13 @@
 - The second FR RSA (assets/prepared/fr-rsa-2-draft-2026-09-14.md) goes in on Saturday 26 Sep AS WRITTEN (checked 23 Sep: 15 headlines at or under 30, 4 descriptions at or under 90, no price numbers, nothing pinned, distinct first words), added next to the live FR ad, never an edit.
 - WEEK 4 HAS NO FIXED HOUR: it runs when Fady launches /orch on Saturday, early or late; he stays at the screen for the identity check.
 - The GBP verdict gets a read-only look today and on Friday 25 Sep (his pick). Today's look hit Google's re-authentication screen for Profile 4: his sign-in comes first.
+
+## 2026-09-25 The client-count rule applied here (Fady's pick in the HQ, 2026-09-24)
+- Any instrument that asks Roro to count or log anything is dropped; the agency measures what it can see (Ads, the site, the Business Profile's own counts) and asks him one general question a month, in conversation, never filed.
+- His words: "it's annoying to track everything at the end of a long day."
+- Dropped: the daily WhatsApp report, the one-time back-fill of jobs since 29 Aug. Stays: the jobs ledger as a record of what he mentions on his own, and the WHO CALLS DUTCH SPEAKERS BACK question, which is not a count.
+
+## 2026-09-25 The Business Profile video, round three (Claude's route on research/50, Fady's pick on who and when)
+- The 22 Sep video failed with the same words as the 28 Aug one; the Verify page offers only a new video, and the S spelling was typed, so the address is not the cause. Route: ONE more video to the v3 shot list (assets/prepared/gbp-video-brief.md): outdoors first, street sign and number 225 held 5 seconds each, the neighbour readable, a wide street shot, the van in one frame with the door, about 90 seconds, daylight.
+- A third fail goes to a support ticket through Contact us on business.google.com/support, never a fourth blind video (the live video call is not user-selectable and Belgium coverage is not found).
+- Fady's pick by widget: he shoots it himself with Roro at the depot this week (the week of 25 Sep).
