@@ -98,11 +98,13 @@ cd "$TMPDIR" && unset CLOUDFLARE_API_TOKEN && export WRANGLER_CACHE_DIR="$PWD/.w
    `_headers` placeholders. `pd-review` and the frozen `pro-debouchage-v3` were DELETED on
    2026-08-28; `prodebouchage24` is the only Pages project left.)
 
-4. Verify ON THE LIVE SITE, https://prodebouchage24.be/fr/ (and /nl/, /en/), which has been the
-   review surface since the go-live of 2026-08-27: a deploy is public within seconds, so the
+4. Verify on the pages.dev PREVIEW, https://preview.prodebouchage24.pages.dev/fr/ (and /nl/, /en/),
+   which is the only review surface (AGENTS.md section 10): a deploy is public within seconds, so the
    deployed page IS the page. The retired `pd-review` host this step used to name is dead; never
    verify against it. Check the changed strings are live and the layout holds. A round is done only
-   when deployed AND verified there (AGENTS.md section 10). The browser holds the HTML, so force a
+   when deployed AND verified there (AGENTS.md section 10). After Fady's word and the live deploy,
+   re-check the same strings on the live domain, https://prodebouchage24.be/fr/ (and /nl/, /en/).
+   The browser holds the HTML, so force a
    cache-bypassing reload before measuring, or you will measure the PREVIOUS round (2026-08-27).
    The preview pane cannot see motion (hidden documents freeze animations and starve
    IntersectionObserver), so verify geometry by DOM measurement and leave motion to Fady's eyes.

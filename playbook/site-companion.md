@@ -46,7 +46,7 @@ One thing to say at the start of the call: **every price printed on the page is 
 
 **What it says.** Six numbered rows: urgent unblocking, sewer and sterput, high pressure cleaning, camera inspection, septic tank emptying, flooded cellar pumping. Each has one plain sentence and a call link, each link at least 44 px tall since 2026-09-16 (it was 25 px before), easy to tap with a thumb.
 
-**Why.** The heading is "Votre problème est dans cette liste", so the visitor recognises his own case in two seconds (DECISIONS 2026-08-26). No photos in the cards: pretty tiles push the call further down the page (research/09, research/19).
+**Why.** The heading is "Votre problème est probablement là-dedans.", so the visitor recognises his own case in two seconds (DECISIONS 2026-08-26). No photos in the cards: pretty tiles push the call further down the page (research/09, research/19).
 
 **Roro will ask**
 - *Why is the order like this?* Most demanded first, per the competitor scan in research/07.
@@ -183,7 +183,7 @@ One thing to say at the start of the call: **every price printed on the page is 
 
 ## 18. Final call and footer
 
-**What it says.** "Un bouchon n'attend pas", the number in huge type, two buttons, and the hours line. The footer carries the company name, Guldenschaapstraat 6 in Vilvoorde, the company number, e-mail, phone, the VAT note, the photo note, and links to the privacy policy and the general conditions. Since 2026-09-18 the French and Dutch footers also link the three problem pages (blocked toilet, blocked pipe, flooded cellar) under "Problèmes fréquents" / "Veelvoorkomende problemen".
+**What it says.** "Un bouchon, ça n'attend pas.", the number in huge type, two buttons, and the hours line. The footer carries the company name, Guldenschaapstraat 6 in Vilvoorde, the company number, e-mail, phone, the VAT note, the photo note, and links to the privacy policy and the general conditions. Since 2026-09-18 the French and Dutch footers also link the three problem pages (blocked toilet, blocked pipe, flooded cellar) under "Problèmes fréquents" / "Veelvoorkomende problemen".
 
 **Why.** Address plus company number in the footer is what the scam section promised the visitor he could check. The photo note says plainly which image was reconstructed from your own original: the "before" photo, one image, nothing else.
 
