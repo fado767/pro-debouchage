@@ -1,9 +1,10 @@
 # HANDOFF.md
 *Written by the last session for the next one. Overwritten at every close. Budget 4 KB (`wc -c`).*
 
-**Written Sunday 2026-09-27, about 13:30, at the close of an `/orch` session (11:34 to about 13:30).
-The day is CLOSED: no agent is running, the browser lock is FREE, nothing is half-applied anywhere.
-Next: `/orch` (a new day). LOG of 2026-09-27 is the record; one DECISIONS entry today.**
+**Written Sunday 2026-09-27, about 15:30, at the second close of an `/orch` session (11:34 to about
+13:30, reopened about 14:10 on Fady's Brussels question). The day is CLOSED: no agent of this folder
+is running, this folder holds no browser lock, nothing is half-applied anywhere. Next: `/orch` (a new
+day). LOG of 2026-09-27 has two entries; two DECISIONS entries today.**
 
 ## Where things stand
 - WEEK 4 IS DONE, one day late: the read is research/49, the independent read-back research/51.
@@ -22,6 +23,11 @@ Next: `/orch` (a new day). LOG of 2026-09-27 is the record; one DECISIONS entry 
 - MONDAY 28 SEP: the VIES/KBO poll and the Search Console read. This week's Ads read IS the week-4
   read, no second one. The fact-sync ran today after the edits (13 sentences fixed in place);
   Monday needs one only if Monday changes a fact.
+- BRUSSELS (Fady's question, 27 Sep): researched on data (research/52 public facts, research/53
+  Google's numbers). Demand is real (about 2,790 searches a month on our 25 keywords, 84 percent
+  French), clicks cost more, nothing proves jobs. His pick: ASK RORO FIRST (van Euro 6, Brussels jobs
+  with the 75 EUR parking card); sheet assets/prepared/roro-brussels-questions-2026-09-27.md. Two
+  yeses lead to a test pitch. The ads and the exclusion stay as they are (DECISIONS 2026-09-27).
 - GBP: the third video is NOT shot yet (Fady, 27 Sep). Route and shot list unchanged
   (assets/prepared/gbp-video-brief.md).
 - SITE: unchanged, ten pages and the sitemap 200 today.
@@ -31,7 +37,7 @@ Next: `/orch` (a new day). LOG of 2026-09-27 is the record; one DECISIONS entry 
 
 ## Waiting on whom
 **Fady:** the third GBP video with Roro at the depot; with Roro WHO CALLS DUTCH SPEAKERS BACK
-(pressing: Dutch is 74 percent of the spend), the credit-note pack, the accountant questions;
+(pressing: Dutch is 74 percent of the spend) and the two Brussels questions, the credit-note pack, the accountant questions;
 Infomaniak address; business card; PD-12 media picks after the HQ pass.
 **Roro:** the KBO commercial name via the accountant.
 **Clocks:** Mon 28 Sep the poll and Search Console; 1 Oct the next Ads charge (or at 400.00);
