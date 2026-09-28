@@ -2,12 +2,13 @@
 
 *Written for Fady to call back a Dutch-speaking woman who phoned Pro Débouchage. Roro does not
 speak Dutch and told her a colleague would call. Prices come from `design/site-source/copy-nl.js`,
-the owner file, nothing invented. Keep this file, reuse it for the next NL call.*
+the owner file, nothing invented. Keep this file: since 2026-09-28 Roro takes Dutch calls himself,
+in English, so this script now stays for a call-back by Fady, not for Roro.*
 
 ## Before you dial
 - Today is a WEEKDAY. Between 7 and 18 hours there is NO surcharge. After 18 hours it is +50%.
 - Say the price on the phone. That price is binding and goes on the invoice. That is the promise the site makes.
-- If she is in Brussels city, we do not go. Everything else around Brussels we do, all four provinces, from Aalst to Leuven and from Mechelen to Nijvel. Kontich included. The site was widened to say so on 2026-09-10.
+- Brussels is in our zone too now, all 19 communes, since 28 September. Everything else around Brussels we do too, from Aalst to Leuven and from Mechelen to Nijvel. Kontich included.
 - Last question of the call is the important one for us: how did she find us.
 
 ## Prices, spoken out loud
@@ -128,8 +129,8 @@ VAT included. Travel and the first hour are included. Camera inspection is inclu
 > Dat weet ik niet zeker, ik bel u daarvoor direct terug.
 *I am not sure about that, I will call you right back about it.*
 
-> Wij werken overal rond Brussel, aan beide kanten van de taalgrens, van Aalst tot Leuven en van Mechelen tot Nijvel. Alleen Brussel-stad doen wij niet.
-*We work all around Brussels, on both sides of the language border, from Aalst to Leuven and from Mechelen to Nijvel. Only Brussels city we do not do.*
+> Wij komen ook naar Brussel, alle 19 gemeenten. En helemaal rond Brussel werken we ook, langs beide kanten van de taalgrens, van Aalst tot Leuven en van Mechelen tot Nijvel.
+*We also come to Brussels, all 19 communes. And all around Brussels too, on both sides of the language border, from Aalst to Leuven and from Mechelen to Nijvel.*
 
 > Wij zijn 24 uur op 24 bereikbaar, ook in het weekend.
 *We are reachable 24 hours a day, weekends too.*

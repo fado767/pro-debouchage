@@ -1,3 +1,5 @@
+BUILT AND ON: running since 2026-09-28 15:13, complete since 16:44. This file is the build plan; what was built is research/62 and playbook/ads-program.md section 2. Sections 6 and 7 describe the page and the open points BEFORE the Brussels wording went live at 13:31; the van is Euro 6.
+
 Reviewed 2026-09-28 by a stronger reader, 15 fixes applied the same day; verdict before fixes: ready after fixes.
 
 # Brussels campaign, full draft, 2026-09-28
@@ -347,7 +349,7 @@ Read as a person in Brussels would, on /fr/ and on all three per-problem variant
 
 1. **The page contradiction (section 6) is now gate (c) in the build checklist (section 8):** the four landing pages must no longer say Brussels is out, the site rebuilt and deployed, and every ad claim re-read against the live page (ads-program section 5), before this campaign can safely go live. This is separate from and in addition to the van question. Options this draft does not choose between: update `zoneT`, the FAQ answer and the `towns` chips for the four pages this campaign uses (a site change, its own review round per AGENTS.md section 10); build Brussels-specific landing variants; or something else. Not decided here.
 2. **The van question (Euro 6) is still open**, per the task's own framing; this gates the whole campaign, all 19 communes and the first ring alike, since the Low Emission Zone covers the entire region (research/52 section 4).
-3. **The parking question (roro-brussels-questions-2026-09-27.md) is also still open**: whether Roro and Afrim would take Brussels jobs at all, and whether the 75 EUR/year "carte de dérogation intervention" is worth getting. Not answered in the files read for this draft.
+3. The parking question, answered 2026-09-28 (research/61): no 75 EUR card exists for the trade; the company card is the Carte régionale de stationnement Professionnel, 90 EUR a month or 1,080 a year; Roro may start by paying per job.
 4. Campaign and ad-group names ("PD | Search | Bruxelles | FR", "FR Bruxelles | ...") are this session's own proposal, not confirmed by any file or decision.
 5. **FR Bruxelles | Cave inondée is a very thin group** (10 searches/month region-wide, no bid data at all). Built because the fixed landing-page list includes it, but flagged as a candidate to fold into Canalisation bouchée at the first real read if it earns no impressions.
 6. **"égout bouché" carries no visible Brussels search volume** in research/53's pull; kept as a low-bid, call-ready term on the same logic the account already uses elsewhere, but it is the first candidate for review once real search-terms data exists.

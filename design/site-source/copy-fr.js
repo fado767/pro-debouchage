@@ -21,12 +21,12 @@ module.exports = {
   carAria: 'Photos de nos interventions, faites défiler',
 
   meta: {
-    title: 'Débouchage 24h/24 autour de Bruxelles | Prix dit au téléphone',
-    desc: "Canalisation, WC ou égout bouché ? Déboucheur autour de Bruxelles, d'Alost à Louvain et de Malines à Nivelles, 24h/24. Prix dit au téléphone, confirmé à votre porte. Garantie 30 jours. 0480 649 649.",
+    title: 'Débouchage 24h/24 à Bruxelles et alentours | Prix dit au téléphone',
+    desc: "Canalisation, WC ou égout bouché ? Déboucheur à Bruxelles et tout autour, d'Alost à Louvain et de Malines à Nivelles, 24h/24. Prix dit au téléphone, confirmé à votre porte. Garantie 30 jours. 0480 649 649.",
     ogt: 'Ça remonte, ça déborde, ça pue ? Appelez, on s’en occupe.',
-    ogd: 'Déboucheur autour de Bruxelles, 24h/24. Le prix annoncé au téléphone est le prix sur la facture.',
+    ogd: 'Déboucheur à Bruxelles et tout autour, 24h/24. Le prix annoncé au téléphone est le prix sur la facture.',
     locale: 'fr_BE',
-    ogTitle: 'Pro Débouchage · Débouchage 24h/24 autour de Bruxelles',
+    ogTitle: 'Pro Débouchage · Débouchage 24h/24 à Bruxelles et alentours',
     ogAlt: 'La camionnette Pro Débouchage et le logo de la société.',
   },
 
@@ -60,8 +60,8 @@ module.exports = {
       eyebrow: `Débouchage WC 24h/24`,
       h1: ['WC bouché,', 'ça remonte,', `ça déborde${nb}?`],
       sub: `Un WC bouché, <strong>c'est à partir de 129${nb}€, TVA et déplacement compris.</strong> Votre prix exact, on vous le dit au téléphone, avant qu'on prenne la route.`,
-      title: `WC bouché${nb}? Déboucheur 24h/24 autour de Bruxelles`,
-      desc: `WC bouché qui déborde${nb}? On vient 24h/24, autour de Bruxelles, d'Alost à Louvain. Le prix est dit au téléphone, à partir de 129${nb}€. 0480 649 649.`,
+      title: `WC bouché${nb}? Déboucheur 24h/24 à Bruxelles et alentours`,
+      desc: `WC bouché qui déborde${nb}? On vient 24h/24, à Bruxelles et tout autour, d'Alost à Louvain. Le prix est dit au téléphone, à partir de 129${nb}€. 0480 649 649.`,
       footLabel: 'WC bouché',
     },
     {
@@ -69,8 +69,8 @@ module.exports = {
       eyebrow: `Débouchage 24h/24`,
       h1: ['Canalisation', 'bouchée,', `ça remonte${nb}?`],
       sub: `Évier, lavabo, douche ou canalisation qui refoule. <strong>On vous dit le prix au téléphone, et c'est ce prix-là que vous payez.</strong> À partir de 119${nb}€ pour un évier, un lavabo ou une douche.`,
-      title: `Canalisation bouchée${nb}? Débouchage 24h/24 autour de Bruxelles`,
-      desc: `Canalisation, évier ou douche bouchés, ça remonte${nb}? On vient 24h/24 autour de Bruxelles. Prix dit au téléphone, à partir de 119${nb}€. 0480 649 649.`,
+      title: `Canalisation bouchée${nb}? Débouchage 24h/24 à Bruxelles et alentours`,
+      desc: `Canalisation, évier ou douche bouchés, ça remonte${nb}? On vient 24h/24 à Bruxelles et tout autour. Prix dit au téléphone, à partir de 119${nb}€. 0480 649 649.`,
       footLabel: 'Canalisation bouchée',
     },
     {
@@ -79,8 +79,8 @@ module.exports = {
       h1: ['Cave inondée,', `l'eau monte${nb}?`],
       h1b: `Appelez.${nbsp}On pompe.`,
       sub: `L'eau monte dans la cave, on vient la pomper. <strong>À partir de 229${nb}€ la première heure, TVA et déplacement compris.</strong> Le prix, vous l'avez au téléphone, avant qu'on prenne la route.`,
-      title: `Cave inondée${nb}? Pompage 24h/24 autour de Bruxelles`,
-      desc: `Cave inondée${nb}? On pompe, on nettoie, rapport pour l'assurance si vous le demandez. 24h/24 autour de Bruxelles. À partir de 229${nb}€. 0480 649 649.`,
+      title: `Cave inondée${nb}? Pompage 24h/24 à Bruxelles et alentours`,
+      desc: `Cave inondée${nb}? On pompe, on nettoie, rapport pour l'assurance si vous le demandez. 24h/24 à Bruxelles et tout autour. À partir de 229${nb}€. 0480 649 649.`,
       footLabel: 'Cave inondée',
     },
   ],
@@ -269,8 +269,8 @@ module.exports = {
 
   // Zone.
   zoneK: 'La zone', zoneH: 'Où on travaille',
-  zoneT: `On travaille tout autour de Bruxelles, côté flamand comme côté wallon${nb}: d'Alost à Louvain et de Malines à Nivelles, jusqu'à environ 40${nb}km de Wemmel. Bruxelles-ville n'est pas dans notre zone.`,
-  towns: `Vilvorde · Machelen · Wemmel · Meise · Grimbergen · Merchtem · Londerzeel · Asse · Dilbeek · Ternat · Zaventem · Leeuw-Saint-Pierre · Hal · Beersel · Rhode-Saint-Genèse · Kraainem · Tervuren · Overijse · Louvain · Aarschot · Malines · Willebroek · Boom · Kontich · Alost · Ninove · Termonde · Temse · Waterloo · La Hulpe · Braine-l'Alleud · Tubize · Wavre · Nivelles · Louvain-la-Neuve · Enghien`.split(' · '),
+  zoneT: `On vient à Bruxelles, dans les 19 communes. Et tout autour, côté flamand comme côté wallon${nb}: d'Alost à Louvain et de Malines à Nivelles, jusqu'à environ 40${nb}km de Wemmel.`,
+  towns: `Bruxelles · Vilvorde · Machelen · Wemmel · Meise · Grimbergen · Merchtem · Londerzeel · Asse · Dilbeek · Ternat · Zaventem · Leeuw-Saint-Pierre · Hal · Beersel · Rhode-Saint-Genèse · Kraainem · Tervuren · Overijse · Louvain · Aarschot · Malines · Willebroek · Boom · Kontich · Alost · Ninove · Termonde · Temse · Waterloo · La Hulpe · Braine-l'Alleud · Tubize · Wavre · Nivelles · Louvain-la-Neuve · Enghien`.split(' · '),
   zoneC: `La liste s'arrête ici, pas notre zone. Votre commune n'y est pas${nb}? Appelez, on vous dit oui ou non tout de suite.`,
   zoneL: 'Appeler 0480 649 649',
 
@@ -286,7 +286,7 @@ module.exports = {
     [`En combien de temps êtes-vous là${nb}?`, `On vous donne une heure d'arrivée au téléphone, et on vous prévient si elle bouge. On préfère annoncer une heure qu'on tient plutôt qu'un chiffre qui fait plaisir.`],
     [`Faut-il casser quelque chose${nb}?`, `On regarde d'abord avec la caméra. Casser est le dernier recours, et jamais sans votre accord. C'est pour cela que la caméra est comprise avec l'intervention.`],
     [`Faites-vous un rapport pour l'assurance${nb}?`, `Oui, si vous le demandez. Après l'inspection caméra, on rédige alors un rapport que vous pouvez remettre à votre assurance, par exemple après un dégât des eaux ou une cave inondée. Le plus simple est de le dire au téléphone.`],
-    [`Quelles communes couvrez-vous${nb}?`, `Tout autour de Bruxelles, côté flamand comme côté wallon, à environ 40${nb}km autour de Wemmel. Au nord jusqu'à Malines, Boom et Kontich, à l'ouest jusqu'à Alost, Termonde et Ninove, à l'est jusqu'à Louvain et Aarschot, au sud jusqu'à Enghien, Nivelles et Louvain-la-Neuve. Et bien sûr toute la périphérie proche${nb}: Vilvorde, Dilbeek, Zaventem, Hal, Tervuren, Waterloo, Wavre et les autres. Bruxelles-ville n'est pas dans notre zone. Votre commune n'est pas citée${nb}? Appelez, on vous dit oui ou non tout de suite.`],
+    [`Quelles communes couvrez-vous${nb}?`, `À Bruxelles, dans les 19 communes, de Jette à Uccle et d'Anderlecht à Woluwe. Et tout autour, côté flamand comme côté wallon, à environ 40${nb}km autour de Wemmel. Au nord jusqu'à Malines, Boom et Kontich, à l'ouest jusqu'à Alost, Termonde et Ninove, à l'est jusqu'à Louvain et Aarschot, au sud jusqu'à Enghien, Nivelles et Louvain-la-Neuve. Et bien sûr toute la périphérie proche${nb}: Vilvorde, Dilbeek, Zaventem, Hal, Tervuren, Waterloo, Wavre et les autres. Votre commune n'est pas citée${nb}? Appelez, on vous dit oui ou non tout de suite.`],
     [`Comment puis-je payer${nb}?`, `Par virement, par lien de paiement, ou en liquide avec un reçu remis sur place. Vous recevez toujours une facture.`]],
 
   // Final call.
@@ -294,7 +294,7 @@ module.exports = {
   finalL: 'Joignable 24h/24 et 7j/7, week-end et jours fériés compris. Numéro normal, pas de surtaxe.',
 
   // Footer.
-  footD: `Débouchage, curage, inspection caméra, fosse septique et pompage de cave. Tout autour de Bruxelles, côté flamand comme côté wallon, 24h/24.`,
+  footD: `Débouchage, curage, inspection caméra, fosse septique et pompage de cave. À Bruxelles et tout autour, côté flamand comme côté wallon, 24h/24.`,
   photoNote: `Toutes les photos viennent de nos propres interventions, la camionnette y comprise. Seule la photo « avant » de la section preuve a été reconstituée d'après notre photo d'origine.`,
   legalT: 'Mentions légales',
   legal: ['PRO DEBOUCHAGE SRL', 'Guldenschaapstraat 6, 1800 Vilvoorde, Belgique', `Numéro d'entreprise 1027.454.187`, `E-mail${nb}: info@prodebouchage24.be`, `Téléphone${nb}: 0480 649 649`],

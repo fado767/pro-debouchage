@@ -84,7 +84,7 @@ That is 3 of 15, at the limit, not over it. Unchanged by this review's fixes (no
 | Camera inspection included (Headline 12) | `services[3]` | "Inspection caméra ... Comprise avec l'intervention." |
 | Joignable 24h/24, 7j/7; the night/weekend surcharge is told with the price (Description 3) | `finalL` + `terms` | "Joignable 24h/24 et 7j/7, week-end et jours fériés compris. Numéro normal, pas de surtaxe." / "...On vous annonce le supplément au téléphone, avec le prix, avant de prendre la route." |
 | Déplacement compris (Headline 11) | `included` | `['TVA comprise', 'Déplacement compris', 'Première heure comprise']` |
-| Autour de Bruxelles, côté flamand comme côté wallon, never Bruxelles-ville (Description 4) | `zoneT` | "On travaille tout autour de Bruxelles, côté flamand comme côté wallon... Bruxelles-ville n'est pas dans notre zone." |
+| Autour de Bruxelles, côté flamand comme côté wallon (Description 4), true for the ring campaign, which excludes Brussels | `zoneT` + `footD` | "Et tout autour, côté flamand comme côté wallon : d'Alost à Louvain et de Malines à Nivelles" / "À Bruxelles et tout autour, côté flamand comme côté wallon, 24h/24." |
 | Débouchage garanti 30 jours (Description 4) | `trust[5]` | "Débouchage garanti 30 jours" |
 | Pas de supplément à la porte (Headline 13) | `us[1]` | "Pas de prix au mètre, pas de compteur à l'heure, pas de supplément inventé à la porte." |
 | Wemmel, Kraainem, Tervuren (Headline 15) | `towns` (line 273) | all three are in the town list |
@@ -165,7 +165,7 @@ That is 2 of 15, under the limit of 3. Unchanged by this review's fixes (none of
 | Camera before the hammer (Headline 12) | `whoBlocks[0]` (line 215) | "La caméra passe avant le marteau. On regarde d'abord avec la caméra. Casser est le dernier recours, et jamais sans votre accord." |
 | Évier bouché ? On s'en occupe (Headline 9) | `h1b` | "Appelez. On s'en occupe." (the `drain` variant does not override `h1b`, so the default string applies) |
 | Joignable 24h/24, 7j/7; the night/weekend surcharge is told with the price (Description 3) | `finalL` + `terms` | "Joignable 24h/24 et 7j/7, week-end et jours fériés compris. Numéro normal, pas de surtaxe." / "...On vous annonce le supplément au téléphone, avec le prix, avant de prendre la route." |
-| Autour de Bruxelles, côté flamand comme côté wallon (Description 4) | `zoneT` | "On travaille tout autour de Bruxelles, côté flamand comme côté wallon... Bruxelles-ville n'est pas dans notre zone." |
+| Autour de Bruxelles, côté flamand comme côté wallon (Description 4), true for the ring campaign, which excludes Brussels | `zoneT` + `footD` | "Et tout autour, côté flamand comme côté wallon : d'Alost à Louvain et de Malines à Nivelles" / "À Bruxelles et tout autour, côté flamand comme côté wallon, 24h/24." |
 | Débouchage garanti 30 jours (Description 4) | `trust[5]` | "Débouchage garanti 30 jours" |
 | Pas de supplément à la porte (Headline 14) | `us[1]` | "Pas de prix au mètre, pas de compteur à l'heure, pas de supplément inventé à la porte." |
 | Braine-l'Alleud, La Hulpe (Headline 15) | `towns` (line 273) | both towns are in the town list |
@@ -175,6 +175,7 @@ That is 2 of 15, under the limit of 3. Unchanged by this review's fixes (none of
 
 ## 3. Build note for the browser agent (not before Mon 2026-10-12)
 
+- These ads are for the ring campaign only. Never in the Brussels campaign's FR Bruxelles groups: they say Autour de Bruxelles, which is true for the ring.
 - **Before anything, confirm from the page: Chrome profile fady.be (Profile 6), signed in as hi@fady.be, account 166-502-9105, campaign "PD | Search | Ring Bruxelles | FR+NL".** Never from a `/u/N` URL or a device name.
 - **The decision this build carries:** DECISIONS.md 2026-09-27 ("Next: second ads for FR | WC bouché and FR | Canalisation bouchée") under Claude's authority over ad copy, structure, keywords, sitelinks and negatives (DECISIONS.md 2026-09-23, "ADS DECISIONS ARE CLAUDE'S"). Fady is at the screen only for the identity check, per AGENTS.md section 14.
 - **Read the live ad in each group before building, and never edit it.** The ad is ADDED. The live ad in the same group is never edited, never paused, never touched. Editing it would start a new ad under the old ad's stats; this draft is built as a second, separate RSA.

@@ -286,3 +286,41 @@
 - After 12 Oct, one at a time: the second ads for FR | WC bouché and FR | Canalisation bouchée (draft reviewed and fixed, assets/prepared/fr-per-problem-rsa-2-draft-2026-09-28.md), then the three paused NL groups, each back or left paused on the read.
 - The click-price fallback of ads-program.md section 2 is retired: a bidding change is judged on calls and taps over at least 14 days, never on the price of a click.
 - The Brussels draft carries a stop rule as a proposal for Fady's go: 150 EUR spent with no call in the ad's call log and no tap, then pause and ask him. The reviewer's 10 EUR click-price trigger was not taken, for the reason above.
+
+## 2026-09-28 Brussels: the van is Euro 6, Fady says launch (chat, about 12:45)
+- Fady's words: "Yes the car is Euro 6. Anything else you'd need? Launch his campaign and tell me all is green." The van gate is closed. The third GBP video: "most probably next weekend".
+- What still stands between the draft and a running campaign, in order: the page wording on Brussels in FR, NL and EN (every landing page says Brussels city is not in the zone), shown to Fady, built on the preview, live on his word; the build in Chrome with Fady at the screen for Google's identity check, published and paused within seconds; the switch-on with his typed go naming the amount, 16 EUR a day (about 486 a month; with the ring campaign the account can spend up to about 1,398 a month).
+- The Brussels campaign is its own campaign with its own budget: the ring campaign is not touched and its reads of 5 and 12 Oct stand; the call log and the counted taps are read per campaign.
+
+## 2026-09-28 Brussels on the page: Fady's picks by widget (about 13:00)
+- The zone sentence: option A, Brussels first ("On vient à Bruxelles, dans les 19 communes. Et tout autour, ..."), one chip "Bruxelles" / "Brussel" / "Brussels" first in the town list; the 40 strings of assets/prepared/brussels-page-wording-draft-2026-09-28.md, FR, NL and EN together. Built on the preview first, live on his word.
+- The area: all 19 communes. The price: "Roro decides. Nothing added": the same prices in Brussels, travel included, no extra.
+- This retires the zone rule of 2026-08-23 ("Brussels city NOT included") for the page and for the new campaign; the ring campaign keeps its own exclusion so the two never compete.
+- The build in Google: today, with Fady at the screen; another project uses Chrome during the day, so the lock decides the hour. The switch-on still needs his typed go naming 16 EUR a day.
+- Asked by Fady: a short guide for Roro on the parking card for emergency trades, as a PDF in the site's look (logo, clear font, short, readable on a phone); Fady sends it himself.
+
+## 2026-09-28 Brussels campaign: Fady's typed go (chat, 13:09)
+- His words: "Go: Brussels campaign, 16 EUR a day". It covers the build (the campaign is live for some seconds at Publish, then paused) and the switch-on. About 486 EUR a month for this campaign; with the ring campaign's 30 a day the account can spend up to about 1,398 a month, on Roro's card (Mastercard 2616).
+- The order the session holds to: the campaign is built PAUSED from assets/prepared/brussels-campaign-draft-2026-09-28.md; it is switched on only after the page with the Brussels wording (option A) is LIVE and read back on the domain. No future start date is set, so that it can run the same day.
+- The stop rule the session proposed stands as the working rule until Fady says otherwise: 150 EUR spent with no call in the ad's call log and no tap, then pause and ask him.
+
+## 2026-09-28 The Brussels wording goes live (Fady's pick by widget, after the preview)
+- The build with option A was deployed to the preview and checked there by the build worker and by the session (new sentence present, old absent, 20 call links a page, noindex on pages.dev). Fady's pick: "Yes, put it live". The live deploy and its read-back on the domain are filed in LOG.md once read back.
+
+## 2026-09-28 The Brussels campaign is ON since 15:13 (on Fady's typed go of 13:09)
+- "PD | Search | Bruxelles | FR", id 24297024674, 16.00 EUR a day, Maximize conversions, Brussels with Presence, French, its first ad group "FR Bruxelles | Général". Built 13:10 to 14:44, live for two minutes at the publish (14:18 to 14:20, no impression), read by an independent Opus agent on the real setting screens (all settings match) and switched on by it at 15:13:13 (research/62). The page with the Brussels wording was live since 13:31.
+- The ring campaign is untouched and keeps its exclusion of Brussels. Its reads of 5 and 12 Oct stand; the Brussels campaign is read on the same days, per campaign. The three per-problem groups and the sitelinks of the Brussels campaign are built the same afternoon (part 2).
+- THE PARKING CARD, corrected the same day (research/61, read on parking.brussels): the 75 EUR a year card of research/52 does not exist for the trade, it is the home medical care card; the card for a company is the "Carte régionale de stationnement Professionnel", 90 EUR a month or 1,080 a year. The session's statement of 27 Sep was wrong. Roro may start by paying per job; a guide in the site's look is on disk (assets/prepared/roro-parking-guide-2026-09-28.pdf), Fady sends it.
+
+## 2026-09-28 The Brussels campaign is complete (16:44); two ads rated Poor wait for the 5 Oct read (Claude's decision on the ads)
+- Part 2 built and read back: four ad groups, 12 keywords, 4 ads, 20 sitelinks, 4 callouts, the services snippet (research/62). The account's daily budgets add to 46.00.
+- Ad strength reads Poor on the ads of "FR Bruxelles | WC bouché" and "FR Bruxelles | Canalisation bouchée" (Average on Général, Good on Cave inondée). They are Eligible and run. No text was changed on the day: the session reads Google's Ad strength panel at the read of Mon 5 Oct and writes the replacement headlines then, claims checked against the page, nothing pinned.
+
+## 2026-09-28 The Business Profile address: the doubt is closed (Fady's own read and word, about 16:55)
+- Roro's accountant confirmed the company's address is the seat in Vilvoorde, and Roro wondered whether that is why Google refuses. Fady read the profile himself: the Location tab says "No location; deliveries and home services only", the service area lists 20 towns, the banner says "Verification not successful. To get verified, submit another recording." The seat was never in the profile; an address exists only in the Verify step, typed at each attempt (the depot, by Fady, on 22 Sep).
+- Fady's word: the depot cannot be registered in the KBO ("otherwise they would have already done it"). The session's question on an establishment unit is withdrawn.
+- What stands: the third video goes to the v3 shot list at the depot; Google's two refusals named the video, never the address. If it fails and a ticket asks for a paper on the address, no official paper shows the depot; the fallback named on 2026-08-23 is Roro's own home, where the van sleeps, his decision. Nothing in the profile is edited before the verdict.
+
+## 2026-09-28 After the afternoon fact-sync: two wordings settled (Claude's decisions on the ads)
+- The two Brussels ads rated Poor get their replacement headlines WRITTEN AND APPLIED at the read of Mon 5 Oct, in the Brussels campaign only; the freeze until 12 Oct covers the ring campaign, the Brussels campaign is a week old then and carries no history worth keeping.
+- The Brussels campaign is described as "French keywords and ads": its language setting reads "All languages", like the ring campaign's, and the keyword selects the searcher (ads-program.md section 2).

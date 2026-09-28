@@ -17,12 +17,12 @@ module.exports = {
   carAria: `Foto's van onze interventies, veeg om te bladeren`,
 
   meta: {
-    title: 'Ontstopping 24/7 rond Brussel | Prijs aan de telefoon',
-    desc: 'Verstopte afvoer, wc of riool? Ontstoppingsdienst rond Brussel, van Aalst tot Leuven en van Mechelen tot Nijvel, 24/7. Prijs aan de telefoon, bevestigd aan de deur. 30 dagen garantie. Bel 0480 649 649.',
+    title: 'Ontstopping 24/7 in en rond Brussel | Prijs aan de telefoon',
+    desc: 'Verstopte afvoer, wc of riool? Ontstoppingsdienst in en rond Brussel, van Aalst tot Leuven en van Mechelen tot Nijvel, 24/7. Prijs aan de telefoon, bevestigd aan de deur. 30 dagen garantie. Bel 0480 649 649.',
     ogt: 'Loopt het terug, loopt het over, stinkt het? Bel, wij lossen het op.',
-    ogd: 'Ontstoppingsdienst rond Brussel, 24/7. De prijs die u aan de telefoon hoort, staat op de factuur.',
+    ogd: 'Ontstoppingsdienst in en rond Brussel, 24/7. De prijs die u aan de telefoon hoort, staat op de factuur.',
     locale: 'nl_BE',
-    ogTitle: 'Pro Débouchage · Ontstopping 24/7 rond Brussel',
+    ogTitle: 'Pro Débouchage · Ontstopping 24/7 in en rond Brussel',
     ogAlt: 'De bestelwagen van Pro Débouchage en het logo van het bedrijf.',
   },
 
@@ -56,8 +56,8 @@ module.exports = {
       eyebrow: 'Wc ontstoppen 24/7',
       h1: ['Wc verstopt,', 'loopt het over,', 'stinkt het?'],
       sub: 'Een verstopte wc, <strong>dat is vanaf € 129, btw en verplaatsing inbegrepen.</strong> Uw exacte prijs hoort u aan de telefoon, nog voor we vertrekken.',
-      title: 'Wc verstopt? Ontstoppingsdienst 24/7 rond Brussel',
-      desc: 'Wc verstopt of loopt hij over? Wij komen 24/7, rond Brussel, van Aalst tot Leuven. De prijs hoort u aan de telefoon, vanaf € 129. Bel 0480 649 649.',
+      title: 'Wc verstopt? Ontstoppingsdienst 24/7 in en rond Brussel',
+      desc: 'Wc verstopt of loopt hij over? Wij komen 24/7, in en rond Brussel, van Aalst tot Leuven. De prijs hoort u aan de telefoon, vanaf € 129. Bel 0480 649 649.',
       footLabel: 'Wc verstopt',
     },
     {
@@ -65,8 +65,8 @@ module.exports = {
       eyebrow: 'Ontstopping 24/7',
       h1: ['Afvoer verstopt,', 'loopt het terug,', 'stinkt het?'],
       sub: 'Gootsteen, lavabo, douche of afvoer die terugloopt. <strong>Wij zeggen de prijs aan de telefoon, en die prijs betaalt u.</strong> Vanaf € 119 voor een gootsteen, een lavabo of een douche.',
-      title: 'Afvoer verstopt? Ontstopping 24/7 rond Brussel',
-      desc: 'Gootsteen, douche of afvoer verstopt? Wij komen 24/7 rond Brussel, van Aalst tot Leuven. De prijs hoort u aan de telefoon, vanaf € 119. Bel 0480 649 649.',
+      title: 'Afvoer verstopt? Ontstopping 24/7 in en rond Brussel',
+      desc: 'Gootsteen, douche of afvoer verstopt? Wij komen 24/7 in en rond Brussel, van Aalst tot Leuven. De prijs hoort u aan de telefoon, vanaf € 119. Bel 0480 649 649.',
       footLabel: 'Afvoer verstopt',
     },
     {
@@ -75,8 +75,8 @@ module.exports = {
       h1: ['Staat de kelder', 'onder water?'],
       h1b: `Bel.${nbsp}Wij${nbsp}pompen hem${nbsp}leeg.`,
       sub: 'Wij pompen de kelder leeg en maken schoon. <strong>Vanaf € 229 het eerste uur, btw en verplaatsing inbegrepen.</strong> Uw prijs hoort u aan de telefoon, nog voor we vertrekken.',
-      title: 'Kelder onder water? Leegpompen 24/7 rond Brussel',
-      desc: 'Kelder onder water? Wij pompen leeg, maken schoon en maken een verslag voor uw verzekering. 24/7 rond Brussel. Vanaf € 229. Bel 0480 649 649.',
+      title: 'Kelder onder water? Leegpompen 24/7 in en rond Brussel',
+      desc: 'Kelder onder water? Wij pompen leeg, maken schoon en maken een verslag voor uw verzekering. 24/7 in en rond Brussel. Vanaf € 229. Bel 0480 649 649.',
       footLabel: 'Kelder onder water',
     },
   ],
@@ -247,8 +247,8 @@ module.exports = {
     ['Handel en horeca', 'Een keuken die stilligt, kost meer dan een ontstopping. We komen snel, en we stellen een onderhoud voor zodat het niet terugkomt.']],
 
   zoneK: 'Onze regio', zoneH: 'Waar wij werken',
-  zoneT: 'We werken overal rond Brussel, aan beide kanten van de taalgrens: van Aalst tot Leuven en van Mechelen tot Nijvel, in een straal van ongeveer 40 km rond Wemmel. Brussel-stad zit niet in onze regio.',
-  towns: 'Vilvoorde · Machelen · Wemmel · Meise · Grimbergen · Merchtem · Londerzeel · Asse · Dilbeek · Ternat · Zaventem · Sint-Pieters-Leeuw · Halle · Beersel · Sint-Genesius-Rode · Kraainem · Tervuren · Overijse · Leuven · Aarschot · Mechelen · Willebroek · Boom · Kontich · Aalst · Ninove · Dendermonde · Temse · Waterloo · Terhulpen · Eigenbrakel · Tubeke · Waver · Nijvel · Louvain-la-Neuve · Edingen'.split(' · '),
+  zoneT: 'We komen naar Brussel, in alle 19 gemeenten. En overal errond, aan beide kanten van de taalgrens: van Aalst tot Leuven en van Mechelen tot Nijvel, in een straal van ongeveer 40 km rond Wemmel.',
+  towns: 'Brussel · Vilvoorde · Machelen · Wemmel · Meise · Grimbergen · Merchtem · Londerzeel · Asse · Dilbeek · Ternat · Zaventem · Sint-Pieters-Leeuw · Halle · Beersel · Sint-Genesius-Rode · Kraainem · Tervuren · Overijse · Leuven · Aarschot · Mechelen · Willebroek · Boom · Kontich · Aalst · Ninove · Dendermonde · Temse · Waterloo · Terhulpen · Eigenbrakel · Tubeke · Waver · Nijvel · Louvain-la-Neuve · Edingen'.split(' · '),
   zoneC: 'De lijst stopt hier, onze regio niet. Staat uw gemeente er niet bij? Bel even, u krijgt meteen ja of nee.',
   zoneL: 'Bel 0480 649 649',
 
@@ -263,13 +263,13 @@ module.exports = {
     ['Hoe snel bent u er?', 'U krijgt aan de telefoon een uur waarop wij er zijn, en wij verwittigen u als het later wordt. We zeggen liever een uur dat we halen dan een uur dat mooi klinkt.'],
     ['Moet er iets stuk?', 'We kijken eerst met de camera. Breken doen we pas als het echt niet anders kan, en nooit zonder uw akkoord. Daarom zit de camera in de prijs.'],
     ['Maakt u een verslag voor de verzekering?', 'Ja, als u het vraagt. Na de camera-inspectie maken wij dan een verslag dat u aan uw verzekering kunt bezorgen, bijvoorbeeld na waterschade of een ondergelopen kelder. Zeg het gewoon aan de telefoon.'],
-    ['In welke gemeenten komt u?', 'Overal rond Brussel, aan beide kanten van de taalgrens, in een straal van ongeveer 40 km rond Wemmel. In het noorden tot Mechelen, Boom en Kontich, in het westen tot Aalst, Dendermonde en Ninove, in het oosten tot Leuven en Aarschot, in het zuiden tot Edingen, Nijvel en Louvain-la-Neuve. En natuurlijk alle gemeenten dichterbij: Vilvoorde, Dilbeek, Zaventem, Halle, Tervuren, Waterloo, Waver en de andere. Brussel-stad zit niet in onze regio. Staat uw gemeente er niet bij? Bel even, u krijgt meteen ja of nee.'],
+    ['In welke gemeenten komt u?', 'In Brussel, in alle 19 gemeenten, van Jette tot Ukkel en van Anderlecht tot Woluwe. En overal errond, aan beide kanten van de taalgrens, in een straal van ongeveer 40 km rond Wemmel. In het noorden tot Mechelen, Boom en Kontich, in het westen tot Aalst, Dendermonde en Ninove, in het oosten tot Leuven en Aarschot, in het zuiden tot Edingen, Nijvel en Louvain-la-Neuve. En natuurlijk alle gemeenten dichterbij: Vilvoorde, Dilbeek, Zaventem, Halle, Tervuren, Waterloo, Waver en de andere. Staat uw gemeente er niet bij? Bel even, u krijgt meteen ja of nee.'],
     ['Hoe kan ik betalen?', 'Met overschrijving, met een betaallink, of cash met een ontvangstbewijs ter plaatse. U krijgt altijd een factuur.']],
 
   finalH: 'Een verstopping wacht niet.', finalB: 'Bel nu', finalWa: 'Stuur een foto',
   finalL: 'Bereikbaar 24 uur op 24 en 7 dagen op 7, ook in het weekend en op feestdagen. Gewoon nummer, geen betaalnummer.',
 
-  footD: 'Ontstoppen, rioolreiniging, camera-inspectie, septische put en kelder leegpompen. Overal rond Brussel, aan beide kanten van de taalgrens, 24/7.',
+  footD: 'Ontstoppen, rioolreiniging, camera-inspectie, septische put en kelder leegpompen. In en rond Brussel, aan beide kanten van de taalgrens, 24/7.',
   photoNote: `Alle foto's komen van onze eigen interventies, de bestelwagen inbegrepen. Alleen de 'voor'-foto in de bewijssectie is nagemaakt naar onze eigen foto.`,
   legalT: 'Wettelijke vermeldingen',
   legal: ['PRO DEBOUCHAGE BV', 'Guldenschaapstraat 6, 1800 Vilvoorde, België', 'Ondernemingsnummer 1027.454.187', 'E-mail: info@prodebouchage24.be', 'Telefoon: 0480 649 649'],

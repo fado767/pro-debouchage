@@ -1,0 +1,38 @@
+# The Brussels campaign: the build of 2026-09-28
+
+Chrome profile fady.be, hi@fady.be, account 166-502-9105 "Pro Débouchage". Built from assets/prepared/brussels-campaign-draft-2026-09-28.md on Fady's typed go of 13:09 ("Go: Brussels campaign, 16 EUR a day", DECISIONS that date). The page wording for Brussels was live on the domain since 13:31.
+
+## 1. Part 1, a Sonnet browser agent, 13:10 to 14:44 (94 minutes against 50 planned)
+- The state before: the ring campaign (24185896982) Enabled, "Eligible (Learning)", 30.00 a day, Maximize conversions; its one location exclusion "Brussels, Belgium", type province, reach 3,760,000; the shared list "PD | Negatives | shared" 243 entries, attached to 1 campaign; 18 campaign-level phrase negatives.
+- THE NEW CAMPAIGN: "PD | Search | Bruxelles | FR", id 24297024674. Published 14:18, paused 14:20, read Paused after a full reload. 0 impressions, 0 clicks.
+- Settings as read on the setting screens: objective Leads, Search only, search partners and display off, location "Brussels, Belgium" (province, reach 3,760,000) with Presence, all languages, 16.00 a day, Maximize conversions with no target CPA, AI Max off (text customization and final URL expansion off), EU political ads: no.
+- A display fault of Google's wizard: its SUMMARY page showed the location as "All countries and territories" and AI Max as "turned on" while the setting screens showed the right values. The agent trusted the setting screens. Not re-opened after the publish: "automatically created assets".
+- The known wizard trap hit again: the ad group and the ad were saved and all 5 keywords silently dropped; seen on the reload, added again by hand. The wizard offered no field for the ad group's name ("Ad group 1"); renamed after the publish.
+- Ad group "FR Bruxelles | Général": [débouchage], [débouchage urgent], "société de débouchage", [débouchage bruxelles], [déboucheur bruxelles], all Enabled. One RSA, final URL https://prodebouchage24.be/fr/, paths debouchage and bruxelles, 15 headlines and 4 descriptions as in the draft, nothing pinned, Ad strength Average.
+- Negatives: the shared list attached (243 entries, now on 2 campaigns); 21 own entries at the new campaign's level (19 phrase: the 18 brand names plus "louis le deboucheur"; 2 broad: miracle, pastille).
+- Two identity checks ("Confirm it's you"), one at Publish, one while the agent scrolled the summary page. The agent touched neither; Fady confirmed both; each cleared in under a minute.
+- The ring campaign at the end: budget 30.00, Enabled, the shared list count 243, as before (read at list level; its settings screens were not opened a second time).
+
+## 2. Part 2, a Sonnet browser agent, 15:22 to 16:44
+- THE CAMPAIGN COMPLETE: "PD | Search | Bruxelles | FR" (24297024674) Enabled, "Eligible (Learning)", Search, 16.00 a day, optimization score 81.8 percent; account total daily budget reads 46.00 (16 plus the ring's 30).
+- FOUR ad groups, all Enabled: "FR Bruxelles | Général" (5 keywords: [débouchage], [débouchage urgent], "société de débouchage", [débouchage bruxelles], [déboucheur bruxelles]; /fr/), "FR Bruxelles | WC bouché" (2: [wc bouché], [débouchage wc]; /fr/wc-bouche/), "FR Bruxelles | Canalisation bouchée" (4: [débouchage canalisation], [canalisation bouchée], [évier bouché], [égout bouché]; /fr/canalisation-bouchee/), "FR Bruxelles | Cave inondée" (1: "cave inondée", phrase; /fr/cave-inondee/). 12 keywords in all; the new ones read Pending, Under review at the end of the build.
+- FOUR RSAs, one per group, all Eligible, 15 headlines and 4 descriptions each, nothing pinned, no text changed (as instructed). Ad strength: Général Average, WC bouché POOR, Canalisation bouchée POOR, Cave inondée Good. The session reads Google's Ad strength panel at the read of Mon 2026-10-05 and writes the replacement headlines for the two Poor ads then.
+- SITELINKS: 20 at ad group level (Général 6, WC bouché 5, Canalisation bouchée 5, Cave inondée 4). "Garantie 30 jours" is on WC bouché and Canalisation bouchée only, never on Cave inondée. "Où on travaille" is on no group. "Le prix d'un débouchage" (Canalisation bouchée) read Pending, Under review: if it is disapproved (the Tobacco false positive known from the ring campaign), it is dropped, never appealed.
+- CALLOUTS on all four groups: "24h/24, 7j/7 et fériés", "Prix dit au téléphone", "Caméra comprise", "Déplacement compris". STRUCTURED SNIPPET on all four groups, header Services, French: Débouchage urgent, Égout et sterput, Curage haute pression, Inspection caméra, Vidange fosse septique, Pompage de cave.
+- Inherited assets read on the WC bouché group only: business logo (campaign level), call 0480 64 96 49 (account level), business name "Pro Débouchage" (account level), all Eligible. Not re-read on the other three groups.
+- THE WIZARD'S KEYWORD TRAP hit on all three new groups: the ad group and the ad saved, the keywords silently dropped; seen on the reload each time and added by hand. One identity check ("Confirm it's you") at the first save of WC bouché: the agent touched nothing, Fady confirmed; after it cleared, the whole first draft of that ad group was LOST and had to be built again. Lesson for the next build: after an identity check clears, reload and check whether the object exists before clicking Save again.
+- The ring campaign "PD | Search | Ring Bruxelles | FR+NL": read at list level at the end: Enabled, "Eligible (Learning)", 30.00 a day, optimization score 84.2 percent. Its location exclusion and its shared list count were not re-read at the end of part 2 (they were read at 15:10 by the independent reader: the exclusion of Brussels in place).
+
+## 3. The independent read and the switch-on, an Opus browser agent, 14:46 to 15:20
+VERDICT: ALL SETTINGS MATCH. Read on the real setting screens after a full page load, never on a summary screen:
+- Paused before the switch; Search; Google Search Network only, search partners and display unticked.
+- Locations (1): "Brussels, Belgium", province, reach 3,760,000; "Presence: People in or regularly in your included locations"; no other target, no exclusion. "All countries and territories" did not appear on the real screen.
+- All languages; start date September 28, 2026; no end date; ads eligible all the time.
+- 16.00 a day; Maximize conversions; no target CPA; no max CPC limit offered.
+- AI Max off; text customization and final URL expansion off; automatically created assets "Off: Use only assets I provide directly for my ads"; broad match keywords "Off: Use keyword match types"; no Dynamic Search Ads domain; no URL options.
+- Negatives: the shared list at campaign level plus 21 own entries (19 phrase, 2 broad).
+- "FR Bruxelles | Général": 5 keywords Enabled with the match types of the draft; one RSA, final URL https://prodebouchage24.be/fr/, display path prodebouchage24.be/debouchage/bruxelles, 15 headlines and 4 descriptions as drafted, nothing pinned, Ad strength Average, no asset disapproved. The account-level call asset, business name and logo are attached.
+- Conversion goals: account default (Contacts, Phone call leads and 1 more), the same as the ring campaign.
+- THE SWITCH: Enabled at 15:13:13 through the status menu of the campaign row; after a reload "Enabled", "Eligible (Learning)", 16.00 a day, the ad group and the ad "Eligible". No identity check.
+- The ring campaign, read only: Enabled, "Eligible (Learning)", 30.00 a day, Maximize conversions, the exclusion "Brussels, Belgium" in place.
+- Notes of the reader: a saved view filter on the Keywords page was cleared (a view, not the account); the settings panel closed by itself once, no pending change was shown, the Change history was not read.

@@ -17,7 +17,7 @@ One thing to say at the start of the call: **every price printed on the page is 
 **Why.** Emergency callers do not read to the end, they call from wherever they stopped scrolling (research/03, research/19). The bar appears only after the hero buttons leave the screen, so the top of the page is never covered by two call buttons at once. The one-pill phone header buys room for a real call button next to the language switch on a narrow screen. Since 2026-09-16 the header call button, the six service links (section 4) and the footer number are all at least 44 px tall, easy to tap with a thumb.
 
 **Roro will ask**
-- *Why three languages?* Your customers around Brussels are French, Dutch and expats. Same prices, same promises, three real pages.
+- *Why three languages?* Your customers in and around Brussels are French, Dutch and expats. Same prices, same promises, three real pages.
 - *Does the phone number cost the caller anything?* No. It is your normal mobile number, no premium line.
 - *Does the page ever show a number that is not mine?* Not today. Google's call measurement was added in September, but the site's security settings block it, so everybody has always seen 0480 649 649. Once that is fixed, a visitor who accepted the cookies and came from one of your ads sees a Google forwarding number. It rings straight on 0480 649 649 and costs him nothing extra. That is how we will know which calls the ads paid for.
 
@@ -165,12 +165,13 @@ One thing to say at the start of the call: **every price printed on the page is 
 
 ## 16. Zone
 
-**What it says.** We work all around Brussels, on both sides of the language border, from Alost to Louvain and from Malines to Nivelles, about 40 km around Wemmel. Brussels city is not in the zone. Then 36 town chips, then: the list stops here, our area does not, your town not listed? Call, you get a yes or no immediately. (Widened 2026-09-10 from the old "Flemish and Walloon Brabant" wording and from 26 chips, because the ads had always run in four provinces and a Kontich caller landed on a page that implied we skipped her.)
+**What it says.** We come to Brussels, all 19 communes, since 28 September. And all around it too, on both sides of the language border, from Alost to Louvain and from Malines to Nivelles, about 40 km around Wemmel. Then 37 town chips, Bruxelles first, then: the list stops here, our area does not, your town not listed? Call, you get a yes or no immediately. (Widened 2026-09-28: Brussels joined the zone, same prices, travel included, nothing added. Widened before that on 2026-09-10 from the old "Flemish and Walloon Brabant" wording and from 26 chips, because the ads had always run across the ring around Brussels, from Alost to Louvain and from Malines to Nivelles, and a Kontich caller landed on a page that implied we skipped her.)
 
-**Why.** Your own rule, decided 2026-08-23: about 40 km around Wemmel, no Brussels city, so Afrim can park and stay out of the traffic. Widening later is open, ads results decide.
+**Why.** Your own decision, 2026-09-28: Brussels is in the zone now, the van is Euro 6 so it may drive in the low emission zone, and the prices stay the same. Before that, the 2026-08-23 rule kept Brussels city out for parking; that rule is retired.
 
 **Roro will ask**
-- *Why exclude Brussels when the money is there?* Your decision, for parking and traffic. On 28 September you said yes to a separate Brussels campaign of about 500 EUR a month; it starts only after the van question (Euro 6), new page wording and Fady's go, and the page changes in a day.
+- *Why is Brussels in now?* You said yes by phone on 28 September. The van is Euro 6, so it can drive in the low emission zone, and the prices stay the same, nothing added for Brussels.
+- *Are the Brussels ads live?* Yes, since the afternoon of 28 September: their own campaign, French keywords and ads, 16 EUR a day, four ad groups (general, WC, pipes, flooded cellar).
 
 ## 17. FAQ
 

@@ -680,7 +680,7 @@ for (const [l] of T.LANGS) { const html = docShell(l, CGV_PATH, CGV[l], CGV_META
 const CHOOSE = { fr: ['Français', 'Débouchage 24h/24'], nl: ['Nederlands', 'Ontstopping 24/7'], en: ['English', 'Drain unblocking 24/7'] };
 const chooserBtns = T.LANGS.map(([l]) => `<a class="btn btn-ghost" href="/${l}/" lang="${l}" hreflang="${l}-BE">${CHOOSE[l][0]} &rarr; ${CHOOSE[l][1]}</a>`).join('\n');
 const chooserTitle = T.LANGS.map(([l]) => CHOOSE[l][0]).join(' &middot; ');
-w('index.html', head('fr', LANDING, { title: 'Pro Débouchage | ' + chooserTitle.replace(/&middot;/g, '·'), desc: 'Débouchage 24h/24 autour de Bruxelles. Choisissez votre langue. Ontstopping 24/7 rond Brussel. Kies uw taal. Drain unblocking around Brussels, 24/7. 0480 649 649.', ogt: 'Pro Débouchage · Débouchage 24h/24 autour de Bruxelles', ogd: 'Débouchage 24h/24 autour de Bruxelles. Ontstopping 24/7 rond Brussel. Drain unblocking around Brussels, 24/7. 0480 649 649.', locale: 'fr_BE', ogAlt: COPY.fr.meta.ogAlt }, { noindex: false }) + `
+w('index.html', head('fr', LANDING, { title: 'Pro Débouchage | ' + chooserTitle.replace(/&middot;/g, '·'), desc: 'Débouchage 24h/24 à Bruxelles et alentours. Choisissez votre langue. Ontstopping 24/7 in en rond Brussel. Kies uw taal. Drain unblocking in and around Brussels, 24/7. 0480 649 649.', ogt: 'Pro Débouchage · Débouchage 24h/24 à Bruxelles et alentours', ogd: 'Débouchage 24h/24 à Bruxelles et alentours. Ontstopping 24/7 in en rond Brussel. Drain unblocking in and around Brussels, 24/7. 0480 649 649.', locale: 'fr_BE', ogAlt: COPY.fr.meta.ogAlt }, { noindex: false }) + `
 <main class="chooser"><div class="box">
 ${IMG('logo-icon.svg', 'Pro Débouchage', 320, 200, '')}
 <h1 style="font-size:1.5rem">${chooserTitle}</h1>
@@ -709,7 +709,7 @@ const nf = T.LANGS.map(([l], i) => `${i ? '<hr class="rule" style="margin:24px a
 <p class="lead" lang="${l}">${NOTFOUND[l][1]}</p>
 <p><a class="btn btn-call" href="tel:+32480649649" data-cta="404-call-${l}" lang="${l}">${T.PHONE}${NOTFOUND[l][2]}</a></p>
 <p><a href="/${l}/" lang="${l}">${NOTFOUND[l][3]}</a></p>`).join('\n');
-w('404.html', head('fr', LANDING, { title: 'Page introuvable | Pro Débouchage', desc: `Cette page n'existe pas. Appelez le 0480 649 649.`, ogt: 'Pro Débouchage', ogd: 'Débouchage 24h/24 autour de Bruxelles.', locale: 'fr_BE', ogAlt: COPY.fr.meta.ogAlt }, { noindex: true }) + `
+w('404.html', head('fr', LANDING, { title: 'Page introuvable | Pro Débouchage', desc: `Cette page n'existe pas. Appelez le 0480 649 649.`, ogt: 'Pro Débouchage', ogd: 'Débouchage 24h/24 à Bruxelles et alentours.', locale: 'fr_BE', ogAlt: COPY.fr.meta.ogAlt }, { noindex: true }) + `
 <main class="chooser"><div class="box">
 ${IMG('logo-icon.svg', 'Pro Débouchage', 320, 200, '')}
 ${nf}
