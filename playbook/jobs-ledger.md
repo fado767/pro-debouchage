@@ -16,6 +16,9 @@ Example: `Dilbeek, WC, 129, Google, FR`. A lost call counts too: `Kontich, cave,
 ## Totals Roro gave by phone, not itemised
 - 2026-09-17 (call with Fady, filed 2026-09-18): a call about every 2 to 3 days, most closed, about 1,300 to 1,400 EUR earned since the ads started on 29 Aug. The rows above account for 258 of it. No back-fill is asked for the rest (dropped 2026-09-25, HQ client-count rule): it stays unitemised unless Roro mentions it on his own.
 
+- 2026-09-28 (filed that day; a call with Fady, the day of the call not stated): for the third time Roro said, his words as Fady gave them: "Since you raised the price to 30 or when you did that change something happened and I'm not getting calls anymore". No count given. The budget went to 30 on 2026-09-18. Looked into the same day (LOG 2026-09-28).
+
 ## What Google logged over the same period (for matching, research/41)
 - Calls from the ad's call button: 1 Sep 13:00 missed, 4 Sep 10:00 8 s, 9 Sep 10:00 missed, 15 Sep 17:00 7 s, 16 Sep 11:00 39 s (area code 0485). Roro phones missed calls back from his mobile within minutes, which Google cannot see.
 - Taps on the site's call button (call_click): 7 all time, as read 2026-09-18. Spend to date: NOW.md.
+- 17 to 28 Sep: zero calls from the ad's call button (research/56 section 3).

@@ -63,15 +63,21 @@ TAGS_OFF=1 node design/site-source/build.js
      Google CSP in `_headers`. On the same build: `ADS_CALL_LABEL` and `ADS_WA_LABEL` (defaults set,
      the two conversion labels from the Ads account); with them every `data-cta` call or WhatsApp
      click also fires a `send_to` conversion.
-   - `ADS_PHONE_LABEL` (default u0RxCNu5nPUcEM_SjsxE, baked 2026-09-12) turns on Google's "Calls
-     from website visits" number swap: Google replaces the displayed `0480 649 649` with a
-     forwarding number for visitors who came from an ad click AND accepted cookies. The
+   - `ADS_PHONE_LABEL` (default u0RxCNu5nPUcEM_SjsxE, baked 2026-09-12) is meant to turn on Google's
+     "Calls from website visits" number swap: Google replaces the displayed `0480 649 649` with a
+     forwarding number for visitors who came from an ad click AND accepted cookies. **This has
+     never run.** The site's security header (CSP_TAG in build.js) does not allow scripts from
+     gstatic.com, so Google's loader (https://www.gstatic.com/wcm/loader.js) is blocked, and the
+     conversion "Calls from website" has never counted since 2026-09-12. No call was lost: the real
+     number always shows. The fix (allow gstatic.com in script-src, preview first, one test call)
+     is decided for after the read of 12 Oct (DECISIONS 2026-09-28, research/54). The
      conversion action "Calls from website" was created in the Ads account on 2026-09-12 and its
      label is baked in as the default. An empty ADS_PHONE_LABEL, or `TAGS_OFF=1`, removes the
      feature from the output byte for byte. The call-length threshold and whether `call_click` is
      primary or secondary are account-side settings owned by `playbook/ads-program.md` section 4,
      not by this file (both call actions count from 10 seconds since 2026-09-18; `call_click`
-     stays PRIMARY while bidding is Maximize Clicks). The displayed number string must stay
+     stays PRIMARY: bidding returned to Maximize Conversions 2026-09-28 and the flip rule has not
+     fired). The displayed number string must stay
      exactly `0480 649 649`; `tel:+32480649649`,
      `wa.me/32480649649` and the JSON-LD `telephone` are other formats and are not swapped.
    - `GA4_ID` (default G-S3SQ25WZMK) adds the GA4 property to the SAME consent gate and the SAME
