@@ -47,7 +47,7 @@ node design/site-source/build.js
    as the featured card under the agreed first name François; the invented cards are deleted). The Afrim avatar monogram was cleared
    2026-08-28: his portrait ships in the bubble, so a clean build now prints no warning at all.
 
-   TAGS ARE THE DEFAULT since the G5 tag round (2026-08-27): the four real ids (public, visible in
+   TAGS ARE THE DEFAULT since the G5 tag round (2026-08-27): the five real ids (public, visible in
    the page source, never secrets) are baked into `build.js` as defaults, so the plain command above
    ships the live tagged site and a forgotten flag can no longer silently drop the tags. Env vars
    still override the defaults one by one. To build the clean zero-Google output (checks, archives,

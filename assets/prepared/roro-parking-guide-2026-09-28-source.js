@@ -6,6 +6,7 @@
 // (the locked site design). No fact in the text below was invented; it is Roro's parking brief.
 // Box 3 was corrected 2026-09-28: an earlier per-visit price example and a jobs-per-month count
 // were removed, sourced from a zone where the professional card does not apply.
+// Text corrected 2026-10-01 (review): the meter sentence, the count line out (no job count is asked of Roro), "diesel" out, lez.brussels named.
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const path = require('path');
@@ -289,16 +290,16 @@ y = drawBox('The short answer', box1Items, MARGIN, y) + 7;
 const box2Items = [
   { type: 'bullet', text: 'Valid in all 19 communes of Brussels.' },
   { type: 'bullet', text: 'Yes: blue, green, grey and "événement" zones.' },
-  { type: 'bullet', text: 'No: red zones, orange zones and reserved places. There you pay the meter, with or without the card.' },
+  { type: 'bullet', text: 'No: red zones, orange zones and reserved places. In red and orange zones you pay the meter, with or without the card.' },
   { type: 'bullet', text: 'The card goes behind the windscreen, easy to read.' },
 ];
 y = drawBox('What the card gives', box2Items, MARGIN, y) + 7;
 
 // Box 3 (corrected 2026-09-28: see the file header note above)
 const box3Items = [
-  { type: 'bullet', text: 'Paying per job: the price depends on the commune and the zone. The app or the meter shows the price before you pay.' },
+  { type: 'bullet', text: 'Paying per job: the price depends on the commune and the zone.' },
   { type: 'bullet', text: 'The card costs 90 EUR a month, jobs or no jobs.' },
-  { type: 'bullet', text: 'Start by paying per job. Count your Brussels jobs and what you paid for parking for one month. Then decide.' },
+  { type: 'bullet', text: 'Start by paying per job. After one month, look at what parking cost you. Then decide.' },
 ];
 y = drawBox('Card, or pay per job?', box3Items, MARGIN, y);
 
@@ -333,14 +334,14 @@ y = drawBox('Call them first', box5Items, MARGIN, y) + 7;
 
 // Box 6
 const box6Items = [
-  { type: 'bullet', text: 'Euro 6 diesel: allowed in the Brussels low emission zone today.' },
+  { type: 'bullet', text: 'Euro 6: allowed in the Brussels low emission zone today.' },
 ];
 y = drawBox('The van', box6Items, MARGIN, y) + 9;
 
 console.log('Page 2 before footer y:', y, '/', PH);
 
 // footer
-const footerText = 'Made by fady.be for Pro Débouchage. Source: parking.brussels, read 28 September 2026. Prices can change: check the site before you pay.';
+const footerText = 'Made by fady.be for Pro Débouchage. Sources: parking.brussels and lez.brussels, read 28 September 2026. Prices can change: check the site before you pay.';
 doc.font(F[600]).fontSize(11).fillColor(MUTED);
 const footerH = doc.heightOfString(footerText, { width: CW, lineGap: 2 });
 let footerY = y;

@@ -20,5 +20,5 @@ Example: `Dilbeek, WC, 129, Google, FR`. A lost call counts too: `Kontich, cave,
 
 ## What Google logged over the same period (for matching, research/41)
 - Calls from the ad's call button: 1 Sep 13:00 missed, 4 Sep 10:00 8 s, 9 Sep 10:00 missed, 15 Sep 17:00 7 s, 16 Sep 11:00 39 s (area code 0485). Roro phones missed calls back from his mobile within minutes, which Google cannot see.
-- Taps on the site's call button (call_click): 7 all time, as read 2026-09-18. Spend to date: NOW.md.
+- Taps on the site's call button (call_click): 9 all time, 27 Aug to 28 Sep (research/57). Spend to date: NOW.md.
 - 17 to 28 Sep: zero calls from the ad's call button (research/56 section 3).

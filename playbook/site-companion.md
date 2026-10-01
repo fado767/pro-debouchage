@@ -30,7 +30,7 @@ One thing to say at the start of the call: **every price printed on the page is 
 **Roro will ask**
 - *Why not "20 years of experience" or "number one in Brussels"?* We only write what we can prove. A false claim is the first thing a customer checks, and it is the thing that kills trust.
 - *Why WhatsApp?* Half your callers can show the problem faster than they can describe it. It also gives you a written thread.
-- *Is the humour line gone?* The lighter headline is parked for a test in a few weeks. This one converts on the pain.
+- *Is the humour line gone?* The lighter headline is parked, with no test date. This one converts on the pain.
 
 ## 3. Trust strip
 

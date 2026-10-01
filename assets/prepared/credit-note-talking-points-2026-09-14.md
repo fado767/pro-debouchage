@@ -18,7 +18,7 @@ For Fady, call with Roro in English, before the hand-over.
 - Note de credit FR, one page, for French customers.
 - Creditnota NL, one page, for Dutch customers.
 - The French guide, new section 9, tells her when to use it.
-- She prints and fills them exactly like the invoice pack she already uses. Same look, same boxes.
+- She fills them exactly like the invoice pack she already uses. Same look, same boxes.
 
 ## 4. The five rules for Steph
 1. Own number series, NC-2026-001, NC-2026-002, in order, no gaps, never a number from the invoice series.
@@ -34,4 +34,4 @@ For Fady, call with Roro in English, before the hand-over.
 - Still open from before: septic emptying alone, camera inspection alone (149), cellar pumping alone, 6 or 21 percent? And is a syndic (ACP / VME) a final consumer for the 6 percent?
 
 ## 6. Close
-The pack is handed over at the video visit in the week of 21 September. Nothing to do before then.
+The pack is handed over at the next visit to the depot. Nothing to do before then.

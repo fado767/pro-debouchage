@@ -324,3 +324,11 @@
 ## 2026-09-28 After the afternoon fact-sync: two wordings settled (Claude's decisions on the ads)
 - The two Brussels ads rated Poor get their replacement headlines WRITTEN AND APPLIED at the read of Mon 5 Oct, in the Brussels campaign only; the freeze until 12 Oct covers the ring campaign, the Brussels campaign is a week old then and carries no history worth keeping.
 - The Brussels campaign is described as "French keywords and ads": its language setting reads "All languages", like the ring campaign's, and the keyword selects the searcher (ads-program.md section 2).
+
+## 2026-10-01 The "Garantie 30 jours" sitelink leaves the ring's FR | Cave inondée at the read of 5 Oct (Claude's decision on the ads)
+- The fact-sync of 1 Oct: the sitelink (added 2026-09-19, research/47) promises a free return when a pipe blocks again; the page guarantees the unblocking only and pumping a cellar has no guarantee. On a pumping group it is a claim the page does not back (rule 1, ads-program.md section 3).
+- It was parked on 28 Sep for after 12 Oct. Moved up: the freeze of 28 Sep excepts a claim the page cannot back, and the Brussels campaign already keeps this sitelink off its own Cave inondée group. It comes off at the read of Mon 5 Oct, Fady at the screen; no bid, budget, keyword or ad moves.
+
+## 2026-10-01 Roro's papers before the depot visit (Claude's wording, Fady sends or says them)
+- The update for Roro is reworded so it is true from 2 Oct on: days named, "none from 17 to 28 September", "the old setting" for the bidding, the call buttons "on the nine main pages"; nothing about results since 28 Sep, no read exists.
+- The parking guide: the line asking him to count his Brussels jobs is out (DECISIONS 2026-09-25), "diesel" is out (the files say Euro 6 only), the meter sentence follows research/61, lez.brussels is named as a source. The video brief: the card shot asks for name and logo only, one paper with the company name is an option for the last shot, only the filmer speaks.
