@@ -60,7 +60,7 @@ Pro Débouchage is a 24/7 drain-unblocking, sewer cleaning, camera inspection, s
 ## 5. The rules that never bend
 
 1. **Never fake anything.** No fake reviews, no fake counters, no unproven claims ("20 years", "1M users", "97%") in any copy. We claim only what Roro confirms and what we can show.
-2. **The client owns what matters and is never locked in:** his domain, his Google account, his Business Profile, his Ads account and its billing, his reviews. The agency is a manager on them, never the owner.
+2. **The client owns what matters and is never locked in:** his domain, his Google account, his Business Profile, his Ads account and its billing, his reviews. The agency is a manager on them, never the owner. A reply to a negative Google review goes up under his business name only after Fady's pick and Roro's own yes (the taxi rule, Fady's pick by widget of 2026-09-29).
 3. **No ad-ROI promises** to Roro before real numbers exist.
 4. **The Business Profile is a gate:** no address or name goes onto Google before the address question (section 1 of `playbook/launch-plan.md`) is settled.
 5. **One live page, one design.** Changes are made in the `design/site-source/` source, rebuilt and redeployed. Nothing is edited on the live host by hand.

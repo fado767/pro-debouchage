@@ -5,6 +5,8 @@
 !/.gitignore
 !/save-to-cloud.cmd
 !/FOR-HQ.md
+!/FOR-FADY.md
+!/SCORE.md
 !/.claude/
 /.claude/*
 !/.claude/skills/

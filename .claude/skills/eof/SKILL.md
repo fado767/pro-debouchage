@@ -38,7 +38,9 @@ sections 7 (byte budgets, rewrite in place), 8 (logging) and 9 (close it or file
 6. **Rewrite `HANDOFF.md`** for the next session: what today did, what is next, what is waiting on
    whom, and whether the next session should start with `/orch` (a new day) or `/orch-mid`
    (same day, Fady is coming back). Budget 4 KB. Any rule improvement proposed today goes into the
-   handoff the moment it is proposed, so it survives a fresh session.
+   handoff the moment it is proposed, so it survives a fresh session. Then rewrite `FOR-FADY.md` (the kit template): what needs
+   his eye, what waits for his decision, his answers; straight facts, one page, at most 8,000 bytes,
+   nothing of his listed in a second place. He reads it through `/decide`.
 7. **Improvements** to the rules or the skills: APPLY them directly, dated, and file them in `LOG.md`,
    when they only change how Claude and the files work internally. Put an improvement to Fady ONLY
    when it changes what HE does, sees or decides (rule changed 2026-09-01 on Fady's word; before that
