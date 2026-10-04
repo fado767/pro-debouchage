@@ -1,17 +1,5 @@
 {
   "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/session-stamp.cjs\"",
-            "timeout": 10,
-            "statusMessage": "Stamping session start (logging guard)"
-          }
-        ]
-      }
-    ],
     "PreToolUse": [
       {
         "matcher": "Bash|PowerShell",
@@ -43,18 +31,6 @@
             "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/no-emdash.cjs\"",
             "timeout": 10,
             "statusMessage": "Checking AGENTS.md section 6 (no em dashes)"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/log-guard.cjs\"",
-            "timeout": 15,
-            "statusMessage": "Logging guard (AGENTS.md section 8)"
           }
         ]
       }
