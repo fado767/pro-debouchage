@@ -18,7 +18,10 @@ Example: `Dilbeek, WC, 129, Google, FR`. A lost call counts too: `Kontich, cave,
 
 - 2026-09-28 (filed that day; a call with Fady, the day of the call not stated): for the third time Roro said, his words as Fady gave them: "Since you raised the price to 30 or when you did that change something happened and I'm not getting calls anymore". No count given. The budget went to 30 on 2026-09-18. Looked into the same day (LOG 2026-09-28).
 
+- 2026-10-05 (filed that evening; a phone call with Fady, the day of the call not stated): Roro said no calls landed yet, as Fady gave it: "Roro told me on a phone call no calls landed yet. I told him that's expected." No count given. It matches the account: 0 calls from the ad's call button and 0 counted taps, 28 Sep to 4 Oct (research/63).
+
 ## What Google logged over the same period (for matching, research/41)
 - Calls from the ad's call button: 1 Sep 13:00 missed, 4 Sep 10:00 8 s, 9 Sep 10:00 missed, 15 Sep 17:00 7 s, 16 Sep 11:00 39 s (area code 0485). Roro phones missed calls back from his mobile within minutes, which Google cannot see.
 - Taps on the site's call button (call_click): 9 all time, 27 Aug to 28 Sep (research/57). Spend to date: NOW.md.
 - 17 to 28 Sep: zero calls from the ad's call button (research/56 section 3).
+- 28 Sep to 4 Oct: zero calls from the ad's call button, zero counted taps, 30 clicks, 251.19 EUR (research/63).
