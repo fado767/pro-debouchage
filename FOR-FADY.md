@@ -1,6 +1,6 @@
 # FOR-FADY.md, the one file for you
 
-*Kit template, 2026-09-29 (Fady's pick by widget in the HQ that night, from BePet's own file). Everything that needs your eye or your decision, and nothing else. Straight facts. At most 8,000 bytes. Every session rewrites it at its close (`/eof` step 6). In a fresh Opus session, type `/decide`. Nothing of yours is listed in a second place: the open-items file points here in one line. Last rewrite: Monday 2026-10-05 about 22:25, by the /orch read.*
+*Kit template, 2026-09-29 (Fady's pick by widget in the HQ that night, from BePet's own file). Everything that needs your eye or your decision, and nothing else. Straight facts. At most 8,000 bytes. Every session rewrites it at its close (`/eof` step 6). In a fresh Opus session, type `/decide`. Nothing of yours is listed in a second place: the open-items file points here in one line. Last rewrite: Tuesday 2026-10-06 about 00:55, at the close of the Monday read.*
 
 ## 1. Look at this
 

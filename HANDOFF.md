@@ -1,16 +1,17 @@
 # HANDOFF.md
 *Written by the last session for the next one. Overwritten at every close. Budget 4 KB (`wc -c`).*
 
-**Written Monday 2026-10-05, about 22:25, at the second close of the Monday read (20:06 to 22:05,
-then 22:06 to 22:25 on Fady's "ready"). The day is CLOSED: no agent runs, the browser lock is
-free, every agent tab is closed. Next: `/orch`.**
+**Written Tuesday 2026-10-06, about 00:55 (the Monday read ran 20:06 to 22:05, then 22:06 to 22:25
+on Fady's "ready", then a disapproval check 22:50 to 22:56, then this close). The day is CLOSED: no
+agent runs, the browser lock is free, every agent tab is closed. Next: `/orch`.**
 
 ## What changed on the account tonight (all re-read after a reload)
 - "Garantie 30 jours" is OFF the ring's FR | Cave inondée (5 sitelinks left; still on FR | WC bouché
   and FR | Canalisation bouchée). The only ring change.
 - Both Poor Brussels ads carry the draft's new text. Canalisation bouchée: Eligible, Ad strength
-  Pending. WC bouché (826354415165): DISAPPROVED, "Call Directory, Forwarding and Recording
-  Services" for about an hour; headline 14 swapped to "Déplacement compris"; ELIGIBLE at 22:15.
+  Pending (WC and Cave inondée too). WC bouché (826354415165): DISAPPROVED, "Call Directory,
+  Forwarding and Recording Services" for about an hour; headline 14 swapped to "Déplacement
+  compris"; ELIGIBLE at 22:15 and at 22:56 (Policy manager clean; Google's mail of 22:36 was late).
 - THE THREE BRUSSELS PER-PROBLEM ADS LAND ON THEIR OWN PAGES since about 22:15 (Fady's "ready",
   one identity check). NOT changed: the ring's URLs, budgets, bidding, keywords.
 
