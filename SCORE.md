@@ -8,3 +8,4 @@ Example (invented): `W40 (2026-09-28 to 2026-10-04) | Mulu 52 booking clicks, 8.
 
 ## Lines
 
+W40 (2026-09-28 to 2026-10-04) | 0 counted calls or taps, 30 clicks (counting gap: calls made without answering the cookie strip are not seen) | spend 251 EUR | reported: none (no count is asked) | checks: 1 Brussels ad disapproved, FR per-problem ads land on /fr/

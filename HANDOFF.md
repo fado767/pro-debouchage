@@ -1,45 +1,44 @@
 # HANDOFF.md
 *Written by the last session for the next one. Overwritten at every close. Budget 4 KB (`wc -c`).*
 
-**Written Sunday 2026-10-04, about 15:30, at the close of a quiet check-up. The day is CLOSED: no
-agent of this folder runs, no browser lock, no Chrome was used, nothing changed on any account or
-live surface. Next: `/orch` on MONDAY 5 OCT, MORNING, Fady at the screen (his pick).**
+**Written Monday 2026-10-05, about 22:05, at the close of the Monday read (it ran 20:06 to about
+22:05, in the evening, not the morning). The day is CLOSED: no agent runs, the browser lock is free,
+every agent tab is closed. Next: `/orch`. If Fady types "ready", the URL sitting comes first.**
 
-## What this session did
-- Sweep clean, the site answers. NOW.md tidied (the HQ notes of 29 Sep were applied by the pass of
-  2 Oct; Fady's hook install of 2 Oct removed log-guard and session-stamp, AGENTS.md still names
-  them: PD-10).
-- THE BRUSSELS HEADLINES ARE DRAFTED: assets/prepared/bxl-poor-ads-headlines-2026-10-04.md, 15
-  headlines and 4 descriptions per Poor ad (WC bouché, Canalisation bouchée), counted, each backed
-  by a copy-fr.js line, no price numbers (ads-program.md 3; three price lines wait in a reserve
-  section, not applied). EDIT IN PLACE, decided (one week old, no history worth keeping).
-- GBP video three did NOT happen this weekend (Fady and Roro busy, no new date).
+## What changed on the account tonight (all re-read after a reload)
+- "Garantie 30 jours" is OFF the ring's FR | Cave inondée (5 sitelinks left; still on FR | WC bouché
+  and FR | Canalisation bouchée). The only ring change.
+- Both Poor Brussels ads carry the draft's new text. Canalisation bouchée: Eligible, Ad strength
+  Pending. WC bouché (826354415165): DISAPPROVED, "Call Directory, Forwarding and Recording
+  Services"; headline 14 swapped to "Déplacement compris", still Disapproved 6 minutes later.
+- NOT changed: any Final URL (the identity check went unanswered), budgets, bidding, keywords.
 
-## Monday 5 Oct, the read (per campaign, Fady at the screen for identity checks)
-- Weekly Monday: the FACT-SYNC audit (read-only) and the Ads read in one batch; the first SCORE.md
-  line (W40, 28 Sep to 4 Oct) at the close.
-- RING (24185896982), FROZEN until 12 Oct: read only, except the "Garantie 30 jours" sitelink OFF
-  FR | Cave inondée (DECISIONS 2026-10-01). Call details since 28 Sep, day by day, the 1 Oct charge,
-  the Change history of 28 Sep, the Tobacco sitelink status, a labeled Quality Score read.
-- BRUSSELS (24297024674): the browser agent FIRST reads the live text of the two Poor ads and the Ad
-  strength panel; if the live text differs from the draft's "current" list, it stops and reports.
-  Then it applies the draft (one ad at a time, money-stopping nothing involved), re-reads after a
-  reload. The review of the new keywords and sitelinks ("Le prix d'un débouchage": drop if
-  disapproved, never appeal). Stop rule: 150 EUR with no call and no tap, then pause and ask Fady.
-- Also: VIES and KBO poll (Sonnet), Search Console (Chrome), billing and the promo.
-- Brief tips that worked: date ranges by presets or calendar clicks; read_page over screenshots;
-  read-backs on the SETTING screens after a reload; after an identity check clears, reload and check
-  the object exists before saving again; the session refreshes its agent's lock every 10 minutes.
-  Profile 4 may need Fady's one click on the Claude side panel.
+## What the read found (research/63, DECISIONS 2026-10-05, NOW.md)
+- 28 Sep to 4 Oct: ring 163.05 EUR, 21 clicks; Brussels 88.14 EUR, 9 clicks; 0 counted conversions
+  and 0 calls from ads in both. The tag is not broken: it is the counting gap (cookie strip).
+- THE SIX FR PER-PROBLEM ADS POINT AT /fr/ (both campaigns), no keyword has a URL. Brussels: fix
+  with Fady at the screen. Ring: first build after 12 Oct.
+- Search Console: the first 3 organic clicks. VIES INVALID, KBO unchanged. Promo "Processing".
+- Fact-sync: 7 playbook findings, all fixed and checked on disk.
 
-FOR-FADY.md got its first fill today; NOW.md still lists Fady's items too. At the Monday close, let
-the [Fady] lines of NOW.md point to FOR-FADY.md in one line (the kit rule; frees NOW.md bytes).
+## Next session, in this order
+1. Re-read the Brussels WC ad. Still Disapproved: ONE appeal. Read the Canalisation ad's strength.
+2. On Fady's "ready": one agent sets the three Brussels Final URLs (draft lines 168, 200, 232),
+   one ad at a time; the agent touches nothing in the identity dialog, Fady clicks Confirm.
+3. Thu 8 Oct: Brussels spend against the 150 EUR stop rule (88.14 on 4 Oct, 16 a day).
+4. Owed reads: call details (Report editor, the direct URL gave 404), the ring's Change history of
+   28 Sep, Brussels sitelink statuses, name and logo assets, the 7 unread notifications.
+
+## Brief tips that worked tonight
+- Removing a sitelink from ONE ad group: on the row, click the status control ("Edit this Asset
+  status"), Remove, Confirm. The toolbar Remove did nothing; the pencil edits the shared asset.
+- Ads grids render only rows in view: wheel-scroll to the bottom, trust the footer count.
+- Text edits of an RSA fired no identity check; a Final URL edit did. form_input set the fields.
+- The fady.be window may show an account chooser: pick hi@fady.be, then Pro Débouchage.
+- WebFetch gives a summary, not the page: fine for VIES JSON, re-read KBO by eye when it matters.
 
 ## Waiting on whom
-**Fady:** the third GBP video with Roro (no date); the update and parking guide to Roro; two
-questions for Roro (Bancontact, camera brand), one for Fady (Steph); the picture pick (PD-12);
-PD-10 (AGENTS.md diet, his typed word or the HQ pass); the credit-note pack, the accountant
-questions, Infomaniak, the card.
+**Fady:** everything is in FOR-FADY.md (the URL sitting first, then the video, Roro's papers).
 **Roro:** the KBO commercial name via the accountant.
-**Clocks:** MON 5 OCT morning; 7 Oct the .com expires; Sat 10 Oct a read; MON 12 OCT, then the
-builds one at a time; after 19 Oct the name asset look; around 23 Oct the promo; 15 Nov the registry.
+**Clocks:** 7 Oct the .com expires; Thu 8 Oct Brussels spend; Sat 10 Oct a read; MON 12 OCT, then
+the builds one at a time; after 19 Oct the name asset; by 26 Oct the promo; 15 Nov the registry.

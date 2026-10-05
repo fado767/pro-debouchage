@@ -332,3 +332,14 @@
 ## 2026-10-01 Roro's papers before the depot visit (Claude's wording, Fady sends or says them)
 - The update for Roro is reworded so it is true from 2 Oct on: days named, "none from 17 to 28 September", "the old setting" for the bidding, the call buttons "on the nine main pages"; nothing about results since 28 Sep, no read exists.
 - The parking guide: the line asking him to count his Brussels jobs is out (DECISIONS 2026-09-25), "diesel" is out (the files say Euro 6 only), the meter sentence follows research/61, lez.brussels is named as a source. The video brief: the card shot asks for name and logo only, one paper with the company name is an option for the last shot, only the filmer speaks.
+
+## 2026-10-05 The six FR per-problem ads point at /fr/, found at the Monday read (Claude's decision on the ads)
+- Read tonight in the account (research/63 and three agents' read-backs): the ad-level Final URL of the three ring ads (FR | WC bouché, FR | Canalisation bouchée, FR | Cave inondée) and of the three Brussels per-problem ads is https://prodebouchage24.be/fr/, and all 80 keywords carry no Final URL. Their clicks land on the general page, never on the per-problem pages built on 17 Sep; the clicks seen on those pages come from sitelinks. The NL per-problem ads carry the right URLs. research/62 line 18 recorded the plan's URLs, not the account's.
+- BRUSSELS: the three ads get the plan's URLs (assets/prepared/brussels-campaign-draft-2026-09-28.md lines 168, 200, 232) at the next sitting with Fady at the screen: a Final URL save fires Google's identity check (it did tonight, nobody answered, nothing was saved).
+- RING: the same correction is the FIRST build after the read of 12 Oct, never before: the freeze of 28 Sep holds, a new landing page would blur that read.
+
+## 2026-10-05 The Brussels WC ad was disapproved on its new text: reworded once, an appeal only at the next read (Claude's decision on the ads)
+- The new text of the draft of 4 Oct went onto both Poor Brussels ads at about 21:10, re-read with zero differences. Canalisation bouchée reads Eligible. WC bouché (ad 826354415165) reads Disapproved, "Call Directory, Forwarding and Recording Services", Google's automated check, no line named.
+- Headline 14 "Numéro normal, pas de surtaxe" (the one line about phone numbers) was replaced by "Déplacement compris", which ran in this ad from 28 Sep with no issue. Six minutes later the ad still read Disapproved. No more blind edits.
+- At the next read: if still Disapproved, ONE appeal (a local drain service, not a call directory), never argued twice; if the appeal fails, the text of 28 Sep goes back. "Numéro normal, pas de surtaxe" stays out of every ad.
+- The "Garantie 30 jours" sitelink is OFF the ring's FR | Cave inondée since tonight (DECISIONS 2026-10-01 executed; the group keeps 5 sitelinks, the sitelink stays on FR | WC bouché and FR | Canalisation bouchée).
