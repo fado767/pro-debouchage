@@ -1,45 +1,47 @@
 # HANDOFF.md
 *Written by the last session for the next one. Overwritten at every close. Budget 4 KB (`wc -c`).*
 
-**Written Tuesday 2026-10-06, about 00:55 (the Monday read ran 20:06 to 22:05, then 22:06 to 22:25
-on Fady's "ready", then a disapproval check 22:50 to 22:56, then this close). The day is CLOSED: no
-agent runs, the browser lock is free, every agent tab is closed. Next: `/orch`.**
+**Written Thursday 2026-10-08, about 13:30, at the close of the FIX DAY (Fady's ask: Roro has no
+calls; find it, fix it, best ads, a WhatsApp report). The day is CLOSED: no agent runs, the lock is
+free. Same day, Fady back at the laptop for the URL step: `/orch-mid`. From Friday: `/orch`.
+The weekly usage meter stood at 97 percent at the close (resets Sun 11 Oct about 15:00); Fady
+switches to the backup account at 99.**
 
-## What changed on the account tonight (all re-read after a reload)
-- "Garantie 30 jours" is OFF the ring's FR | Cave inondée (5 sitelinks left; still on FR | WC bouché
-  and FR | Canalisation bouchée). The only ring change.
-- Both Poor Brussels ads carry the draft's new text. Canalisation bouchée: Eligible, Ad strength
-  Pending (WC and Cave inondée too). WC bouché (826354415165): DISAPPROVED, "Call Directory,
-  Forwarding and Recording Services" for about an hour; headline 14 swapped to "Déplacement
-  compris"; ELIGIBLE at 22:15 and at 22:56 (Policy manager clean; Google's mail of 22:36 was late).
-- THE THREE BRUSSELS PER-PROBLEM ADS LAND ON THEIR OWN PAGES since about 22:15 (Fady's "ready",
-  one identity check). NOT changed: the ring's URLs, budgets, bidding, keywords.
-
-## What the read found (research/63, DECISIONS 2026-10-05, NOW.md)
-- 28 Sep to 4 Oct: ring 163.05 EUR, 21 clicks; Brussels 88.14 EUR, 9 clicks; 0 counted conversions
-  and 0 calls from ads in both. The tag is not broken: it is the counting gap (cookie strip).
-- THE THREE RING FR PER-PROBLEM ADS STILL POINT AT /fr/ (no keyword has a URL): first build after
-  12 Oct. Roro, by phone to Fady: no calls landed yet (jobs-ledger).
-- Search Console: the first 3 organic clicks. VIES INVALID, KBO unchanged. Promo "Processing".
-- Fact-sync: 7 playbook findings, all fixed and checked on disk.
+## What today found and did (all read back; LOG 2026-10-08, DECISIONS 2026-10-08 three entries)
+- The cause: the 6 EUR click cap of 17 Sep cut off the 11 to 15 EUR clicks that were the 5 calls;
+  the 28 Sep rollback restored the bidding only; since then blind bidding (phone taps uncounted).
+  research/64 (memo), 65 (best practice), 66 (deep read), 67, 68 (the counting fix), 69 (edits).
+- Account (research/69): Brussels PAUSED at 149.84 EUR; ring FR emergency [débouchage bruxelles]
+  paused; NL emergency 14 on; 40 ring negatives; bidding Maximize Conversions and 30 a day untouched.
+  NOT done: the three ring FR ad URLs (identity check unanswered; the relay launch refused by the
+  safety check). Ad Preview showed no ad, the forwarding number could not be read (NOW.md).
+- Live site since 13:03 (research/68, verified by the session on the domain): CSP allows the call
+  loader; the Ads tag loads cookieless before the answer, GA4 after accept; new card title and
+  privacy paragraph in FR, NL, EN; six WhatsApp texts; lazy ticker pictures. site-v1 on disk is the
+  ADVANCED build; every live build now needs CONSENT_MODE=advanced (README).
+- Roro's report drafted (assets/prepared/roro-report-2026-10-08.md), given to Fady in chat.
+- Fady's typed word: the identity-check number may be relayed and clicked (DECISIONS, FOR-HQ.md);
+  AGENTS.md section 14 still carries the old sentences (the session's edit was refused).
 
 ## Next session, in this order
-1. Re-read the Brussels WC ad (Disapproved again: ONE appeal) and both edited ads' Ad strength.
-2. Read where the Brussels clicks land now (Landing pages report).
-3. Thu 8 Oct: Brussels spend against the 150 EUR stop rule (88.14 on 4 Oct, 16 a day).
-4. Owed reads: call details (Report editor, the direct URL gave 404), the ring's Change history of
-   28 Sep, Brussels sitelink statuses, name and logo assets, the 7 unread notifications.
+1. If Fady says "ready" at the laptop: ONE Chrome agent, the three Final URLs (NOW.md line 3), the
+   OLD identity-check procedure (agent signals, Fady taps Confirm himself), read back after reload.
+2. Mon 12 Oct, the weekly read (read only): the call log and the call asset columns (the
+   forwarding-number question), "Calls from website" and the Tag status, Brussels stays paused,
+   VIES/KBO, Search Console. SCORE line W41.
+3. Thu 22 Oct: the verdict on the call log and Roro's word; if no call, Manual CPC phones first is
+   the named next step (research/64 option 2a), Fady's typed go.
 
-## Brief tips that worked tonight
-- Removing a sitelink from ONE ad group: on the row, click the status control ("Edit this Asset
-  status"), Remove, Confirm. The toolbar Remove did nothing; the pencil edits the shared asset.
-- Ads grids render only rows in view: wheel-scroll to the bottom, trust the footer count.
-- Text edits of an RSA fired no identity check; a Final URL edit did. form_input set the fields.
-- The fady.be window may show an account chooser: pick hi@fady.be, then Pro Débouchage.
-- WebFetch gives a summary, not the page: fine for VIES JSON, re-read KBO by eye when it matters.
+## Brief tips that worked today
+- A read-only Chrome agent: the URL https://ads.google.com/aw/overview?__e=1665029105 works; the
+  ocid form gives Error 400. The tool's default browser may be the Taxi window: select the one
+  whose page shows hi@fady.be. The chrome.cjs helper window never attaches; the agent works in its
+  own tab of the already-connected fady.be window.
+- Agents save their report file after every step when the usage meter is high.
+- The app's safety check refuses: a session editing its own rulebook, and a browser brief that
+  relays the identity-check number. Park both, never route around.
 
 ## Waiting on whom
-**Fady:** everything is in FOR-FADY.md (the video, Roro's papers).
-**Roro:** the KBO commercial name via the accountant.
-**Clocks:** 7 Oct the .com expires; Thu 8 Oct Brussels spend; Sat 10 Oct a read; MON 12 OCT, then
-the builds one at a time; after 19 Oct the name asset; by 26 Oct the promo; 15 Nov the registry.
+**Fady:** FOR-FADY.md (the Roro message, the URL step at the laptop, the test call, the video).
+**Roro:** nothing. **Clocks:** the 400 EUR charge within days; Mon 12 Oct read; 15 Oct passkeys;
+19 Oct name asset; 22 Oct verdict; 26 Oct promo; 15 Nov registry.

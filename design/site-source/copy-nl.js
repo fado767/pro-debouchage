@@ -3,7 +3,11 @@
 // nbsp is the no-break space that glues the words of the marker answer line so it breaks where we
 // want it to; h1b types it as a literal character, so a variant's answer line names it instead of
 // hiding one in a string.
-const nbsp = ' ';
+const nbsp = ' ';// ADV (2026-10-08, research/68): true only on a CONSENT_MODE=advanced build, read as build.js reads it.
+// There Google's script loads before the visitor answers, so the consent strings switch to wording
+// that is true there; the basic build keeps the old strings byte for byte.
+const ADV = process.env.CONSENT_MODE === 'advanced';
+
 module.exports = {
   lang: 'nl-BE', dir: 'nl',
   wa: 'https://wa.me/32480649649?text=' + encodeURIComponent('Hallo, ik heb een verstopping. Hier is een foto en mijn gemeente: '),
@@ -59,6 +63,10 @@ module.exports = {
       title: 'Wc verstopt? Ontstoppingsdienst 24/7 in en rond Brussel',
       desc: 'Wc verstopt of loopt hij over? Wij komen 24/7, in en rond Brussel, van Aalst tot Leuven. De prijs hoort u aan de telefoon, vanaf € 129. Bel 0480 649 649.',
       footLabel: 'Wc verstopt',
+      // 2026-10-08 (NOW.md, research/67): de WhatsApp-tekst van DEZE pagina, een gewone zin die de klant
+      // zo kan versturen, met het probleem erin. Alle WhatsApp-knoppen en de belbalk van de pagina
+      // gebruiken hem; de drie hoofdpagina's houden `wa` hierboven.
+      wa: 'https://wa.me/32480649649?text=' + encodeURIComponent('Hallo, mijn wc is verstopt. Kunnen jullie langskomen?'),
     },
     {
       key: 'drain', slug: 'afvoer-verstopt', serv: 'Dringende ontstopping',
@@ -68,6 +76,7 @@ module.exports = {
       title: 'Afvoer verstopt? Ontstopping 24/7 in en rond Brussel',
       desc: 'Gootsteen, douche of afvoer verstopt? Wij komen 24/7 in en rond Brussel, van Aalst tot Leuven. De prijs hoort u aan de telefoon, vanaf € 119. Bel 0480 649 649.',
       footLabel: 'Afvoer verstopt',
+      wa: 'https://wa.me/32480649649?text=' + encodeURIComponent('Hallo, mijn afvoer is verstopt. Kunnen jullie langskomen?'),
     },
     {
       key: 'cellar', slug: 'kelder-leegpompen', serv: 'Kelder leegpompen',
@@ -78,6 +87,7 @@ module.exports = {
       title: 'Kelder onder water? Leegpompen 24/7 in en rond Brussel',
       desc: 'Kelder onder water? Wij pompen leeg, maken schoon en maken een verslag voor uw verzekering. 24/7 in en rond Brussel. Vanaf € 229. Bel 0480 649 649.',
       footLabel: 'Kelder onder water',
+      wa: 'https://wa.me/32480649649?text=' + encodeURIComponent('Hallo, mijn kelder staat onder water. Kunnen jullie hem komen leegpompen?'),
     },
   ],
 
@@ -278,22 +288,28 @@ module.exports = {
   footProbH: 'Veelvoorkomende problemen',
   credit: 'PRO DEBOUCHAGE BV. Deze site plaatst geen cookies en gebruikt geen meettools.',
 
-  creditTag: 'PRO DEBOUCHAGE BV. Deze site gebruikt één meettool voor oproepen, en alleen als u die aanvaardt.',
+  creditTag: ADV
+    ? 'PRO DEBOUCHAGE BV. Deze site gebruikt één meettool voor oproepen, zonder cookies zolang u die niet aanvaardt.'
+    : 'PRO DEBOUCHAGE BV. Deze site gebruikt één meettool voor oproepen, en alleen als u die aanvaardt.',
 
   // De toestemmingskaart, twee lagen (research/29 B1 en B2, 2026-08-27).
   // consentP werd op 2026-09-16 tot één zin ingekort (research/35): op een telefoon bedekte de
   // kaart de belknop. De verantwoordelijke staat nog altijd in de zin; de rest staat op laag twee.
-  consentT: 'Oproepen meten, met uw akkoord',
-  consentP: 'PRO DEBOUCHAGE BV meet zijn advertenties met Google. Er wordt niets geladen voor uw keuze.',
+  consentT: ADV ? 'Meetcookies, met uw akkoord' : 'Oproepen meten, met uw akkoord',
+  consentP: ADV
+    ? 'PRO DEBOUCHAGE BV meet zijn advertenties met Google. Het script van Google laadt meteen, maar zonder cookies zolang u niet aanvaardt.'
+    : 'PRO DEBOUCHAGE BV meet zijn advertenties met Google. Er wordt niets geladen voor uw keuze.',
   consentRefuse: 'Alles weigeren', consentAccept: 'Alles aanvaarden', consentLink: 'Cookies en meting',
   consentChoose: 'Zelf kiezen',
   consentFine: 'Verantwoordelijke&nbsp;: PRO DEBOUCHAGE BV. U kunt altijd van gedachten veranderen via de link "Cookies en meting" onderaan de pagina.',
   consentMore: 'Alles over onze cookies',
   consentT2: 'Kies wat u aanvaardt',
-  consentP2: 'U beslist lijn per lijn. Er wordt niets geladen zolang u niet bewaard hebt.',
+  consentP2: ADV
+    ? 'U beslist lijn per lijn. Zonder uw akkoord plaatst of leest Google geen cookies.'
+    : 'U beslist lijn per lijn. Er wordt niets geladen zolang u niet bewaard hebt.',
   consentSw: [
     ['Bezoekersmeting', 'Vertelt ons hoeveel mensen de pagina lezen, en welke. Tool&nbsp;: Google Analytics (Google Ireland Ltd).'],
-    ['Advertentiemeting', 'Vertelt ons of een telefoontje van een Google-advertentie komt. Geen gepersonaliseerde reclame, geen retargeting. Tool&nbsp;: Google Ads (Google Ireland Ltd).'],
+    ['Advertentiemeting', (ADV ? 'Een cookie koppelt uw telefoontje aan de Google-advertentie die u bracht.' : 'Vertelt ons of een telefoontje van een Google-advertentie komt.') + ' Geen gepersonaliseerde reclame, geen retargeting. Tool&nbsp;: Google Ads (Google Ireland Ltd).'],
   ],
   consentSave: 'Mijn keuze bewaren', consentBack: 'Terug',
 };

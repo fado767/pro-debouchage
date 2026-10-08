@@ -54,7 +54,12 @@ function pageHtml(c, opts = {}) {
   // at once, and none of them is the LCP element, so they must queue behind the hero.
   const tickItem = (t, eager, hidden) => `<div class="tick-item"${hidden ? ' aria-hidden="true"' : ''}>${IMG(t[0], t[1], t[2], t[3], (eager ? 'decoding="async"' : 'loading="lazy" decoding="async"') + ' fetchpriority="low"')}</div>`;
   const tickCopy = (hidden, eagerFirst) => c.ticker.map((t, i) => tickItem(t, eagerFirst && i < 3, hidden)).join('');
-  const tickSet = tickCopy(false, true) + tickCopy(true, false).repeat(TICK_REPEAT - 1);
+  // 2026-10-08 (NOW.md, research/67): the first three photos of the strip were EAGER, so a phone
+  // downloaded them although the ticker is display:none under 820px and never shows them. All of
+  // them are loading="lazy" now: a lazy image in a display:none box is never fetched, and on a
+  // desktop the strip sits in the first screen, so the browser still loads them at once and the
+  // PAGE_JS observer below promotes the whole strip as before. eagerFirst stays as a parameter.
+  const tickSet = tickCopy(false, false) + tickCopy(true, false).repeat(TICK_REPEAT - 1);
   const tickSetLazy = tickCopy(false, false).repeat(TICK_REPEAT);
   const tick = `<div class="ticker"><div class="tick-row"><div class="tick-set">${tickSet}</div><div class="tick-set" aria-hidden="true">${tickSetLazy}</div></div></div>`;
   // THE SWIPE HINT, fourth version (Fady 2026-08-27): the hand alone, no container, sitting inside
@@ -177,10 +182,13 @@ function pageHtml(c, opts = {}) {
   // Under the featured card: ONE object instead of the two loose muted sentences that sat there with
   // a gap reading as a mistake on a wide screen (Fady 2026-08-27). It says why there is a single
   // review and it hands over the way to send the next one.
-  // NO data-cta on that link, on purpose: the taxonomy is binary (anything containing "whatsapp" is
-  // a lead, everything else is a call), so on tag day a review click would be counted and paid for
-  // as a conversion. A review is not a lead. If it ever needs measuring, it needs its own event.
-  const revAsk = `<div class="rev-ask rv"><div><p class="rev-t">${c.revT}</p><p class="rev-p">${c.revP}</p></div><a class="btn btn-wa btn-sm" href="${c.waReview}" rel="noopener">${WA}${c.revB}</a></div>`;
+  // data-cta="review-whatsapp" since 2026-10-08 (research/59, research/67): until then this was the one
+  // WhatsApp link on the page with no data-cta, so its taps were never counted at all. It now fires the
+  // GA4 event whatsapp_click like the other WhatsApp buttons, with cta "review-whatsapp" so it can be
+  // told apart. It still sends NO Google Ads conversion: consent.js (build.js) skips the Ads label for
+  // any cta that starts with "review", because whatsapp_click is a PRIMARY Ads conversion and a review
+  // is not a lead (the reason this link had no data-cta before).
+  const revAsk = `<div class="rev-ask rv"><div><p class="rev-t">${c.revT}</p><p class="rev-p">${c.revP}</p></div><a class="btn btn-wa btn-sm" href="${c.waReview}" rel="noopener" data-cta="review-whatsapp">${WA}${c.revB}</a></div>`;
   const socialProof = c.featured
     ? `<article class="feat-card rv"><div class="feat-mark" aria-hidden="true">&#8220;</div><blockquote class="feat-q">${c.featured.text.map(p => `<p>${p}</p>`).join('')}</blockquote><footer class="feat-who"><div class="ini" aria-hidden="true">${c.featured.name[0]}</div><div><div class="name">${c.featured.name}</div><div class="feat-meta">${c.featured.meta}${c.featured.note ? ` <span class="feat-note">${c.featured.note}</span>` : ''}</div></div></footer></article>${revAsk}`
     : c.reviews.length
@@ -257,6 +265,10 @@ ${citePop}`;
 }
 
 // The page script, inlined at the end of <body>. Vanilla, no dependencies, IO only (no scroll listeners).
+// 2026-10-08 (research/59, research/67): the "click taxonomy shim" that used to close this script is
+// gone. It pushed a look-alike {event:'call_click'} object into window.dataLayer on every tap, with no
+// consent check, and nothing ever read it: the real counting is the gtag event in consent.js
+// (build.js). It was dead code and a trap for anyone reading dataLayer by eye.
 const PAGE_JS = `(function(){
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('y').textContent=new Date().getFullYear();
@@ -377,11 +389,6 @@ d.querySelector('summary').addEventListener('click',function(e){e.preventDefault
 if(d.open&&d.classList.contains('is-open')){run(d,false)}
 else{ds.forEach(function(o){if(o!==d&&o.classList.contains('is-open'))run(o,false)});run(d,true)}})});
 })();
-/* click taxonomy shim: ready for the Ads tag day, zero requests today */
-window.dataLayer=window.dataLayer||[];
-document.addEventListener('click',function(e){var a=e.target.closest('a[data-cta]');if(!a)return;
-window.dataLayer.push({event:a.dataset.cta.indexOf('whatsapp')>-1?'whatsapp_click':'call_click',cta:a.dataset.cta,lang:document.documentElement.lang.slice(0,2),ts:Date.now()});
-},{passive:true});
 })();`;
 
 module.exports = { pageHtml, PAGE_JS, PHONE, WA, LANGS, TEL };

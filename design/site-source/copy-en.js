@@ -1,5 +1,9 @@
 // v3 ENGLISH copy. Native persuasive English with contractions, for expats and internationals
 // around Brussels. Same promise, its own voice. Never a literal translation.
+// ADV (2026-10-08, research/68): true only on a CONSENT_MODE=advanced build, read as build.js reads it.
+// There Google's script loads before the visitor answers, so the consent strings switch to wording
+// that is true there; the basic build keeps the old strings byte for byte.
+const ADV = process.env.CONSENT_MODE === 'advanced';
 module.exports = {
   lang: 'en-BE', dir: 'en',
   wa: 'https://wa.me/32480649649?text=' + encodeURIComponent("Hello, I have a blocked drain. Here's a photo and my town: "),
@@ -237,22 +241,28 @@ module.exports = {
   privacy: 'Privacy policy', cgvLabel: 'Terms and conditions',
   credit: 'PRO DEBOUCHAGE SRL. This site sets no cookies and uses no analytics.',
 
-  creditTag: 'PRO DEBOUCHAGE SRL. This site uses one call-measurement tool, and only if you accept it.',
+  creditTag: ADV
+    ? 'PRO DEBOUCHAGE SRL. This site uses one call-measurement tool, with no cookies until you accept it.'
+    : 'PRO DEBOUCHAGE SRL. This site uses one call-measurement tool, and only if you accept it.',
 
   // The consent card, two layers (research/29 B1 and B2, 2026-08-27).
   // consentP was cut to one sentence on 2026-09-16 (research/35): on a phone the card covered the
   // hero call button. The controller is still named in the sentence; the rest moved to layer two.
-  consentT: 'Measuring calls, with your consent',
-  consentP: "PRO DEBOUCHAGE SRL measures its ads with Google. Nothing loads before you choose.",
+  consentT: ADV ? 'Measurement cookies, with your consent' : 'Measuring calls, with your consent',
+  consentP: ADV
+    ? "PRO DEBOUCHAGE SRL measures its ads with Google. Google's script loads right away, with no cookies until you accept."
+    : "PRO DEBOUCHAGE SRL measures its ads with Google. Nothing loads before you choose.",
   consentRefuse: 'Refuse all', consentAccept: 'Accept all', consentLink: 'Cookies and measurement',
   consentChoose: 'Choose',
   consentFine: 'Controller: PRO DEBOUCHAGE SRL. You can change your mind whenever you want, with the "Cookies and measurement" link at the bottom of the page.',
   consentMore: 'All about our cookies',
   consentT2: 'Choose what you accept',
-  consentP2: "You decide line by line. Nothing loads until you've saved.",
+  consentP2: ADV
+    ? "You decide line by line. Unless you say yes, Google won't set or read any cookies."
+    : "You decide line by line. Nothing loads until you've saved.",
   consentSw: [
     ['Audience measurement', 'Tells us how many people read the page, and which one. Tool: Google Analytics (Google Ireland Ltd).'],
-    ['Ad measurement', 'Tells us whether a call came from a Google ad. No personalised advertising, no retargeting. Tool: Google Ads (Google Ireland Ltd).'],
+    ['Ad measurement', (ADV ? 'A cookie links your call to the Google ad that brought you.' : 'Tells us whether a call came from a Google ad.') + ' No personalised advertising, no retargeting. Tool: Google Ads (Google Ireland Ltd).'],
   ],
   consentSave: 'Save my choices', consentBack: 'Back',
 };

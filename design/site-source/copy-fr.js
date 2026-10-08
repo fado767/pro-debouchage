@@ -7,6 +7,11 @@
 // string).
 const nbsp = ' ';
 const nb = ' ';
+// ADV (added 2026-10-08, research/68): true only on a CONSENT_MODE=advanced build, read the same way
+// build.js reads it. In that variant Google's script loads before the visitor answers, so the strings
+// that said "nothing loads before you choose" switch to wording that is true there. The basic build
+// keeps the old strings byte for byte. Same switch in copy-nl.js, copy-en.js and legal.js.
+const ADV = process.env.CONSENT_MODE === 'advanced';
 
 module.exports = {
   lang: 'fr-BE', dir: 'fr',
@@ -63,6 +68,10 @@ module.exports = {
       title: `WC bouché${nb}? Déboucheur 24h/24 à Bruxelles et alentours`,
       desc: `WC bouché qui déborde${nb}? On vient 24h/24, à Bruxelles et tout autour, d'Alost à Louvain. Le prix est dit au téléphone, à partir de 129${nb}€. 0480 649 649.`,
       footLabel: 'WC bouché',
+      // 2026-10-08 (NOW.md, research/67): the WhatsApp text of THIS page, a plain sentence the customer
+      // can send as it is, the problem named. Every WhatsApp button and the call bar of the page use it;
+      // the three main pages keep `wa` above. Plain space before ? on purpose, as in `wa`.
+      wa: 'https://wa.me/32480649649?text=' + encodeURIComponent("Bonjour, j'ai un WC bouché. Vous pouvez venir ?"),
     },
     {
       key: 'drain', slug: 'canalisation-bouchee', serv: 'Débouchage urgent',
@@ -72,6 +81,7 @@ module.exports = {
       title: `Canalisation bouchée${nb}? Débouchage 24h/24 à Bruxelles et alentours`,
       desc: `Canalisation, évier ou douche bouchés, ça remonte${nb}? On vient 24h/24 à Bruxelles et tout autour. Prix dit au téléphone, à partir de 119${nb}€. 0480 649 649.`,
       footLabel: 'Canalisation bouchée',
+      wa: 'https://wa.me/32480649649?text=' + encodeURIComponent("Bonjour, j'ai une canalisation bouchée. Vous pouvez venir ?"),
     },
     {
       key: 'cellar', slug: 'cave-inondee', serv: 'Pompage de cave inondée',
@@ -82,6 +92,7 @@ module.exports = {
       title: `Cave inondée${nb}? Pompage 24h/24 à Bruxelles et alentours`,
       desc: `Cave inondée${nb}? On pompe, on nettoie, rapport pour l'assurance si vous le demandez. 24h/24 à Bruxelles et tout autour. À partir de 229${nb}€. 0480 649 649.`,
       footLabel: 'Cave inondée',
+      wa: 'https://wa.me/32480649649?text=' + encodeURIComponent('Bonjour, ma cave est inondée. Vous pouvez venir pomper ?'),
     },
   ],
 
@@ -304,7 +315,9 @@ module.exports = {
   credit: `PRO DEBOUCHAGE SRL. Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure.`,
 
   // Tag-day strings (used only when the build gets ADS_TAG_ID).
-  creditTag: `PRO DEBOUCHAGE SRL. Ce site n'utilise qu'un outil de mesure des appels, et seulement si vous l'acceptez.`,
+  creditTag: ADV
+    ? `PRO DEBOUCHAGE SRL. Ce site n'utilise qu'un outil de mesure des appels, sans cookie tant que vous ne l'acceptez pas.`
+    : `PRO DEBOUCHAGE SRL. Ce site n'utilise qu'un outil de mesure des appels, et seulement si vous l'acceptez.`,
 
   // THE CONSENT CARD, two layers (research/29 B1 and B2, 2026-08-27).
   // Layer one asks the simple question. Layer two lets the visitor split it by purpose, which the
@@ -314,17 +327,21 @@ module.exports = {
   // 502px tall and covered the hero call button, so an ad click landed on a page with nothing
   // tappable that calls. The sentence still names the controller, which is why the company name is
   // inside it; the rest of the detail (who may change their mind, and how) moved to layer two.
-  consentT: `Mesurer les appels, avec votre accord`,
-  consentP: `PRO DEBOUCHAGE SRL mesure ses annonces avec Google. Rien n'est chargé avant votre choix.`,
+  consentT: ADV ? `Cookies de mesure, avec votre accord` : `Mesurer les appels, avec votre accord`,
+  consentP: ADV
+    ? `PRO DEBOUCHAGE SRL mesure ses annonces avec Google. Le script de Google se charge tout de suite, sans cookie avant votre accord.`
+    : `PRO DEBOUCHAGE SRL mesure ses annonces avec Google. Rien n'est chargé avant votre choix.`,
   consentRefuse: `Tout refuser`, consentAccept: `Tout accepter`, consentLink: `Cookies et mesure`,
   consentChoose: `Choisir`,
   consentFine: `Responsable&nbsp;: PRO DEBOUCHAGE SRL. Vous pouvez changer d'avis quand vous voulez, via le lien «&nbsp;Cookies et mesure&nbsp;» en bas de page.`,
   consentMore: `Tout savoir sur les cookies`,
   consentT2: `Choisissez ce que vous acceptez`,
-  consentP2: `Vous décidez ligne par ligne. Rien n'est chargé tant que vous n'avez pas enregistré.`,
+  consentP2: ADV
+    ? `Vous décidez ligne par ligne. Sans votre accord, Google ne dépose et ne lit aucun cookie.`
+    : `Vous décidez ligne par ligne. Rien n'est chargé tant que vous n'avez pas enregistré.`,
   consentSw: [
     [`Mesure d'audience`, `Nous dit combien de personnes lisent la page, et laquelle. Outil&nbsp;: Google Analytics (Google Ireland Ltd).`],
-    [`Mesure des annonces`, `Nous dit si un appel vient d'une annonce Google. Aucune publicité personnalisée, aucun reciblage. Outil&nbsp;: Google Ads (Google Ireland Ltd).`],
+    [`Mesure des annonces`, `${ADV ? `Un cookie relie votre appel à l'annonce Google qui vous a amené.` : `Nous dit si un appel vient d'une annonce Google.`} Aucune publicité personnalisée, aucun reciblage. Outil&nbsp;: Google Ads (Google Ireland Ltd).`],
   ],
   consentSave: `Enregistrer mes choix`, consentBack: `Retour`,
 };

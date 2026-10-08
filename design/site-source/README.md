@@ -65,12 +65,14 @@ TAGS_OFF=1 node design/site-source/build.js
      click also fires a `send_to` conversion.
    - `ADS_PHONE_LABEL` (default u0RxCNu5nPUcEM_SjsxE, baked 2026-09-12) is meant to turn on Google's
      "Calls from website visits" number swap: Google replaces the displayed `0480 649 649` with a
-     forwarding number for visitors who came from an ad click AND accepted cookies. **This has
-     never run.** The site's security header (CSP_TAG in build.js) does not allow scripts from
-     gstatic.com, so Google's loader (https://www.gstatic.com/wcm/loader.js) is blocked, and the
+     forwarding number for visitors who came from an ad click AND accepted cookies. **On the live
+     site this has never run.** The live security header (CSP_TAG in build.js) did not allow scripts
+     from gstatic.com, so Google's loader (https://www.gstatic.com/wcm/loader.js) was blocked, and the
      conversion "Calls from website" has never counted since 2026-09-12. No call was lost: the real
-     number always shows. The fix (allow gstatic.com in script-src, preview first, one test call)
-     is decided for after the read of 12 Oct (DECISIONS 2026-09-28, research/54). The
+     number always shows. The fix is IN THE SOURCE since 2026-10-08 (`https://www.gstatic.com` in
+     script-src) and proven on the preview only: after Accept the loader, call-tracking_9.js and the
+     wcm request load with no CSP error (research/67). Live on Fady's word, then one test call
+     (DECISIONS 2026-09-28, research/54). The
      conversion action "Calls from website" was created in the Ads account on 2026-09-12 and its
      label is baked in as the default. An empty ADS_PHONE_LABEL, or `TAGS_OFF=1`, removes the
      feature from the output byte for byte. The call-length threshold and whether `call_click` is
@@ -80,6 +82,19 @@ TAGS_OFF=1 node design/site-source/build.js
      fired). The displayed number string must stay
      exactly `0480 649 649`; `tel:+32480649649`,
      `wa.me/32480649649` and the JSON-LD `telephone` are other formats and are not swapped.
+   - `CONSENT_MODE` (added 2026-10-08, research/67; narrowed to the Ads tag the same day, research/68).
+     Unset = the basic site above, byte for byte: nothing from Google loads before the visitor answers
+     the card. `CONSENT_MODE=advanced` (what the LIVE site runs since 2026-10-08, DECISIONS 2026-10-08)
+     builds Google's advanced Consent Mode v2 for the Google Ads tag ONLY: on every page that carries
+     the card (not the root chooser, not the 404) the gtag.js loader with the Ads tag loads before any
+     answer, all four consent types denied first, `ads_data_redaction` on, `url_passthrough` off. It
+     sets and reads no cookie while denied; it sends a cookieless page_view ping, and the call and
+     WhatsApp taps send cookieless conversions. GA4 stays as in basic: no GA4 config and no GA4
+     request until the visitor accepts the analytics purpose. Accept grants per purpose; the number
+     swap still waits for ads consent. The card title, card sentence, footer credit and privacy pages
+     switch to wording that is true of this variant (copy-*.js and legal.js read the same flag; the
+     parameters the pings carry were read off the wire, research/68). Any other value fails the build,
+     and so does `advanced` without an Ads id. With `TAGS_OFF=1` it changes nothing.
    - `GA4_ID` (default G-S3SQ25WZMK) adds the GA4 property to the SAME consent gate and the SAME
      single gtag.js loader: nothing GA4 loads or configures before Accept either. Either id alone
      turns the whole layer on. With `TAGS_OFF=1` none of this exists in the output and every

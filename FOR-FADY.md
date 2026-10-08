@@ -1,31 +1,35 @@
 # FOR-FADY.md, the one file for you
 
-*Kit template, 2026-09-29 (Fady's pick by widget in the HQ that night, from BePet's own file). Everything that needs your eye or your decision, and nothing else. Straight facts. At most 8,000 bytes. Every session rewrites it at its close (`/eof` step 6). In a fresh Opus session, type `/decide`. Nothing of yours is listed in a second place: the open-items file points here in one line. Last rewrite: Tuesday 2026-10-06 about 00:55, at the close of the Monday read.*
+*Kit template, 2026-09-29. Everything that needs your eye or your decision, and nothing else. Straight facts. At most 8,000 bytes. Every session rewrites it at its close (`/eof` step 6). In a fresh Opus session, type `/decide`. Nothing of yours is listed in a second place: the open-items file points here in one line. Last rewrite: Thursday 2026-10-08 about 13:25, at the close of the fix day.*
 
 ## 1. Look at this
 
-- **The week in the ad account (28 Sep to 4 Oct):** ring 163.05 EUR for 21 clicks, Brussels 88.14 EUR for 9 clicks. Google counted **no call and no tap** in either. Part of that is the known counting gap (a visitor can call without answering the cookie strip). The ad's own call button also shows 0.
-- **A build error found and half fixed:** the six French "per problem" ads sent their clicks to the general French page. The three Brussels ads now land on their own pages (done tonight on your "ready"). The three ring ads follow as the first build after 12 Oct.
-- **The Brussels WC ad** was disapproved by Google's robot for about an hour tonight. One headline was swapped and it runs again. It is re-read at the next read.
-- **No calls:** Roro's word to you matches the account. The read of Mon 12 Oct is the decision point.
-- **Good news:** the first three visitors from normal Google search (not ads) arrived, on 26 Sep and 1 Oct.
+- **Why the calls stopped:** on 17 September a 6 EUR cap went on each click. Google could no longer buy the 11 to 15 EUR clicks, and those were the calls (5 calls on 71 clicks before, zero on about 140 clicks since). The cap came off on 28 Sep, but Google was bidding blind since the small cookie strip of 16 Sep (phone taps were not reported to it).
+- **What is done since Thursday 8 October:** Brussels paused at 149.84 EUR (your pick); the ring keeps 30 a day and the automatic bidding that produced the 5 calls; one 21-EUR-a-click word paused; 8 Dutch words back on; 21 junk searches blocked; the website now reports every call tap to Google, cookieless, with honest wording on the cookie strip and the privacy page (my call on your delegation). Hands off until the verdict on Thursday 22 October.
+- **Roro's report** is drafted: `assets/prepared/roro-report-2026-10-08.md` (full and short version, your talking points). It replaces the unsent update of 28 Sep.
+- **Your card, Roro's card:** Google charges about 400 EUR within days (its threshold is reached; October's clicks, nothing extra). The report tells him.
+- **One open question:** since 28 Sep the ad's call button was tapped 9 times and Google logged no call. Read again on Monday 12 Oct. If it goes on, a test tap from your phone settles it.
 
 ## 2. Waiting for you
 
-1. **The third Google profile video** with Roro at the depot, using the v3 shot list (`assets/prepared/gbp-video-brief.md`). No date yet. The profile stays invisible on Google until it passes.
-2. **Give Roro his papers:** the update (`assets/prepared/roro-update-2026-09-28.md`, written to be true from 2 Oct) and the parking guide (`assets/prepared/roro-parking-guide-2026-09-28.pdf`).
-3. **Two questions for Roro:** does he take Bancontact on the spot (the invoice prints it)? Is his small camera a Rausch (the page says Rausch, his form said Rioned)?
-4. **One question for you:** is Steph Roro's wife?
-5. **The picture pick (PD-12):** `assets/prepared/contact-sheet-2026-10-01.jpg`, 33 files, 73 MB. Name the IDs to keep, the rest goes to `to-delete/`. M1, M2, R1, R2, R3 are the masters of live pictures; the van drafts show the phone number (against DECISIONS 2026-08-27).
-6. **PD-10, the AGENTS.md cleanup:** a session may not edit its own rules. Your typed word in this folder, or the next HQ pass, does it. What to change: section 1 zone, section 3 map (misses FOR-HQ.md, FOR-FADY.md, SCORE.md, jobs-ledger, the two scripts; still names log-guard and session-stamp), section 4 "daily WhatsApp". Report: `../fady.be/research/2026-09-20-sweep/13-pro-debouchage.md`.
-7. **The credit-note pack:** explain it to Roro by phone (`assets/prepared/credit-note-talking-points-2026-09-14.md`), then hand it over (DECISIONS 2026-09-12).
-8. **The accountant questions**, in writing (`playbook/invoicing-flow.md` section 5): septic alone, camera alone (149), pumping alone, syndic VAT, the RPM Bruxelles wording, pre-printed work orders, a French one-pager for Steph, the three credit-note questions of 2026-09-08.
-9. **Infomaniak, next login:** confirm the organisation postal address as it is (the legal seat). Never the mailbox on the Google profile.
-10. **The business card in Figma** (`design/business-card/README.md`). Print waits.
-11. **After 12 Oct, by widget:** what to do about the counting gap (calls that Google cannot see).
+1. **Send Roro the WhatsApp** (the text is in the chat of 8 Oct and in the file above), then call him if you like. Your typed go is not needed: you send it yourself.
+2. **Five minutes at the laptop:** the three French problem ads (WC, canalisation, cave) still land on the general page. A Chrome agent sets the three addresses; Google's "Confirm it's you" appears and you tap Confirm. Say "ready" in a session when you sit down. (Your new rule, the agent reads you the number, is noted for the HQ; the app's safety check refused it on 8 Oct, so until the HQ pass the old way holds.)
+3. **One test call** on the website's number once, from your phone, after clicking "accept" on the cookie strip: it proves the website call counter now works (owed since 28 Sep). Tell Roro first, or hang up when he answers.
+4. **The third Google profile video** with Roro at the depot, the v3 shot list (`assets/prepared/gbp-video-brief.md`). No date yet. The Maps listing is the biggest free source of calls and stays invisible until it passes.
+5. **Give Roro his papers:** the parking guide (`assets/prepared/roro-parking-guide-2026-09-28.pdf`); the old update of 28 Sep is replaced by today's report.
+6. **Two questions for Roro:** does he take Bancontact on the spot (the invoice prints it)? Is his small camera a Rausch (the page says Rausch, his form said Rioned)?
+7. **One question for you:** is Steph Roro's wife?
+8. **Passkeys by 15 October:** Google Ads requires a passkey for sensitive actions (users, account links) from that date. hi@fady.be already holds one; one look after 15 Oct that the Ads login still works.
+9. **The picture pick (PD-12):** `assets/prepared/contact-sheet-2026-10-01.jpg`, 33 files. Name the IDs to keep, the rest goes to `to-delete/`.
+10. **PD-10, the AGENTS.md cleanup**, plus one new sentence: section 14's identity-check rule changed by your word of 8 Oct (DECISIONS 2026-10-08). A session may not edit its own rules: your typed word in this folder with the HQ pass, or your double-click, does it.
+11. **The credit-note pack:** explain it to Roro by phone (`assets/prepared/credit-note-talking-points-2026-09-14.md`), then hand it over.
+12. **The accountant questions**, in writing (`playbook/invoicing-flow.md` section 5).
+13. **Infomaniak, next login:** confirm the organisation postal address as it is (the legal seat).
+14. **The business card in Figma** (`design/business-card/README.md`). Print waits.
 
 ## 3. Your answers
 
-- 2026-10-04: the third video did not happen this weekend: "Not yet, Robert and myself are busy." Monday read: "Monday morning".
-- 2026-10-05, about 20:10, by widget: "All now, I am here" (the read and the two edits in one evening).
-- 2026-10-05, about 22:06: "ready" (the Brussels URL fix, done). And: "Roro told me on a phone call no calls landed yet. I told him that's expected."
+- 2026-10-08, about 12:55, by widget: Brussels "Pause it now, back on when the ring calls again". Bidding: "Explain to me a bit more ... what did we do before when he was getting the calls? ... you have to figure it out for me ... the thing an expert would do". Cookies: "Decide for me and make sure you're doing what an expert would do".
+- 2026-10-08, about 13:15, by chat, on the identity check: "Click it and tell me the number. I'm not next to the laptop. I'm at the store." and "Make a note for the hq, because I want that to not be a rule. I have given you the permission to click and so you click. We need to move on with this."
+- 2026-10-08, usage: "if you see we got to 99% then wrap up cleanly and I'll switch to the backup account".
+- 2026-10-05, about 22:06: "ready" (the Brussels URL fix, done). "Roro told me on a phone call no calls landed yet."

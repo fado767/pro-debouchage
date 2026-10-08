@@ -3,7 +3,13 @@
 // the v2 text can say what the v2 site actually does (self-hosted fonts, no third-party request) and so
 // English has a page of its own instead of borrowing the French one.
 // Facts only: what is written here must match what the built site really does (AGENTS.md rule 1).
-const UPDATED = { fr: '27 août 2026', nl: '27 augustus 2026', en: '27 August 2026' };
+// ADV (2026-10-08, research/68): true only on a CONSENT_MODE=advanced build, read as build.js reads it.
+// There Google's script loads before the visitor answers, so the cookie text is swapped (ADV_SWAP at the
+// bottom) and the page carries its own update date. The basic build keeps every byte as it was.
+const ADV = process.env.CONSENT_MODE === 'advanced';
+const UPDATED = ADV
+  ? { fr: '8 octobre 2026', nl: '8 oktober 2026', en: '8 October 2026' }
+  : { fr: '27 août 2026', nl: '27 augustus 2026', en: '27 August 2026' };
 
 const fr = `<main>
 <section class="s-card">
@@ -249,4 +255,57 @@ const BASIS_TAG = {
   en: `\n      <li><strong>Knowing whether our ads bring in calls</strong>: your consent, which you can withdraw whenever you want.</li>`,
 };
 
-module.exports = { fr, nl, en, COOKIES_TAG, RECIP_TAG, BASIS_TAG };
+// THE ADVANCED VARIANT (added 2026-10-08, research/68). Under CONSENT_MODE=advanced Google's script loads
+// (the Ads tag only; GA4 waits for the analytics Accept) on every page before the visitor answers, all
+// consent denied: no cookie set or read, cookieless pings only (their fields were read off the wire on
+// the preview, research/68). The sentences above that say
+// "nothing loads before you choose" are swapped here, one by one, so the cookie table and everything
+// else stays ONE text. Each swap must match exactly once, or the build stops: an edit above that breaks
+// a match can never ship the old untrue sentence in silence.
+const ADV_SWAP = {
+  fr: [
+    [`<p>Rien n'est chargé avant votre choix. Une bannière propose`,
+     `<p>Seul le script de Google Ads se charge dès l'ouverture de la page, avant votre choix. Tant que vous n'avez pas accepté, et aussi si vous refusez, il ne dépose aucun cookie et n'en lit aucun. À l'ouverture de la page, il envoie à Google, sans cookie&nbsp;: l'heure, l'adresse de la page et celle d'où vous venez, si cette adresse contenait un code de clic d'annonce (le code lui-même est remplacé par un 0), si vous avez accepté ou non, un nombre tiré au hasard pour ce chargement de page, et quelques réglages techniques de la balise. Si vous appuyez sur un bouton d'appel ou WhatsApp, il envoie aussi, sans cookie, pour compter l'appel&nbsp;: le titre de la page, la taille de l'écran, le modèle d'appareil, son système, le navigateur et leurs versions. Comme pour toute connexion, Google voit aussi votre adresse IP et le type de navigateur. Aucun identifiant n'est gardé d'une page à l'autre. La mesure d'audience (Google Analytics) ne se charge que si vous l'acceptez. Si vous acceptez, Google peut déposer des cookies pour la mesure des annonces et pour la mesure d'audience, pour les durées du tableau plus bas.</p>
+    <p>Une bannière propose`],
+    [`<p>La base légale est votre consentement.`, `<p>Pour les cookies, la base légale est votre consentement.`],
+    [`Refuser efface les cookies concernés.</p>`, `Refuser efface les cookies concernés. La mesure des annonces sans cookie repose sur notre intérêt légitime&nbsp;: savoir si nos annonces Google amènent des appels.</p>`],
+    [`<p>Si vous acceptez la mesure, Google peut traiter ces données en dehors`, `<p>Google peut traiter les données de mesure en dehors`],
+    [`Tant que vous n'avez pas accepté, votre navigateur ne demande aucun fichier à une autre société en ouvrant cette page.`, `En ouvrant cette page, votre navigateur ne contacte qu'une seule autre société&nbsp;: Google, pour la mesure décrite plus haut.`],
+  ],
+  nl: [
+    [`<p>Er wordt niets geladen voor u kiest. Een banner toont`,
+     `<p>Alleen het script van Google Ads laadt zodra u de pagina opent, nog voor u kiest. Zolang u niet aanvaardt, en ook als u weigert, plaatst het geen cookies en leest het er geen. Bij het openen van de pagina stuurt het zonder cookie naar Google&nbsp;: het tijdstip, het adres van de pagina en dat van de pagina waar u vandaan komt, of dat adres een code van een advertentieklik bevatte (de code zelf wordt vervangen door een 0), of u aanvaard hebt of niet, een willekeurig getal voor die paginalading, en enkele technische instellingen van het script. Tikt u op een bel- of WhatsApp-knop, dan stuurt het ook, zonder cookie, om de oproep te tellen&nbsp;: de titel van de pagina, de schermgrootte, het model van uw toestel, het systeem, de browser en hun versies. Zoals bij elke verbinding ziet Google ook uw IP-adres en het type browser. Er wordt geen herkenningsnummer bewaard tussen twee pagina's. De bezoekersmeting (Google Analytics) laadt alleen als u die aanvaardt. Aanvaardt u, dan kan Google cookies plaatsen voor de advertentiemeting en de bezoekersmeting, voor de termijnen in de tabel hieronder.</p>
+    <p>Een banner toont`],
+    [`<p>De rechtsgrond is uw toestemming.`, `<p>Voor de cookies is de rechtsgrond uw toestemming.`],
+    [`Weigeren wist de betrokken cookies.</p>`, `Weigeren wist de betrokken cookies. De advertentiemeting zonder cookies steunt op ons gerechtvaardigd belang&nbsp;: weten of onze Google-advertenties telefoontjes opleveren.</p>`],
+    [`<p>Aanvaardt u de meting, dan kan Google die gegevens ook buiten de Europese Unie verwerken`, `<p>Google kan de meetgegevens ook buiten de Europese Unie verwerken`],
+    [`Zolang u niet aanvaardt, vraagt uw browser bij het openen van deze pagina geen enkel bestand op bij een ander bedrijf.`, `Bij het openen van deze pagina contacteert uw browser maar één ander bedrijf&nbsp;: Google, voor de meting die hierboven staat beschreven.`],
+  ],
+  en: [
+    [`<p>Nothing loads before you choose. A banner offers`,
+     `<p>Only the Google Ads script loads as soon as you open the page, before you choose. Until you accept, and also if you refuse, it doesn't set or read any cookie. When the page opens, it sends Google, without a cookie: the time, the page address and the one you came from, whether that address carried an ad-click code (the code itself is replaced by a 0), whether you accepted or not, a random number for that page load, and a few technical settings of the tag. If you tap a call or WhatsApp button, it also sends, without a cookie, to count the call: the page title, the screen size, your device model, its system, the browser and their versions. As with any connection, Google also sees your IP address and browser type. No identifier is kept from one page to the next. Audience measurement (Google Analytics) only loads if you accept it. If you accept, Google may set cookies for ad measurement and for audience measurement, for the lifetimes in the table below.</p>
+    <p>A banner offers`],
+    [`<p>The legal basis is your consent.`, `<p>For the cookies, the legal basis is your consent.`],
+    [`Refusing deletes the cookies concerned.</p>`, `Refusing deletes the cookies concerned. The ad measurement without cookies rests on our legitimate interest: knowing whether our Google ads bring in calls.</p>`],
+    [`<p>If you accept the measurement, Google may process that data outside the European Union`, `<p>Google may process the measurement data outside the European Union`],
+    [`Until you accept, your browser doesn't request a single file from another company when opening this page.`, `When you open this page, your browser contacts only one other company: Google, for the measurement described above.`],
+  ],
+};
+const advSwap = (l, s) => ADV_SWAP[l].reduce((t, [a, b]) => {
+  if (t.split(a).length !== 2) throw new Error(`legal.js ADV_SWAP (${l}): expected exactly one match for "${a.slice(0, 50)}"`);
+  return t.replace(a, () => b);
+}, s);
+const RECIP_ADV = {
+  fr: ` Google Ireland Ltd, pour la mesure décrite plus haut (Google Ads, sans cookie tant que vous n'avez pas accepté, et Google Analytics, seulement si vous l'acceptez), et uniquement pour cette mesure.`,
+  nl: ` Google Ireland Ltd, voor de meting die hierboven staat beschreven (Google Ads, zonder cookies zolang u niet aanvaardt, en Google Analytics, alleen als u die aanvaardt), en alleen voor die meting.`,
+  en: ` Google Ireland Ltd, for the measurement described above (Google Ads, with no cookies until you accept, and Google Analytics, only if you accept it), and only for that measurement.`,
+};
+const BASIS_ADV = {
+  fr: `\n      <li><strong>Savoir si nos annonces amènent des appels, avec les cookies de Google</strong>&nbsp;: votre consentement, que vous pouvez retirer quand vous voulez.</li>\n      <li><strong>La mesure des annonces sans cookie, avant votre choix ou si vous refusez</strong>&nbsp;: notre intérêt légitime à savoir si nos annonces amènent des appels.</li>`,
+  nl: `\n      <li><strong>Weten of onze advertenties telefoontjes opleveren, met de cookies van Google</strong>&nbsp;: uw toestemming, die u altijd kunt intrekken.</li>\n      <li><strong>De advertentiemeting zonder cookies, voor u kiest of als u weigert</strong>&nbsp;: ons gerechtvaardigd belang om te weten of onze advertenties telefoontjes opleveren.</li>`,
+  en: `\n      <li><strong>Knowing whether our ads bring in calls, with Google's cookies</strong>: your consent, which you can withdraw whenever you want.</li>\n      <li><strong>The ad measurement without cookies, before you choose or if you refuse</strong>: our legitimate interest in knowing whether our ads bring in calls.</li>`,
+};
+
+module.exports = ADV
+  ? { fr, nl, en, COOKIES_TAG: { fr: advSwap('fr', COOKIES_TAG.fr), nl: advSwap('nl', COOKIES_TAG.nl), en: advSwap('en', COOKIES_TAG.en) }, RECIP_TAG: RECIP_ADV, BASIS_TAG: BASIS_ADV }
+  : { fr, nl, en, COOKIES_TAG, RECIP_TAG, BASIS_TAG };
